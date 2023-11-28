@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /*
- * Fixed a bug where look direction didn't effect movement direction until movement input had a callback
+ * Change how we detected the player is grounded
+ * Seperate camea logic into its own class
  */
 
 public class PlayerController : MonoBehaviour
@@ -22,7 +23,8 @@ public class PlayerController : MonoBehaviour
     private bool isMovePressed;
     private bool isSprintPressed;
 
-    // Jumping
+    // Jumping & gravity
+    private bool isGrounded;
     private bool isJumpPressed;
     [SerializeField] float jumpHeight;
     [SerializeField] float gravity;
@@ -97,6 +99,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // Movement vector updates
         currMove = (currMoveInput.x * transform.right * moveSpeed)
             + (currMove.y * transform.up)
             + (currMoveInput.y * transform.forward * moveSpeed);
@@ -115,7 +118,6 @@ public class PlayerController : MonoBehaviour
         // Player jumping and gravity
         if (characterController.isGrounded && isJumpPressed && !canVault)
         {
-            Debug.Log("Jumping");
             currMove.y = jumpHeight;
         }
         else if (currMove.y > gravity)
@@ -139,6 +141,18 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.rotation = Quaternion.Euler(currLookRot);
     }
 
+    private void OnCollisionEnter(Collision _other)
+    {
+        if (_other.gameObject.CompareTag("Ground")) isGrounded = true;
+        Debug.Log(isGrounded);
+    }
+
+    private void OnCollisionExit(Collision _other)
+    {
+        if (_other.gameObject.CompareTag("Ground")) isGrounded = false;
+        Debug.Log(isGrounded);
+    }
+
     private void OnTriggerEnter(Collider _other)
     {
         if (_other.gameObject.layer == LayerMask.NameToLayer("Vault")) canVault = true;
@@ -155,6 +169,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerExit(Collider _other)
     {
         if (_other.gameObject.layer == LayerMask.NameToLayer("Vault")) canVault = false;
+        Debug.Log(characterController.isGrounded);
     }
 
     void OnMoveInput(InputAction.CallbackContext _ctx)
