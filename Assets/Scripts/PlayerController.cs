@@ -5,8 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/*
+ * Fixed a bug where look direction didn't effect movement direction until movement input had a callback
+ */
+
 public class PlayerController : MonoBehaviour
 {
+    // Movement & Sprinting
     private PlayerInput playerInput;
     [SerializeField] CharacterController characterController;
     private Vector2 currMoveInput;
@@ -17,10 +22,17 @@ public class PlayerController : MonoBehaviour
     private bool isMovePressed;
     private bool isSprintPressed;
 
+    // Jumping
     private bool isJumpPressed;
     [SerializeField] float jumpHeight;
     [SerializeField] float gravity;
 
+    // Vaulting
+    private bool canVault;
+    [SerializeField] float vaultTime;
+    [SerializeField] float vaultBuffer;
+
+    // Camera control
     [SerializeField] Camera playerCamera;
     [SerializeField] float sensitivity;
     [SerializeField] int lockVertMin;
@@ -29,9 +41,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 currLookInput;
     private Vector3 currLookRot;
 
+    // Shooting
     private bool isShootPressed;
     [SerializeField] float shootDist;
-    [SerializeField] float rayDuration;
+    [SerializeField] float shootRayEndurance;
 
     //[SerializeField] Animator animator;
     //private bool isMoving;
@@ -41,35 +54,57 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-        //isMovingHash = Animator.StringToHash("isWalking");
-        //isSprintingHash = Animator.StringToHash("isSprinting");
-
         //Get input
         playerInput = new PlayerInput();
         // Movement
-        playerInput.PlayerControls.Move.started += OnMoveInput;
-        playerInput.PlayerControls.Move.canceled += OnMoveInput;
-        playerInput.PlayerControls.Move.performed += OnMoveInput;
+        playerInput.PlayerControls.Move.performed += ctx => currMoveInput = ctx.ReadValue<Vector2>();
+        //playerInput.PlayerControls.Move.started += ctx => currMoveInput = ctx.ReadValue<Vector2>();
+        playerInput.PlayerControls.Move.canceled += ctx => currMoveInput = ctx.ReadValue<Vector2>();
+        // Looking
+        playerInput.PlayerControls.Look.started += ctx => currLookInput = ctx.ReadValue<Vector2>();
+        playerInput.PlayerControls.Look.canceled += ctx => currLookInput = ctx.ReadValue<Vector2>();
         // Sprinting
         playerInput.PlayerControls.Sprint.started += ctx => isSprintPressed = ctx.ReadValueAsButton();
         playerInput.PlayerControls.Sprint.canceled += ctx => isSprintPressed = ctx.ReadValueAsButton();
         //Jumping
         playerInput.PlayerControls.Jump.started += ctx => isJumpPressed = ctx.ReadValueAsButton();
         playerInput.PlayerControls.Jump.canceled += ctx => isJumpPressed = ctx.ReadValueAsButton();
-        // Looking
-        playerInput.PlayerControls.Look.started += ctx => currLookInput = ctx.ReadValue<Vector2>();
-        playerInput.PlayerControls.Look.canceled += ctx => currLookInput = ctx.ReadValue<Vector2>();
         //Shooting
         playerInput.PlayerControls.Shoot.started += OnShootInput;
         playerInput.PlayerControls.Shoot.canceled += OnShootInput;
     }
 
+    private void OnEnable()
+    {
+        playerInput.PlayerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInput.PlayerControls.Disable();
+    }
+
+    private void Start()
+    {
+        // Cursor handling
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        //isMovingHash = Animator.StringToHash("isWalking");
+        //isSprintingHash = Animator.StringToHash("isSprinting");
+    }
+
     // Update is called once per frame
     private void Update()
     {
+        currMove = (currMoveInput.x * transform.right * moveSpeed)
+            + (currMove.y * transform.up)
+            + (currMoveInput.y * transform.forward * moveSpeed);
+        currSprintMove.x = currMove.x * sprintMod;
+        currSprintMove.y = currMove.y;
+        currSprintMove.z = currMove.z * sprintMod;
+        isMovePressed = currMoveInput.x != 0 || currMoveInput.y != 0;
+
         // Player translation
         if (isSprintPressed && characterController.isGrounded)
         {
@@ -78,8 +113,9 @@ public class PlayerController : MonoBehaviour
         else characterController.Move(currMove * Time.deltaTime);
 
         // Player jumping and gravity
-        if (characterController.isGrounded && isJumpPressed)
+        if (characterController.isGrounded && isJumpPressed && !canVault)
         {
+            Debug.Log("Jumping");
             currMove.y = jumpHeight;
         }
         else if (currMove.y > gravity)
@@ -103,26 +139,56 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.rotation = Quaternion.Euler(currLookRot);
     }
 
-    private void OnEnable()
+    private void OnTriggerEnter(Collider _other)
     {
-        playerInput.PlayerControls.Enable();
+        if (_other.gameObject.layer == LayerMask.NameToLayer("Vault")) canVault = true;
     }
 
-    private void OnDisable()
+    private void OnTriggerStay(Collider _other)
     {
-        playerInput.PlayerControls.Disable();
+        if (canVault && isJumpPressed)
+        {
+            StartCoroutine(Vault(_other.gameObject, vaultTime));
+        }
+    }
+
+    private void OnTriggerExit(Collider _other)
+    {
+        if (_other.gameObject.layer == LayerMask.NameToLayer("Vault")) canVault = false;
     }
 
     void OnMoveInput(InputAction.CallbackContext _ctx)
     {
-        currMoveInput = _ctx.ReadValue<Vector2>();
-        currMove = (currMoveInput.x * transform.right * moveSpeed)
-            + (currMove.y * transform.up)
-            + (currMoveInput.y * transform.forward * moveSpeed);
-        currSprintMove.x = currMove.x * sprintMod;
-        currSprintMove.y = currMove.y;
-        currSprintMove.z = currMove.z * sprintMod;
-        isMovePressed = currMoveInput.x != 0 || currMoveInput.y != 0;
+        //currMoveInput = _ctx.ReadValue<Vector2>();
+        //currLookInput = _ctx.ReadValue<Vector2>();
+        //currMove = (currMoveInput.x * transform.right * moveSpeed)
+        //    + (currMove.y * transform.up)
+        //    + (currMoveInput.y * transform.forward * moveSpeed);
+        //currSprintMove.x = currMove.x * sprintMod;
+        //currSprintMove.y = currMove.y;
+        //currSprintMove.z = currMove.z * sprintMod;
+        //isMovePressed = currMoveInput.x != 0 || currMoveInput.y != 0;
+    }
+
+    IEnumerator Vault(GameObject _vaultObstacle, float _vaultTime)
+    {
+        float time = 0;
+
+        Vector3 startPos = transform.position;
+        Vector3 targetPos = startPos
+            + (transform.forward * (_vaultObstacle.transform.localScale.z + vaultBuffer))
+            + (transform.up * _vaultObstacle.transform.localScale.y);
+
+        while (time < _vaultTime)
+        {
+            transform.position = Vector3.Lerp(startPos, targetPos, time / _vaultTime);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        characterController.Move(currMove * Time.deltaTime);
+        canVault = true;
     }
 
     void OnShootInput(InputAction.CallbackContext _ctx)
@@ -131,12 +197,12 @@ public class PlayerController : MonoBehaviour
         if (isShootPressed)
         {
             Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * shootDist,
-            Color.red, rayDuration);
+            Color.red, shootRayEndurance);
             RaycastHit hit;
             if (Physics.Raycast(playerCamera.ViewportPointToRay(new Vector2(0.5f, 0.5f)),
                 out hit, shootDist))
             {
-                Debug.Log(hit.collider.gameObject.name);
+                //Debug.Log(hit.collider.gameObject.name);
             }
         }
     }
