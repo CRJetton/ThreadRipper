@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : MonoBehaviour, IPlayerCombat
 {
     [SerializeField] PlayerController playerController;
 
@@ -30,10 +30,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (isWeaponEquipped)
         {
-            ReloadControl();
             AimControl();
-            ScopeControl();
-            AttackControl();
         }
     }
 
@@ -60,41 +57,38 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    void ScopeControl()
+
+    public void FocusStarted(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (weaponCurrent != null)
         {
-            if (gunCurrent != null)
-            {
-                gunCurrent.ScopeIn();
-            }
-        }
-        else if (Input.GetButtonUp("Fire2"))
-        {
-            if (gunCurrent != null)
-            {
-                gunCurrent.ScopeOut();
-            }
+            weaponCurrent.StartFocus();
         }
     }
-#endregion
+
+    public void FocusCanceled(InputAction.CallbackContext context)
+    {
+        if (weaponCurrent != null)
+        {
+            weaponCurrent.StopFocus();
+        }
+    }
+    #endregion
 
     #region Attacking
-    void AttackControl()
+    public void AttackStarted(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (weaponCurrent != null)
         {
-            if (weaponCurrent != null)
-            {
-                weaponCurrent.StartAttack();
-            }
+            weaponCurrent.StartAttack();
         }
-        else if (!Input.GetButton("Fire1"))
+    }
+
+    public void AttackCanceled(InputAction.CallbackContext context)
+    {
+        if (weaponCurrent != null)
         {
-            if (weaponCurrent != null)
-            {
-                weaponCurrent.StopAttack();
-            }
+            weaponCurrent.StopAttack();
         }
     }
 
@@ -105,14 +99,12 @@ public class PlayerCombat : MonoBehaviour
     #endregion
 
     #region Ammo Control
-    void ReloadControl()
-    { 
-        if (Input.GetKeyDown(KeyCode.R))
+
+    public void ReloadStarted(InputAction.CallbackContext context)
+    {
+        if (gunCurrent != null)
         {
-            if (gunCurrent != null)
-            {
-                gunCurrent.Reload();
-            }
+            gunCurrent.Reload();
         }
     }
 

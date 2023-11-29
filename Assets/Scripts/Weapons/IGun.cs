@@ -5,9 +5,6 @@ using UnityEngine.Events;
 
 public interface IGun : IWeapon
 {
-    public void ScopeIn();
-    public void ScopeOut();
-
     public void Reload();
 
     public void SubscribeOnAmmoChange(UnityAction action);

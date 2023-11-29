@@ -300,7 +300,7 @@ public class GunController : MonoBehaviour, IGun
         transform.LookAt(targetPosition);
     }
 
-    public void ScopeIn()
+    public void StartFocus()
     {
         if (!isScopedIn)
         {
@@ -311,7 +311,7 @@ public class GunController : MonoBehaviour, IGun
         }
     }
 
-    public void ScopeOut()
+    public void StopFocus()
     {
         if (isScopedIn)
         {

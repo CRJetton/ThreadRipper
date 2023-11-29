@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     // Movement & Sprinting
     private PlayerInput playerInput;
     [SerializeField] CharacterController characterController;
+    IPlayerCombat playerCombat;
     private Vector2 currMoveInput;
     private Vector3 currMove;
     private Vector3 currSprintMove;
@@ -71,9 +72,18 @@ public class PlayerController : MonoBehaviour
         //Jumping
         playerInput.PlayerControls.Jump.started += ctx => isJumpPressed = ctx.ReadValueAsButton();
         playerInput.PlayerControls.Jump.canceled += ctx => isJumpPressed = ctx.ReadValueAsButton();
-        //Shooting
-        playerInput.PlayerControls.Shoot.started += OnShootInput;
-        playerInput.PlayerControls.Shoot.canceled += OnShootInput;
+
+
+
+        playerCombat = GetComponent<PlayerCombat>();
+        //Attacking
+        playerInput.PlayerControls.Shoot.started += playerCombat.AttackStarted;
+        playerInput.PlayerControls.Shoot.canceled += playerCombat.AttackCanceled;
+        //Scoping / blocking
+        playerInput.PlayerControls.Focus.started += playerCombat.FocusStarted;
+        playerInput.PlayerControls.Focus.canceled += playerCombat.FocusCanceled;
+        //Reloading
+        playerInput.PlayerControls.Reload.started += playerCombat.ReloadStarted;
     }
 
     private void OnEnable()
