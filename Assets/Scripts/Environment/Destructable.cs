@@ -32,7 +32,7 @@ public class Destructable : MonoBehaviour, IDamageable
     { 
         model.material.color = hitColor;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
 
         model.material.color = defaultColor;
     }

@@ -9,4 +9,6 @@ public interface IWeapon
 
     public void StopAttack();
 
+    public void Equip();
+    public float GetEquipTime();
 }

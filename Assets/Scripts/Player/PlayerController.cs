@@ -141,6 +141,14 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.rotation = Quaternion.Euler(currLookRot);
     }
 
+    public void AddLookRotation(Vector3 rot)
+    {
+        transform.Rotate(Vector3.up * rot.x);
+        currLookRot.x -= rot.y;
+        currLookRot.y = transform.rotation.eulerAngles.y;
+        playerCamera.transform.rotation = Quaternion.Euler(currLookRot);
+    }
+
     private void OnCollisionEnter(Collision _other)
     {
         if (_other.gameObject.CompareTag("Ground")) isGrounded = true;

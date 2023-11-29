@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noHitTag: Ground
   damage: 1
-  speed: 150
+  speed: 200
   destroyTime: 3
   rb: {fileID: 8272002607026091246}
 --- !u!96 &2265149848900713974
