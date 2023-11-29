@@ -5,6 +5,8 @@ using UnityEngine;
 public interface IWeapon
 {
     public void AimAt(Vector3 targetPosition);
-    public void Attack();
+    public void StartAttack();
+
+    public void StopAttack();
 
 }

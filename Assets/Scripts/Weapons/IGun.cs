@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface IGun : IWeapon
 {
+    public void ScopeIn();
+    public void ScopeOut();
+
     public void Reload();
 }
