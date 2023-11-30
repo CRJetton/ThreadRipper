@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour, IPlayerCombat
 {
+    InputAction attackInput;
+    InputAction focusInput;
+    InputAction reloadInput;
+
     [SerializeField] PlayerController playerController;
+    [SerializeField] CameraController cameraController;
 
     [SerializeField] float maxAimRange;
     [SerializeField] float minAimRange;
+    [SerializeField] float recoilSmoothTime;
+    Vector3 recoilJumpToAdd;
 
     [SerializeField] Transform weaponContainer;
     [SerializeField] GameObject startingWeaponPrefab;
@@ -16,14 +25,41 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
     private IGun gunCurrent;
 
     Coroutine equippingWeapon;
+    Coroutine shotJumping;
 
     bool isWeaponEquipped;
 
 
+    #region Initialization
     private void Start()
     {
+        InitializeControls();
+
         EquipWeapon(startingWeaponPrefab);
     }
+
+    void InitializeControls()
+    {
+        attackInput = InputManager.instance.playerInput.PlayerControls.Attack;
+        focusInput = InputManager.instance.playerInput.PlayerControls.Focus;
+        reloadInput = InputManager.instance.playerInput.PlayerControls.Reload;
+
+        attackInput.started += AttackStarted;
+        attackInput.canceled += AttackCanceled;
+        focusInput.started += FocusStarted;
+        focusInput.canceled += FocusCanceled;
+        reloadInput.started += ReloadStarted;
+    }
+
+    void OnDisable()
+    {
+        attackInput.started -= AttackStarted;
+        attackInput.canceled -= AttackCanceled;
+        focusInput.started -= FocusStarted;
+        focusInput.canceled -= FocusCanceled;
+        reloadInput.started -= ReloadStarted;
+    }
+    #endregion
 
 
     private void Update()
@@ -73,6 +109,55 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
             weaponCurrent.StopFocus();
         }
     }
+
+    public void AddShotJump(Vector3 amount)
+    {
+        if (shotJumping != null)
+            StopCoroutine(shotJumping);
+
+        shotJumping = StartCoroutine(ShotJumping(amount));
+    }
+
+    IEnumerator ShotJumping(Vector3 amount)
+    {
+        float startTime = Time.time;
+        float percentDone = 0;
+
+        recoilJumpToAdd += amount;
+        Vector3 startJumpToAdd = recoilJumpToAdd;
+
+        for(; ; )
+        {
+            percentDone = (Time.time - startTime) / recoilSmoothTime;
+
+            if (percentDone < 1)
+            {
+                Vector3 lastRecoilJump = recoilJumpToAdd;
+                recoilJumpToAdd = Vector3.Lerp(startJumpToAdd, Vector3.zero, percentDone);
+                
+                Vector3 jumpDiff = lastRecoilJump - recoilJumpToAdd;
+
+                playerController.AddHorizontalRotation(jumpDiff.x);
+                cameraController.AddVerticalRotation(jumpDiff.y);
+            }
+            else
+            {
+                playerController.AddHorizontalRotation(recoilJumpToAdd.x);
+                cameraController.AddVerticalRotation(recoilJumpToAdd.y);
+
+                recoilJumpToAdd = Vector3.zero;
+                shotJumping = null;
+
+                break;
+            }
+
+            yield return new WaitForNextFrameUnit();
+        }
+
+
+
+
+    }
     #endregion
 
     #region Attacking
@@ -90,11 +175,6 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
         {
             weaponCurrent.StopAttack();
         }
-    }
-
-    public void AddShotJump(Vector3 amount)
-    {
-        playerController.AddLookRotation(amount);
     }
     #endregion
 

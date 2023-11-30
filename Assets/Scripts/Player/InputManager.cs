@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     public static InputManager instance { get; private set; }
-    [SerializeField] PlayerInput playerInput;
+    public PlayerInput playerInput { get; private set; }
     [SerializeField] PlayerController player;
     [SerializeField] PlayerGroundDetector groundDetector;
     [SerializeField] PlayerVaultDetector vaultDetector;
@@ -31,6 +31,7 @@ public class InputManager : MonoBehaviour
         playerInput.PlayerControls.Sprint.canceled += OnSprintInput;
         //Jumping
         playerInput.PlayerControls.Jump.started += OnJumpInput;
+
         playerInput.PlayerControls.Jump.canceled += OnJumpInput;
     }
 

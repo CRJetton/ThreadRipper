@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effff140f278d7c4e97fb6de3e1e61ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noHitTag: Ground
+  noHitTag: Player
   damage: 1
   speed: 200
   destroyTime: 3
