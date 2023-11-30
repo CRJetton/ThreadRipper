@@ -354,6 +354,8 @@ MonoBehaviour:
   anim: {fileID: 7914732458371626903}
   shootAnims:
   - {fileID: 7400000, guid: b5c16fb29432e154fac81e6ff4354950, type: 2}
+  - {fileID: 7400000, guid: 5ca3cd8ed77a90347bef4fc411e8f6c8, type: 2}
+  - {fileID: 7400000, guid: 8fb1c3b9661fc7c4f8940a13dd9682fe, type: 2}
 --- !u!95 &7914732458371626903
 Animator:
   serializedVersion: 5
