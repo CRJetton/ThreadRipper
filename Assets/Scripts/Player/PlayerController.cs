@@ -7,24 +7,31 @@ using UnityEngine.InputSystem;
 
 /* LOG
  *
- * Need to communicate with i combat interface
+ *
  */
 
 public class PlayerController : MonoBehaviour
 {
+    ////Input
+    InputAction movementInput;
+    InputAction sprintInput;
+    InputAction lookInput;
+    InputAction jumpInput;
+
     // Movement
     [SerializeField] private CharacterController characterController;
+    private Vector3 move;
     [SerializeField] private float defaultMoveSpeed;
+    private float currMoveSpeed;
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float lookSensitivity;
-    private float currMoveSpeed;
-    private Vector3 move;
 
     // Jumping & gravity
     [SerializeField] private float jumpHeight;
     [SerializeField] private float gravity;
 
     // Vaulting
+    [SerializeField] PlayerVaultDetector vaultDetector;
     [SerializeField] private float vaultTime;
     [SerializeField] float vaultForward;
     [SerializeField] float vaultUp;
@@ -35,31 +42,58 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
+        // Get input
+        movementInput = InputManager.instance.playerInput.PlayerControls.Move;
+        sprintInput = InputManager.instance.playerInput.PlayerControls.Sprint;
+        sprintInput.started += OnSprintInput;
+        sprintInput.canceled += OnSprintInput;
+        lookInput = InputManager.instance.playerInput.PlayerControls.Look;
+        jumpInput = InputManager.instance.playerInput.PlayerControls.Jump;
+        jumpInput.started += OnJumpInput;
+
         currMoveSpeed = defaultMoveSpeed;
+
+    }
+
+    private void OnDisable()
+    {
+        sprintInput.started -= OnSprintInput;
+        sprintInput.canceled -= OnSprintInput;
+        jumpInput.started -= OnJumpInput;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        move = (InputManager.instance.GetMoveInput().x * transform.right * currMoveSpeed)
+        move = (movementInput.ReadValue<Vector2>().x * transform.right * currMoveSpeed)
             + (move.y * transform.up)
-            + (InputManager.instance.GetMoveInput().y * transform.forward * currMoveSpeed);
+            + (movementInput.ReadValue<Vector2>().y * transform.forward * currMoveSpeed);
 
         characterController.Move(move * Time.deltaTime);
-
-        float lookXInput = InputManager.instance.GetLookInput().x * lookSensitivity * Time.deltaTime;
-        AddHorizontalRotation(lookXInput);
+        Look(lookInput.ReadValue<Vector2>().x * lookSensitivity * Time.deltaTime);
 
         //Gravity
         if (move.y > gravity) move.y += gravity * Time.deltaTime;
     }
 
-    public void AddHorizontalRotation(float amount)
+    public void Look(float amount)
     {
         transform.Rotate(Vector3.up, amount);
     }
 
-    public IEnumerator Vault(float _vaultTime)
+    private void OnSprintInput(InputAction.CallbackContext _ctx)
+    {
+        if (_ctx.started) currMoveSpeed = sprintSpeed;
+        else currMoveSpeed = defaultMoveSpeed;
+    }
+
+    private void OnJumpInput(InputAction.CallbackContext _ctx)
+    {
+        if (vaultDetector.GetCanPlayerVault()) StartCoroutine(Vault(vaultTime));
+        else move.y = jumpHeight;
+    }
+
+    private IEnumerator Vault(float _vaultTime)
     {
         float time = 0;
 
@@ -80,35 +114,5 @@ public class PlayerController : MonoBehaviour
     public float GetLookSensitivity()
     {
         return lookSensitivity;
-    }
-
-    public float GetVaultTime()
-    {
-        return vaultTime;
-    }
-
-    public float GetJumpHeight()
-    {
-        return jumpHeight;
-    }
-
-    public float GetSprintSpeed()
-    {
-        return sprintSpeed;
-    }
-
-    public float GetDefaultSpeed()
-    {
-        return defaultMoveSpeed;
-    }
-
-    public void SetMoveSpeed(float _speed)
-    {
-        currMoveSpeed = _speed;
-    }
-
-    public void SetMoveUp(float _up)
-    {
-        move.y = _up;
     }
 }
