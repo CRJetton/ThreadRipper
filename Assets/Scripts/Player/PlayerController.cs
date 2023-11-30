@@ -6,19 +6,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /* LOG
- * 
+ *
  * Need to communicate with i combat interface
- * 
- * Vault detection is now handled by a seperate collider and script.
- * Fixed bug where player couldn't jump after vaulting.
- * Player grounding is now detected by a seperate collider and script.
- * Fixed bug where you could start sprinting in the air.
- * Fixed bug where jumping while sprinting used regular movement speed.
- * Made jumping a callback and vaulting part of their own callback function.
- * Made input its own singleton class to be able to have the optimization of
- *  callbacks (and not have to put things in update) while also being able to 
- *  effect other objects with input.
- * Seperated camera handling into its own class.
  */
 
 public class PlayerController : MonoBehaviour
