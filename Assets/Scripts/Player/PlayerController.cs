@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         else move.y = jumpHeight;
     }
 
-    private void OnRespawn()
+    public void OnRespawn()
     {
         // characterController.enabled = false;
         transform.position = spawnPos.transform.position;
