@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehavior
+public class enemyAI : MonoBehaviour
 {
 	// Serialized fileds
 
@@ -28,10 +28,10 @@ public class enemyAI : MonoBehavior
 	}
 
 	// shooting
-	IEnumerator shoot()
-	{
+	//IEnumerator shoot()
+	//{
 
-	}
+	//}
 
 	// taking damage
 	public void takeDamage(int amount)
@@ -40,8 +40,8 @@ public class enemyAI : MonoBehavior
 	}
 
 	// player feedback from damage
-	IEnumerator flashred()
-	{
+	//IEnumerator flashred()
+	//{
 
-	}
+	//}
 }

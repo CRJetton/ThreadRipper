@@ -43,7 +43,7 @@ public abstract class BaseAI : MonoBehaviour, IDamageable
         {
             Patrol();
         }
-    
+
     }
     // public abstract void Combat(); // Multiple AI's will derive off from different Combat styles
 
