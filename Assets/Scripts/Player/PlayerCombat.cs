@@ -14,6 +14,8 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
     [SerializeField] PlayerController playerController;
     [SerializeField] CameraController cameraController;
 
+    [SerializeField] LayerMask aimIgnoreLayer;
+
     [SerializeField] float maxAimRange;
     [SerializeField] float minAimRange;
     [SerializeField] float recoilSmoothTime;
@@ -79,7 +81,7 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
             Ray centerScreen = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
             Vector3 centerPos;
 
-            if (Physics.Raycast(centerScreen, out hit, maxAimRange) && hit.distance > minAimRange)
+            if (Physics.Raycast(centerScreen, out hit, maxAimRange, ~aimIgnoreLayer) && hit.distance > minAimRange)
             {
                 Debug.DrawLine(Camera.main.transform.position, hit.point, Color.blue);
                 centerPos = hit.point;
