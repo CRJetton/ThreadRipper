@@ -7,6 +7,7 @@ TagManager:
   - Vaultable
   - Climbable
   - PlayerSpawnPos
+  - Enemy
   layers:
   - Default
   - TransparentFX

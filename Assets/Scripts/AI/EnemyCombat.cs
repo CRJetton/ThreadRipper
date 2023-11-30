@@ -9,8 +9,6 @@ public class EnemyCombat : MonoBehaviour, ICombat
     private IWeapon weaponCurrent;
     private IGun gunCurrent;
 
-    bool isWeaponEquipped;
-
     Coroutine equippingWeapon;
 
     void Start()
@@ -21,32 +19,38 @@ public class EnemyCombat : MonoBehaviour, ICombat
 
     public void AimAt(Vector3 worldPosition)
     {
+        if (weaponCurrent != null)
         weaponCurrent.AimAt(worldPosition);
     }
 
     public void AttackCanceled()
     {
-        weaponCurrent.AttackCanceled();
+        if (weaponCurrent != null)
+            weaponCurrent.AttackCanceled();
     }
 
     public void AttackStarted()
     {
-        weaponCurrent.AttackStarted();
+        if (weaponCurrent != null)
+            weaponCurrent.AttackStarted();
     }
 
     public void FocusStarted()
     {
-        weaponCurrent.FocusStarted();
+        if (weaponCurrent != null)
+            weaponCurrent.FocusStarted();
     }
 
     public void FocusCanceled()
     {
-        weaponCurrent.FocusCanceled();
+        if (weaponCurrent != null)
+            weaponCurrent.FocusCanceled();
     }
 
     public void ReloadStarted()
     {
-        gunCurrent.Reload();
+        if (weaponCurrent != null)
+            gunCurrent.Reload();
     }
 
 
@@ -61,8 +65,6 @@ public class EnemyCombat : MonoBehaviour, ICombat
     IEnumerator EquippingWeapon(GameObject prefab)
     {
         // Destroy any existing weapon
-        isWeaponEquipped = false;
-
         foreach (Transform child in weaponContainer)
         {
             Destroy(child.gameObject);
@@ -87,6 +89,5 @@ public class EnemyCombat : MonoBehaviour, ICombat
         yield return new WaitForSeconds(weaponCurrent.GetEquipTime());
 
         weaponCurrent.Equip();
-        isWeaponEquipped = true;
     }
 }

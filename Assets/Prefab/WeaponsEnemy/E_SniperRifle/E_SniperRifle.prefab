@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4455828608863383753
+--- !u!1 &387930949664740200
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,83 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4455828608863383752}
+  - component: {fileID: 387930949664740203}
+  - component: {fileID: 8931782868488275135}
+  - component: {fileID: 1647468922843871192}
   m_Layer: 6
-  m_Name: BarrelPos
+  m_Name: E_SniperRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4455828608863383752
+--- !u!4 &387930949664740203
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4455828608863383753}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.45210007, y: 0.0337, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4647191729681890970}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4455828609911546838
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4455828609911546837}
-  - component: {fileID: 4845992589658207233}
-  - component: {fileID: 3344065549263161190}
-  m_Layer: 6
-  m_Name: E_Shotgun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4455828609911546837
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4455828609911546838}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 387930949664740200}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4647191729681890970}
+  - {fileID: 1309519113512289102}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4845992589658207233
+--- !u!114 &8931782868488275135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4455828609911546838}
+  m_GameObject: {fileID: 387930949664740200}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 929740d55cb362d4aad78c672097122d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5352617108223254793, guid: f0c5c0cf203b62e439941fa5d6499247,
+  bulletPrefab: {fileID: 1818996471705407828, guid: 6f37867e9102b1e458d9ee4fe173244b,
     type: 3}
-  barrelPos: {fileID: 4455828608863383752}
+  barrelPos: {fileID: 387930950781780086}
   equipTime: 0.25
   reloadTime: 1.2
   timeBetweenShots: 0.5
   queueShotTime: 0.05
-  bulletsPerShot: 5
+  bulletsPerShot: 1
   fullAuto: 0
   scopeInTime: 0.11
   scopeOutTime: 0.15
@@ -239,18 +208,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.25
+      inSlope: -0.5
+      outSlope: -0.5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: -0.25
+      inSlope: -0.5
+      outSlope: -0.5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -263,21 +232,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      value: 2.5
+      inSlope: -2.6222904
+      outSlope: -2.6222904
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0.24793579
     - serializedVersion: 3
       time: 1
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -287,18 +256,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.15
+      inSlope: -0.050000004
+      outSlope: -0.050000004
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.1
+      inSlope: -0.050000004
+      outSlope: -0.050000004
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -311,18 +280,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.15
+      inSlope: -0.050000004
+      outSlope: -0.050000004
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.1
+      inSlope: -0.050000004
+      outSlope: -0.050000004
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -335,7 +304,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 10
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -344,7 +313,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 10
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -359,7 +328,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 10
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -368,7 +337,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 10
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -379,22 +348,22 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   recoilRecoverTime: 0.5
-  recoilPerShot: 0.3
-  magAmmoCapacity: 30
-  reserveAmmoCapacity: 1200
-  anim: {fileID: 3344065549263161190}
+  recoilPerShot: 1
+  magAmmoCapacity: 10
+  reserveAmmoCapacity: 99999
+  anim: {fileID: 1647468922843871192}
   shootAnims:
   - {fileID: 7400000, guid: b5c16fb29432e154fac81e6ff4354950, type: 2}
   - {fileID: 7400000, guid: 5ca3cd8ed77a90347bef4fc411e8f6c8, type: 2}
   - {fileID: 7400000, guid: 8fb1c3b9661fc7c4f8940a13dd9682fe, type: 2}
---- !u!95 &3344065549263161190
+--- !u!95 &1647468922843871192
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4455828609911546838}
+  m_GameObject: {fileID: 387930949664740200}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0224a1ff8cf8e5a44b89fec183e51c4d, type: 2}
@@ -408,7 +377,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &5419507025361118240
+--- !u!1 &387930950781780087
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -416,47 +385,78 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4647191729681890970}
-  - component: {fileID: 8633963250349601087}
-  - component: {fileID: 5779535168122226165}
+  - component: {fileID: 387930950781780086}
   m_Layer: 6
-  m_Name: ShotGun
+  m_Name: BarrelPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4647191729681890970
+--- !u!4 &387930950781780086
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5419507025361118240}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.0337, z: 0}
+  m_GameObject: {fileID: 387930950781780087}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.866, y: 0.015, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1309519113512289102}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1830581438291663348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309519113512289102}
+  - component: {fileID: 2703148406312996075}
+  - component: {fileID: 173235129683277857}
+  m_Layer: 0
+  m_Name: Sniper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1309519113512289102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830581438291663348}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4455828608863383752}
-  m_Father: {fileID: 4455828609911546837}
+  - {fileID: 387930950781780086}
+  m_Father: {fileID: 387930949664740203}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!33 &8633963250349601087
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2703148406312996075
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5419507025361118240}
-  m_Mesh: {fileID: 1773197216858952008, guid: f33a6750edda74241bd72bbd1b8fec7d, type: 3}
---- !u!23 &5779535168122226165
+  m_GameObject: {fileID: 1830581438291663348}
+  m_Mesh: {fileID: -8310518740751045040, guid: db5ef47b9b5631844bab1e1c50f5a988, type: 3}
+--- !u!23 &173235129683277857
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5419507025361118240}
+  m_GameObject: {fileID: 1830581438291663348}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

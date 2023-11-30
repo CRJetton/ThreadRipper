@@ -7,11 +7,16 @@ using UnityEngine.InputSystem;
 
 /* LOG
  *
- *
+ * Needs health
+ * 
  */
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
+    // General
+    [SerializeField] float HP;
+    [SerializeField] GameObject spawnPos;
+
     ////Input
     InputAction movementInput;
     InputAction sprintInput;
@@ -52,14 +57,7 @@ public class PlayerController : MonoBehaviour
         jumpInput.started += OnJumpInput;
 
         currMoveSpeed = defaultMoveSpeed;
-
-    }
-
-    private void OnDisable()
-    {
-        sprintInput.started -= OnSprintInput;
-        sprintInput.canceled -= OnSprintInput;
-        jumpInput.started -= OnJumpInput;
+        HUDManager.instance.playerHPBar.fillAmount = HP;
     }
 
     // Update is called once per frame
@@ -74,6 +72,13 @@ public class PlayerController : MonoBehaviour
 
         //Gravity
         if (move.y > gravity) move.y += gravity * Time.deltaTime;
+    }
+
+    private void OnDisable()
+    {
+        sprintInput.started -= OnSprintInput;
+        sprintInput.canceled -= OnSprintInput;
+        jumpInput.started -= OnJumpInput;
     }
 
     public void Look(float amount)
@@ -93,6 +98,13 @@ public class PlayerController : MonoBehaviour
         else move.y = jumpHeight;
     }
 
+    private void OnRespawn()
+    {
+        // characterController.enabled = false;
+        transform.position = spawnPos.transform.position;
+        // characterController.enabled = true;
+    }
+
     private IEnumerator Vault(float _vaultTime)
     {
         float time = 0;
@@ -109,6 +121,13 @@ public class PlayerController : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public void TakeDamage(int _damage)
+    {
+        HP -= _damage;
+        HUDManager.instance.playerHPBar.fillAmount = HP / 10;
+        if (HP <= 0) UIManager.instance.YouLose();
     }
 
     public float GetLookSensitivity()

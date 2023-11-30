@@ -44,9 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f371bce4b76991f49a03b8f9bb47a86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 6655305115144485796}
-  groundDetector: {fileID: 2078285449}
-  vaultDetector: {fileID: 791733567}
 --- !u!1 &791733566
 GameObject:
   m_ObjectHideFlags: 0
@@ -13913,12 +13910,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc8685eed1abd0479c85b18ac9170bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 10
+  spawnPos: {fileID: 0}
   characterController: {fileID: 6655305115144485799}
   defaultMoveSpeed: 5
   sprintSpeed: 10
   lookSensitivity: 30
   jumpHeight: 7.5
   gravity: -20
+  vaultDetector: {fileID: 791733567}
   vaultTime: 0.3
   vaultForward: 1.5
   vaultUp: 1
