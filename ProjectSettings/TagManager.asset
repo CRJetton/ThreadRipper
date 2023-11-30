@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Vaultable
   - Climbable
+  - PlayerSpawnPos
   layers:
   - Default
   - TransparentFX
