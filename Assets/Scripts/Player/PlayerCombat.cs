@@ -20,6 +20,7 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
     [SerializeField] float minAimRange;
     [SerializeField] float recoilSmoothTime;
     Vector3 recoilJumpToAdd;
+    Vector3 aimWorldPos;
 
     [SerializeField] Transform weaponContainer;
     [SerializeField] GameObject startingWeaponPrefab;
@@ -79,19 +80,21 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
         {
             RaycastHit hit;
             Ray centerScreen = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-            Vector3 centerPos;
 
-            if (Physics.Raycast(centerScreen, out hit, maxAimRange, ~aimIgnoreLayer) && hit.distance > minAimRange)
+            if (Physics.Raycast(centerScreen, out hit, maxAimRange, ~aimIgnoreLayer))
             {
+                if (hit.distance < minAimRange)
+                    return;
+
                 Debug.DrawLine(Camera.main.transform.position, hit.point, Color.blue);
-                centerPos = hit.point;
+                aimWorldPos = hit.point;
             }
             else
             {
-                centerPos = Camera.main.transform.position + Camera.main.transform.forward * maxAimRange;
+                aimWorldPos = Camera.main.transform.position + Camera.main.transform.forward * maxAimRange;
             }
 
-            weaponCurrent.AimAt(centerPos);
+            weaponCurrent.AimAt(aimWorldPos);
         }
     }
 
@@ -128,7 +131,7 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
         recoilJumpToAdd += amount;
         Vector3 startJumpToAdd = recoilJumpToAdd;
 
-        for(; ; )
+        for (; ; )
         {
             percentDone = (Time.time - startTime) / recoilSmoothTime;
 
@@ -136,7 +139,7 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
             {
                 Vector3 lastRecoilJump = recoilJumpToAdd;
                 recoilJumpToAdd = Vector3.Lerp(startJumpToAdd, Vector3.zero, percentDone);
-                
+
                 Vector3 jumpDiff = lastRecoilJump - recoilJumpToAdd;
 
                 playerController.AddHorizontalRotation(jumpDiff.x);
