@@ -46,10 +46,17 @@ public class PlayerController : MonoBehaviour
             + (InputManager.instance.GetMoveInput().y * transform.forward * currMoveSpeed);
 
         characterController.Move(move * Time.deltaTime);
-        transform.Rotate(Vector3.up * InputManager.instance.GetLookInput().x * lookSensitivity * Time.deltaTime);
+
+        float lookXInput = InputManager.instance.GetLookInput().x * lookSensitivity * Time.deltaTime;
+        AddHorizontalRotation(lookXInput);
 
         //Gravity
         if (move.y > gravity) move.y += gravity * Time.deltaTime;
+    }
+
+    public void AddHorizontalRotation(float amount)
+    {
+        transform.Rotate(Vector3.up, amount);
     }
 
     public IEnumerator Vault(float _vaultTime)
