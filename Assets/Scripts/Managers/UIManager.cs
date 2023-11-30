@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
     public void StatePaused()
     {
         isPaused = !isPaused;
+        HUDManager.instance.playerHPBarFrame.SetActive(false);
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -43,6 +44,7 @@ public class UIManager : MonoBehaviour
     public void StateUnpaused()
     {
         isPaused = !isPaused;
+        HUDManager.instance.playerHPBarFrame.SetActive(true);
         Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

@@ -11,6 +11,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] TMP_Text reserveAmmoText;
     public TMP_Text enemyCountText;
     public Image playerHPBar;
+    public GameObject playerHPBarFrame;
 
     int enemiesRemaining;
 

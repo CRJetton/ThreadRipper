@@ -3713,6 +3713,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2834668472660717841, guid: f45c72850fe183c45bfb6774e15028b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5843271264640766958, guid: f45c72850fe183c45bfb6774e15028b0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3721,7 +3726,7 @@ PrefabInstance:
     - target: {fileID: 5843271264640766958, guid: f45c72850fe183c45bfb6774e15028b0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Respawn
       objectReference: {fileID: 0}
     - target: {fileID: 7247460788443274513, guid: f45c72850fe183c45bfb6774e15028b0,
         type: 3}
@@ -3785,9 +3790,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f45c72850fe183c45bfb6774e15028b0, type: 3}
---- !u!1 &3240688566354328182 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7581858819568776974, guid: f45c72850fe183c45bfb6774e15028b0,
+--- !u!114 &3240688566354328182 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3240688567008803584, guid: f45c72850fe183c45bfb6774e15028b0,
     type: 3}
   m_PrefabInstance: {fileID: 3240688566354328181}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ca4ea355a3cba49a1f25ddaaa5cbb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
