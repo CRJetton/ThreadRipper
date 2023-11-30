@@ -6,14 +6,14 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    [SerializeField] GameObject menuActive;
-    [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuWin;
-    [SerializeField] GameObject menuLose;
+    public GameObject menuActive;
+    public GameObject menuPause;
+    public GameObject menuWin;
+    public GameObject menuLose;
 
     public bool isPaused;
     float originalTimeScale;
-    int enemiesRemaining;
+    
 
     void Awake()
     {
@@ -50,19 +50,7 @@ public class UIManager : MonoBehaviour
         menuActive = null;
     }
 
-    public void UpdateProgress(int amount)
-    {
-        enemiesRemaining += amount;
-        HUDManager.instance.enemyCountText.text = enemiesRemaining.ToString("0");
-
-        if(enemiesRemaining <= 0) 
-        {
-            StatePaused();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
-        }
-
-    }
+    
 
     public void YouLose()
     {
