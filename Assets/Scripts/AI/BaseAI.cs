@@ -3,22 +3,22 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public abstract class BaseAI : MonoBehaviour, IDamageable
+public class BaseAI : MonoBehaviour, IDamageable
 {
     [SerializeField] int HP; // health for the AI
     [SerializeField] int moveSpeed; // normal walk speed for the AI
     [SerializeField] int runSpeed; // sprintMod for the AI
-    [SerializeField] int punchDamage; // The AI can Punch the player if he's without weapons
-    [SerializeField] float rotationSpeed;
+    [SerializeField] float rotationSpeed; 
+    [Range(5f, 15f)][SerializeField] int rangeOfWalkPoint;
+    [SerializeField] int stoppingDist;
     [SerializeField] GameObject player;
-    // [SerializeField] float rotationSpeed;
 
 
-    int stoppingDist;
-    bool playerInSight;
+    bool playerInRange;
+    Vector3 playerDir;
     bool isMoving;
     NavMeshAgent agent;
-    Vector3 destinatonPoint;
+    Transform destinatonPoint;
 
     void Awake()
     {
@@ -29,23 +29,17 @@ public abstract class BaseAI : MonoBehaviour, IDamageable
     {
         player = GameObject.FindWithTag("Player");
         agent.speed = moveSpeed;
+        agent.stoppingDistance = stoppingDist;
     }
 
     void Update()
-    {
-        playerInSight = Vector3.Distance(transform.position, player.transform.position) < 5;
-    
-        if (playerInSight)
+    {    
+        if (playerInRange)
         {
-            // Start here
-        }
-        else
-        {
+            isMoving = !(Vector3.Distance(transform.position, destinatonPoint.position) < 0.01f);
             Patrol();
-        }
-
+        } 
     }
-    // public abstract void Combat(); // Multiple AI's will derive off from different Combat styles
 
     IEnumerator Idle(float delay) // all AI will incorportate the same Idle behavior
     {
@@ -54,7 +48,9 @@ public abstract class BaseAI : MonoBehaviour, IDamageable
 
     void Patrol() // all AI will incorpoate the same patrol behavior
     {
-        // Code here        
+        if (!isMoving)
+            StartCoroutine(Idle(5));
+        agent.SetDestination(destinatonPoint.position);
     }
 
 
@@ -75,8 +71,7 @@ public abstract class BaseAI : MonoBehaviour, IDamageable
 
     bool canSeePlayer()
     {
+
         return false;
     }
-
-    public abstract void Combat(); // Multiple AI's will derive off from different Combat styles
 }
