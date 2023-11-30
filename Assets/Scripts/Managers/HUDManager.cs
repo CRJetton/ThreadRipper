@@ -5,7 +5,9 @@ using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
-    public static HUDManager instance;
+    public static HUDManager instance { get; private set; }
+    [SerializeField] TMP_Text magAmmoText;
+    [SerializeField] TMP_Text reserveAmmoText;
 
     public TMP_Text enemyCountText;
     void Awake()
@@ -16,5 +18,11 @@ public class HUDManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UpdateAmmoCount(int magAmmo, int reserveAmmo)
+    {
+        magAmmoText.text = magAmmo.ToString();
+        reserveAmmoText.text = reserveAmmo.ToString();
     }
 }
