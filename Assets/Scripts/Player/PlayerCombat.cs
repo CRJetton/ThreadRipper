@@ -142,12 +142,12 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
 
                 Vector3 jumpDiff = lastRecoilJump - recoilJumpToAdd;
 
-                playerController.AddHorizontalRotation(jumpDiff.x);
+                playerController.Look(jumpDiff.x);
                 cameraController.AddVerticalRotation(jumpDiff.y);
             }
             else
             {
-                playerController.AddHorizontalRotation(recoilJumpToAdd.x);
+                playerController.Look(recoilJumpToAdd.x);
                 cameraController.AddVerticalRotation(recoilJumpToAdd.y);
 
                 recoilJumpToAdd = Vector3.zero;
