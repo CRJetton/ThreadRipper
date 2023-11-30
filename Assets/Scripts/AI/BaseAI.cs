@@ -11,6 +11,7 @@ public abstract class BaseAI : MonoBehaviour, IDamageable
     [SerializeField] int punchDamage; // The AI can Punch the player if he's without weapons
     [SerializeField] float rotationSpeed;
     [SerializeField] GameObject player;
+    // [SerializeField] float rotationSpeed;
 
 
     int stoppingDist;
@@ -44,6 +45,7 @@ public abstract class BaseAI : MonoBehaviour, IDamageable
         }
     
     }
+    // public abstract void Combat(); // Multiple AI's will derive off from different Combat styles
 
     IEnumerator Idle(float delay) // all AI will incorportate the same Idle behavior
     {
