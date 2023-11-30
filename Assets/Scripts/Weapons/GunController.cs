@@ -10,17 +10,17 @@ public class GunController : MonoBehaviour, IGun
 
     [SerializeField] Transform barrelPos;
 
-    [SerializeField] float equipTime;
-    [SerializeField] float reloadTime;
+    [SerializeField, Range(0f, 5f)] float equipTime;
+    [SerializeField, Range(0f, 10f)] float reloadTime;
 
-    [SerializeField] float timeBetweenShots;
-    [SerializeField] float queueShotTime;
-    [SerializeField] int bulletsPerShot;
-    [SerializeField] bool isSingleShot;
+    [SerializeField, Range(0f, 5f)] float timeBetweenShots;
+    [SerializeField, Range(0f, 0.5f)] float queueShotTime;
+    [SerializeField, Range(1, 30)] int bulletsPerShot;
+    [SerializeField] bool fullAuto;
 
     [Header("Scoping")]
-    [SerializeField] float scopeInTime;
-    [SerializeField] float scopeOutTime;
+    [SerializeField, Range(0f, 5f)] float scopeInTime;
+    [SerializeField, Range(0f, 5f)] float scopeOutTime;
     [SerializeField] Vector3 scopedOutPos;
     [SerializeField] Vector3 scopedInPos;
     [SerializeField] AnimationCurve scopeInCurve;
@@ -41,7 +41,7 @@ public class GunController : MonoBehaviour, IGun
     [SerializeField] AnimationCurve yRecoilRandomPerShot;
 
     [Header("Recoil Amounts")]
-    [SerializeField] float recoilRecoverTime;
+    [SerializeField, Range(0f, 5f)] float recoilRecoverTime;
     [SerializeField, Range(0f, 1f)] float recoilPerShot;
 
     float recoilAmount;
@@ -82,7 +82,7 @@ public class GunController : MonoBehaviour, IGun
 
 
     #region Shooting
-    public void StartAttack()
+    public void AttackStarted()
     {
         if (!isEquipped)
             return;
@@ -94,7 +94,7 @@ public class GunController : MonoBehaviour, IGun
 
             Attack();
 
-            if (!isSingleShot)
+            if (fullAuto)
                 repeatAttack = StartCoroutine(RepeatAttack());
         }
         else
@@ -103,7 +103,7 @@ public class GunController : MonoBehaviour, IGun
         }
     }
 
-    public void StopAttack()
+    public void AttackCanceled()
     {
         if (repeatAttack != null)
         {
@@ -187,7 +187,7 @@ public class GunController : MonoBehaviour, IGun
                 Attack();
             else
             {
-                StopAttack();
+                AttackCanceled();
                 yield break;
             }
         }
@@ -300,7 +300,7 @@ public class GunController : MonoBehaviour, IGun
         transform.LookAt(targetPosition);
     }
 
-    public void StartFocus()
+    public void FocusStarted()
     {
         if (!isScopedIn)
         {
@@ -311,7 +311,7 @@ public class GunController : MonoBehaviour, IGun
         }
     }
 
-    public void StopFocus()
+    public void FocusCanceled()
     {
         if (isScopedIn)
         {

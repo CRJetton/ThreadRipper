@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerCombat : MonoBehaviour, IPlayerCombat
+public class PlayerCombat : MonoBehaviour
 {
     InputAction attackInput;
     InputAction focusInput;
@@ -64,7 +64,6 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
     }
     #endregion
 
-
     private void Update()
     {
         if (isWeaponEquipped)
@@ -103,7 +102,7 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
     {
         if (weaponCurrent != null)
         {
-            weaponCurrent.StartFocus();
+            weaponCurrent.FocusStarted();
         }
     }
 
@@ -111,7 +110,7 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
     {
         if (weaponCurrent != null)
         {
-            weaponCurrent.StopFocus();
+            weaponCurrent.FocusCanceled();
         }
     }
 
@@ -170,7 +169,7 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
     {
         if (weaponCurrent != null)
         {
-            weaponCurrent.StartAttack();
+            weaponCurrent.AttackStarted();
         }
     }
 
@@ -178,7 +177,7 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
     {
         if (weaponCurrent != null)
         {
-            weaponCurrent.StopAttack();
+            weaponCurrent.AttackCanceled();
         }
     }
     #endregion
@@ -200,15 +199,15 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
     #endregion
 
     #region Equipping
-    public void EquipWeapon(GameObject weapon)
+    public void EquipWeapon(GameObject prefab)
     {
         if (equippingWeapon != null)
             StopCoroutine(equippingWeapon);
 
-        equippingWeapon = StartCoroutine(EquippingWeapon(weapon));
+        equippingWeapon = StartCoroutine(EquippingWeapon(prefab));
     }
 
-    IEnumerator EquippingWeapon(GameObject weapon)
+    IEnumerator EquippingWeapon(GameObject prefab)
     {
         // Destroy any existing weapon
         isWeaponEquipped = false;
@@ -223,7 +222,7 @@ public class PlayerCombat : MonoBehaviour, IPlayerCombat
 
 
         // Create and equip the new weapon
-        Instantiate(weapon, weaponContainer);
+        Instantiate(prefab, weaponContainer);
 
         weaponCurrent = weaponContainer.GetComponentInChildren<IWeapon>();
 
