@@ -70,7 +70,6 @@ public class BaseAI : MonoBehaviour, IDamageable
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         Debug.DrawRay(headPosition.position, playerDir);
-        Debug.Log(angleToPlayer);
 
         RaycastHit hit;
 
