@@ -34,7 +34,7 @@ public class BaseAI : MonoBehaviour, IDamageable
     Vector3 playerDir;
 
     // Needs to be built into the game manager, remove later
-    // [SerializeField] GameObject player;
+    //[SerializeField] GameObject player;
     // [SerializeField] float rotationSpeed;
 
     // patrolling 
@@ -67,6 +67,9 @@ public class BaseAI : MonoBehaviour, IDamageable
     {
         playerDir = GameManager.instance.player.transform.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+
+        Debug.DrawRay(headPosition.position, playerDir);
+        Debug.Log(angleToPlayer);
 
         RaycastHit hit;
 
