@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6156902732065688811}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BarrelPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 6156902733182377974}
   - component: {fileID: 3163658327963715618}
   - component: {fileID: 5102436606431247173}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: E_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 9103879633935682899}
   - component: {fileID: 5330188141039534838}
   - component: {fileID: 7934311846951630396}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

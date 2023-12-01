@@ -12,6 +12,9 @@ public class HUDManager : MonoBehaviour
     public TMP_Text enemyCountText;
     public Image playerHPBar;
     public GameObject playerHPBarFrame;
+    public GameObject ammoCount;
+    public GameObject enemiesBackground;
+    public GameObject reticle;
 
     int enemiesRemaining;
 

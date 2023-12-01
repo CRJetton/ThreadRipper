@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 387930949664740203}
   - component: {fileID: 8931782868488275135}
   - component: {fileID: 1647468922843871192}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: E_SniperRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 387930950781780086}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BarrelPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

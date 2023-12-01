@@ -36,6 +36,9 @@ public class UIManager : MonoBehaviour
     {
         isPaused = !isPaused;
         HUDManager.instance.playerHPBarFrame.SetActive(false);
+        HUDManager.instance.ammoCount.SetActive(false);
+        HUDManager.instance.enemiesBackground.SetActive(false);
+        HUDManager.instance.reticle.SetActive(false);
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -45,6 +48,9 @@ public class UIManager : MonoBehaviour
     {
         isPaused = !isPaused;
         HUDManager.instance.playerHPBarFrame.SetActive(true);
+        HUDManager.instance.ammoCount.SetActive(true);
+        HUDManager.instance.enemiesBackground.SetActive(true);
+        HUDManager.instance.reticle.SetActive(true);
         Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

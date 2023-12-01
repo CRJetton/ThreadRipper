@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4455828608863383752}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BarrelPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4455828609911546837}
   - component: {fileID: 4845992589658207233}
   - component: {fileID: 3344065549263161190}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: E_Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 4647191729681890970}
   - component: {fileID: 8633963250349601087}
   - component: {fileID: 5779535168122226165}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ShotGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
