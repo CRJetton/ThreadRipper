@@ -85,7 +85,7 @@ MonoBehaviour:
   timeBetweenShots: 0.2
   queueShotTime: 0.1
   bulletsPerShot: 1
-  isSingleShot: 1
+  fullAuto: 0
   scopeInTime: 0.075
   scopeOutTime: 0.1
   scopedOutPos: {x: 0, y: 0, z: 0}
@@ -234,6 +234,54 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  xScopedSpreadPerShot:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  yScopedSpreadPerShot:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   xJumpPerShot:
     serializedVersion: 2
     m_Curve:
@@ -330,23 +378,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  xRecoilRandomPerShot:
+  xSpreadPerShot:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 2
-      inSlope: 5.5
-      outSlope: 5.5
+      inSlope: 5
+      outSlope: 5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 7.5
-      inSlope: 5.5
-      outSlope: 5.5
+      value: 7
+      inSlope: 5
+      outSlope: 5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -354,23 +402,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  yRecoilRandomPerShot:
+  ySpreadPerShot:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 2
-      inSlope: 5.5
-      outSlope: 5.5
+      inSlope: 5
+      outSlope: 5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 7.5
-      inSlope: 5.5
-      outSlope: 5.5
+      value: 7
+      inSlope: 5
+      outSlope: 5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

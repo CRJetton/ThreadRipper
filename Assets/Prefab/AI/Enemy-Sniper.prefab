@@ -1925,7 +1925,7 @@ GameObject:
   - component: {fileID: 1887439388771734670}
   m_Layer: 0
   m_Name: Enemy-Sniper
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1966,7 +1966,6 @@ MonoBehaviour:
   viewCone: 180
   targetFaceSpeed: 3
   shootRate: 1
-  playerCenter: {fileID: 0}
 --- !u!114 &2374437348007658942
 MonoBehaviour:
   m_ObjectHideFlags: 0

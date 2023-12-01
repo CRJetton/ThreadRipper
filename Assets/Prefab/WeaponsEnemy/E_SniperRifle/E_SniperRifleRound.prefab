@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noHitTag: Enemy
-  damage: 2
-  speed: 200
+  damage: 10
+  speed: 125
   destroyTime: 3
   rb: {fileID: 8372317227697489573}
 --- !u!96 &1842835823682015165
@@ -112,7 +112,7 @@ TrailRenderer:
         outWeight: 1
       - serializedVersion: 3
         time: 0.03523035
-        value: 0.2
+        value: 0.75
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -133,8 +133,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.99215686, g: 0.6193657, b: 0.5647059, a: 1}
-      key1: {r: 1, g: 0.115990385, b: 0, a: 1}
+      key0: {r: 0.5647059, g: 0.93859446, b: 0.99215686, a: 1}
+      key1: {r: 0.22167921, g: 0, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

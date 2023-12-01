@@ -31,14 +31,17 @@ public class GunController : MonoBehaviour, IGun
     [SerializeField] AnimationCurve yScopedJumpPerShot;
     [SerializeField] AnimationCurve xScopedJumpRandomPerShot;
     [SerializeField] AnimationCurve yScopedJumpRandomPerShot;
+    [SerializeField] AnimationCurve xScopedSpreadPerShot;
+    [SerializeField] AnimationCurve yScopedSpreadPerShot;
+
 
     [Header("Hipfire Recoil")]
     [SerializeField] AnimationCurve xJumpPerShot;
     [SerializeField] AnimationCurve yJumpPerShot;
     [SerializeField] AnimationCurve xJumpRandomPerShot;
     [SerializeField] AnimationCurve yJumpRandomPerShot;
-    [SerializeField] AnimationCurve xRecoilRandomPerShot;
-    [SerializeField] AnimationCurve yRecoilRandomPerShot;
+    [SerializeField] AnimationCurve xSpreadPerShot;
+    [SerializeField] AnimationCurve ySpreadPerShot;
 
     [Header("Recoil Amounts")]
     [SerializeField, Range(0f, 5f)] float recoilRecoverTime;
@@ -155,15 +158,23 @@ public class GunController : MonoBehaviour, IGun
     {
         Vector3 finalRot = barrelPos.rotation.eulerAngles;
 
+        float xMaxRand;
+        float yMaxRand;
+
         if (!isScopedIn)
         {
-            float xMaxRand = xRecoilRandomPerShot.Evaluate(recoilAmount);
-            float yMaxRand = yRecoilRandomPerShot.Evaluate(recoilAmount);
-
-            Vector3 randomOffset = new Vector3(Random.Range(-xMaxRand, xMaxRand), Random.Range(-yMaxRand, yMaxRand));
-
-            finalRot += randomOffset;
+            xMaxRand = xSpreadPerShot.Evaluate(recoilAmount);
+            yMaxRand = ySpreadPerShot.Evaluate(recoilAmount);
         }
+        else
+        {
+            xMaxRand = xScopedSpreadPerShot.Evaluate(recoilAmount);
+            yMaxRand = yScopedSpreadPerShot.Evaluate(recoilAmount);
+        }
+
+        Vector3 randomOffset = new Vector3(Random.Range(-xMaxRand, xMaxRand), Random.Range(-yMaxRand, yMaxRand));
+
+        finalRot += randomOffset;
 
         return Quaternion.Euler(finalRot);
     }

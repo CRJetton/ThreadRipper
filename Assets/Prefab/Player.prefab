@@ -13980,7 +13980,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxAimRange: 100
-  minAimRange: 0.2
+  minAimRange: 0.4
   recoilSmoothTime: 0.04
   weaponContainer: {fileID: 6345011976925759367}
   startingWeaponPrefab: {fileID: 9108546024485524263, guid: 983b3571d5c3f4f4fb899599daaf35eb,

@@ -81,8 +81,8 @@ MonoBehaviour:
     type: 3}
   barrelPos: {fileID: 6156902732065688811}
   equipTime: 0.25
-  reloadTime: 0.6
-  timeBetweenShots: 0.09090909
+  reloadTime: 1
+  timeBetweenShots: 0.15
   queueShotTime: 0.05
   bulletsPerShot: 1
   fullAuto: 1
@@ -234,6 +234,54 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  xScopedSpreadPerShot:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  yScopedSpreadPerShot:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   xJumpPerShot:
     serializedVersion: 2
     m_Curve:
@@ -330,23 +378,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  xRecoilRandomPerShot:
+  xSpreadPerShot:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
-      inSlope: 7
-      outSlope: 7
+      value: 10
+      inSlope: -9
+      outSlope: -9
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 7.5
-      inSlope: 7
-      outSlope: 7
+      value: 1
+      inSlope: -9
+      outSlope: -9
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -354,23 +402,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  yRecoilRandomPerShot:
+  ySpreadPerShot:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
-      inSlope: 7
-      outSlope: 7
+      value: 10
+      inSlope: -9
+      outSlope: -9
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 7.5
-      inSlope: 7
-      outSlope: 7
+      value: 1
+      inSlope: -9
+      outSlope: -9
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -378,7 +426,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  recoilRecoverTime: 0.5
+  recoilRecoverTime: 1
   recoilPerShot: 0.3
   magAmmoCapacity: 30
   reserveAmmoCapacity: 99999
