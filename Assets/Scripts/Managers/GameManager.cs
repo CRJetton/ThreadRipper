@@ -10,17 +10,16 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject playerPositions;
 
-    public PlayerController playerScript;
-    public PlayerPositions positionScript;
+    public PlayerController playerController;
+    public PlayerBodyPositions playerBodyPositions;
 
     void Awake()
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
-        playerPositions = GameObject.FindWithTag("PlayerPositions");
         playerSpawnPos = GameObject.FindWithTag("PlayerSpawnPos");
-        playerScript = player.GetComponent<PlayerController>();
-        positionScript = playerPositions.GetComponent<PlayerPositions>();
+        playerController = player.GetComponent<PlayerController>();
+        playerBodyPositions = player.GetComponent<PlayerBodyPositions>();
         
     }
 

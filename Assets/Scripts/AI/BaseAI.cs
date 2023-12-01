@@ -66,7 +66,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     bool canSeePlayer()
     {
-        playerDir = GameManager.instance.positionScript.playerCenter.transform.position - headPosition.position;
+        playerDir = GameManager.instance.playerBodyPositions.playerCenter.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         Debug.DrawRay(headPosition.position, playerDir);
@@ -79,7 +79,7 @@ public class BaseAI : MonoBehaviour, IDamageable
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
                 agent.SetDestination(GameManager.instance.player.transform.position);
-                enemyCombat.AimAt(GameManager.instance.positionScript.playerCenter.transform.position);
+                enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
 
                 if (!isShooting)
                 {
