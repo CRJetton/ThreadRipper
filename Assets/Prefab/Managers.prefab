@@ -80,7 +80,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpawnPos: {fileID: 0}
   player: {fileID: 0}
-  playerScript: {fileID: 0}
+  playerPositions: {fileID: 0}
+  playerController: {fileID: 0}
+  playerBodyPositions: {fileID: 0}
 --- !u!1001 &5600491382628150831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -257,6 +259,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7426203705580467040}
     m_Modifications:
+    - target: {fileID: 2202866095981065525, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2202866096674164547, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -471,6 +478,11 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7168712862886925754, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7168712863153267048, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: m_Name
@@ -589,7 +601,12 @@ PrefabInstance:
     - target: {fileID: 7168712863631534923, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168712864314696004, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -140
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7085f9d1c4e543848b1394fe852c3c3b, type: 3}
