@@ -134,7 +134,7 @@ MonoBehaviour:
     type: 3}
   barrelPos: {fileID: 9108546025586311225}
   equipTime: 0.25
-  reloadTime: 1.2
+  reloadTime: 0.8
   timeBetweenShots: 0.11
   queueShotTime: 0.05
   bulletsPerShot: 1
