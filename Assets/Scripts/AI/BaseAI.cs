@@ -17,7 +17,7 @@ public class BaseAI : MonoBehaviour, IDamageable
     [Range(1, 100)][SerializeField] int HP;               // health for the AI
     //[Range(1, 100)][SerializeField] int moveSpeed;        // normal walk speed for the AI
     //[Range(1, 100)][SerializeField] int runSpeed;         // sprintMod for the AI
-    [Range(1, 100)][SerializeField] int viewCone;
+    [Range(1, 180)][SerializeField] int viewCone;
     [Range(1, 100)][SerializeField] int targetFaceSpeed;
 
     [Header("------ Gunplay ------")]

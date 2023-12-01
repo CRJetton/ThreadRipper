@@ -1962,8 +1962,8 @@ MonoBehaviour:
   model: {fileID: 3184703885164412558}
   headPosition: {fileID: 7353260368877182538}
   enemyCombat: {fileID: 2374437348007658942}
-  HP: 2
-  viewCone: 90
+  HP: 6
+  viewCone: 180
   targetFaceSpeed: 3
   shootRate: 1
   playerCenter: {fileID: 0}
@@ -2015,7 +2015,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1887439388771734670
 CapsuleCollider:
@@ -2027,10 +2027,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 0.7
+  m_Radius: 0.22949466
+  m_Height: 1.744221
   m_Direction: 1
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Center: {x: -0.029494673, y: 0.92211056, z: 0}
 --- !u!1 &2024644479889081446
 GameObject:
   m_ObjectHideFlags: 0
@@ -3243,7 +3243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4399771609295503313}
   m_LocalRotation: {x: -0.8338362, y: 0.003329055, z: 0.5481182, w: 0.06536566}
-  m_LocalPosition: {x: -0.0013126656, y: 0.5442042, z: 0.26929343}
+  m_LocalPosition: {x: 0.04, y: 0.12, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4812,7 +4812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7762461907187870051}
   m_LocalRotation: {x: -0.8338362, y: 0.003329055, z: 0.5481182, w: 0.06536566}
-  m_LocalPosition: {x: -0.11814645, y: 0.33744705, z: 0.37240162}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0.02}
   m_LocalScale: {x: 0.33333325, y: 0.3333334, z: 0.33333325}
   m_ConstrainProportionsScale: 0
   m_Children: []

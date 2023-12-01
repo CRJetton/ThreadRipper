@@ -1987,8 +1987,8 @@ MonoBehaviour:
   model: {fileID: 363187117254347297}
   headPosition: {fileID: 363187117208135005}
   enemyCombat: {fileID: 363187117804408503}
-  HP: 6
-  viewCone: 90
+  HP: 18
+  viewCone: 180
   targetFaceSpeed: 3
   shootRate: 1
   playerCenter: {fileID: 0}
@@ -2040,7 +2040,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &363187117804408500
 CapsuleCollider:

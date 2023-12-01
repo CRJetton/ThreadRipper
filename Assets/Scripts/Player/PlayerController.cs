@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     // Vaulting
     [SerializeField] PlayerVaultDetector vaultDetector;
+    [SerializeField] PlayerGroundDetector groundDetector;
     [SerializeField] private float vaultTime;
     [SerializeField] float vaultForward;
     [SerializeField] float vaultUp;
@@ -123,7 +124,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void OnJumpInput(InputAction.CallbackContext _ctx)
     {
         if (vaultDetector.GetCanPlayerVault()) StartCoroutine(Vault(vaultTime));
-        else move.y = jumpHeight;
+        else if (groundDetector.GetIsPlayerGrounded()) move.y = jumpHeight;
     }
 
     private void OnCrouchInput(InputAction.CallbackContext _ctx)
