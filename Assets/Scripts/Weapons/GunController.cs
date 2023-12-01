@@ -19,6 +19,7 @@ public class GunController : MonoBehaviour, IGun
     [SerializeField] bool fullAuto;
 
     [Header("Scoping")]
+    [SerializeField, Range(0f, 2.5f)] float scopeZoomFactor;
     [SerializeField, Range(0f, 5f)] float scopeInTime;
     [SerializeField, Range(0f, 5f)] float scopeOutTime;
     [SerializeField] Vector3 scopedOutPos;

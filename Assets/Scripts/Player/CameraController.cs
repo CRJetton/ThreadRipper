@@ -7,20 +7,31 @@ public class CameraController : MonoBehaviour
 {
     InputAction lookInput;
 
+    [Header("Componenets")]
     [SerializeField] PlayerController player;
+    [SerializeField] Camera[] cameras;
+
+    [Header("")]
     [SerializeField] private int lockVertMin;
     [SerializeField] private int lockVertMax;
     [SerializeField] private bool invertY;
     private Vector3 currLookRot;
 
+    float defaultFOV;
+    float currentZoomFactor;
+
+    Coroutine zooming;
+
     private void Start()
     {
         lookInput = InputManager.instance.playerInput.PlayerControls.Look;
+
+        defaultFOV = cameras[0].fieldOfView;
     }
 
     private void LateUpdate()
     {
-        AddVerticalRotation(lookInput.ReadValue<Vector2>().y * player.GetLookSensitivity() * Time.deltaTime);
+        AddVerticalRotation(lookInput.ReadValue<Vector2>().y * (invertY ? -1 : 1) * player.GetLookSensitivity() * Time.deltaTime);
     }
 
     public void AddVerticalRotation(float _vertLookVec)
@@ -35,5 +46,19 @@ public class CameraController : MonoBehaviour
     public void Translate(Vector3 _direction)
     {
         transform.position += _direction;
+    }
+
+
+    public void Zoom(float zoomFactor, float zoomTime)
+    {
+        if (zooming != null)
+            StopCoroutine(zooming);
+
+        zooming = StartCoroutine(Zooming(zoomFactor, zoomTime));
+    }
+
+    IEnumerator Zooming(float zoomFactor, float zoomTime)
+    {
+        yield return null;
     }
 }

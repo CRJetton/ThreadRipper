@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6655305115144485796}
+  cameras: []
   lockVertMin: -85
   lockVertMax: 85
   invertY: 0
@@ -13658,7 +13659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3296123708157340023}
   m_LocalRotation: {x: 0.46322995, y: -0.5342449, z: -0.46322972, w: -0.53424585}
-  m_LocalPosition: {x: -0.14919803, y: 0.029431704, z: 0}
+  m_LocalPosition: {x: 0.035, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
