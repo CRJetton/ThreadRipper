@@ -157,10 +157,11 @@ public class PlayerCombat : MonoBehaviour
 
             yield return new WaitForNextFrameUnit();
         }
+    }
 
-
-
-
+    public void ChangeScopeZoom(float zoomFactor, float zoomTime)
+    {
+        cameraController.Zoom(zoomFactor, zoomTime);
     }
     #endregion
 
@@ -235,6 +236,7 @@ public class PlayerCombat : MonoBehaviour
 
             gunCurrent.SubscribeOnAmmoChange(UpdateAmmoHUD);
             gunCurrent.SubscribeOnShotJump(AddShotJump);
+            gunCurrent.SubscribeOnScoping(ChangeScopeZoom);
         }
 
         // Wait for equip to finish

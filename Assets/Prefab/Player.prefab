@@ -243,7 +243,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6655305115144485796}
-  cameras: []
+  cameras:
+  - {fileID: 5808813853710117724}
+  - {fileID: 8516519041675028489}
   lockVertMin: -85
   lockVertMax: 85
   invertY: 0

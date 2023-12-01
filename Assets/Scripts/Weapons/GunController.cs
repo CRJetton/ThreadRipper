@@ -19,7 +19,7 @@ public class GunController : MonoBehaviour, IGun
     [SerializeField] bool fullAuto;
 
     [Header("Scoping")]
-    [SerializeField, Range(0f, 2.5f)] float scopeZoomFactor;
+    [SerializeField, Range(0f, 1f)] float scopeZoomFactor;
     [SerializeField, Range(0f, 5f)] float scopeInTime;
     [SerializeField, Range(0f, 5f)] float scopeOutTime;
     [SerializeField] Vector3 scopedOutPos;
@@ -77,6 +77,7 @@ public class GunController : MonoBehaviour, IGun
     {
         OnAmmoChange = new UnityEvent();
         OnShotJump = new UnityEvent<Vector3>();
+        OnScoping = new UnityEvent<float, float>();
     }
 
     void Start()
@@ -155,31 +156,6 @@ public class GunController : MonoBehaviour, IGun
         }
     }
 
-    Quaternion CalcShotRotation()
-    {
-        Vector3 finalRot = barrelPos.rotation.eulerAngles;
-
-        float xMaxRand;
-        float yMaxRand;
-
-        if (!isScopedIn)
-        {
-            xMaxRand = xSpreadPerShot.Evaluate(recoilAmount);
-            yMaxRand = ySpreadPerShot.Evaluate(recoilAmount);
-        }
-        else
-        {
-            xMaxRand = xScopedSpreadPerShot.Evaluate(recoilAmount);
-            yMaxRand = yScopedSpreadPerShot.Evaluate(recoilAmount);
-        }
-
-        Vector3 randomOffset = new Vector3(Random.Range(-xMaxRand, xMaxRand), Random.Range(-yMaxRand, yMaxRand));
-
-        finalRot += randomOffset;
-
-        return Quaternion.Euler(finalRot);
-    }
-
     IEnumerator QueueShot()
     {
         isShotQueued = true;
@@ -211,6 +187,11 @@ public class GunController : MonoBehaviour, IGun
     {
         if (!isReloading && magAmmo < magAmmoCapacity && reserveAmmo > 0)
         {
+            if (reloading !=null)
+                StopCoroutine(reloading);
+
+            AttackCanceled();
+
             reloading = StartCoroutine(Reloading());
         }
     }
@@ -221,11 +202,13 @@ public class GunController : MonoBehaviour, IGun
             StopCoroutine(reloading);
 
         isReloading = false;
+        anim.SetBool("isReloading", isReloading);
     }
 
     IEnumerator Reloading()
     {
         isReloading = true;
+        anim.SetBool("isReloading", isReloading);
 
         yield return new WaitForSeconds(reloadTime);
 
@@ -241,6 +224,7 @@ public class GunController : MonoBehaviour, IGun
         }
 
         isReloading = false;
+        anim.SetBool("isReloading", isReloading);
     }
 
     void ChangeAmmo(int magChange, int reserveChange)
@@ -284,6 +268,31 @@ public class GunController : MonoBehaviour, IGun
 
         OnShotJump.Invoke(shotJump);
     }
+    Quaternion CalcShotRotation()
+    {
+        Vector3 finalRot = barrelPos.rotation.eulerAngles;
+
+        float xMaxRand;
+        float yMaxRand;
+
+        if (!isScopedIn)
+        {
+            xMaxRand = xSpreadPerShot.Evaluate(recoilAmount);
+            yMaxRand = ySpreadPerShot.Evaluate(recoilAmount);
+        }
+        else
+        {
+            xMaxRand = xScopedSpreadPerShot.Evaluate(recoilAmount);
+            yMaxRand = yScopedSpreadPerShot.Evaluate(recoilAmount);
+        }
+
+        Vector3 randomOffset = new Vector3(Random.Range(-xMaxRand, xMaxRand), Random.Range(-yMaxRand, yMaxRand));
+
+        finalRot += randomOffset;
+
+        return Quaternion.Euler(finalRot);
+    }
+
 
     IEnumerator Recoiling()
     {
@@ -334,6 +343,7 @@ public class GunController : MonoBehaviour, IGun
         }
     }
 
+
     IEnumerator DoScopeIn()
     {
         float startTime = Time.time;
@@ -342,6 +352,9 @@ public class GunController : MonoBehaviour, IGun
         Vector3 startPos = transform.localPosition;
 
         isScopedIn = true;
+        anim.SetBool("isScopedIn", isScopedIn);
+
+        OnScoping.Invoke(scopeZoomFactor, scopeInTime);
 
         for (; ; )
         {
@@ -367,6 +380,9 @@ public class GunController : MonoBehaviour, IGun
         Vector3 startPos = transform.localPosition;
 
         isScopedIn = false;
+        anim.SetBool("isScopedIn", isScopedIn);
+
+        OnScoping.Invoke(1, scopeOutTime);
 
         for (; ; )
         {
@@ -382,6 +398,13 @@ public class GunController : MonoBehaviour, IGun
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    UnityEvent<float, float> OnScoping;
+
+    public void SubscribeOnScoping(UnityAction<float, float> action)
+    {
+        OnScoping.AddListener(action);
     }
     #endregion
 

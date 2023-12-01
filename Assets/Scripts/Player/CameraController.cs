@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,7 @@ public class CameraController : MonoBehaviour
     private Vector3 currLookRot;
 
     float defaultFOV;
-    float currentZoomFactor;
+    float currentZoomFactor = 1;
 
     Coroutine zooming;
 
@@ -59,6 +60,39 @@ public class CameraController : MonoBehaviour
 
     IEnumerator Zooming(float zoomFactor, float zoomTime)
     {
-        yield return null;
+        float startTime = Time.time;
+        float percentDone = 0;
+        float startZoomFactor = currentZoomFactor;
+
+        for(; ; )
+        {
+            percentDone = (Time.time - startTime) / zoomTime;
+
+            if (percentDone < 1)
+            {
+                currentZoomFactor = Mathf.Lerp(startZoomFactor, zoomFactor, percentDone);
+
+                UpdateCameraFOV();
+
+                yield return new WaitForNextFrameUnit();
+            }
+            else
+            {
+                currentZoomFactor = zoomFactor;
+
+                UpdateCameraFOV();
+
+                zooming = null;
+                break;
+            }
+        }
+    }
+
+    void UpdateCameraFOV()
+    {
+        foreach(Camera cam in cameras)
+        {
+            cam.fieldOfView = defaultFOV * currentZoomFactor;
+        }
     }
 }

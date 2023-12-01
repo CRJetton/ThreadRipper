@@ -86,6 +86,7 @@ MonoBehaviour:
   queueShotTime: 0.1
   bulletsPerShot: 1
   fullAuto: 0
+  scopeZoomFactor: 0.75
   scopeInTime: 0.075
   scopeOutTime: 0.1
   scopedOutPos: {x: 0, y: 0, z: 0}
