@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         currMoveSpeed = defaultMoveSpeed;
         HP = maxHP;
         HUDManager.instance.playerHPBar.fillAmount = HP;
-        Debug.Log(playerCamera.transform.position);
     }
 
     // Update is called once per frame
