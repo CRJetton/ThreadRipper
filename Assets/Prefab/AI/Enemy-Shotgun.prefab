@@ -787,7 +787,7 @@ MonoBehaviour:
   viewCone: 90
   targetFaceSpeed: 3
   shootRate: 1
-  shootPosition: {fileID: 1659360022728309211}
+  playerCenter: {fileID: 0}
 --- !u!114 &1397019157234249236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,9 +849,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 1
+  m_Height: 0.7
   m_Direction: 1
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1 &3065420107736511720
 GameObject:
   m_ObjectHideFlags: 0

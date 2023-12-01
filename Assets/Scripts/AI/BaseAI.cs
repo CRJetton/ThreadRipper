@@ -22,6 +22,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     [Header("------ Gunplay ------")]
     [Range(1, 100)][SerializeField] float shootRate;
+    [SerializeField] GameObject playerCenter;
     //[SerializeField] GameObject bullet;
     //[SerializeField] Transform shootPosition;
 
@@ -65,7 +66,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     bool canSeePlayer()
     {
-        playerDir = GameManager.instance.player.transform.position - headPosition.position;
+        playerDir = playerCenter.transform.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         Debug.DrawRay(headPosition.position, playerDir);
