@@ -31,4 +31,9 @@ public class CameraController : MonoBehaviour
         currLookRot.y = transform.rotation.eulerAngles.y;
         transform.rotation = Quaternion.Euler(currLookRot);
     }
+
+    public void Translate(Vector3 _direction)
+    {
+        transform.position += _direction;
+    }
 }

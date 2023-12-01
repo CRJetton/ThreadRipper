@@ -13630,6 +13630,37 @@ Transform:
   m_Father: {fileID: 1215327265486114151}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3296123708157340023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 654328634478213685}
+  m_Layer: 7
+  m_Name: PlayerCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &654328634478213685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296123708157340023}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6275682591789457692}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3420768083283284631
 GameObject:
   m_ObjectHideFlags: 0
@@ -13873,7 +13904,7 @@ GameObject:
   - component: {fileID: 6655305115144485799}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13895,6 +13926,7 @@ Transform:
   - {fileID: 791733570}
   - {fileID: 559341015}
   - {fileID: 1215327265486113935}
+  - {fileID: 654328634478213685}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -13910,12 +13942,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc8685eed1abd0479c85b18ac9170bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
+  maxHP: 3
   spawnPos: {fileID: 0}
+  playerCamera: {fileID: 940690186790166899}
   characterController: {fileID: 6655305115144485799}
   defaultMoveSpeed: 5
   sprintSpeed: 10
   lookSensitivity: 30
+  cameraCrouchAmount: 0.5
+  colliderCrouchAmount: 1.5
   jumpHeight: 7.5
   gravity: -20
   vaultDetector: {fileID: 791733567}

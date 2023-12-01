@@ -7,29 +7,35 @@ using UnityEngine.InputSystem;
 
 /* LOG
  *
- * Needs health
+ * Player can now only sprint in forward directions.
  * 
  */
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
     // General
-    [SerializeField] float HP;
+    [SerializeField] float maxHP;
+    private float HP;
     [SerializeField] GameObject spawnPos;
+    [SerializeField] CameraController playerCamera;
 
     ////Input
-    InputAction movementInput;
-    InputAction sprintInput;
+    InputAction moveInput;
     InputAction lookInput;
+    InputAction sprintInput;
     InputAction jumpInput;
+    InputAction crouchInput;
 
     // Movement
     [SerializeField] private CharacterController characterController;
     private Vector3 move;
     [SerializeField] private float defaultMoveSpeed;
     private float currMoveSpeed;
+    private bool isSprinting;
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float lookSensitivity;
+    [SerializeField] private float cameraCrouchAmount;
+    [SerializeField] private float colliderCrouchAmount;
 
     // Jumping & gravity
     [SerializeField] private float jumpHeight;
@@ -48,24 +54,30 @@ public class PlayerController : MonoBehaviour, IDamageable
         Cursor.lockState = CursorLockMode.Locked;
 
         // Get input
-        movementInput = InputManager.instance.playerInput.PlayerControls.Move;
+        moveInput = InputManager.instance.playerInput.PlayerControls.Move;
+        moveInput.started += OnMoveInput;
+        lookInput = InputManager.instance.playerInput.PlayerControls.Look;
         sprintInput = InputManager.instance.playerInput.PlayerControls.Sprint;
         sprintInput.started += OnSprintInput;
         sprintInput.canceled += OnSprintInput;
-        lookInput = InputManager.instance.playerInput.PlayerControls.Look;
         jumpInput = InputManager.instance.playerInput.PlayerControls.Jump;
         jumpInput.started += OnJumpInput;
+        crouchInput = InputManager.instance.playerInput.PlayerControls.Crouch;
+        crouchInput.started += OnCrouchInput;
+        crouchInput.canceled += OnCrouchInput;
 
         currMoveSpeed = defaultMoveSpeed;
+        HP = maxHP;
         HUDManager.instance.playerHPBar.fillAmount = HP;
+        Debug.Log(playerCamera.transform.position);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        move = (movementInput.ReadValue<Vector2>().x * transform.right * currMoveSpeed)
+        move = (moveInput.ReadValue<Vector2>().x * transform.right * currMoveSpeed)
             + (move.y * transform.up)
-            + (movementInput.ReadValue<Vector2>().y * transform.forward * currMoveSpeed);
+            + (moveInput.ReadValue<Vector2>().y * transform.forward * currMoveSpeed);
 
         characterController.Move(move * Time.deltaTime);
         Look(lookInput.ReadValue<Vector2>().x * lookSensitivity * Time.deltaTime);
@@ -76,9 +88,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnDisable()
     {
+        moveInput.started -= OnMoveInput;
         sprintInput.started -= OnSprintInput;
         sprintInput.canceled -= OnSprintInput;
         jumpInput.started -= OnJumpInput;
+        crouchInput.started -= OnCrouchInput;
+        crouchInput.canceled -= OnCrouchInput;
     }
 
     public void Look(float amount)
@@ -86,10 +101,24 @@ public class PlayerController : MonoBehaviour, IDamageable
         transform.Rotate(Vector3.up, amount);
     }
 
+    private void OnMoveInput(InputAction.CallbackContext _ctx)
+    {
+        if (isSprinting && moveInput.ReadValue<Vector2>().y >= 0) currMoveSpeed = sprintSpeed;
+        else currMoveSpeed = defaultMoveSpeed;
+    }
+
     private void OnSprintInput(InputAction.CallbackContext _ctx)
     {
-        if (_ctx.started) currMoveSpeed = sprintSpeed;
-        else currMoveSpeed = defaultMoveSpeed;
+        if (_ctx.started && moveInput.ReadValue<Vector2>().y >= 0)
+        {
+            currMoveSpeed = sprintSpeed;
+            isSprinting = true;
+        }
+        else
+        {
+            currMoveSpeed = defaultMoveSpeed;
+            isSprinting = false;
+        }
     }
 
     private void OnJumpInput(InputAction.CallbackContext _ctx)
@@ -98,11 +127,34 @@ public class PlayerController : MonoBehaviour, IDamageable
         else move.y = jumpHeight;
     }
 
+    private void OnCrouchInput(InputAction.CallbackContext _ctx)
+    {
+
+        if (_ctx.started)
+        {
+            Vector3 crouch = new Vector3(0, -cameraCrouchAmount, 0);
+            playerCamera.Translate(crouch);
+            //characterController.radius /= 2;
+            characterController.height /= colliderCrouchAmount;
+            Debug.Log(playerCamera.transform.position);
+        }
+        else
+        {
+            Vector3 stand = new Vector3(0, cameraCrouchAmount, 0);
+            playerCamera.Translate(stand);
+            //characterController.radius *= 2;
+            characterController.height *= colliderCrouchAmount;
+            Debug.Log(playerCamera.transform.position);
+        }
+    }
+
     public void OnRespawn()
     {
-        // characterController.enabled = false;
+        characterController.enabled = false;
         transform.position = spawnPos.transform.position;
-        // characterController.enabled = true;
+        characterController.enabled = true;
+        HP = maxHP;
+        HUDManager.instance.playerHPBar.fillAmount = HP;
     }
 
     private IEnumerator Vault(float _vaultTime)
@@ -126,7 +178,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void TakeDamage(int _damage)
     {
         HP -= _damage;
-        HUDManager.instance.playerHPBar.fillAmount = HP / 10;
+        HUDManager.instance.playerHPBar.fillAmount = HP / maxHP;
         if (HP <= 0) UIManager.instance.YouLose();
     }
 
