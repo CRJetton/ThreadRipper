@@ -139,8 +139,9 @@ public class BaseAI : MonoBehaviour, IDamageable
 
         if (HP <= 0)
         {
-            HUDManager.instance.UpdateProgress(-1);
             Destroy(gameObject);
+            HUDManager.instance.UpdateProgress(-1);
+            
         }
     }
 
