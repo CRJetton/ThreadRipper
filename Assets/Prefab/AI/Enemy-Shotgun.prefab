@@ -1279,7 +1279,7 @@ GameObject:
   - component: {fileID: 9165053220143763271}
   - component: {fileID: 5352586352349848068}
   m_Layer: 0
-  m_Name: VoidPirate
+  m_Name: RifleModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
