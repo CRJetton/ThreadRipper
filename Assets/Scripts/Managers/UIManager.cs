@@ -35,10 +35,7 @@ public class UIManager : MonoBehaviour
     public void StatePaused()
     {
         isPaused = !isPaused;
-        HUDManager.instance.playerHPBarFrame.SetActive(false);
-        HUDManager.instance.ammoCount.SetActive(false);
-        HUDManager.instance.enemiesBackground.SetActive(false);
-        HUDManager.instance.reticle.SetActive(false);
+        HideHUD();
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -47,10 +44,7 @@ public class UIManager : MonoBehaviour
     public void StateUnpaused()
     {
         isPaused = !isPaused;
-        HUDManager.instance.playerHPBarFrame.SetActive(true);
-        HUDManager.instance.ammoCount.SetActive(true);
-        HUDManager.instance.enemiesBackground.SetActive(true);
-        HUDManager.instance.reticle.SetActive(true);
+        ShowHUD();
         Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -63,7 +57,24 @@ public class UIManager : MonoBehaviour
     public void YouLose()
     {
         StatePaused();
+        HideHUD();
         menuActive = menuLose;
         menuActive.SetActive(true);
+    }
+
+    public void HideHUD()
+    {
+        HUDManager.instance.playerHPBarFrame.SetActive(false);
+        HUDManager.instance.ammoCount.SetActive(false);
+        HUDManager.instance.enemiesBackground.SetActive(false);
+        HUDManager.instance.reticle.SetActive(false);
+    }
+
+    public void ShowHUD()
+    {
+        HUDManager.instance.playerHPBarFrame.SetActive(true);
+        HUDManager.instance.ammoCount.SetActive(true);
+        HUDManager.instance.enemiesBackground.SetActive(true);
+        HUDManager.instance.reticle.SetActive(true);
     }
 }

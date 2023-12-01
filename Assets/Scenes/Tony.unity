@@ -220,12 +220,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10504840}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &41787286 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7761781429841472178, guid: f45c72850fe183c45bfb6774e15028b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 3240688566354328181}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &86709537
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,12 +420,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160871310}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &197346064 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5600491381997232550, guid: f45c72850fe183c45bfb6774e15028b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 3240688566354328181}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &226684386
 GameObject:
   m_ObjectHideFlags: 0
@@ -3072,12 +3060,6 @@ Transform:
   m_Father: {fileID: 1646702668}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1765459114 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5600491382258189372, guid: f45c72850fe183c45bfb6774e15028b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 3240688566354328181}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1794989059
 GameObject:
   m_ObjectHideFlags: 0
@@ -3885,21 +3867,6 @@ PrefabInstance:
       propertyPath: playerSpawnPos
       value: 
       objectReference: {fileID: 110794897}
-    - target: {fileID: 3240688565759037592, guid: f45c72850fe183c45bfb6774e15028b0,
-        type: 3}
-      propertyPath: reticle
-      value: 
-      objectReference: {fileID: 197346064}
-    - target: {fileID: 3240688565759037592, guid: f45c72850fe183c45bfb6774e15028b0,
-        type: 3}
-      propertyPath: ammoCount
-      value: 
-      objectReference: {fileID: 1765459114}
-    - target: {fileID: 3240688565759037592, guid: f45c72850fe183c45bfb6774e15028b0,
-        type: 3}
-      propertyPath: enemiesBackground
-      value: 
-      objectReference: {fileID: 41787286}
     - target: {fileID: 7247460788443274513, guid: f45c72850fe183c45bfb6774e15028b0,
         type: 3}
       propertyPath: m_Name
