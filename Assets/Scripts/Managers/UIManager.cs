@@ -52,8 +52,6 @@ public class UIManager : MonoBehaviour
         menuActive = null;
     }
 
-    
-
     public void YouLose()
     {
         StatePaused();
