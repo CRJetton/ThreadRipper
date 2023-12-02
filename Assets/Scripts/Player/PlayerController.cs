@@ -7,46 +7,53 @@ using UnityEngine.InputSystem;
 
 /* LOG
  *
- * Player can now only sprint in forward directions.
- * 
+ * Fixed bug where player can sprint in air
+ * Added sprintslide
  */
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
-    // General
-    [SerializeField] float maxHP;
-    private float HP;
-    [SerializeField] GameObject spawnPos;
-    [SerializeField] CameraController playerCamera;
-
-    ////Input
+    //Input
     InputAction moveInput;
     InputAction lookInput;
     InputAction sprintInput;
     InputAction jumpInput;
     InputAction crouchInput;
 
-    // Movement
+    [Header("_____Movement_____")]
     [SerializeField] private CharacterController characterController;
     private Vector3 move;
     [SerializeField] private float defaultMoveSpeed;
     private float currMoveSpeed;
-    private bool isSprinting;
     [SerializeField] private float sprintSpeed;
+    [SerializeField] private float crouchMoveSpeed;
     [SerializeField] private float lookSensitivity;
+    private bool isSprintPressed;
     [SerializeField] private float cameraCrouchAmount;
     [SerializeField] private float colliderCrouchAmount;
+    private bool isCrouchPressed;
+    [SerializeField] private float sprintSlideTime;
+    [SerializeField] private float sprintSlideSpeed;
+    private bool isSliding;
 
-    // Jumping & gravity
+
+    [Header("_____Jumping/Gravity_____")]
     [SerializeField] private float jumpHeight;
     [SerializeField] private float gravity;
 
-    // Vaulting
+    [Header("_____Vaulting_____")]
     [SerializeField] PlayerVaultDetector vaultDetector;
     [SerializeField] PlayerGroundDetector groundDetector;
     [SerializeField] private float vaultTime;
     [SerializeField] float vaultForward;
     [SerializeField] float vaultUp;
+
+    [Header("_____General_____")]
+    [SerializeField] float maxHP;
+    [SerializeField] CameraController playerCamera;
+    private float HP;
+    private GameObject spawnPos;
+
 
     private void Start()
     {
@@ -70,20 +77,24 @@ public class PlayerController : MonoBehaviour, IDamageable
         currMoveSpeed = defaultMoveSpeed;
         HP = maxHP;
         HUDManager.instance.playerHPBar.fillAmount = HP;
+        spawnPos = GameObject.FindWithTag("PlayerSpawnPos");
     }
 
     // Update is called once per frame
     private void Update()
     {
+        // Move and look
         move = (moveInput.ReadValue<Vector2>().x * transform.right * currMoveSpeed)
             + (move.y * transform.up)
             + (moveInput.ReadValue<Vector2>().y * transform.forward * currMoveSpeed);
-
         characterController.Move(move * Time.deltaTime);
         Look(lookInput.ReadValue<Vector2>().x * lookSensitivity * Time.deltaTime);
 
         //Gravity
-        if (move.y > gravity) move.y += gravity * Time.deltaTime;
+        if (move.y > gravity)
+        {
+            move.y += gravity * Time.deltaTime;
+        }
     }
 
     private void OnDisable()
@@ -101,60 +112,34 @@ public class PlayerController : MonoBehaviour, IDamageable
         transform.Rotate(Vector3.up, amount);
     }
 
-    private void OnMoveInput(InputAction.CallbackContext _ctx)
-    {
-        if (isSprinting && moveInput.ReadValue<Vector2>().y >= 0) currMoveSpeed = sprintSpeed;
-        else currMoveSpeed = defaultMoveSpeed;
-    }
-
     private void OnSprintInput(InputAction.CallbackContext _ctx)
     {
-        if (_ctx.started && moveInput.ReadValue<Vector2>().y >= 0)
+        if (isCrouchPressed && !isSliding)
+        {
+            return;
+        }
+        else if (_ctx.started && moveInput.ReadValue<Vector2>().y >= 0 && groundDetector.GetIsPlayerGrounded())
         {
             currMoveSpeed = sprintSpeed;
-            isSprinting = true;
+            isSprintPressed = true;
         }
         else
         {
             currMoveSpeed = defaultMoveSpeed;
-            isSprinting = false;
+            isSprintPressed = false;
         }
     }
 
     private void OnJumpInput(InputAction.CallbackContext _ctx)
     {
-        if (vaultDetector.GetCanPlayerVault()) StartCoroutine(Vault(vaultTime));
-        else if (groundDetector.GetIsPlayerGrounded()) move.y = jumpHeight;
-    }
-
-    private void OnCrouchInput(InputAction.CallbackContext _ctx)
-    {
-
-        if (_ctx.started)
+        if (_ctx.started && vaultDetector.GetCanPlayerVault())
         {
-            Vector3 crouch = new Vector3(0, -cameraCrouchAmount, 0);
-            playerCamera.Translate(crouch);
-            //characterController.radius /= 2;
-            characterController.height /= colliderCrouchAmount;
-            Debug.Log(playerCamera.transform.position);
+            StartCoroutine(Vault(vaultTime));
         }
-        else
+        else if (_ctx.started && groundDetector.GetIsPlayerGrounded())
         {
-            Vector3 stand = new Vector3(0, cameraCrouchAmount, 0);
-            playerCamera.Translate(stand);
-            //characterController.radius *= 2;
-            characterController.height *= colliderCrouchAmount;
-            Debug.Log(playerCamera.transform.position);
+            move.y = jumpHeight;
         }
-    }
-
-    public void OnRespawn()
-    {
-        characterController.enabled = false;
-        transform.position = spawnPos.transform.position;
-        characterController.enabled = true;
-        HP = maxHP;
-        HUDManager.instance.playerHPBar.fillAmount = HP;
     }
 
     private IEnumerator Vault(float _vaultTime)
@@ -173,6 +158,75 @@ public class PlayerController : MonoBehaviour, IDamageable
             time += Time.deltaTime;
             yield return null;
         }
+    }
+
+    private void OnCrouchInput(InputAction.CallbackContext _ctx)
+    {
+        if (_ctx.started && !isSprintPressed)
+        {
+            Crouch();
+        }
+        else if (_ctx.started && isSprintPressed)
+        {
+            Crouch();
+            StartCoroutine(SprintSlide(sprintSlideTime, sprintSlideSpeed));
+        }
+        else if (_ctx.canceled && !isSliding)
+        {
+            Stand();
+        }
+    }
+
+    private void Crouch()
+    {
+        Vector3 crouch = new Vector3(0, -cameraCrouchAmount, 0);
+        playerCamera.Translate(crouch);
+        characterController.height /= colliderCrouchAmount;
+        currMoveSpeed = crouchMoveSpeed;
+        isCrouchPressed = true;
+    }
+
+    private void Stand()
+    {
+        Vector3 stand = new Vector3(0, cameraCrouchAmount, 0);
+        playerCamera.Translate(stand);
+        characterController.height *= colliderCrouchAmount;
+        currMoveSpeed = defaultMoveSpeed;
+        isCrouchPressed = false;
+    }
+
+    private IEnumerator SprintSlide(float _sprintSlideTime, float _sprintSlideSpeed)
+    {
+        isSliding = true;
+        float time = 0;
+        
+        while (time < _sprintSlideTime && isSliding)
+        {
+            currMoveSpeed = _sprintSlideSpeed;
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        Stand();
+        isSliding = false;
+
+        if (isSprintPressed)
+        {
+            currMoveSpeed = sprintSpeed;
+        }
+        else
+        {
+            currMoveSpeed = defaultMoveSpeed;
+        }
+    }
+
+    public void OnRespawn()
+    {
+        characterController.enabled = false;
+        transform.position = spawnPos.transform.position;
+        characterController.enabled = true;
+        HP = maxHP;
+        HUDManager.instance.playerHPBar.fillAmount = HP;
     }
 
     public void TakeDamage(int _damage)
