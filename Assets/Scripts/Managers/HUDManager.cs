@@ -15,12 +15,16 @@ public class HUDManager : MonoBehaviour
     public GameObject ammoCount;
     public GameObject enemiesBackground;
     public GameObject reticle;
+    public GameObject damageFlash;
+    public CanvasGroup damageAlpha;
 
     int enemiesRemaining;
+   
 
     void Awake()
     {
         instance = this;
+        damageAlpha = damageFlash.GetComponent<CanvasGroup>();
     }
 
     void Update()
@@ -47,4 +51,13 @@ public class HUDManager : MonoBehaviour
         }
 
     }
+
+    public void FlashDamage()
+    {
+        damageFlash.SetActive(true);
+        damageAlpha.alpha = Mathf.Lerp(damageAlpha.alpha, 0, Time.deltaTime);      
+        damageFlash.SetActive(false);               
+    }
+
+  
 }
