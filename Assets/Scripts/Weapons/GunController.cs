@@ -425,6 +425,8 @@ public class GunController : MonoBehaviour, IGun
         isScopedIn = true;
         anim.SetBool("isScopedIn", isScopedIn);
 
+        HUDManager.instance.reticleController.gameObject.SetActive(false);
+
         OnScoping.Invoke(scopeZoomFactor, scopeInTime);
 
         for (; ; )
@@ -452,6 +454,8 @@ public class GunController : MonoBehaviour, IGun
 
         isScopedIn = false;
         anim.SetBool("isScopedIn", isScopedIn);
+
+        HUDManager.instance.reticleController.gameObject.SetActive(true);
 
         OnScoping.Invoke(1, scopeOutTime);
 
