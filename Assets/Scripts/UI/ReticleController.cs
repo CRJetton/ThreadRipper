@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ReticleExpansion : MonoBehaviour
+public class ReticleController : MonoBehaviour
 {
     [SerializeField] RawImage top;
     [SerializeField] RawImage bottom;
