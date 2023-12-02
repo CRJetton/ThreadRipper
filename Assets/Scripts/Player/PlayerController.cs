@@ -6,13 +6,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /*
- * LOG
- * 
- * TO DO
- * Update player prefab
- * 
- * DONE
- * Fixed bug where releasing crouch after sprint slide caused the player to "stand up" again.
+ LOG
+
+TO DO
+- Mark all new work as new incase bugs in build!!!!!!!!!!!!!!!!!!!!!
+- Queue jump for end of sprint slide
+
+DONE
+
+
  */
 
 public class PlayerController : MonoBehaviour, IDamageable
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [Header("_____Jumping/Gravity_____")]
     [SerializeField] private float jumpHeight;
     [SerializeField] private float gravity;
+    private bool isJumping;
 
     [Header("_____Vaulting_____")]
     [SerializeField] PlayerVaultDetector vaultDetector;
@@ -167,7 +170,11 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnCrouchInput(InputAction.CallbackContext _ctx)
     {
-        if (_ctx.started && !isSprinting)
+        if (isSliding)
+        {
+            return;
+        }
+        else if (_ctx.started && !isSprinting)
         {
             Crouch();
         }
