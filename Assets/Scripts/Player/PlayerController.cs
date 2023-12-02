@@ -5,10 +5,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/* LOG
- *
- * Fixed bug where player can sprint in air
- * Added sprintslide
+/*
+ * LOG
+ * 
+ * TO DO
+ * Update player prefab
+ * 
+ * DONE
+ * Fixed bug where releasing crouch after sprint slide caused the player to "stand up" again.
  */
 
 public class PlayerController : MonoBehaviour, IDamageable
@@ -27,11 +31,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     private float currMoveSpeed;
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float crouchMoveSpeed;
-    [SerializeField] private float lookSensitivity;
-    private bool isSprintPressed;
+    private bool isSprinting;
     [SerializeField] private float cameraCrouchAmount;
     [SerializeField] private float colliderCrouchAmount;
-    private bool isCrouchPressed;
+    private bool isCrouching;
+    private bool isStanding;
     [SerializeField] private float sprintSlideTime;
     [SerializeField] private float sprintSlideSpeed;
     private bool isSliding;
@@ -73,6 +77,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         crouchInput.started += OnCrouchInput;
         crouchInput.canceled += OnCrouchInput;
 
+        // Set members
         currMoveSpeed = defaultMoveSpeed;
         HP = maxHP;
         HUDManager.instance.playerHPBar.fillAmount = HP;
@@ -87,7 +92,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             + (move.y * transform.up)
             + (moveInput.ReadValue<Vector2>().y * transform.forward * currMoveSpeed);
         characterController.Move(move * Time.deltaTime);
-        Look(lookInput.ReadValue<Vector2>().x * lookSensitivity * Time.deltaTime);
+        Look(lookInput.ReadValue<Vector2>().x * SettingsManager.instance.lookSensitivity * Time.deltaTime);
 
         //Gravity
         if (move.y > gravity)
@@ -98,6 +103,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnDisable()
     {
+        // Sever ties with input callback functions upon object's destruction
         sprintInput.started -= OnSprintInput;
         sprintInput.canceled -= OnSprintInput;
         jumpInput.started -= OnJumpInput;
@@ -107,24 +113,25 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Look(float amount)
     {
+        // Made public function to allow PlayerCombat access for recoil effect.
         transform.Rotate(Vector3.up, amount);
     }
 
     private void OnSprintInput(InputAction.CallbackContext _ctx)
     {
-        if (isCrouchPressed && !isSliding)
+        if (isCrouching && !isSliding)
         {
             return;
         }
         else if (_ctx.started && moveInput.ReadValue<Vector2>().y >= 0 && groundDetector.GetIsPlayerGrounded())
         {
             currMoveSpeed = sprintSpeed;
-            isSprintPressed = true;
+            isSprinting = true;
         }
         else
         {
             currMoveSpeed = defaultMoveSpeed;
-            isSprintPressed = false;
+            isSprinting = false;
         }
     }
 
@@ -160,16 +167,16 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnCrouchInput(InputAction.CallbackContext _ctx)
     {
-        if (_ctx.started && !isSprintPressed)
+        if (_ctx.started && !isSprinting)
         {
             Crouch();
         }
-        else if (_ctx.started && isSprintPressed)
+        else if (_ctx.started && isSprinting)
         {
             Crouch();
             StartCoroutine(SprintSlide(sprintSlideTime, sprintSlideSpeed));
         }
-        else if (_ctx.canceled && !isSliding)
+        else if (_ctx.canceled && !isSliding && !isStanding)
         {
             Stand();
         }
@@ -181,7 +188,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         playerCamera.Translate(crouch);
         characterController.height /= colliderCrouchAmount;
         currMoveSpeed = crouchMoveSpeed;
-        isCrouchPressed = true;
+        isCrouching = true;
+        isStanding = false;
     }
 
     private void Stand()
@@ -190,7 +198,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         playerCamera.Translate(stand);
         characterController.height *= colliderCrouchAmount;
         currMoveSpeed = defaultMoveSpeed;
-        isCrouchPressed = false;
+        isCrouching = false;
+        isStanding = true;
     }
 
     private IEnumerator SprintSlide(float _sprintSlideTime, float _sprintSlideSpeed)
@@ -208,7 +217,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         Stand();
         isSliding = false;
 
-        if (isSprintPressed)
+        if (isSprinting)
         {
             currMoveSpeed = sprintSpeed;
         }
@@ -233,10 +242,5 @@ public class PlayerController : MonoBehaviour, IDamageable
         HP -= _damage;
         HUDManager.instance.playerHPBar.fillAmount = HP / maxHP;
         if (HP <= 0) UIManager.instance.YouLose();
-    }
-
-    public float GetLookSensitivity()
-    {
-        return lookSensitivity;
     }
 }

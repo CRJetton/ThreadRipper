@@ -13908,7 +13908,6 @@ MonoBehaviour:
   defaultMoveSpeed: 5
   sprintSpeed: 10
   crouchMoveSpeed: 2
-  lookSensitivity: 30
   cameraCrouchAmount: 0.3
   colliderCrouchAmount: 2.2
   sprintSlideTime: 0.5
