@@ -13949,15 +13949,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc8685eed1abd0479c85b18ac9170bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 200
-  spawnPos: {fileID: 0}
-  playerCamera: {fileID: 940690186790166899}
   characterController: {fileID: 6655305115144485799}
   defaultMoveSpeed: 5
   sprintSpeed: 10
+  crouchMoveSpeed: 2
   lookSensitivity: 30
   cameraCrouchAmount: 0.3
   colliderCrouchAmount: 2.2
+  sprintSlideTime: 0.5
+  sprintSlideSpeed: 15
   jumpHeight: 7.5
   gravity: -20
   vaultDetector: {fileID: 791733567}
@@ -13965,6 +13965,8 @@ MonoBehaviour:
   vaultTime: 0.3
   vaultForward: 1.5
   vaultUp: 1
+  maxHP: 200
+  playerCamera: {fileID: 940690186790166899}
 --- !u!114 &7999538882039293929
 MonoBehaviour:
   m_ObjectHideFlags: 0
