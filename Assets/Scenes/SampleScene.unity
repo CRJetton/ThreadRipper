@@ -18433,6 +18433,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3240688565372139494, guid: f45c72850fe183c45bfb6774e15028b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3240688565759037592, guid: f45c72850fe183c45bfb6774e15028b0,
         type: 3}
       propertyPath: reticle

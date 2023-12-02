@@ -222,20 +222,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 2.5
-      inSlope: -3.3944445
-      outSlope: -3.3944445
+      inSlope: -2.6769307
+      outSlope: -2.6769307
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.143617
+      outWeight: 0.1542553
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 0.09116394
-      outSlope: 0.09116394
+      value: 1.5
+      inSlope: -0.090171576
+      outSlope: -0.090171576
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.6170213
+      inWeight: 0.26595753
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -413,18 +413,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.15
-      inSlope: -0.050000004
-      outSlope: -0.050000004
+      value: 0.2
+      inSlope: -0.049999997
+      outSlope: -0.049999997
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.1
-      inSlope: -0.050000004
-      outSlope: -0.050000004
+      value: 0.15
+      inSlope: -0.049999997
+      outSlope: -0.049999997
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -480,8 +480,43 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  recoilRecoverTime: 0.5
-  recoilPerShot: 0.325
+  spreadRecoverTime: 0.5
+  spreadPerShot: 0.3
+  jumpRecoverTime: 0.3
+  dontRecoverTime: 0.1
+  shotJumpRecovery:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.23300344
+      value: 0.00086069107
+      inSlope: 1.672291
+      outSlope: 1.672291
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   magAmmoCapacity: 30
   reserveAmmoCapacity: 1200
   anim: {fileID: 7914732458371626903}

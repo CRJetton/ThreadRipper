@@ -51,10 +51,11 @@ MonoBehaviour:
   barrelPos: {fileID: 387930950781780086}
   equipTime: 0.25
   reloadTime: 1.2
-  timeBetweenShots: 1
+  timeBetweenShots: 3
   queueShotTime: 0.05
   bulletsPerShot: 1
   fullAuto: 0
+  scopeZoomFactor: 0
   scopeInTime: 0.11
   scopeOutTime: 0.15
   scopedOutPos: {x: 0, y: 0, z: 0}

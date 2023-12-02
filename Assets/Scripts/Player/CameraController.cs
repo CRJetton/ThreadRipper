@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        AddVerticalRotation(lookInput.ReadValue<Vector2>().y * (invertY ? -1 : 1) * player.GetLookSensitivity() * Time.deltaTime);
+        AddVerticalRotation(lookInput.ReadValue<Vector2>().y * (invertY ? -1 : 1) * SettingsManager.instance.lookSensitivity * Time.deltaTime);
     }
 
     public void AddVerticalRotation(float _vertLookVec)

@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
     InputAction attackInput;
     InputAction focusInput;
     InputAction reloadInput;
+    InputAction lookInput;
 
     [SerializeField] PlayerController playerController;
     [SerializeField] CameraController cameraController;
@@ -46,6 +47,7 @@ public class PlayerCombat : MonoBehaviour
         attackInput = InputManager.instance.playerInput.PlayerControls.Attack;
         focusInput = InputManager.instance.playerInput.PlayerControls.Focus;
         reloadInput = InputManager.instance.playerInput.PlayerControls.Reload;
+        lookInput = InputManager.instance.playerInput.PlayerControls.Look;
 
         attackInput.started += AttackStarted;
         attackInput.canceled += AttackCanceled;
@@ -94,6 +96,11 @@ public class PlayerCombat : MonoBehaviour
             }
 
             weaponCurrent.AimAt(aimWorldPos);
+        }
+
+        if (gunCurrent != null)
+        {
+            gunCurrent.ContainerManuallyRotated(lookInput.ReadValue<Vector2>() * SettingsManager.instance.lookSensitivity * Time.deltaTime);
         }
     }
 
