@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         // Get input
         moveInput = InputManager.instance.playerInput.PlayerControls.Move;
-        moveInput.started += OnMoveInput;
         lookInput = InputManager.instance.playerInput.PlayerControls.Look;
         sprintInput = InputManager.instance.playerInput.PlayerControls.Sprint;
         sprintInput.started += OnSprintInput;
@@ -99,7 +98,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnDisable()
     {
-        moveInput.started -= OnMoveInput;
         sprintInput.started -= OnSprintInput;
         sprintInput.canceled -= OnSprintInput;
         jumpInput.started -= OnJumpInput;
@@ -231,6 +229,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void TakeDamage(int _damage)
     {
+        HUDManager.instance.FlashDamage();
         HP -= _damage;
         HUDManager.instance.playerHPBar.fillAmount = HP / maxHP;
         if (HP <= 0) UIManager.instance.YouLose();
