@@ -200,7 +200,7 @@ public class GunController : MonoBehaviour, IGun
     {
         if (!isReloading && magAmmo < magAmmoCapacity && reserveAmmo > 0)
         {
-            if (reloading !=null)
+            if (reloading != null)
                 StopCoroutine(reloading);
 
             AttackCanceled();
@@ -325,7 +325,7 @@ public class GunController : MonoBehaviour, IGun
 
     IEnumerator Recoiling()
     {
-        yield return new WaitForSeconds(dontRecoverTime); 
+        yield return new WaitForSeconds(dontRecoverTime);
 
         while (recoilAmount > 0)
         {
@@ -369,10 +369,10 @@ public class GunController : MonoBehaviour, IGun
 
         yield return new WaitForSeconds(dontRecoverTime);
 
-        while(percentDone < 1)
+        while (percentDone < 1)
         {
             percentDone = (Time.time - startTime) / jumpRecoverTime;
-            
+
             nextJumpAmount = Vector2.Lerp(startJumpAmount, Vector2.zero, shotJumpRecovery.Evaluate(percentDone));
 
             AddShotJumpDirectly(nextJumpAmount - amountShotJumped);
@@ -425,7 +425,8 @@ public class GunController : MonoBehaviour, IGun
         isScopedIn = true;
         anim.SetBool("isScopedIn", isScopedIn);
 
-        HUDManager.instance.reticleController.gameObject.SetActive(false);
+        if (isPlayerGun)
+            HUDManager.instance.reticleController.gameObject.SetActive(false);
 
         OnScoping.Invoke(scopeZoomFactor, scopeInTime);
 
@@ -455,7 +456,8 @@ public class GunController : MonoBehaviour, IGun
         isScopedIn = false;
         anim.SetBool("isScopedIn", isScopedIn);
 
-        HUDManager.instance.reticleController.gameObject.SetActive(true);
+        if (isPlayerGun)
+            HUDManager.instance.reticleController.gameObject.SetActive(true);
 
         OnScoping.Invoke(1, scopeOutTime);
 
