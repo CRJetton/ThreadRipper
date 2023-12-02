@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noHitTag: Enemy
-  damage: 10
+  damage: 15
   speed: 125
   destroyTime: 3
   rb: {fileID: 8372317227697489573}

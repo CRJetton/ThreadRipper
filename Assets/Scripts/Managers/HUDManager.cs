@@ -14,9 +14,10 @@ public class HUDManager : MonoBehaviour
     public GameObject playerHPBarFrame;
     public GameObject ammoCount;
     public GameObject enemiesBackground;
-    public GameObject reticle;
     public GameObject damageFlash;
     public CanvasGroup damageAlpha;
+
+    public ReticleController reticleController;
 
     int enemiesRemaining;
    

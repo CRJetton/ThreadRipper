@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
         HUDManager.instance.playerHPBarFrame.SetActive(false);
         HUDManager.instance.ammoCount.SetActive(false);
         HUDManager.instance.enemiesBackground.SetActive(false);
-        HUDManager.instance.reticle.SetActive(false);
+        HUDManager.instance.reticleController.gameObject.SetActive(false);
     }
 
     public void ShowHUD()
@@ -73,6 +73,6 @@ public class UIManager : MonoBehaviour
         HUDManager.instance.playerHPBarFrame.SetActive(true);
         HUDManager.instance.ammoCount.SetActive(true);
         HUDManager.instance.enemiesBackground.SetActive(true);
-        HUDManager.instance.reticle.SetActive(true);
+        HUDManager.instance.reticleController.gameObject.SetActive(true);
     }
 }

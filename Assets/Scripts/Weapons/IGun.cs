@@ -7,6 +7,8 @@ public interface IGun : IWeapon
 {
     public void Reload();
 
+    public void ContainerManuallyRotated(Vector2 amount);
+
     public void SubscribeOnAmmoChange(UnityAction action);
     public void SubscribeOnShotJump(UnityAction<Vector3> action);
     public void SubscribeOnScoping(UnityAction<float, float> action);

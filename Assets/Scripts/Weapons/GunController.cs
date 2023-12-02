@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,6 +18,7 @@ public class GunController : MonoBehaviour, IGun
     [SerializeField, Range(0f, 0.5f)] float queueShotTime;
     [SerializeField, Range(1, 30)] int bulletsPerShot;
     [SerializeField] bool fullAuto;
+    [SerializeField] bool isPlayerGun;
 
     [Header("Scoping")]
     [SerializeField, Range(0f, 1f)] float scopeZoomFactor;
@@ -45,10 +47,14 @@ public class GunController : MonoBehaviour, IGun
     [SerializeField] AnimationCurve ySpreadPerShot;
 
     [Header("Recoil Amounts")]
-    [SerializeField, Range(0f, 5f)] float recoilRecoverTime;
-    [SerializeField, Range(0f, 1f)] float recoilPerShot;
+    [SerializeField, Range(0f, 5f)] float spreadRecoverTime;
+    [SerializeField, Range(0f, 1f)] float spreadPerShot;
+    [SerializeField, Range(0f, 2.5f)] float jumpRecoverTime;
+    [SerializeField, Range(0f, 1f)] float dontRecoverTime;
+    [SerializeField] AnimationCurve shotJumpRecovery;
 
     float recoilAmount;
+    Vector2 amountShotJumped;
 
     [Header("Ammo")]
     [SerializeField] int magAmmoCapacity;
@@ -71,8 +77,10 @@ public class GunController : MonoBehaviour, IGun
     Coroutine scoping;
     Coroutine reloading;
     Coroutine recoiling;
+    Coroutine jumpRecovering;
 
 
+    #region Initialization
     void Awake()
     {
         OnAmmoChange = new UnityEvent();
@@ -83,8 +91,11 @@ public class GunController : MonoBehaviour, IGun
     void Start()
     {
         ChangeAmmo(magAmmoCapacity, reserveAmmoCapacity);
-    }
 
+        if (isPlayerGun)
+            HUDManager.instance.reticleController.ExpandReticle(xSpreadPerShot.Evaluate(0));
+    }
+    #endregion
 
     #region Shooting
     public void AttackStarted()
@@ -115,6 +126,8 @@ public class GunController : MonoBehaviour, IGun
             StopCoroutine(repeatAttack);
             repeatAttack = null;
         }
+
+        StartJumpRecovery();
     }
 
     void Attack()
@@ -139,7 +152,7 @@ public class GunController : MonoBehaviour, IGun
         for (int i = 0; i < bulletsPerShot; i++)
             Instantiate(bulletPrefab, barrelPos.position, CalcShotRotation());
 
-        AddRecoil(recoilPerShot);
+        AddRecoil(spreadPerShot);
         ChangeAmmo(-1, 0);
 
         anim.Play(shootAnims[Random.Range(0, shootAnims.Length)].name);
@@ -187,7 +200,7 @@ public class GunController : MonoBehaviour, IGun
     {
         if (!isReloading && magAmmo < magAmmoCapacity && reserveAmmo > 0)
         {
-            if (reloading !=null)
+            if (reloading != null)
                 StopCoroutine(reloading);
 
             AttackCanceled();
@@ -262,12 +275,28 @@ public class GunController : MonoBehaviour, IGun
 
     void AddShotJump(float baseX, float baseY, float maxRandX, float maxRandY)
     {
-        Vector3 shotJump = new Vector3(baseX, baseY);
+        Vector2 shotJump = new Vector2(baseX, baseY);
         shotJump.x += Random.Range(-maxRandX, maxRandX);
         shotJump.y += Random.Range(-maxRandY, maxRandY);
 
+        amountShotJumped += shotJump;
+
         OnShotJump.Invoke(shotJump);
     }
+
+    void AddShotJumpDirectly(Vector3 amount)
+    {
+        OnShotJump.Invoke(amount);
+    }
+
+    UnityEvent<Vector3> OnShotJump;
+
+    public void SubscribeOnShotJump(UnityAction<Vector3> action)
+    {
+        OnShotJump.AddListener(action);
+    }
+
+
     Quaternion CalcShotRotation()
     {
         Vector3 finalRot = barrelPos.rotation.eulerAngles;
@@ -296,10 +325,15 @@ public class GunController : MonoBehaviour, IGun
 
     IEnumerator Recoiling()
     {
+        yield return new WaitForSeconds(dontRecoverTime);
+
         while (recoilAmount > 0)
         {
-            recoilAmount -= (1 / recoilRecoverTime) * Time.fixedDeltaTime;
+            recoilAmount -= (1 / spreadRecoverTime) * Time.fixedDeltaTime;
             recoilAmount = Mathf.Clamp01(recoilAmount);
+
+            if (isPlayerGun)
+                HUDManager.instance.reticleController.ExpandReticle(xSpreadPerShot.Evaluate(recoilAmount));
 
             yield return new WaitForFixedUpdate();
         }
@@ -307,11 +341,48 @@ public class GunController : MonoBehaviour, IGun
         recoiling = null;
     }
 
-    UnityEvent<Vector3> OnShotJump;
-
-    public void SubscribeOnShotJump(UnityAction<Vector3> action)
+    public void ContainerManuallyRotated(Vector2 amount)
     {
-        OnShotJump.AddListener(action);
+        if (Mathf.Abs(amountShotJumped.x + amount.x) < Mathf.Abs(amountShotJumped.x))
+            amountShotJumped.x += amount.x;
+
+        if (Mathf.Abs(amountShotJumped.y + amount.y) < Mathf.Abs(amountShotJumped.y))
+            amountShotJumped.y += amount.y;
+    }
+
+    void StartJumpRecovery()
+    {
+        if (jumpRecovering != null)
+            StopCoroutine(jumpRecovering);
+
+        jumpRecovering = StartCoroutine(JumpRecovering());
+    }
+
+
+    IEnumerator JumpRecovering()
+    {
+        float startTime = Time.time;
+        float percentDone = 0;
+
+        Vector2 startJumpAmount = amountShotJumped;
+        Vector2 nextJumpAmount;
+
+        yield return new WaitForSeconds(dontRecoverTime);
+
+        while (percentDone < 1)
+        {
+            percentDone = (Time.time - startTime) / jumpRecoverTime;
+
+            nextJumpAmount = Vector2.Lerp(startJumpAmount, Vector2.zero, shotJumpRecovery.Evaluate(percentDone));
+
+            AddShotJumpDirectly(nextJumpAmount - amountShotJumped);
+
+            amountShotJumped = nextJumpAmount;
+
+            yield return new WaitForNextFrameUnit();
+        }
+
+        jumpRecovering = null;
     }
     #endregion
 
@@ -354,6 +425,9 @@ public class GunController : MonoBehaviour, IGun
         isScopedIn = true;
         anim.SetBool("isScopedIn", isScopedIn);
 
+        if (isPlayerGun)
+            HUDManager.instance.reticleController.gameObject.SetActive(false);
+
         OnScoping.Invoke(scopeZoomFactor, scopeInTime);
 
         for (; ; )
@@ -381,6 +455,9 @@ public class GunController : MonoBehaviour, IGun
 
         isScopedIn = false;
         anim.SetBool("isScopedIn", isScopedIn);
+
+        if (isPlayerGun)
+            HUDManager.instance.reticleController.gameObject.SetActive(true);
 
         OnScoping.Invoke(1, scopeOutTime);
 
