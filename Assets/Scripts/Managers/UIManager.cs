@@ -13,18 +13,18 @@ public class UIManager : MonoBehaviour
 
     public bool isPaused;
     float originalTimeScale;
-    
+
 
     void Awake()
     {
         instance = this;
-        originalTimeScale  = Time.timeScale;    
+        originalTimeScale = Time.timeScale;
 
     }
 
     void Update()
     {
-        if(Input.GetButtonDown("Cancel") && menuActive == null)
+        if (Input.GetButtonDown("Cancel") && menuActive == null)
         {
             StatePaused();
             menuActive = menuPause;
@@ -66,6 +66,7 @@ public class UIManager : MonoBehaviour
         HUDManager.instance.ammoCount.SetActive(false);
         HUDManager.instance.enemiesBackground.SetActive(false);
         HUDManager.instance.reticleController.gameObject.SetActive(false);
+        HUDManager.instance.damageScreen.SetActive(false);
     }
 
     public void ShowHUD()
@@ -74,5 +75,6 @@ public class UIManager : MonoBehaviour
         HUDManager.instance.ammoCount.SetActive(true);
         HUDManager.instance.enemiesBackground.SetActive(true);
         HUDManager.instance.reticleController.gameObject.SetActive(true);
+        HUDManager.instance.damageScreen.SetActive(true);
     }
 }

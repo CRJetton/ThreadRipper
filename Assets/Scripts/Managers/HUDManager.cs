@@ -14,23 +14,32 @@ public class HUDManager : MonoBehaviour
     public GameObject playerHPBarFrame;
     public GameObject ammoCount;
     public GameObject enemiesBackground;
-    public GameObject damageFlash;
-    public CanvasGroup damageAlpha;
+
+    public GameObject damageScreen;
+    [SerializeField][Range(0f, 1.0f)] float damageAlpha;
+
 
     public ReticleController reticleController;
 
+    Color damageColor;
+
     int enemiesRemaining;
-   
 
     void Awake()
     {
         instance = this;
-        damageAlpha = damageFlash.GetComponent<CanvasGroup>();
+        damageColor = damageScreen.GetComponent<Image>().color;
+
     }
 
     void Update()
     {
-        
+        if (damageColor.a > 0)
+        {
+            damageColor.a -= 0.01f;
+            damageScreen.GetComponent<Image>().color = damageColor;
+        }
+
     }
 
     public void UpdateAmmoCount(int magAmmo, int reserveAmmo)
@@ -55,10 +64,9 @@ public class HUDManager : MonoBehaviour
 
     public void FlashDamage()
     {
-        damageFlash.SetActive(true);
-        damageAlpha.alpha = Mathf.Lerp(damageAlpha.alpha, 0, Time.deltaTime);      
-        damageFlash.SetActive(false);               
+        damageColor.a = damageAlpha;
+
+        damageScreen.GetComponent<Image>().color = damageColor;
     }
 
-  
 }
