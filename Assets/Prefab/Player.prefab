@@ -13910,7 +13910,7 @@ MonoBehaviour:
   crouchMoveSpeed: 2
   cameraCrouchAmount: 0.3
   colliderCrouchAmount: 2.2
-  sprintSlideTime: 0.5
+  sprintSlideTime: 0.75
   sprintSlideSpeed: 15
   jumpHeight: 7.5
   gravity: -20
