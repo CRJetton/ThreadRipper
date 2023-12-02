@@ -18453,6 +18453,11 @@ PrefabInstance:
       propertyPath: enemiesBackground
       value: 
       objectReference: {fileID: 1382723792}
+    - target: {fileID: 3707723820059791697, guid: f45c72850fe183c45bfb6774e15028b0,
+        type: 3}
+      propertyPath: maxBulletHoles
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7247460788443274513, guid: f45c72850fe183c45bfb6774e15028b0,
         type: 3}
       propertyPath: m_Name

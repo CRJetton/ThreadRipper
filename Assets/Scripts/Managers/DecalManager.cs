@@ -23,12 +23,6 @@ public class DecalManager : MonoBehaviour
 
     public void CreateBulletHole(Vector3 pos, Vector3 dir)
     {
-        if (bulletHoleIndex < maxBulletHoles)
-            bulletHoleIndex++;
-        else
-            bulletHoleIndex = 0;
-
-
         Vector3 offsetPos = pos;
         offsetPos.x -= dir.x * bulletHoleSpawnOffset;
         offsetPos.y -= dir.y * bulletHoleSpawnOffset;
@@ -38,6 +32,11 @@ public class DecalManager : MonoBehaviour
             InstantiateBulletHole(offsetPos, dir);
         else
             MoveBulletHole(offsetPos, dir);
+
+        if (bulletHoleIndex < maxBulletHoles - 1)
+            bulletHoleIndex++;
+        else
+            bulletHoleIndex = 0;
     }
 
     void InstantiateBulletHole(Vector3 pos, Vector3 dir)
