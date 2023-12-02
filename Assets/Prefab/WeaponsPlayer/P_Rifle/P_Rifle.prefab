@@ -139,6 +139,7 @@ MonoBehaviour:
   queueShotTime: 0.05
   bulletsPerShot: 1
   fullAuto: 1
+  isPlayerGun: 1
   scopeZoomFactor: 0.75
   scopeInTime: 0.11
   scopeOutTime: 0.15

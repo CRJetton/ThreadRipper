@@ -18,6 +18,7 @@ public class GunController : MonoBehaviour, IGun
     [SerializeField, Range(0f, 0.5f)] float queueShotTime;
     [SerializeField, Range(1, 30)] int bulletsPerShot;
     [SerializeField] bool fullAuto;
+    [SerializeField] bool isPlayerGun;
 
     [Header("Scoping")]
     [SerializeField, Range(0f, 1f)] float scopeZoomFactor;
@@ -90,6 +91,9 @@ public class GunController : MonoBehaviour, IGun
     void Start()
     {
         ChangeAmmo(magAmmoCapacity, reserveAmmoCapacity);
+
+        if (isPlayerGun)
+            HUDManager.instance.reticleController.ExpandReticle(xSpreadPerShot.Evaluate(0));
     }
     #endregion
 
@@ -327,6 +331,9 @@ public class GunController : MonoBehaviour, IGun
         {
             recoilAmount -= (1 / spreadRecoverTime) * Time.fixedDeltaTime;
             recoilAmount = Mathf.Clamp01(recoilAmount);
+
+            if (isPlayerGun)
+                HUDManager.instance.reticleController.ExpandReticle(xSpreadPerShot.Evaluate(recoilAmount));
 
             yield return new WaitForFixedUpdate();
         }
