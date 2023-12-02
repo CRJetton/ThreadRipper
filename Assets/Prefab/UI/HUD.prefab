@@ -893,6 +893,7 @@ MonoBehaviour:
   bottom: {fileID: 6238789858960459820}
   left: {fileID: 461946165115394695}
   right: {fileID: 7967196316828365655}
+  expandAmountFactor: 17.5
 --- !u!1 &6519520180423532806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,8 +1162,8 @@ MonoBehaviour:
   playerHPBarFrame: {fileID: 7705151848895684414}
   ammoCount: {fileID: 705505811}
   enemiesBackground: {fileID: 2742571412828144797}
-  damageFlash: {fileID: 2820701899176072740}
-  damageAlpha: {fileID: 0}
+  damageScreen: {fileID: 0}
+  damageAlpha: 0
   reticleController: {fileID: 9108112897031143243}
 --- !u!1 &7008106975305239857
 GameObject:

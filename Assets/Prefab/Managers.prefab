@@ -230,6 +230,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7426203705580467040}
     m_Modifications:
+    - target: {fileID: 2820701899176072740, guid: a7e8086338b61c34187b98c5c8e822b7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7008106974861803191, guid: a7e8086338b61c34187b98c5c8e822b7,
+        type: 3}
+      propertyPath: damageAlpha
+      value: 0.501
+      objectReference: {fileID: 0}
+    - target: {fileID: 7008106974861803191, guid: a7e8086338b61c34187b98c5c8e822b7,
+        type: 3}
+      propertyPath: damageScreen
+      value: 
+      objectReference: {fileID: 7682529995944048651}
     - target: {fileID: 7008106975461135440, guid: a7e8086338b61c34187b98c5c8e822b7,
         type: 3}
       propertyPath: m_Name
@@ -340,11 +355,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9201915989784904533, guid: a7e8086338b61c34187b98c5c8e822b7,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3189476308376282230, guid: a7e8086338b61c34187b98c5c8e822b7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a7e8086338b61c34187b98c5c8e822b7, type: 3}
 --- !u!224 &3240688565149219451 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7008106975461135444, guid: a7e8086338b61c34187b98c5c8e822b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5600491382628150831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7682529995944048651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2820701899176072740, guid: a7e8086338b61c34187b98c5c8e822b7,
     type: 3}
   m_PrefabInstance: {fileID: 5600491382628150831}
   m_PrefabAsset: {fileID: 0}

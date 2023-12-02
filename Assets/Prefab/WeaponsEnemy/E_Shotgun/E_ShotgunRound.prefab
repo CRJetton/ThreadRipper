@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noHitTag: Enemy
   damage: 1
-  speed: 100
+  speed: 50
   destroyTime: 0.2
   rb: {fileID: 2830087306749753080}
 --- !u!96 &5396752899513368544

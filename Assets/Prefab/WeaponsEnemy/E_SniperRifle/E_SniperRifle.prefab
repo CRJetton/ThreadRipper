@@ -51,10 +51,11 @@ MonoBehaviour:
   barrelPos: {fileID: 387930950781780086}
   equipTime: 0.25
   reloadTime: 1.2
-  timeBetweenShots: 3
+  timeBetweenShots: 2
   queueShotTime: 0.05
   bulletsPerShot: 1
   fullAuto: 0
+  isPlayerGun: 0
   scopeZoomFactor: 0
   scopeInTime: 0.11
   scopeOutTime: 0.15
@@ -396,8 +397,16 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  recoilRecoverTime: 0.5
-  recoilPerShot: 1
+  spreadRecoverTime: 0
+  spreadPerShot: 0
+  jumpRecoverTime: 0
+  dontRecoverTime: 0
+  shotJumpRecovery:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   magAmmoCapacity: 10
   reserveAmmoCapacity: 99999
   anim: {fileID: 1647468922843871192}

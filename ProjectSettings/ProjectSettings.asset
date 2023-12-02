@@ -884,7 +884,12 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -899,11 +904,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: ecfed548-c74f-4b8f-a9f9-bbc12c4db45f
+  cloudProjectId: e1efe6ca-cdcb-498e-a078-c9dd04d65b7a
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: ThreadRipper (1)
-  organizationId: clayton-jetton
+  projectName: ThreadRipper
+  organizationId: last-thursday-games
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
