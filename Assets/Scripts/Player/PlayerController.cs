@@ -9,11 +9,11 @@ using UnityEngine.InputSystem;
  LOG
 
 TO DO
-- Mark all new work as new incase bugs in build!!!!!!!!!!!!!!!!!!!!!
-- Queue jump for end of sprint slide
+- Smooth transition for crouch
 
 DONE
-
+- Climbing
+- Add cooldown to sprint slide
 
  */
 
@@ -34,33 +34,57 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float crouchMoveSpeed;
     private bool isSprinting;
+
+    [Header("_____Crouching_____")]
     [SerializeField] private float cameraCrouchAmount;
     [SerializeField] private float colliderCrouchAmount;
+    [SerializeField] private float crouchHeight;
+    [SerializeField] private float standHeight;
+    [SerializeField] private float crouchTime;
+    [SerializeField] private float crouchCooldown;
     private bool isCrouching;
     private bool isStanding;
+    private bool isCrouchReady;
+
+    [Header("_____Sliding_____")]
     [SerializeField] private float sprintSlideTime;
     [SerializeField] private float sprintSlideSpeed;
+    [SerializeField] private float slideCooldown;
     private bool isSliding;
-
+    private bool isSlideReady;
 
     [Header("_____Jumping/Gravity_____")]
+    [SerializeField] private PlayerGroundDetector groundDetector;
     [SerializeField] private float jumpHeight;
     [SerializeField] private float gravity;
-    private bool isJumping;
 
     [Header("_____Vaulting_____")]
-    [SerializeField] PlayerVaultDetector vaultDetector;
-    [SerializeField] PlayerGroundDetector groundDetector;
+    [SerializeField] private PlayerVaultDetector vaultDetector;
     [SerializeField] private float vaultTime;
     [SerializeField] float vaultForward;
     [SerializeField] float vaultUp;
 
+    [Header("_____Climbing_____")]
+    [SerializeField] private PlayerClimbDetector climbDetector;
+    [SerializeField] private float climbTime;
+    [SerializeField] private float climbForward;
+    [SerializeField] private float climbUp;
+
+
     [Header("_____General_____")]
     [SerializeField] float maxHP;
-    [SerializeField] CameraController playerCamera;
+    [SerializeField] private CameraController playerCamera;
     private float HP;
     private GameObject spawnPos;
 
+    private void Awake()
+    {
+        // Set members
+        currMoveSpeed = defaultMoveSpeed;
+        HP = maxHP;
+        isCrouchReady = true;
+        isSlideReady = true;
+    }
 
     private void Start()
     {
@@ -80,9 +104,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         crouchInput.started += OnCrouchInput;
         crouchInput.canceled += OnCrouchInput;
 
-        // Set members
-        currMoveSpeed = defaultMoveSpeed;
-        HP = maxHP;
         HUDManager.instance.playerHPBar.fillAmount = HP;
         spawnPos = GameObject.FindWithTag("PlayerSpawnPos");
     }
@@ -142,7 +163,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (_ctx.started && vaultDetector.GetCanPlayerVault())
         {
-            StartCoroutine(Vault(vaultTime));
+            StartCoroutine(ClimbOver(vaultTime, vaultForward, vaultUp));
+        }
+        else if (_ctx.started && !groundDetector.GetIsPlayerGrounded() && climbDetector.GetCanPlayerClimb())
+        {
+            StartCoroutine(ClimbOver(climbTime, climbForward, climbUp));
         }
         else if (_ctx.started && groundDetector.GetIsPlayerGrounded())
         {
@@ -150,18 +175,18 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator Vault(float _vaultTime)
+    private IEnumerator ClimbOver(float _time, float _forward, float _up)
     {
         float time = 0;
 
         Vector3 startPos = transform.position;
         Vector3 targetPos = startPos
-            + (transform.forward * (vaultForward))
-            + (transform.up * vaultUp);
+            + (transform.forward * _forward)
+            + (transform.up * _up);
 
-        while (time < _vaultTime)
+        while (time < _time)
         {
-            transform.position = Vector3.Lerp(startPos, targetPos, time / _vaultTime);
+            transform.position = Vector3.Lerp(startPos, targetPos, time / _time);
 
             time += Time.deltaTime;
             yield return null;
@@ -174,14 +199,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             return;
         }
+        else if (_ctx.started && !isCrouchReady)
+        {
+            return;
+        }
         else if (_ctx.started && !isSprinting)
         {
             Crouch();
         }
-        else if (_ctx.started && isSprinting)
+        else if (_ctx.started && isSprinting && isSlideReady)
         {
             Crouch();
             StartCoroutine(SprintSlide(sprintSlideTime, sprintSlideSpeed));
+            StartCoroutine(SlideCooldown());
         }
         else if (_ctx.canceled && !isSliding && !isStanding)
         {
@@ -191,8 +221,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Crouch()
     {
-        Vector3 crouch = new Vector3(0, -cameraCrouchAmount, 0);
-        playerCamera.Translate(crouch);
+        StartCoroutine(playerCamera.Crouch(crouchHeight, crouchTime));
+        StartCoroutine(CrouchCooldown());
         characterController.height /= colliderCrouchAmount;
         currMoveSpeed = crouchMoveSpeed;
         isCrouching = true;
@@ -201,12 +231,19 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Stand()
     {
-        Vector3 stand = new Vector3(0, cameraCrouchAmount, 0);
-        playerCamera.Translate(stand);
+        StartCoroutine(playerCamera.Crouch(standHeight, crouchTime));
+        StartCoroutine(CrouchCooldown());
         characterController.height *= colliderCrouchAmount;
         currMoveSpeed = defaultMoveSpeed;
         isCrouching = false;
         isStanding = true;
+    }
+
+    private IEnumerator CrouchCooldown()
+    {
+        isCrouchReady = false;
+        yield return new WaitForSeconds(crouchCooldown);
+        isCrouchReady = true;
     }
 
     private IEnumerator SprintSlide(float _sprintSlideTime, float _sprintSlideSpeed)
@@ -232,6 +269,13 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             currMoveSpeed = defaultMoveSpeed;
         }
+    }
+
+    private IEnumerator SlideCooldown()
+    {
+        isSlideReady = false;
+        yield return new WaitForSeconds(slideCooldown);
+        isSlideReady = true;
     }
 
     public void OnRespawn()

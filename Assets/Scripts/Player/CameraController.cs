@@ -44,11 +44,24 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Euler(currLookRot);
     }
 
-    public void Translate(Vector3 _direction)
+    public IEnumerator Crouch(float _targetHeight, float _totalTime)
     {
-        transform.position += _direction;
-    }
+        float currTime = 0f;
+        float startHeight = transform.localPosition.y;
 
+        while (currTime < _totalTime)
+        {
+            Vector3 moveTo = transform.localPosition;
+            moveTo.y = Mathf.Lerp(startHeight, _targetHeight, currTime / _totalTime);
+            transform.localPosition = moveTo;
+            currTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Vector3 targetPos = transform.localPosition;
+        targetPos.y = _targetHeight;
+        transform.localPosition = targetPos;
+    }
 
     public void Zoom(float zoomFactor, float zoomTime)
     {
