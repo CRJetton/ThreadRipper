@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : MonoBehaviour, ICombat
 {
     InputAction attackInput;
     InputAction focusInput;
@@ -32,6 +32,7 @@ public class PlayerCombat : MonoBehaviour
     Coroutine shotJumping;
 
     bool isWeaponEquipped;
+    bool canEquipWeaopn = true;
 
 
     #region Initialization
@@ -39,7 +40,8 @@ public class PlayerCombat : MonoBehaviour
     {
         InitializeControls();
 
-        EquipWeapon(startingWeaponPrefab);
+        if (startingWeaponPrefab != null)
+            EquipWeapon(startingWeaponPrefab);
     }
 
     void InitializeControls()
@@ -217,16 +219,10 @@ public class PlayerCombat : MonoBehaviour
 
     IEnumerator EquippingWeapon(GameObject prefab)
     {
-        // Destroy any existing weapon
-        isWeaponEquipped = false;
+        canEquipWeaopn = false;
 
-        foreach (Transform child in weaponContainer)
-        {
-            Destroy(child.gameObject);
-        }
-
-        weaponCurrent = null;
-        gunCurrent = null;
+        // Drop any existing weapon
+        DropWeapon();
 
 
         // Create and equip the new weapon
@@ -251,6 +247,24 @@ public class PlayerCombat : MonoBehaviour
 
         weaponCurrent.Equip();
         isWeaponEquipped = true;
+        canEquipWeaopn = true;
     }
+
+    private void DropWeapon()
+    {
+        if (!isWeaponEquipped)
+            return;
+
+        isWeaponEquipped = false;
+
+        weaponCurrent.Drop();
+
+        weaponCurrent = null;
+        gunCurrent = null;
+    }
+    #endregion
+
+    #region Getters
+    public bool GetCanEquipWeapon() { return canEquipWeaopn; }
     #endregion
 }

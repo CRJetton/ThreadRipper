@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class GunController : MonoBehaviour, IGun
 {
     [Header("General")]
+    [SerializeField] GameObject itemPickupPrefab;
     [SerializeField] GameObject bulletPrefab;
 
     [SerializeField] Transform barrelPos;
@@ -485,10 +486,21 @@ public class GunController : MonoBehaviour, IGun
     }
     #endregion
 
-    #region Equipping
+    #region Equipping / Dropping
     public void Equip()
     {
         isEquipped = true;
+    }
+
+    public void Drop()
+    {
+        transform.parent = null;
+
+        GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
+        ItemPickup itemPickup = spawnedItem.GetComponent<ItemPickup>();
+        itemPickup.Drop();
+
+        Destroy(gameObject);
     }
     #endregion
 

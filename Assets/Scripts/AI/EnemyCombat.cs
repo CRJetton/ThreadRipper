@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCombat : MonoBehaviour, ICombat
+public class EnemyCombat : MonoBehaviour, IEnemyCombat
 {
     [SerializeField] Transform weaponContainer;
     [SerializeField] GameObject startingWeaponPrefab;
