@@ -1,7 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+
+
+// NOTE TO OURSELVES:
+    // Contain most of these information through OOP (if possible)
+        // - Encapsulation
+        // - Inheritance
+    // Create a functionality where the Enemy can vault over vaultable objects.
+
 
 //[RequireComponent(typeof(NavMeshAgent))]
 public class BaseAI : MonoBehaviour, IDamageable
@@ -14,51 +23,29 @@ public class BaseAI : MonoBehaviour, IDamageable
     [SerializeField] EnemyCombat enemyCombat;
 
     [Header("------ Enemy Stats ------")]
-    [Range(1, 100)][SerializeField] int HP;               // health for the AI
-    //[Range(1, 100)][SerializeField] int moveSpeed;        // normal walk speed for the AI
-    //[Range(1, 100)][SerializeField] int runSpeed;         // sprintMod for the AI
+    [Range(1, 100)][SerializeField] int HP;         
     [Range(1, 180)][SerializeField] int viewCone;
     [Range(1, 100)][SerializeField] int targetFaceSpeed;
 
     [Header("------ Gunplay ------")]
     [Range(1, 100)][SerializeField] float shootRate;
-    
-    //[SerializeField] GameObject bullet;
-    //[SerializeField] Transform shootPosition;
-
-    // add in call aimAt function, attackStarted to start shooting, attackCancel to stop and reload to reload
 
     // defs
+    bool istakingdamage;
     bool isShooting;
     bool playerInRange;
     float angleToPlayer;
     Vector3 playerDir;
 
-    // Needs to be built into the game manager, remove later
-    //[SerializeField] GameObject player;
-    // [SerializeField] float rotationSpeed;
-
-    // patrolling 
-    bool isMoving;
-    bool playerInSight;
-    int stoppingDist;
-    Vector3 destinatonPoint;
-
-    //void Awake()
-    //{
-    //    agent = GetComponent<NavMeshAgent>();
-    //}
-
     void Start()
     {
         HUDManager.instance.UpdateProgress(1);
-        //player = GameManager.instance.player;
         //agent.speed = moveSpeed;
     }
 
     void Update()
     {
-        if (playerInRange && canSeePlayer())
+        if ((playerInRange && canSeePlayer()) || !Investigate())
         {
             // Patrol();
         }
@@ -92,6 +79,18 @@ public class BaseAI : MonoBehaviour, IDamageable
 
                 return true;
             }
+        }
+
+        return false;
+    }
+
+    bool Investigate() 
+    {
+        if (istakingdamage)
+        {
+            agent.SetDestination(GameManager.instance.player.transform.position);
+            istakingdamage = false;
+            return true;
         }
 
         return false;
@@ -131,10 +130,11 @@ public class BaseAI : MonoBehaviour, IDamageable
         isShooting = false;
     }
 
-    public void TakeDamage(int damage)              // all AI will take Damage, Or will there be various AI who would take different kinds of damage?
+    public void TakeDamage(int damage)
     {
         HP -= damage;
         StartCoroutine(flashRed());
+        istakingdamage = true;
 
         if (HP <= 0)
         {
@@ -150,28 +150,4 @@ public class BaseAI : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.1f);
         model.material.color = Color.white;
     }
-
-    // public abstract void Combat(); // Multiple AI's will derive off from different Combat styles
-
-    //IEnumerator Idle(float delay) // all AI will incorportate the same Idle behavior
-    //{
-    //    yield return new WaitForSeconds(delay);
-    //}
-
-    //void Patrol() // all AI will incorpoate the same patrol behavior
-    //{
-    //    // Code here        
-    //}
-
-    //IEnumerator LocatorRandomizer()
-    //{
-    //    yield return null;
-    //}
-
-    //bool canSeePlayer()
-    //{
-    //    return false;
-    //}
-
-
 }
