@@ -287,7 +287,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         HUDManager.instance.playerHPBar.fillAmount = HP;
     }
 
-    public void TakeDamage(int _damage)
+    public void TakeDamage(float _damage)
     {
         HUDManager.instance.FlashDamage();
         HP -= _damage;

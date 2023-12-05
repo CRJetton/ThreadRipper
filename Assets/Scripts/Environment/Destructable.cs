@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Destructable : MonoBehaviour, IDamageable
 {
-    [SerializeField] int health;
+    [SerializeField] float health;
     [SerializeField] Color hitColor;
     [SerializeField] Renderer model;
 
@@ -16,7 +16,7 @@ public class Destructable : MonoBehaviour, IDamageable
         defaultColor = model.material.color;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
 

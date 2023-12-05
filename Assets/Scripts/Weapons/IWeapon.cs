@@ -12,6 +12,8 @@ public interface IWeapon
 
     public void Equip();
     public float GetEquipTime();
+    public GameObject getObject();
 
     public void Drop();
+    public void Throw(Vector3 velocity);
 }

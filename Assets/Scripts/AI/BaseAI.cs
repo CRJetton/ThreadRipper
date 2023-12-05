@@ -23,7 +23,7 @@ public class BaseAI : MonoBehaviour, IDamageable
     [SerializeField] EnemyCombat enemyCombat;
 
     [Header("------ Enemy Stats ------")]
-    [Range(1, 100)][SerializeField] int HP;         
+    [Range(1, 100)][SerializeField] float HP;         
     [Range(1, 180)][SerializeField] int viewCone;
     [Range(1, 100)][SerializeField] int targetFaceSpeed;
 
@@ -130,7 +130,7 @@ public class BaseAI : MonoBehaviour, IDamageable
         isShooting = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         HP -= damage;
         StartCoroutine(flashRed());

@@ -51,6 +51,7 @@ MonoBehaviour:
     type: 3}
   enemyItemPrefab: {fileID: 6156902733182377973, guid: 5ed6f56fd1146ad4ea99aef0a775bcc6,
     type: 3}
+  rb: {fileID: 4350570066221983835}
 --- !u!65 &8225147383325288574
 BoxCollider:
   m_ObjectHideFlags: 0

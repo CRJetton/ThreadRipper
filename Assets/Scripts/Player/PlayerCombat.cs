@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
     InputAction focusInput;
     InputAction reloadInput;
     InputAction lookInput;
+    InputAction throwInput;
 
     [SerializeField] PlayerController playerController;
     [SerializeField] CameraController cameraController;
@@ -22,6 +23,9 @@ public class PlayerCombat : MonoBehaviour, ICombat
     [SerializeField] float recoilSmoothTime;
     Vector3 recoilJumpToAdd;
     Vector3 aimWorldPos;
+
+    [SerializeField, Range(100f, 1000f)] float throwSpeed;
+    [SerializeField, Range(-90, 90)] float throwAngle;
 
     [SerializeField] Transform weaponContainer;
     [SerializeField] GameObject startingWeaponPrefab;
@@ -50,12 +54,14 @@ public class PlayerCombat : MonoBehaviour, ICombat
         focusInput = InputManager.instance.playerInput.PlayerControls.Focus;
         reloadInput = InputManager.instance.playerInput.PlayerControls.Reload;
         lookInput = InputManager.instance.playerInput.PlayerControls.Look;
+        throwInput = InputManager.instance.playerInput.PlayerControls.Throw;
 
         attackInput.started += AttackStarted;
         attackInput.canceled += AttackCanceled;
         focusInput.started += FocusStarted;
         focusInput.canceled += FocusCanceled;
         reloadInput.started += ReloadStarted;
+        throwInput.started += ThrowStarted;
     }
 
     void OnDisable()
@@ -65,6 +71,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
         focusInput.started -= FocusStarted;
         focusInput.canceled -= FocusCanceled;
         reloadInput.started -= ReloadStarted;
+        throwInput.started -= ThrowStarted;  
     }
     #endregion
 
@@ -190,6 +197,11 @@ public class PlayerCombat : MonoBehaviour, ICombat
             weaponCurrent.AttackCanceled();
         }
     }
+
+    public void ThrowStarted(InputAction.CallbackContext context)
+    {
+        ThrowWeapon();
+    }
     #endregion
 
     #region Ammo Control
@@ -252,12 +264,30 @@ public class PlayerCombat : MonoBehaviour, ICombat
 
     private void DropWeapon()
     {
-        if (!isWeaponEquipped)
+        if (weaponCurrent == null)
             return;
 
         isWeaponEquipped = false;
 
         weaponCurrent.Drop();
+
+        weaponCurrent = null;
+        gunCurrent = null;
+    }
+
+    private void ThrowWeapon()
+    {
+        if (weaponCurrent == null)
+            return;
+
+        isWeaponEquipped = false;
+
+        Vector3 velocity = weaponCurrent.getObject().transform.forward;
+        velocity.y += throwAngle;
+        velocity = velocity.normalized;
+        velocity *= throwSpeed;
+
+        weaponCurrent.Throw(velocity);
 
         weaponCurrent = null;
         gunCurrent = null;

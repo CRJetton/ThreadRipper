@@ -7,6 +7,11 @@ public class ItemPickup : MonoBehaviour, IInteractable
     [SerializeField] GameObject playerItemPrefab;
     [SerializeField] GameObject enemyItemPrefab;
 
+    [SerializeField] Rigidbody rb;
+
+    [SerializeField] float thrownDamage;
+
+    bool isThrown;
 
     public void Interact(IInteractionController interactionController)
     {
@@ -27,9 +32,30 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     }
 
-    public void Throw()
+    public void Throw(Vector3 velocity)
     {
+        isThrown = true;
 
+        rb.velocity = velocity;
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.isTrigger || isThrown)
+            return;
+
+        IDamageable damageable = other.GetComponent<IDamageable>();
+
+        if (damageable != null)
+        {
+            damageable.TakeDamage(thrownDamage);
+
+            if (other.CompareTag("Enemy"))
+            {
+                // force enemy gun throw
+            }
+        }
     }
 
     #region Getters
