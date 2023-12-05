@@ -7,7 +7,7 @@ public class DecalManager : MonoBehaviour
     public static DecalManager instance;
 
     [Header("Bullet Holes")]
-    [SerializeField, Range(0, 100)] int maxBulletHoles;
+    [SerializeField, Range(0, 200)] int maxBulletHoles;
     [SerializeField, Range(0f, 1f)] float bulletHoleSpawnOffset;
     [SerializeField] GameObject bulletHolePrefab;
 

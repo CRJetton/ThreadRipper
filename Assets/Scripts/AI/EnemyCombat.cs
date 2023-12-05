@@ -90,4 +90,12 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
 
         weaponCurrent.Equip();
     }
+
+    public void Throw(Vector3 velocity, Vector3 angularVelocity)
+    {
+        if (weaponCurrent != null)
+        {
+
+        }
+    }
 }

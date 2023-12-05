@@ -15,5 +15,5 @@ public interface IWeapon
     public GameObject getObject();
 
     public void Drop();
-    public void Throw(Vector3 velocity);
+    public void Throw(Vector3 velocity, Vector3 angularVelocity);
 }

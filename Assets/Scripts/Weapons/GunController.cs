@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class GunController : MonoBehaviour, IGun
 {
     [Header("General")]
+    [SerializeField] string noHitTag;
     [SerializeField] GameObject itemPickupPrefab;
     [SerializeField] GameObject bulletPrefab;
 
@@ -504,13 +505,13 @@ public class GunController : MonoBehaviour, IGun
         Destroy(gameObject);
     }
 
-    public void Throw(Vector3 velocity)
+    public void Throw(Vector3 velocity, Vector3 angularVelocity)
     {
         transform.parent = null;
 
         GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
         ItemPickup itemPickup = spawnedItem.GetComponent<ItemPickup>();
-        itemPickup.Throw(velocity);
+        itemPickup.Throw(velocity, angularVelocity, noHitTag);
 
         Destroy(gameObject);
     }

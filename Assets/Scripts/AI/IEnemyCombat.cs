@@ -12,4 +12,6 @@ public interface IEnemyCombat : ICombat
     public void FocusCanceled();
 
     public void ReloadStarted();
+
+    public void Throw(Vector3 velocity, Vector3 angularVelocity);
 }

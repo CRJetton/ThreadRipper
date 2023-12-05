@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7469003796985655994}
   - component: {fileID: 48040504685769886}
   - component: {fileID: 8225147383325288574}
+  - component: {fileID: 4832750240719546855}
   - component: {fileID: 4350570066221983835}
   m_Layer: 0
   m_Name: RiflePickup
@@ -52,6 +53,7 @@ MonoBehaviour:
   enemyItemPrefab: {fileID: 6156902733182377973, guid: 5ed6f56fd1146ad4ea99aef0a775bcc6,
     type: 3}
   rb: {fileID: 4350570066221983835}
+  thrownDamage: 1
 --- !u!65 &8225147383325288574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65,6 +67,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.046882614, y: 0.19158408, z: 0.67454267}
   m_Center: {x: -0.00097524375, y: -0.03659372, z: 0.06137973}
+--- !u!65 &4832750240719546855
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178596823894660017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09190494, y: 0.2915841, z: 0.72974205}
+  m_Center: {x: 0.0059506, y: -0.03659372, z: 0.051150322}
 --- !u!54 &4350570066221983835
 Rigidbody:
   m_ObjectHideFlags: 0

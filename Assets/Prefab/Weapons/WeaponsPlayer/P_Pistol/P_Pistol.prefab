@@ -77,6 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929740d55cb362d4aad78c672097122d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noHitTag: Player
+  itemPickupPrefab: {fileID: 0}
   bulletPrefab: {fileID: 3763958578405574730, guid: 865538adbb788e044a43b6226f3a4900,
     type: 3}
   barrelPos: {fileID: 612039618178639363}
@@ -86,6 +88,7 @@ MonoBehaviour:
   queueShotTime: 0.1
   bulletsPerShot: 1
   fullAuto: 0
+  isPlayerGun: 0
   scopeZoomFactor: 0.75
   scopeInTime: 0.075
   scopeOutTime: 0.1
@@ -427,8 +430,16 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  recoilRecoverTime: 0.5
-  recoilPerShot: 1
+  spreadRecoverTime: 0
+  spreadPerShot: 0
+  jumpRecoverTime: 0
+  dontRecoverTime: 0
+  shotJumpRecovery:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   magAmmoCapacity: 12
   reserveAmmoCapacity: 360
   anim: {fileID: 1057038591153549809}

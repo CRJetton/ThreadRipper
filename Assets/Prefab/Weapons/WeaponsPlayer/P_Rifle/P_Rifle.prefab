@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929740d55cb362d4aad78c672097122d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noHitTag: Player
   itemPickupPrefab: {fileID: 1178596823894660017, guid: 279e75d5eb28302489d2a09047a3ca1f,
     type: 3}
   bulletPrefab: {fileID: 2288430064982778655, guid: 8ef445baa987c4d4b8c57919f7428730,

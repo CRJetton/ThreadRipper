@@ -12,6 +12,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
     [SerializeField] float thrownDamage;
 
     bool isThrown;
+    string noHitTag;
 
     public void Interact(IInteractionController interactionController)
     {
@@ -32,18 +33,22 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     }
 
-    public void Throw(Vector3 velocity)
+    public void Throw(Vector3 velocity, Vector3 angularVelocity, string _noHitTag)
     {
         isThrown = true;
+        noHitTag = _noHitTag;
 
         rb.velocity = velocity;
+        rb.angularVelocity = angularVelocity;
     }
 
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger || isThrown)
+        if (other.isTrigger || !isThrown || other.CompareTag(noHitTag))
             return;
+
+        isThrown = false;
 
         IDamageable damageable = other.GetComponent<IDamageable>();
 

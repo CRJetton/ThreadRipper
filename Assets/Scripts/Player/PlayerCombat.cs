@@ -24,8 +24,9 @@ public class PlayerCombat : MonoBehaviour, ICombat
     Vector3 recoilJumpToAdd;
     Vector3 aimWorldPos;
 
-    [SerializeField, Range(100f, 1000f)] float throwSpeed;
-    [SerializeField, Range(-90, 90)] float throwAngle;
+    [SerializeField, Range(0, 50)] float throwSpeed;
+    [SerializeField, Range(-100, 100)] float throwAngularSpeed;
+    [SerializeField, Range(-1f, 1f)] float throwAngle;
 
     [SerializeField] Transform weaponContainer;
     [SerializeField] GameObject startingWeaponPrefab;
@@ -287,7 +288,9 @@ public class PlayerCombat : MonoBehaviour, ICombat
         velocity = velocity.normalized;
         velocity *= throwSpeed;
 
-        weaponCurrent.Throw(velocity);
+        Vector3 angularVelocity = weaponCurrent.getObject().transform.right * throwAngularSpeed;
+
+        weaponCurrent.Throw(velocity, angularVelocity);
 
         weaponCurrent = null;
         gunCurrent = null;

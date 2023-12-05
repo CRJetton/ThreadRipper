@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2191ab188fc4cda4898d01245d0a4d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBulletHoles: 75
+  maxBulletHoles: 150
   bulletHoleSpawnOffset: 0.025
   bulletHolePrefab: {fileID: 8435811785277451168, guid: 3e672bc87f315694eabcc50eca6b3f4d,
     type: 3}

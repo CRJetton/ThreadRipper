@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929740d55cb362d4aad78c672097122d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noHitTag: Enemy
+  itemPickupPrefab: {fileID: 0}
   bulletPrefab: {fileID: 1818996471705407828, guid: 6f37867e9102b1e458d9ee4fe173244b,
     type: 3}
   barrelPos: {fileID: 387930950781780086}
