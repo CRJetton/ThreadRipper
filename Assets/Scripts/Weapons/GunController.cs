@@ -82,6 +82,8 @@ public class GunController : MonoBehaviour, IGun
     Coroutine recoiling;
     Coroutine jumpRecovering;
 
+    bool ammoInitialized;
+
 
     #region Initialization
     void Awake()
@@ -93,10 +95,19 @@ public class GunController : MonoBehaviour, IGun
 
     void Start()
     {
-        ChangeAmmo(magAmmoCapacity, reserveAmmoCapacity);
+        InitializeAmmo(magAmmoCapacity, reserveAmmoCapacity);
 
         if (isPlayerGun)
             HUDManager.instance.reticleController.ExpandReticle(xSpreadPerShot.Evaluate(0));
+    }
+
+    public void InitializeAmmo(int _magAmmo, int _reserveAmmo)
+    {
+        if (!ammoInitialized)
+        {
+            ChangeAmmo(_magAmmo, _reserveAmmo);
+            ammoInitialized = true;
+        }
     }
     #endregion
 
@@ -228,15 +239,22 @@ public class GunController : MonoBehaviour, IGun
 
         yield return new WaitForSeconds(reloadTime);
 
-        int maxReloadAmount = magAmmoCapacity - magAmmo;
-
-        if (reserveAmmo >= maxReloadAmount)
+        if (isPlayerGun)
         {
-            ChangeAmmo(maxReloadAmount, -maxReloadAmount);
+            int maxReloadAmount = magAmmoCapacity - magAmmo;
+
+            if (reserveAmmo >= maxReloadAmount)
+            {
+                ChangeAmmo(maxReloadAmount, -maxReloadAmount);
+            }
+            else
+            {
+                ChangeAmmo(reserveAmmo, -reserveAmmo);
+            }
         }
         else
         {
-            ChangeAmmo(reserveAmmo, -reserveAmmo);
+            ChangeAmmo(magAmmoCapacity, reserveAmmo);
         }
 
         isReloading = false;
@@ -247,6 +265,9 @@ public class GunController : MonoBehaviour, IGun
     {
         magAmmo += magChange;
         reserveAmmo += reserveChange;
+
+        magAmmo = Mathf.Clamp(magAmmo, 0, magAmmoCapacity);
+        reserveAmmo = Mathf.Clamp(reserveAmmo, 0, reserveAmmoCapacity);
 
         OnAmmoChange.Invoke();
     }
@@ -500,6 +521,8 @@ public class GunController : MonoBehaviour, IGun
 
         GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
         ItemPickup itemPickup = spawnedItem.GetComponent<ItemPickup>();
+        itemPickup.SetSaveValue1(magAmmo);
+        itemPickup.SetSaveValue2(reserveAmmo);
         itemPickup.Drop();
 
         Destroy(gameObject);
@@ -511,13 +534,15 @@ public class GunController : MonoBehaviour, IGun
 
         GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
         ItemPickup itemPickup = spawnedItem.GetComponent<ItemPickup>();
+        itemPickup.SetSaveValue1(magAmmo);
+        itemPickup.SetSaveValue2(reserveAmmo);
         itemPickup.Throw(velocity, angularVelocity, noHitTag);
 
         Destroy(gameObject);
     }
     #endregion
 
-    #region Getters
+    #region Getters and Setters
     public float GetEquipTime()
     {
         return equipTime;
@@ -536,6 +561,26 @@ public class GunController : MonoBehaviour, IGun
     public GameObject getObject()
     {
         return gameObject;
+    }
+
+    public void SetMagAmmo(int ammo)
+    {
+        magAmmo = ammo;
+    }
+
+    public void SetReserveAmmo(int ammo)
+    {
+        reserveAmmo = ammo;
+    }
+
+    public int GetMagAmmoCapacity()
+    {
+        return magAmmoCapacity;
+    }
+
+    public int GetReserveAmmoCapacity()
+    {
+        return reserveAmmoCapacity;
     }
     #endregion
 }

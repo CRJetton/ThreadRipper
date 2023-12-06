@@ -14088,7 +14088,7 @@ MonoBehaviour:
   minAimRange: 0.4
   recoilSmoothTime: 0.04
   throwSpeed: 15
-  throwAngularSpeed: 50
+  throwAngularSpeed: 30
   throwAngle: 0.3
   weaponContainer: {fileID: 6345011976925759367}
   startingWeaponPrefab: {fileID: 9108546024485524263, guid: 983b3571d5c3f4f4fb899599daaf35eb,

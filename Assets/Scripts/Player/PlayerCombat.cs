@@ -221,13 +221,55 @@ public class PlayerCombat : MonoBehaviour, ICombat
     }
     #endregion
 
-    #region Equipping
+    #region Equipping, Dropping, Throwing
     public void EquipWeapon(GameObject prefab)
     {
         if (equippingWeapon != null)
             StopCoroutine(equippingWeapon);
 
         equippingWeapon = StartCoroutine(EquippingWeapon(prefab));
+    }
+
+    public void EquipWeapon(ItemPickup pickup)
+    {
+        if (equippingWeapon != null)
+            StopCoroutine(equippingWeapon);
+
+        equippingWeapon = StartCoroutine(EquippingWeapon(pickup));
+    }
+
+    IEnumerator EquippingWeapon(ItemPickup pickup)
+    {
+        canEquipWeaopn = false;
+
+        // Drop any existing weapon
+        DropWeapon();
+
+
+        // Create and equip the new weapon
+        Instantiate(pickup.GetPlayerItemPrefab(), weaponContainer);
+
+        weaponCurrent = weaponContainer.GetComponentInChildren<IWeapon>();
+
+        if (weaponCurrent == null)
+            yield break;
+
+        if (weaponCurrent is IGun)
+        {
+            gunCurrent = (IGun)weaponCurrent;
+
+            gunCurrent.SubscribeOnAmmoChange(UpdateAmmoHUD);
+            gunCurrent.SubscribeOnShotJump(AddShotJump);
+            gunCurrent.SubscribeOnScoping(ChangeScopeZoom);
+            gunCurrent.InitializeAmmo(pickup.GetSaveValue1(), pickup.GetSaveValue2());
+        }
+
+        // Wait for equip to finish
+        yield return new WaitForSeconds(weaponCurrent.GetEquipTime());
+
+        weaponCurrent.Equip();
+        isWeaponEquipped = true;
+        canEquipWeaopn = true;
     }
 
     IEnumerator EquippingWeapon(GameObject prefab)

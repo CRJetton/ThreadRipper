@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour, IEnemyCombat
 {
+    [Header("Combat")]
     [SerializeField] Transform weaponContainer;
     [SerializeField] GameObject startingWeaponPrefab;
     private IWeapon weaponCurrent;
     private IGun gunCurrent;
+
+    [Header("Throwing")]
+    [SerializeField, Range(0, 50)] float throwSpeed;
+    [SerializeField, Range(-100, 100)] float throwAngularSpeed;
+    [SerializeField, Range(-1f, 1f)] float throwAngle;
 
     Coroutine equippingWeapon;
 
@@ -20,7 +26,7 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
     public void AimAt(Vector3 worldPosition)
     {
         if (weaponCurrent != null)
-        weaponCurrent.AimAt(worldPosition);
+            weaponCurrent.AimAt(worldPosition);
     }
 
     public void AttackCanceled()
@@ -83,7 +89,11 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
             yield break;
 
         if (weaponCurrent is IGun)
-            gunCurrent = (IGun) weaponCurrent;
+        {
+            gunCurrent = (IGun)weaponCurrent;
+
+            gunCurrent.InitializeAmmo(gunCurrent.GetMagAmmoCapacity(), Random.Range(0, gunCurrent.GetMagAmmoCapacity()));
+        }
 
         // Wait for equip to finish
         yield return new WaitForSeconds(weaponCurrent.GetEquipTime());
@@ -91,11 +101,26 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
         weaponCurrent.Equip();
     }
 
-    public void Throw(Vector3 velocity, Vector3 angularVelocity)
+    public void Throw(Vector3 targetPos)
     {
         if (weaponCurrent != null)
         {
+            Vector3 velocity = (targetPos - transform.position).normalized;
+            velocity.y += throwAngle;
+            velocity = velocity.normalized;
+            velocity *= throwSpeed;
 
+            Vector3 angularVelocity = weaponCurrent.getObject().transform.right * throwAngularSpeed;
+
+            weaponCurrent.Throw(velocity, angularVelocity);
+
+            weaponCurrent = null;
+            gunCurrent = null;
         }
+    }
+
+    public void ThrowToPlayer()
+    {
+        Throw(GameManager.instance.playerBodyPositions.playerCenter.position);
     }
 }
