@@ -32,7 +32,7 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
     {
         IInteractable interactable = interactableDetector.GetClosestInteractable(transform.position);
 
-        if (interactable != null) 
+        if (interactable != null)
         {
             interactable.Interact(this);
         }
@@ -40,6 +40,7 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
     #endregion
 
     #region Specific Interactions
+
     public void PickUpItem(ItemPickup item)
     {
         if (playerCombat.GetCanEquipWeapon())
@@ -50,5 +51,6 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
             item.PickedUp();
         }
     }
+
     #endregion
 }

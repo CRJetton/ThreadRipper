@@ -14,6 +14,7 @@ TO DO
 - Animate move
 - Fix climbing so you go up and then forward
 - Add kinematic Rigidbody
+- Make vault detector work like ground detector with list
 
 DONE
 
@@ -305,5 +306,10 @@ public class PlayerController : MonoBehaviour, IDamageable
         HP -= _damage;
         HUDManager.instance.playerHPBar.fillAmount = HP / maxHP;
         if (HP <= 0) UIManager.instance.YouLose();
+    }
+
+    public void AddHP(float _health)
+    {
+        HP += _health;
     }
 }
