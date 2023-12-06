@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCombat : MonoBehaviour, ICombat
+public class EnemyCombat : MonoBehaviour, IEnemyCombat
 {
     [SerializeField] Transform weaponContainer;
     [SerializeField] GameObject startingWeaponPrefab;
@@ -89,5 +89,13 @@ public class EnemyCombat : MonoBehaviour, ICombat
         yield return new WaitForSeconds(weaponCurrent.GetEquipTime());
 
         weaponCurrent.Equip();
+    }
+
+    public void Throw(Vector3 velocity, Vector3 angularVelocity)
+    {
+        if (weaponCurrent != null)
+        {
+
+        }
     }
 }

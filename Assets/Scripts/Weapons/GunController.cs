@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +8,8 @@ using UnityEngine.Events;
 public class GunController : MonoBehaviour, IGun
 {
     [Header("General")]
+    [SerializeField] string noHitTag;
+    [SerializeField] GameObject itemPickupPrefab;
     [SerializeField] GameObject bulletPrefab;
 
     [SerializeField] Transform barrelPos;
@@ -485,10 +488,32 @@ public class GunController : MonoBehaviour, IGun
     }
     #endregion
 
-    #region Equipping
+    #region Equipping, Dropping, Throwing
     public void Equip()
     {
         isEquipped = true;
+    }
+
+    public void Drop()
+    {
+        transform.parent = null;
+
+        GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
+        ItemPickup itemPickup = spawnedItem.GetComponent<ItemPickup>();
+        itemPickup.Drop();
+
+        Destroy(gameObject);
+    }
+
+    public void Throw(Vector3 velocity, Vector3 angularVelocity)
+    {
+        transform.parent = null;
+
+        GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
+        ItemPickup itemPickup = spawnedItem.GetComponent<ItemPickup>();
+        itemPickup.Throw(velocity, angularVelocity, noHitTag);
+
+        Destroy(gameObject);
     }
     #endregion
 
@@ -506,6 +531,11 @@ public class GunController : MonoBehaviour, IGun
     public int GetReserveAmmo()
     {
         return reserveAmmo;
+    }
+
+    public GameObject getObject()
+    {
+        return gameObject;
     }
     #endregion
 }

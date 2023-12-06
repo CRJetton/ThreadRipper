@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6156902732065688810
+--- !u!1 &612039618178639362
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,30 +8,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6156902732065688811}
-  m_Layer: 0
+  - component: {fileID: 612039618178639363}
+  m_Layer: 6
   m_Name: BarrelPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6156902732065688811
+--- !u!4 &612039618178639363
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156902732065688810}
+  m_GameObject: {fileID: 612039618178639362}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.37400004, y: 0.015, z: 0}
+  m_LocalPosition: {x: 0.1074, y: 0.043399993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9103879633935682899}
+  m_Father: {fileID: 2101177720042523860}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6156902733182377973
+--- !u!1 &612039619229201693
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,57 +39,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6156902733182377974}
-  - component: {fileID: 3163658327963715618}
-  - component: {fileID: 5102436606431247173}
-  m_Layer: 0
-  m_Name: E_Rifle
+  - component: {fileID: 612039619229201694}
+  - component: {fileID: 8568171807886238410}
+  - component: {fileID: 1057038591153549809}
+  m_Layer: 6
+  m_Name: P_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6156902733182377974
+--- !u!4 &612039619229201694
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156902733182377973}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 612039619229201693}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9103879633935682899}
+  - {fileID: 2101177720042523860}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3163658327963715618
+--- !u!114 &8568171807886238410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156902733182377973}
+  m_GameObject: {fileID: 612039619229201693}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 929740d55cb362d4aad78c672097122d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1160724838038381753, guid: 094a08d148938fd4a865371853343254,
+  noHitTag: Player
+  itemPickupPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 3763958578405574730, guid: 865538adbb788e044a43b6226f3a4900,
     type: 3}
-  barrelPos: {fileID: 6156902732065688811}
+  barrelPos: {fileID: 612039618178639363}
   equipTime: 0.25
-  reloadTime: 1
-  timeBetweenShots: 0.15
-  queueShotTime: 0.05
+  reloadTime: 0.9
+  timeBetweenShots: 0.2
+  queueShotTime: 0.1
   bulletsPerShot: 1
-  fullAuto: 1
-  scopeInTime: 0.11
-  scopeOutTime: 0.15
+  fullAuto: 0
+  isPlayerGun: 0
+  scopeZoomFactor: 0.75
+  scopeInTime: 0.075
+  scopeOutTime: 0.1
   scopedOutPos: {x: 0, y: 0, z: 0}
-  scopedInPos: {x: -0.14, y: 0.095, z: 0.02}
+  scopedInPos: {x: -0.14, y: 0.1325, z: 0}
   scopeInCurve:
     serializedVersion: 2
     m_Curve:
@@ -143,18 +147,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.25
-      inSlope: -0.5
-      outSlope: -0.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: -0.25
-      inSlope: -0.5
-      outSlope: -0.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -167,21 +171,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 2.5
-      inSlope: -3.3944445
-      outSlope: -3.3944445
-      tangentMode: 0
+      value: 1.75
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.143617
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 0.09116394
-      outSlope: 0.09116394
-      tangentMode: 0
+      value: 1.75
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.6170213
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -191,21 +195,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
-      inSlope: -0.3
-      outSlope: -0.3
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0.2
-      inSlope: -0.3
-      outSlope: -0.3
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -215,21 +219,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
-      inSlope: -0.3
-      outSlope: -0.3
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0.2
-      inSlope: -0.3
-      outSlope: -0.3
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -263,21 +267,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -287,18 +291,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.25
-      inSlope: -0.5
-      outSlope: -0.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: -0.25
-      inSlope: -0.5
-      outSlope: -0.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -311,21 +315,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 2.5
-      inSlope: -2.6222904
-      outSlope: -2.6222904
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.24793579
-    - serializedVersion: 3
-      time: 1
-      value: 1
+      value: 2
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -335,18 +339,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.15
-      inSlope: -0.050000004
-      outSlope: -0.050000004
+      value: 0.25
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.1
-      inSlope: -0.050000004
-      outSlope: -0.050000004
+      value: 0.25
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -359,18 +363,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.15
-      inSlope: -0.050000004
-      outSlope: -0.050000004
+      value: 0.25
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.1
-      inSlope: -0.050000004
-      outSlope: -0.050000004
+      value: 0.25
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -383,18 +387,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 10
-      inSlope: -9
-      outSlope: -9
+      value: 2
+      inSlope: 5
+      outSlope: 5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: -9
-      outSlope: -9
+      value: 7
+      inSlope: 5
+      outSlope: 5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -407,18 +411,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 10
-      inSlope: -9
-      outSlope: -9
+      value: 2
+      inSlope: 5
+      outSlope: 5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: -9
-      outSlope: -9
+      value: 7
+      inSlope: 5
+      outSlope: 5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -426,26 +430,34 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  recoilRecoverTime: 1
-  recoilPerShot: 0.3
-  magAmmoCapacity: 30
-  reserveAmmoCapacity: 99999
-  anim: {fileID: 5102436606431247173}
+  spreadRecoverTime: 0
+  spreadPerShot: 0
+  jumpRecoverTime: 0
+  dontRecoverTime: 0
+  shotJumpRecovery:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  magAmmoCapacity: 12
+  reserveAmmoCapacity: 360
+  anim: {fileID: 1057038591153549809}
   shootAnims:
-  - {fileID: 7400000, guid: b5c16fb29432e154fac81e6ff4354950, type: 2}
-  - {fileID: 7400000, guid: 5ca3cd8ed77a90347bef4fc411e8f6c8, type: 2}
-  - {fileID: 7400000, guid: 8fb1c3b9661fc7c4f8940a13dd9682fe, type: 2}
---- !u!95 &5102436606431247173
+  - {fileID: 7400000, guid: 5c8140d79edb5874c9f854333e792c0e, type: 2}
+  - {fileID: 7400000, guid: ae8ecf91a3964264496dd9e9ef82fbd2, type: 2}
+  - {fileID: 7400000, guid: 3a371bdb7db98cb45b3f1768c8c46fd9, type: 2}
+--- !u!95 &1057038591153549809
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156902733182377973}
+  m_GameObject: {fileID: 612039619229201693}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0224a1ff8cf8e5a44b89fec183e51c4d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 14c6124cf7dce0541b4b7780daaaef98, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -456,7 +468,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &8438807708485162985
+--- !u!1 &1613188807583716974
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -464,47 +476,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9103879633935682899}
-  - component: {fileID: 5330188141039534838}
-  - component: {fileID: 7934311846951630396}
-  m_Layer: 0
-  m_Name: Model
+  - component: {fileID: 2101177720042523860}
+  - component: {fileID: 3064481386700637041}
+  - component: {fileID: 964842190834923451}
+  m_Layer: 6
+  m_Name: Pistol 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9103879633935682899
+--- !u!4 &2101177720042523860
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8438807708485162985}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.015, z: 0}
+  m_GameObject: {fileID: 1613188807583716974}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.03999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6156902732065688811}
-  m_Father: {fileID: 6156902733182377974}
+  - {fileID: 612039618178639363}
+  m_Father: {fileID: 612039619229201694}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!33 &5330188141039534838
+--- !u!33 &3064481386700637041
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8438807708485162985}
-  m_Mesh: {fileID: 2528559592762066072, guid: 215aee40a9fa80e49bc6dd71c69ed497, type: 3}
---- !u!23 &7934311846951630396
+  m_GameObject: {fileID: 1613188807583716974}
+  m_Mesh: {fileID: -3727299226792910341, guid: e6efe674338ad4a49866fd7e5c2ba6b4, type: 3}
+--- !u!23 &964842190834923451
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8438807708485162985}
+  m_GameObject: {fileID: 1613188807583716974}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
