@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPickup : MonoBehaviour, IInteractable
+public class WeaponPickup : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject playerItemPrefab;
     [SerializeField] GameObject enemyItemPrefab;
@@ -21,11 +21,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     public void Interact(IInteractionController interactionController)
     {
-        interactionController.PickUpItem(this);
-    }
-    public float GetSquareDistance(Vector3 origin)
-    {
-        return Vector3.Magnitude(origin - transform.position);
+        interactionController.PickUpWeapon(this);
     }
 
     public void PickedUp()
@@ -72,6 +68,15 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 enemyCombat.ThrowToPlayer();
             }
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.isTrigger || !isThrown)
+            return;
+
+        if (other.CompareTag(noHitTag))
+            physicsCol.enabled = true;
     }
     #endregion
 

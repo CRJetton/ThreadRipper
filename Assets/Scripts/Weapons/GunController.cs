@@ -520,7 +520,7 @@ public class GunController : MonoBehaviour, IGun
         transform.parent = null;
 
         GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
-        ItemPickup itemPickup = spawnedItem.GetComponent<ItemPickup>();
+        WeaponPickup itemPickup = spawnedItem.GetComponent<WeaponPickup>();
         itemPickup.SetSaveValue1(magAmmo);
         itemPickup.SetSaveValue2(reserveAmmo);
         itemPickup.Drop();
@@ -533,7 +533,7 @@ public class GunController : MonoBehaviour, IGun
         transform.parent = null;
 
         GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
-        ItemPickup itemPickup = spawnedItem.GetComponent<ItemPickup>();
+        WeaponPickup itemPickup = spawnedItem.GetComponent<WeaponPickup>();
         itemPickup.SetSaveValue1(magAmmo);
         itemPickup.SetSaveValue2(reserveAmmo);
         itemPickup.Throw(velocity, angularVelocity, noHitTag);

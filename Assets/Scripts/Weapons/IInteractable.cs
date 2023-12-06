@@ -6,6 +6,4 @@ public interface IInteractable
 {
 
     public void Interact(IInteractionController interactionController);
-
-    public float GetSquareDistance(Vector3 origin);
 }

@@ -2007,8 +2007,8 @@ MonoBehaviour:
   startingWeaponPrefab: {fileID: 4455828609911546838, guid: c9ef7637c92884c479bae6e53d36f8aa,
     type: 3}
   throwSpeed: 10
-  throwAngularSpeed: 30
-  throwAngle: 0.6
+  throwAngularSpeed: 15
+  throwAngle: 0.65
 --- !u!195 &363187117804408502
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -40,7 +40,7 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
     #endregion
 
     #region Specific Interactions
-    public void PickUpItem(ItemPickup item)
+    public void PickUpWeapon(WeaponPickup item)
     {
         if (playerCombat.GetCanEquipWeapon())
         {
@@ -49,6 +49,11 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
             playerCombat.EquipWeapon(item);
             item.PickedUp();
         }
+    }
+
+    public void PickUpHealth(float amount)
+    {
+        // do stuff
     }
     #endregion
 }
