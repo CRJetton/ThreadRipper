@@ -133,7 +133,7 @@ Material:
     - _MetaSpecularTint: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.17647058, g: 0.17647058, b: 0.17647058, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &5771304185779044490
+--- !u!114 &2095415741827728236
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,17 +10,18 @@ using UnityEngine.InputSystem;
  LOG
 
 TO DO
-- Smooth transition for crouch
+- Remember for final product: Optimize gameobject animations
+- Animate idle
+- Animate move
+- Add kinematic Rigidbody
 
 DONE
-- Climbing
-- Add cooldown to sprint slide
 
  */
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
-    //Input
+    // Input
     InputAction moveInput;
     InputAction lookInput;
     InputAction sprintInput;
@@ -70,6 +72,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float climbForward;
     [SerializeField] private float climbUp;
 
+    [Header("_____Animation_____")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private float animationTransitionSpeed;
 
     [Header("_____General_____")]
     [SerializeField] float maxHP;
@@ -113,10 +118,17 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         // Move and look
         move = (moveInput.ReadValue<Vector2>().x * transform.right * currMoveSpeed)
-            + (move.y * transform.up)
+            //+ (move.y * transform.up)
             + (moveInput.ReadValue<Vector2>().y * transform.forward * currMoveSpeed);
         characterController.Move(move * Time.deltaTime);
-        Look(lookInput.ReadValue<Vector2>().x * SettingsManager.instance.lookSensitivity * Time.deltaTime);
+        Look(lookInput.ReadValue<Vector2>().x 
+            * SettingsManager.instance.lookSensitivity * Time.deltaTime);
+
+        // Move animation
+        animator.SetFloat("X", Mathf.Lerp(animator.GetFloat("X"), moveInput.ReadValue<Vector2>().x,
+            Time.deltaTime * animationTransitionSpeed));
+        animator.SetFloat("Y", Mathf.Lerp(animator.GetFloat("Y"), moveInput.ReadValue<Vector2>().y,
+            Time.deltaTime * animationTransitionSpeed)); ;
 
         //Gravity
         if (move.y > gravity)
