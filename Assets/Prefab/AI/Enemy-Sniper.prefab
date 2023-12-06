@@ -103,7 +103,7 @@ MonoBehaviour:
   weaponContainer: {fileID: 1772748245}
   startingWeaponPrefab: {fileID: 387930949664740200, guid: 562d4520f870b434aaa810c054490554,
     type: 3}
-  throwSpeed: 12
+  throwSpeed: 10
   throwAngularSpeed: 30
   throwAngle: 0.6
 --- !u!195 &1887439388771734665

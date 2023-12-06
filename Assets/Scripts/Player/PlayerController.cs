@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         // Move and look
         move = (moveInput.ReadValue<Vector2>().x * transform.right * currMoveSpeed)
-            //+ (move.y * transform.up)
+            + (move.y * transform.up)
             + (moveInput.ReadValue<Vector2>().y * transform.forward * currMoveSpeed);
         characterController.Move(move * Time.deltaTime);
         Look(lookInput.ReadValue<Vector2>().x 
