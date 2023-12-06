@@ -442,7 +442,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   magAmmoCapacity: 30
-  reserveAmmoCapacity: 99999
+  reserveAmmoCapacity: 60
   anim: {fileID: 5102436606431247173}
   shootAnims:
   - {fileID: 7400000, guid: b5c16fb29432e154fac81e6ff4354950, type: 2}

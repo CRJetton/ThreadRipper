@@ -14,7 +14,10 @@ public interface IGun : IWeapon
     public void SubscribeOnScoping(UnityAction<float, float> action);
 
 
+    public void InitializeAmmo(int magAmmo, int reserveAmmo);
 
     public int GetMagAmmo();
     public int GetReserveAmmo();
+    public int GetMagAmmoCapacity();
+    public int GetReserveAmmoCapacity();
 }

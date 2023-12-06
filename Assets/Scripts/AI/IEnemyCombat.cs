@@ -13,5 +13,7 @@ public interface IEnemyCombat : ICombat
 
     public void ReloadStarted();
 
-    public void Throw(Vector3 velocity, Vector3 angularVelocity);
+    public void Throw(Vector3 targetPos);
+
+    public void ThrowToPlayer();
 }

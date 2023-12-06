@@ -6,10 +6,15 @@ public class ItemPickup : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject playerItemPrefab;
     [SerializeField] GameObject enemyItemPrefab;
+    [SerializeField] Collider physicsCol;
 
     [SerializeField] Rigidbody rb;
 
     [SerializeField] float thrownDamage;
+
+    [SerializeField] int saveValue1;
+    [SerializeField] int saveValue2;
+
 
     bool isThrown;
     string noHitTag;
@@ -26,16 +31,19 @@ public class ItemPickup : MonoBehaviour, IInteractable
     public void PickedUp()
     {
         Destroy(gameObject);
-    }    
+    }
 
     public void Drop()
     {
 
     }
 
+    #region Throwing
     public void Throw(Vector3 velocity, Vector3 angularVelocity, string _noHitTag)
     {
         isThrown = true;
+        physicsCol.enabled = false;
+
         noHitTag = _noHitTag;
 
         rb.velocity = velocity;
@@ -49,6 +57,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
             return;
 
         isThrown = false;
+        physicsCol.enabled = true;
 
         IDamageable damageable = other.GetComponent<IDamageable>();
 
@@ -58,14 +67,23 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
             if (other.CompareTag("Enemy"))
             {
-                // force enemy gun throw
+                IEnemyCombat enemyCombat = other.GetComponent<IEnemyCombat>();
+
+                enemyCombat.ThrowToPlayer();
             }
         }
     }
+    #endregion
 
-    #region Getters
+    #region Getters and Setters
     public GameObject GetPlayerItemPrefab() { return playerItemPrefab; }
 
     public GameObject GetEnemyItemPrefab() { return enemyItemPrefab; }
+
+    public void SetSaveValue1(int value) { saveValue1 = value; }
+    public void SetSaveValue2(int value) { saveValue2 = value; }
+
+    public int GetSaveValue1() { return saveValue1; }
+    public int GetSaveValue2() { return saveValue2; }
     #endregion
 }

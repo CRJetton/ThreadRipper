@@ -46,7 +46,7 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
         {
             interactableDetector.RemoveInteractable(item);
 
-            playerCombat.EquipWeapon(item.GetPlayerItemPrefab());
+            playerCombat.EquipWeapon(item);
             item.PickedUp();
         }
     }
