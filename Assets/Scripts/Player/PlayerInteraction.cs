@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
     InputAction interactInput;
 
     [Header("Components")]
+    [SerializeField] private PlayerController playerController;
     [SerializeField] PlayerCombat playerCombat;
     [SerializeField] InteractableDetector interactableDetector;
 
@@ -51,9 +52,10 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
         }
     }
 
-    public void PickUpHealth(float amount)
-    {
-        // do stuff
-    }
+    //public void PickUpHealth(HealthPickup _pack)
+    //{
+    //    playerController.AddHP(_pack.HP);
+    //}
+
     #endregion
 }

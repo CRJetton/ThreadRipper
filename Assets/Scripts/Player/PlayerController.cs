@@ -310,6 +310,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void AddHP(float _health)
     {
+        //HUDManager.instance.FlashHealth();
         HP += _health;
+        HUDManager.instance.playerHPBar.fillAmount = HP / maxHP;
     }
 }

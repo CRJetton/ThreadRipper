@@ -6,5 +6,5 @@ public interface IInteractionController
 {
     public void PickUpWeapon(WeaponPickup item);
 
-    public void PickUpHealth(float amount);
+    //public void PickUpHealth(HealthPickup _pack);
 }
