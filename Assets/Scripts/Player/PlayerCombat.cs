@@ -230,7 +230,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
         equippingWeapon = StartCoroutine(EquippingWeapon(prefab));
     }
 
-    public void EquipWeapon(ItemPickup pickup)
+    public void EquipWeapon(WeaponPickup pickup)
     {
         if (equippingWeapon != null)
             StopCoroutine(equippingWeapon);
@@ -238,7 +238,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
         equippingWeapon = StartCoroutine(EquippingWeapon(pickup));
     }
 
-    IEnumerator EquippingWeapon(ItemPickup pickup)
+    IEnumerator EquippingWeapon(WeaponPickup pickup)
     {
         canEquipWeaopn = false;
 

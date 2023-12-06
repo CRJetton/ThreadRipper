@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 221216360}
   - component: {fileID: 221216359}
   - component: {fileID: 221216358}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 393313558}
   - component: {fileID: 393313557}
   - component: {fileID: 393313556}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Destructable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 835516623}
   - component: {fileID: 835516622}
   - component: {fileID: 835516621}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 1006095625}
   - component: {fileID: 1006095624}
   - component: {fileID: 1006095623}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 1099712946}
   - component: {fileID: 1099712945}
   - component: {fileID: 1099712944}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +931,7 @@ GameObject:
   - component: {fileID: 1259836960}
   - component: {fileID: 1259836959}
   - component: {fileID: 1259836958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Destructable (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 1263548802}
   - component: {fileID: 1263548801}
   - component: {fileID: 1263548800}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1147,7 +1147,7 @@ GameObject:
   - component: {fileID: 1389701846}
   - component: {fileID: 1389701845}
   - component: {fileID: 1389701844}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Destructable (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,7 +1256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1408559610}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WeaponContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1567,7 +1567,7 @@ GameObject:
   - component: {fileID: 1911165968}
   - component: {fileID: 1911165967}
   - component: {fileID: 1911165966}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Destructable (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1794,7 @@ GameObject:
   - component: {fileID: 2027017980}
   - component: {fileID: 2027017979}
   - component: {fileID: 2027017978}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

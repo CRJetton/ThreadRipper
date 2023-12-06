@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IInteractionController
 {
-    public void PickUpItem(ItemPickup item);
+    public void PickUpWeapon(WeaponPickup item);
+
+    public void PickUpHealth(float amount);
 }

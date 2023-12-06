@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5787610271573898052}
   - component: {fileID: 5787610271573898053}
   - component: {fileID: 5787610271573898106}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Vaultable Wall
   m_TagString: Vaultable
   m_Icon: {fileID: 0}

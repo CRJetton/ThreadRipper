@@ -45,7 +45,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1178596823894660017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d24e20411c752d841a1c53f7ea746b97, type: 3}
+  m_Script: {fileID: 11500000, guid: 51ad654803cc73e4f8a395c328273206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerItemPrefab: {fileID: 9108546024485524263, guid: 983b3571d5c3f4f4fb899599daaf35eb,
@@ -56,7 +56,7 @@ MonoBehaviour:
   rb: {fileID: 4350570066221983835}
   thrownDamage: 1
   saveValue1: 30
-  saveValue2: 30
+  saveValue2: 15
 --- !u!65 &8225147383325288574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.046882614, y: 0.19158408, z: 0.67454267}
+  m_Size: {x: 0.05688261, y: 0.2015841, z: 0.6845427}
   m_Center: {x: -0.00097524375, y: -0.03659372, z: 0.06137973}
 --- !u!65 &4832750240719546855
 BoxCollider:
@@ -81,7 +81,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.09190494, y: 0.2915841, z: 0.72974205}
+  m_Size: {x: 0.10190494, y: 0.3015841, z: 0.7397421}
   m_Center: {x: 0.0059506, y: -0.03659372, z: 0.051150322}
 --- !u!54 &4350570066221983835
 Rigidbody:

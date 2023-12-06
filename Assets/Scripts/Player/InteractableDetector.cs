@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class InteractableDetector : MonoBehaviour
 {
-    List<IInteractable> interactablesTouching = new List<IInteractable>();
+    List<GameObject> interactablesTouching = new List<GameObject>();
 
 
     public IInteractable GetClosestInteractable(Vector3 origin)
     {
         float closestDist = Mathf.Infinity;
         float currentDist;
-        IInteractable closestInteractable = null;
+        GameObject closestInteractable = null;
 
-        foreach (IInteractable interactable in interactablesTouching)
+        foreach (GameObject interactable in interactablesTouching)
         {
-            currentDist = interactable.GetSquareDistance(origin);
+            currentDist = Vector3.SqrMagnitude(origin - interactable.transform.position);
 
             if (currentDist < closestDist)
             {
@@ -24,13 +24,23 @@ public class InteractableDetector : MonoBehaviour
             }
         }
 
-        return closestInteractable;
+        if (closestInteractable != null)
+            return closestInteractable.GetComponent<IInteractable>();
+        else
+            return null;
     }
 
 
     public void RemoveInteractable(IInteractable interactable)
     {
-        interactablesTouching.Remove(interactable);
+        for (int i = 0; i < interactablesTouching.Count; i++)
+        {
+            if (interactablesTouching[i].GetComponent<IInteractable>() == interactable)
+            {
+                interactablesTouching.RemoveAt(i);
+                break;
+            }
+        }
     }
 
 
@@ -43,7 +53,7 @@ public class InteractableDetector : MonoBehaviour
 
         if (interactable != null)
         {
-            interactablesTouching.Add(interactable);
+            interactablesTouching.Add(other.gameObject);
         }
     }
 
@@ -56,7 +66,7 @@ public class InteractableDetector : MonoBehaviour
 
         if (interactable != null)
         {
-            interactablesTouching.Remove(interactable);
+            interactablesTouching.Remove(other.gameObject);
         }
     }
 }
