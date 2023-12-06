@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
         HUDManager.instance.enemiesBackground.SetActive(false);
         HUDManager.instance.reticleController.gameObject.SetActive(false);
         HUDManager.instance.damageScreen.SetActive(false);
+        HUDManager.instance.minimap.SetActive(false);
     }
 
     public void ShowHUD()
@@ -76,5 +77,6 @@ public class UIManager : MonoBehaviour
         HUDManager.instance.enemiesBackground.SetActive(true);
         HUDManager.instance.reticleController.gameObject.SetActive(true);
         HUDManager.instance.damageScreen.SetActive(true);
+        HUDManager.instance.minimap.SetActive(true);
     }
 }
