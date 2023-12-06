@@ -1896,6 +1896,7 @@ GameObject:
   - component: {fileID: 6655305115144485796}
   - component: {fileID: 6655305115144485799}
   - component: {fileID: 7999538882039293929}
+  - component: {fileID: 1665011542323153845}
   - component: {fileID: 7138843497001214250}
   m_Layer: 7
   m_Name: Player
@@ -2031,6 +2032,20 @@ MonoBehaviour:
   weaponContainer: {fileID: 6345011976925759367}
   startingWeaponPrefab: {fileID: 9108546024485524263, guid: 983b3571d5c3f4f4fb899599daaf35eb,
     type: 3}
+--- !u!114 &1665011542323153845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6655305115144485798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ad69bed101ae94d80c110d1daf89b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCombat: {fileID: 7999538882039293929}
+  interactableDetector: {fileID: 1535046375}
 --- !u!114 &7138843497001214250
 MonoBehaviour:
   m_ObjectHideFlags: 0
