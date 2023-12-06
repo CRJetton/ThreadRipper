@@ -14,6 +14,7 @@ public class HUDManager : MonoBehaviour
     public GameObject playerHPBarFrame;
     public GameObject ammoCount;
     public GameObject enemiesBackground;
+    public GameObject minimap;
 
     public GameObject damageScreen;
     [SerializeField][Range(0f, 1.0f)] float damageAlpha;
