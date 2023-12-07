@@ -93,6 +93,7 @@ public class BaseAI : MonoBehaviour, IDamageable
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
+                StopAllCoroutines();
                 agent.SetDestination(GameManager.instance.player.transform.position);
                 enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
 
