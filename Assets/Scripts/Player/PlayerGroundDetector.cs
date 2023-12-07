@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerGroundDetector : MonoBehaviour
 {
-    [SerializeField] private bool isPlayerGrounded;
-    [SerializeField] private List<Collider> groundContacts = new List<Collider>();
+    private bool isPlayerGrounded;
+    private List<Collider> groundContacts = new List<Collider>();
 
     private void OnTriggerEnter(Collider _other)
     {
