@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class waypointGizmo : MonoBehaviour
 {
-    [Range(1f, 3f)][SerializeField] int waypointRad;
+    [Range(1, 3)][SerializeField] int waypointRad;
 
 
     private void OnDrawGizmos()

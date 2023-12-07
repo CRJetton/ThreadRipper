@@ -1987,12 +1987,14 @@ MonoBehaviour:
   model: {fileID: 363187117254347297}
   headPosition: {fileID: 363187117487114537}
   enemyCombat: {fileID: 363187117804408503}
-  stoppingDist: 3
+  stoppingDist: 0
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
   shootRate: 1
-  roamDist: 15
+  roamDist: 10
+  roamPause: 1
+  destinationChoosen: 0
 --- !u!114 &363187117804408503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2021,7 +2023,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 10
+  m_Speed: 5
   m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 700

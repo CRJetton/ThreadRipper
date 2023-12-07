@@ -11,8 +11,6 @@ using UnityEngine.AI;
 // - Inheritance
 // Create a functionality where the Enemy can vault over vaultable objects.
 
-
-//[RequireComponent(typeof(NavMeshAgent))]
 public class BaseAI : MonoBehaviour, IDamageable
 {
     // Behaviors and stats
@@ -93,7 +91,6 @@ public class BaseAI : MonoBehaviour, IDamageable
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                StopAllCoroutines();
                 agent.SetDestination(GameManager.instance.player.transform.position);
                 enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
 
@@ -149,7 +146,7 @@ public class BaseAI : MonoBehaviour, IDamageable
         isShooting = false;
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         HP -= damage;
 
