@@ -783,11 +783,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4828063018943055447, guid: dbf4249c392d08e499c0ecc376b668f2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6275682591789457692, guid: dbf4249c392d08e499c0ecc376b668f2,
         type: 3}
       propertyPath: m_RootOrder
@@ -842,36 +837,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655305115144485796, guid: dbf4249c392d08e499c0ecc376b668f2,
-        type: 3}
-      propertyPath: climbUp
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655305115144485796, guid: dbf4249c392d08e499c0ecc376b668f2,
-        type: 3}
-      propertyPath: climbUpTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655305115144485796, guid: dbf4249c392d08e499c0ecc376b668f2,
-        type: 3}
-      propertyPath: vaultUpTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655305115144485796, guid: dbf4249c392d08e499c0ecc376b668f2,
-        type: 3}
-      propertyPath: vaultForward
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655305115144485796, guid: dbf4249c392d08e499c0ecc376b668f2,
-        type: 3}
-      propertyPath: climbForwardTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655305115144485796, guid: dbf4249c392d08e499c0ecc376b668f2,
-        type: 3}
-      propertyPath: vaultForwardTime
-      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6655305115144485798, guid: dbf4249c392d08e499c0ecc376b668f2,
         type: 3}
