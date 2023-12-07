@@ -19,10 +19,25 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         playerInput.PlayerControls.Enable();
+        playerInput.UI.Disable();
     }
 
     private void OnDisable()
     {
         playerInput.PlayerControls.Disable();
+        playerInput.UI.Disable();
+    }
+
+    public void SwapToPauseInput()
+    {
+        playerInput.PlayerControls.Disable();
+        playerInput.UI.Enable();
+    }
+
+    public void SwapToPlayInput()
+    {
+        playerInput.UI.Disable();
+        playerInput.PlayerControls.Enable();
+        
     }
 }
