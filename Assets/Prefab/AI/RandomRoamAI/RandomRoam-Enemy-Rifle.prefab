@@ -49,16 +49,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3363d953119df4c92a5964e1338d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  model: {fileID: 0}
-  headPosition: {fileID: 0}
-  enemyCombat: {fileID: 0}
+  agent: {fileID: 4876590537908019207}
+  model: {fileID: 7897799865592936513}
+  headPosition: {fileID: 7897799865581463791}
+  enemyCombat: {fileID: 8750242762222399792}
   stoppingDist: 15
-  HP: 0
-  viewCone: 0
-  targetFaceSpeed: 0
-  shootRate: 0
-  roamDist: 0
+  HP: 10
+  viewCone: 180
+  targetFaceSpeed: 100
+  shootRate: 1
+  roamDist: 15
+  destinationChoosen: 0
 --- !u!114 &8750242762222399792
 MonoBehaviour:
   m_ObjectHideFlags: 0
