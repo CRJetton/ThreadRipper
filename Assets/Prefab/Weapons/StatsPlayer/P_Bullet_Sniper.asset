@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noHitTag: Player
   damage: 9
-  speed: 250
+  speed: 150
   destroyTime: 3

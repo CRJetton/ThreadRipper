@@ -11,7 +11,7 @@ public class GunController : MonoBehaviour, IGun
     [SerializeField] Transform barrelPos;
     [SerializeField] GameObject model;
     [SerializeField] Animator anim;
-    [SerializeField] GameObject[] playerOnlyComponents;
+    [SerializeField] GameObject scope;
 
     [Header("Animation")]
     [SerializeField] AnimationClip[] shootAnims;
@@ -60,13 +60,9 @@ public class GunController : MonoBehaviour, IGun
 
             //sets the gun's layer to 'hands'
             model.layer = 6;
-        }
-        else
-        {
-            foreach(var component in playerOnlyComponents)
-            {
-                component.SetActive(false);
-            }
+
+            if (scope != null)
+                Instantiate(scope, model.transform);
         }
     }
 
@@ -441,7 +437,6 @@ public class GunController : MonoBehaviour, IGun
         Vector3 startPos = transform.localPosition;
 
         isScopedIn = true;
-        anim.SetBool("isScopedIn", isScopedIn);
 
         if (isPlayerGun)
             HUDManager.instance.reticleController.gameObject.SetActive(false);
@@ -472,7 +467,6 @@ public class GunController : MonoBehaviour, IGun
         Vector3 startPos = transform.localPosition;
 
         isScopedIn = false;
-        anim.SetBool("isScopedIn", isScopedIn);
 
         if (isPlayerGun)
             HUDManager.instance.reticleController.gameObject.SetActive(true);

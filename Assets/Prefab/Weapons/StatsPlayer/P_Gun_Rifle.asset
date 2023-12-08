@@ -27,7 +27,7 @@ MonoBehaviour:
   fullAuto: 1
   magAmmoCapacity: 30
   reserveAmmoCapacity: 120
-  scopeZoomFactor: 0.75
+  scopeZoomFactor: 0.8
   scopeInTime: 0.2
   scopeOutTime: 0.3
   scopedOutPos: {x: 0, y: 0, z: 0}
@@ -109,16 +109,16 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 3
-      inSlope: -2.6769307
-      outSlope: -2.6769307
+      value: 2
+      inSlope: -1.5789062
+      outSlope: -1.5789062
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.1542553
+      outWeight: 0.17021275
     - serializedVersion: 3
       time: 1
-      value: 2
+      value: 1.5
       inSlope: -0.090171576
       outSlope: -0.090171576
       tangentMode: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 3
+      value: 2.5
       inSlope: 4
       outSlope: 4
       tangentMode: 34
@@ -334,7 +334,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 7
+      value: 6.5
       inSlope: 4
       outSlope: 4
       tangentMode: 34
@@ -349,7 +349,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 3
+      value: 2.5
       inSlope: 4
       outSlope: 4
       tangentMode: 34
@@ -358,7 +358,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 7
+      value: 6.5
       inSlope: 4
       outSlope: 4
       tangentMode: 34

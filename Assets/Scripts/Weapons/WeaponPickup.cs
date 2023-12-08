@@ -12,8 +12,8 @@ public class WeaponPickup : MonoBehaviour, IInteractable
 
     [SerializeField] float thrownDamage;
 
-    [SerializeField] int saveValue1;
-    [SerializeField] int saveValue2;
+    [SerializeField] int currentAmmo;
+    [SerializeField] int reserveAmmo;
 
 
     bool isThrown;
@@ -85,10 +85,10 @@ public class WeaponPickup : MonoBehaviour, IInteractable
 
     public WeaponStats GetEnemyWeapon() { return enemyWeapon; }
 
-    public void SetSaveValue1(int value) { saveValue1 = value; }
-    public void SetSaveValue2(int value) { saveValue2 = value; }
+    public void SetSaveValue1(int value) { currentAmmo = value; }
+    public void SetSaveValue2(int value) { reserveAmmo = value; }
 
-    public int GetSaveValue1() { return saveValue1; }
-    public int GetSaveValue2() { return saveValue2; }
+    public int GetSaveValue1() { return currentAmmo; }
+    public int GetSaveValue2() { return reserveAmmo; }
     #endregion
 }

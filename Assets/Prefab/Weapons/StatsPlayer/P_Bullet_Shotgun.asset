@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: P_Bullet_Shotgun
   m_EditorClassIdentifier: 
   noHitTag: Player
-  damage: 0.7
-  speed: 80
-  destroyTime: 0.15
+  damage: 0.9
+  speed: 85
+  destroyTime: 0.2

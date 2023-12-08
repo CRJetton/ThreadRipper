@@ -20,14 +20,14 @@ MonoBehaviour:
     type: 3}
   bulletStats: {fileID: 11400000, guid: 358d47301cf33564ea80efa7a776e8e8, type: 2}
   equipTime: 0.25
-  reloadTime: 1.5
+  reloadTime: 1.4
   timeBetweenShots: 0.75
   queueShotTime: 0.1
   bulletsPerShot: 1
   fullAuto: 0
-  magAmmoCapacity: 10
-  reserveAmmoCapacity: 50
-  scopeZoomFactor: 0.4
+  magAmmoCapacity: 4
+  reserveAmmoCapacity: 24
+  scopeZoomFactor: 0.5
   scopeInTime: 0.4
   scopeOutTime: 0.5
   scopedOutPos: {x: 0, y: 0, z: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 5
+      value: 7
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -118,7 +118,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 5
+      value: 7
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -253,7 +253,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 5
+      value: 8
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -262,7 +262,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 5
+      value: 8
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -325,9 +325,9 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 5
-      inSlope: 7
-      outSlope: 7
+      value: 4
+      inSlope: 8
+      outSlope: 8
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -335,8 +335,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 12
-      inSlope: 7
-      outSlope: 7
+      inSlope: 8
+      outSlope: 8
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -349,9 +349,9 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 5
-      inSlope: 7
-      outSlope: 7
+      value: 4
+      inSlope: 8
+      outSlope: 8
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -359,8 +359,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 12
-      inSlope: 7
-      outSlope: 7
+      inSlope: 8
+      outSlope: 8
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: P_Bullet_Pistol
   m_EditorClassIdentifier: 
   noHitTag: Player
-  damage: 1.25
-  speed: 125
+  damage: 1.35
+  speed: 90
   destroyTime: 3

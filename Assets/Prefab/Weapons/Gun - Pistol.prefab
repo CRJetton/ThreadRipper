@@ -53,8 +53,8 @@ MonoBehaviour:
   physicsCol: {fileID: 8000486416424168955}
   rb: {fileID: 2396675427037965790}
   thrownDamage: 1
-  saveValue1: 0
-  saveValue2: 0
+  currentAmmo: 12
+  reserveAmmo: 60
 --- !u!65 &8000486416424168955
 BoxCollider:
   m_ObjectHideFlags: 0

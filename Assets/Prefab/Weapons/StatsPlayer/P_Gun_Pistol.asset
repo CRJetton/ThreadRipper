@@ -20,14 +20,14 @@ MonoBehaviour:
     type: 3}
   bulletStats: {fileID: 11400000, guid: 09f2f20928edee6479c71341d662123d, type: 2}
   equipTime: 0.25
-  reloadTime: 0.9
+  reloadTime: 0.7
   timeBetweenShots: 0.15
   queueShotTime: 0.05
   bulletsPerShot: 1
   fullAuto: 0
   magAmmoCapacity: 12
   reserveAmmoCapacity: 64
-  scopeZoomFactor: 0.75
+  scopeZoomFactor: 0.8
   scopeInTime: 0.075
   scopeOutTime: 0.1
   scopedOutPos: {x: 0, y: 0, z: 0}

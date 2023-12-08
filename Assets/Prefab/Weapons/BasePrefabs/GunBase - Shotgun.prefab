@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2696427214165053955}
   - component: {fileID: 184459612208096969}
   m_Layer: 0
-  m_Name: ShotGun
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841877114265945884}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.0337, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -164,10 +164,11 @@ MonoBehaviour:
   barrelPos: {fileID: 8028815411481891828}
   model: {fileID: 1841877114265945884}
   anim: {fileID: 8994493784954741850}
+  scope: {fileID: 0}
   shootAnims:
-  - {fileID: 7400000, guid: b5c16fb29432e154fac81e6ff4354950, type: 2}
-  - {fileID: 7400000, guid: 5ca3cd8ed77a90347bef4fc411e8f6c8, type: 2}
-  - {fileID: 7400000, guid: 8fb1c3b9661fc7c4f8940a13dd9682fe, type: 2}
+  - {fileID: 7400000, guid: 947ea98d4d2a767438972436e20bf4b9, type: 2}
+  - {fileID: 7400000, guid: f1c9d7d20fa76da48a97e4174f765011, type: 2}
+  - {fileID: 7400000, guid: cc3069a3a06bed143b36b6bd39e4c816, type: 2}
 --- !u!95 &8994493784954741850
 Animator:
   serializedVersion: 5
@@ -178,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 8028815412580876522}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0224a1ff8cf8e5a44b89fec183e51c4d, type: 2}
+  m_Controller: {fileID: 9100000, guid: d7195d452a05ed94d9fcc865a92ede27, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

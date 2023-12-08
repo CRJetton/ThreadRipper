@@ -80,6 +80,7 @@ MonoBehaviour:
   barrelPos: {fileID: 612039618178639363}
   model: {fileID: 1613188807583716974}
   anim: {fileID: 1057038591153549809}
+  scope: {fileID: 0}
   shootAnims:
   - {fileID: 7400000, guid: 5c8140d79edb5874c9f854333e792c0e, type: 2}
   - {fileID: 7400000, guid: ae8ecf91a3964264496dd9e9ef82fbd2, type: 2}
@@ -117,7 +118,7 @@ GameObject:
   - component: {fileID: 3064481386700637041}
   - component: {fileID: 964842190834923451}
   m_Layer: 0
-  m_Name: Pistol 1
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
