@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface IWeapon
 {
+    public void SetStats(WeaponStats stats);
+
     public void AimAt(Vector3 targetPosition);
     public void AttackStarted();
     public void AttackCanceled();

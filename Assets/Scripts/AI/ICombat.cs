@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICombat
 {
-    public void EquipWeapon(GameObject prefab);
+    public void EquipWeapon(WeaponPickup pickup);
 }

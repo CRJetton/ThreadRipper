@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject playerItemPrefab;
-    [SerializeField] GameObject enemyItemPrefab;
+    [SerializeField] WeaponStats playerWeapon;
+    [SerializeField] WeaponStats enemyWeapon;
     [SerializeField] Collider physicsCol;
 
     [SerializeField] Rigidbody rb;
@@ -81,9 +81,9 @@ public class WeaponPickup : MonoBehaviour, IInteractable
     #endregion
 
     #region Getters and Setters
-    public GameObject GetPlayerItemPrefab() { return playerItemPrefab; }
+    public WeaponStats GetPlayerWeapon() { return playerWeapon; }
 
-    public GameObject GetEnemyItemPrefab() { return enemyItemPrefab; }
+    public WeaponStats GetEnemyWeapon() { return enemyWeapon; }
 
     public void SetSaveValue1(int value) { saveValue1 = value; }
     public void SetSaveValue2(int value) { saveValue2 = value; }
