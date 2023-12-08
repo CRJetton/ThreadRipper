@@ -78,7 +78,7 @@ public class BaseAI : MonoBehaviour, IDamageable
         }
     }
 
-    bool canSeePlayer()
+    public virtual bool canSeePlayer()
     {
         playerDir = GameManager.instance.playerBodyPositions.playerCenter.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);

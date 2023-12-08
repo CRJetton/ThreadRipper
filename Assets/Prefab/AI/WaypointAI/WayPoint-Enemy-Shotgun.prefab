@@ -1943,7 +1943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 363187117804408497}
-  - component: {fileID: 4929471510917477516}
+  - component: {fileID: 926803096243783503}
   - component: {fileID: 363187117804408503}
   - component: {fileID: 363187117804408502}
   - component: {fileID: 363187117804408501}
@@ -1971,7 +1971,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4929471510917477516
+--- !u!114 &926803096243783503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1987,13 +1987,13 @@ MonoBehaviour:
   model: {fileID: 363187117254347297}
   headPosition: {fileID: 363187117487114537}
   enemyCombat: {fileID: 363187117804408503}
-  stoppingDist: 0
+  stoppingDist: 3
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
-  shootRate: 1
+  shootRate: 1.5
   waypoint: {fileID: 0}
-  roamPause: 2
+  roamPause: 1
   walkpointSet: 0
 --- !u!114 &363187117804408503
 MonoBehaviour:

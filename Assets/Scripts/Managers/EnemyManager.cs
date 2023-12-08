@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject[] waypoints;    
+    public static EnemyManager instance;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        instance = this;
+        waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
     }
 }

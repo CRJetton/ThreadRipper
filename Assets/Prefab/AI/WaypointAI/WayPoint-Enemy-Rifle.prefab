@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4876590537908019203}
-  - component: {fileID: 6072170235733686782}
+  - component: {fileID: -2168510474519912518}
   - component: {fileID: 8750242762222399792}
   - component: {fileID: 4876590537908019207}
   - component: {fileID: 7641534258589484602}
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6072170235733686782
+--- !u!114 &-2168510474519912518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,17 +49,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa9197c27aedbe47bcccfebb17f36f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  model: {fileID: 0}
-  headPosition: {fileID: 0}
-  enemyCombat: {fileID: 0}
-  stoppingDist: 0
-  HP: 0
-  viewCone: 0
-  targetFaceSpeed: 0
-  shootRate: 0
+  agent: {fileID: 4876590537908019207}
+  model: {fileID: 7897799865592936513}
+  headPosition: {fileID: 7897799865581463791}
+  enemyCombat: {fileID: 8750242762222399792}
+  stoppingDist: 5
+  HP: 10
+  viewCone: 180
+  targetFaceSpeed: 100
+  shootRate: 1
   waypoint: {fileID: 0}
-  roamPause: 0
+  roamPause: 1
   walkpointSet: 0
 --- !u!114 &8750242762222399792
 MonoBehaviour:

@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1887439388771734669}
-  - component: {fileID: 2363708616529844143}
+  - component: {fileID: 2403065873644832711}
   - component: {fileID: 2374437348007658942}
   - component: {fileID: 1887439388771734665}
   - component: {fileID: 3715618906588345012}
@@ -68,7 +68,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2363708616529844143
+--- !u!114 &2403065873644832711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,11 +84,11 @@ MonoBehaviour:
   model: {fileID: 363718558799847857}
   headPosition: {fileID: 363718558803062919}
   enemyCombat: {fileID: 2374437348007658942}
-  stoppingDist: 0
+  stoppingDist: 5
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
-  shootRate: 1
+  shootRate: 1.5
   waypoint: {fileID: 0}
   roamPause: 0
   walkpointSet: 0
@@ -120,7 +120,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 2
+  m_Speed: 3
   m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -143,7 +143,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1887439388771734670
 CapsuleCollider:

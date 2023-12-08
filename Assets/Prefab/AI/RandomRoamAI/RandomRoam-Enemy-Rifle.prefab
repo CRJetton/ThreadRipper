@@ -59,6 +59,7 @@ MonoBehaviour:
   targetFaceSpeed: 100
   shootRate: 1
   roamDist: 15
+  roamPause: 1
   destinationChoosen: 0
 --- !u!114 &8750242762222399792
 MonoBehaviour:

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaypointRoamAI : BaseAI
@@ -16,6 +15,10 @@ public class WaypointRoamAI : BaseAI
     // Start is called before the first frame update
     void Start()
     {
+        waypoint = FindNearestWaypoint();
+        if (waypoint == null)
+            Debug.LogError("Hey!" + transform.name + "Couldn't find a Waypoint near him! Put him closer to one!");
+
         walkpointSet = false;
         currentWaypointIndex = 0;
         transform.position = waypoint.GetChild(0).position;
@@ -24,13 +27,41 @@ public class WaypointRoamAI : BaseAI
 
     public override void patrol()
     {
-        agent.stoppingDistance = 0;
-        StartCoroutine(WaypointPatrol(roamPause));
+        if (!walkpointSet)
+        {
+            agent.stoppingDistance = 0;
+            StartCoroutine(GetNearestWaypoint(roamPause));
+        }
     }
 
-    public IEnumerator WaypointPatrol(int delay)
+    public override bool canSeePlayer()
     {
-        if (agent.remainingDistance < 0.01f && !walkpointSet)
+        if (base.canSeePlayer())
+        {
+            walkpointSet = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    public Transform FindNearestWaypoint()
+    {
+        for (int i = 0; i < EnemyManager.instance.waypoints.Length; ++i)
+        {
+            if (Vector3.Distance(transform.position, EnemyManager.instance.waypoints[i].transform.position) <= 5)
+            {
+                Debug.Log("Waypoint assigned to " + transform.name);
+                return EnemyManager.instance.waypoints[i].transform;
+            }
+        }
+
+        return null;
+    }
+
+    public IEnumerator GetNearestWaypoint(int delay)
+    {
+        if (agent.remainingDistance < 0.01f)
         {
             walkpointSet = true;
             agent.stoppingDistance = 0;

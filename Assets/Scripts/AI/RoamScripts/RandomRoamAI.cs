@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +7,7 @@ public class RandomRoamAI : BaseAI
     [Header("----- Random Roam Component -----")]
     [SerializeField] int roamDist;
     [SerializeField] int roamPause;
-    
+
     public bool destinationChoosen;
     Vector3 startingPos;
 
@@ -21,7 +20,19 @@ public class RandomRoamAI : BaseAI
 
     public override void patrol()
     {
+        agent.stoppingDistance = 0;
         StartCoroutine(RandomPoint(roamPause));
+    }
+
+    public override bool canSeePlayer()
+    {
+        if (base.canSeePlayer())
+        {
+            destinationChoosen=false;
+            return true;
+        }
+
+        return false;
     }
 
     IEnumerator RandomPoint(int delay)
