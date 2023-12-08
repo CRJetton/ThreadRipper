@@ -80,8 +80,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [Header("_____General_____")]
     [SerializeField] float maxHP;
+    [SerializeField] private float HP;
     [SerializeField] private CameraController playerCamera;
-    private float HP;
     private GameObject spawnPos;
 
     private void Awake()

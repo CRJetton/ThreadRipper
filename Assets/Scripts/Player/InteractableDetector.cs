@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractableDetector : MonoBehaviour
 {
-    List<GameObject> interactablesTouching = new List<GameObject>();
+    [SerializeField] List<GameObject> interactablesTouching = new List<GameObject>();
 
 
     public IInteractable GetClosestInteractable(Vector3 origin)
@@ -15,6 +15,12 @@ public class InteractableDetector : MonoBehaviour
 
         foreach (GameObject interactable in interactablesTouching)
         {
+            // Check if the GameObject is null (destroyed)
+            if (interactable == null)
+            {
+                continue; // Skip to the next iteration of the loop
+            }
+
             currentDist = Vector3.SqrMagnitude(origin - interactable.transform.position);
 
             if (currentDist < closestDist)
