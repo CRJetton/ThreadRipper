@@ -7,69 +7,24 @@ using UnityEngine.Events;
 
 public class GunController : MonoBehaviour, IGun
 {
-    [Header("General")]
-    [SerializeField] string noHitTag;
-    [SerializeField] GameObject itemPickupPrefab;
-    [SerializeField] GameObject bulletPrefab;
-
+    [Header("Components")]
     [SerializeField] Transform barrelPos;
+    [SerializeField] GameObject model;
+    [SerializeField] Animator anim;
+    [SerializeField] GameObject scope;
 
-    [SerializeField, Range(0f, 5f)] float equipTime;
-    [SerializeField, Range(0f, 10f)] float reloadTime;
+    [Header("Animation")]
+    [SerializeField] AnimationClip[] shootAnims;
 
-    [SerializeField, Range(0f, 5f)] float timeBetweenShots;
-    [SerializeField, Range(0f, 0.5f)] float queueShotTime;
-    [SerializeField, Range(1, 30)] int bulletsPerShot;
-    [SerializeField] bool fullAuto;
-    [SerializeField] bool isPlayerGun;
-
-    [Header("Scoping")]
-    [SerializeField, Range(0f, 1f)] float scopeZoomFactor;
-    [SerializeField, Range(0f, 5f)] float scopeInTime;
-    [SerializeField, Range(0f, 5f)] float scopeOutTime;
-    [SerializeField] Vector3 scopedOutPos;
-    [SerializeField] Vector3 scopedInPos;
-    [SerializeField] AnimationCurve scopeInCurve;
-    [SerializeField] AnimationCurve scopeOutCurve;
-
-    [Header("Scoped Recoil")]
-    [SerializeField] AnimationCurve xScopedJumpPerShot;
-    [SerializeField] AnimationCurve yScopedJumpPerShot;
-    [SerializeField] AnimationCurve xScopedJumpRandomPerShot;
-    [SerializeField] AnimationCurve yScopedJumpRandomPerShot;
-    [SerializeField] AnimationCurve xScopedSpreadPerShot;
-    [SerializeField] AnimationCurve yScopedSpreadPerShot;
-
-
-    [Header("Hipfire Recoil")]
-    [SerializeField] AnimationCurve xJumpPerShot;
-    [SerializeField] AnimationCurve yJumpPerShot;
-    [SerializeField] AnimationCurve xJumpRandomPerShot;
-    [SerializeField] AnimationCurve yJumpRandomPerShot;
-    [SerializeField] AnimationCurve xSpreadPerShot;
-    [SerializeField] AnimationCurve ySpreadPerShot;
-
-    [Header("Recoil Amounts")]
-    [SerializeField, Range(0f, 5f)] float spreadRecoverTime;
-    [SerializeField, Range(0f, 1f)] float spreadPerShot;
-    [SerializeField, Range(0f, 2.5f)] float jumpRecoverTime;
-    [SerializeField, Range(0f, 1f)] float dontRecoverTime;
-    [SerializeField] AnimationCurve shotJumpRecovery;
+    GunStats gun;
 
     float recoilAmount;
     Vector2 amountShotJumped;
 
-    [Header("Ammo")]
-    [SerializeField] int magAmmoCapacity;
-    [SerializeField] int reserveAmmoCapacity;
-
     int magAmmo;
     int reserveAmmo;
 
-    [Header("Animation")]
-    [SerializeField] Animator anim;
-    [SerializeField] AnimationClip[] shootAnims;
-
+    bool isPlayerGun;
     bool isEquipped;
     bool isShooting;
     bool isShotQueued;
@@ -95,10 +50,25 @@ public class GunController : MonoBehaviour, IGun
 
     void Start()
     {
-        InitializeAmmo(magAmmoCapacity, reserveAmmoCapacity);
+        InitializeAmmo(gun.magAmmoCapacity, gun.reserveAmmoCapacity);
+
+        isPlayerGun = gun.bulletStats.noHitTag == "Player";
 
         if (isPlayerGun)
-            HUDManager.instance.reticleController.ExpandReticle(xSpreadPerShot.Evaluate(0));
+        {
+            HUDManager.instance.reticleController.ExpandReticle(gun.xSpreadPerShot.Evaluate(0));
+
+            //sets the gun's layer to 'hands'
+            model.layer = 6;
+
+            if (scope != null)
+                Instantiate(scope, model.transform);
+        }
+    }
+
+    public void SetStats(WeaponStats stats)
+    {
+        gun = stats as GunStats;
     }
 
     public void InitializeAmmo(int _magAmmo, int _reserveAmmo)
@@ -124,7 +94,7 @@ public class GunController : MonoBehaviour, IGun
 
             Attack();
 
-            if (fullAuto)
+            if (gun.fullAuto)
                 repeatAttack = StartCoroutine(RepeatAttack());
         }
         else
@@ -140,8 +110,6 @@ public class GunController : MonoBehaviour, IGun
             StopCoroutine(repeatAttack);
             repeatAttack = null;
         }
-
-        StartJumpRecovery();
     }
 
     void Attack()
@@ -163,15 +131,18 @@ public class GunController : MonoBehaviour, IGun
 
         isShooting = true;
 
-        for (int i = 0; i < bulletsPerShot; i++)
-            Instantiate(bulletPrefab, barrelPos.position, CalcShotRotation());
+        for (int i = 0; i < gun.bulletsPerShot; i++)
+            CreateBullet();
 
-        AddRecoil(spreadPerShot);
+        AddRecoil(gun.spreadPerShot);
         ChangeAmmo(-1, 0);
 
         anim.Play(shootAnims[Random.Range(0, shootAnims.Length)].name);
 
-        yield return new WaitForSeconds(timeBetweenShots);
+        StopJumpRecovery();
+        StartJumpRecovery();
+
+        yield return new WaitForSeconds(gun.timeBetweenShots);
 
         isShooting = false;
 
@@ -187,7 +158,7 @@ public class GunController : MonoBehaviour, IGun
     {
         isShotQueued = true;
 
-        yield return new WaitForSeconds(queueShotTime);
+        yield return new WaitForSeconds(gun.queueShotTime);
 
         isShotQueued = false;
     }
@@ -196,7 +167,7 @@ public class GunController : MonoBehaviour, IGun
     {
         for (; ; )
         {
-            yield return new WaitForSeconds(timeBetweenShots);
+            yield return new WaitForSeconds(gun.timeBetweenShots);
 
             if (magAmmo > 0 && isEquipped)
                 Attack();
@@ -207,12 +178,18 @@ public class GunController : MonoBehaviour, IGun
             }
         }
     }
+
+    void CreateBullet()
+    {
+        GameObject bullet = Instantiate(gun.bulletPrefab, barrelPos.position, CalcShotRotation());
+        bullet.GetComponent<Bullet>().Initialize(gun.bulletStats);
+    }
     #endregion
 
     #region Ammo Control
     public void Reload()
     {
-        if (!isReloading && magAmmo < magAmmoCapacity && reserveAmmo > 0)
+        if (!isReloading && magAmmo < gun.magAmmoCapacity && reserveAmmo > 0)
         {
             if (reloading != null)
                 StopCoroutine(reloading);
@@ -237,11 +214,11 @@ public class GunController : MonoBehaviour, IGun
         isReloading = true;
         anim.SetBool("isReloading", isReloading);
 
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(gun.reloadTime);
 
         if (isPlayerGun)
         {
-            int maxReloadAmount = magAmmoCapacity - magAmmo;
+            int maxReloadAmount = gun.magAmmoCapacity - magAmmo;
 
             if (reserveAmmo >= maxReloadAmount)
             {
@@ -254,7 +231,7 @@ public class GunController : MonoBehaviour, IGun
         }
         else
         {
-            ChangeAmmo(magAmmoCapacity, reserveAmmo);
+            ChangeAmmo(gun.magAmmoCapacity, reserveAmmo);
         }
 
         isReloading = false;
@@ -266,8 +243,8 @@ public class GunController : MonoBehaviour, IGun
         magAmmo += magChange;
         reserveAmmo += reserveChange;
 
-        magAmmo = Mathf.Clamp(magAmmo, 0, magAmmoCapacity);
-        reserveAmmo = Mathf.Clamp(reserveAmmo, 0, reserveAmmoCapacity);
+        magAmmo = Mathf.Clamp(magAmmo, 0, gun.magAmmoCapacity);
+        reserveAmmo = Mathf.Clamp(reserveAmmo, 0, gun.reserveAmmoCapacity);
 
         OnAmmoChange.Invoke();
     }
@@ -287,14 +264,17 @@ public class GunController : MonoBehaviour, IGun
         recoilAmount = Mathf.Clamp01(recoilAmount);
 
         if (recoiling == null)
-            recoiling = StartCoroutine(Recoiling());
+            recoiling = StartCoroutine(RecoilRecovery());
 
         if (isScopedIn)
-            AddShotJump(xScopedJumpPerShot.Evaluate(recoilAmount), yScopedJumpPerShot.Evaluate(recoilAmount),
-                xScopedJumpRandomPerShot.Evaluate(recoilAmount), yScopedJumpRandomPerShot.Evaluate(recoilAmount));
+            AddShotJump(gun.xScopedJumpPerShot.Evaluate(recoilAmount), gun.yScopedJumpPerShot.Evaluate(recoilAmount),
+                gun.xScopedJumpRandomPerShot.Evaluate(recoilAmount), gun.yScopedJumpRandomPerShot.Evaluate(recoilAmount));
         else
-            AddShotJump(xJumpPerShot.Evaluate(recoilAmount), yJumpPerShot.Evaluate(recoilAmount),
-                xJumpRandomPerShot.Evaluate(recoilAmount), yJumpRandomPerShot.Evaluate(recoilAmount));
+            AddShotJump(gun.xJumpPerShot.Evaluate(recoilAmount), gun.yJumpPerShot.Evaluate(recoilAmount),
+                gun.xJumpRandomPerShot.Evaluate(recoilAmount), gun.yJumpRandomPerShot.Evaluate(recoilAmount));
+
+        if (isPlayerGun)
+            HUDManager.instance.reticleController.ExpandReticle(gun.xSpreadPerShot.Evaluate(recoilAmount));
     }
 
     void AddShotJump(float baseX, float baseY, float maxRandX, float maxRandY)
@@ -330,13 +310,13 @@ public class GunController : MonoBehaviour, IGun
 
         if (!isScopedIn)
         {
-            xMaxRand = xSpreadPerShot.Evaluate(recoilAmount);
-            yMaxRand = ySpreadPerShot.Evaluate(recoilAmount);
+            xMaxRand = gun.xSpreadPerShot.Evaluate(recoilAmount);
+            yMaxRand = gun.ySpreadPerShot.Evaluate(recoilAmount);
         }
         else
         {
-            xMaxRand = xScopedSpreadPerShot.Evaluate(recoilAmount);
-            yMaxRand = yScopedSpreadPerShot.Evaluate(recoilAmount);
+            xMaxRand = gun.xScopedSpreadPerShot.Evaluate(recoilAmount);
+            yMaxRand = gun.yScopedSpreadPerShot.Evaluate(recoilAmount);
         }
 
         Vector3 randomOffset = new Vector3(Random.Range(-xMaxRand, xMaxRand), Random.Range(-yMaxRand, yMaxRand));
@@ -347,17 +327,17 @@ public class GunController : MonoBehaviour, IGun
     }
 
 
-    IEnumerator Recoiling()
+    IEnumerator RecoilRecovery()
     {
-        yield return new WaitForSeconds(dontRecoverTime);
+        yield return new WaitForSeconds(gun.dontRecoverTime);
 
         while (recoilAmount > 0)
         {
-            recoilAmount -= (1 / spreadRecoverTime) * Time.fixedDeltaTime;
+            recoilAmount -= (1 / gun.spreadRecoverTime) * Time.fixedDeltaTime;
             recoilAmount = Mathf.Clamp01(recoilAmount);
 
             if (isPlayerGun)
-                HUDManager.instance.reticleController.ExpandReticle(xSpreadPerShot.Evaluate(recoilAmount));
+                HUDManager.instance.reticleController.ExpandReticle(gun.xSpreadPerShot.Evaluate(recoilAmount));
 
             yield return new WaitForFixedUpdate();
         }
@@ -382,6 +362,16 @@ public class GunController : MonoBehaviour, IGun
         jumpRecovering = StartCoroutine(JumpRecovering());
     }
 
+    void StopJumpRecovery()
+    {
+        if (jumpRecovering != null)
+        {
+            StopCoroutine(jumpRecovering);
+
+            jumpRecovering = null;
+        }
+    }
+
 
     IEnumerator JumpRecovering()
     {
@@ -391,13 +381,13 @@ public class GunController : MonoBehaviour, IGun
         Vector2 startJumpAmount = amountShotJumped;
         Vector2 nextJumpAmount;
 
-        yield return new WaitForSeconds(dontRecoverTime);
+        yield return new WaitForSeconds(gun.dontRecoverTime);
 
         while (percentDone < 1)
         {
-            percentDone = (Time.time - startTime) / jumpRecoverTime;
+            percentDone = (Time.time - startTime) / gun.jumpRecoverTime;
 
-            nextJumpAmount = Vector2.Lerp(startJumpAmount, Vector2.zero, shotJumpRecovery.Evaluate(percentDone));
+            nextJumpAmount = Vector2.Lerp(startJumpAmount, Vector2.zero, gun.shotJumpRecovery.Evaluate(percentDone));
 
             AddShotJumpDirectly(nextJumpAmount - amountShotJumped);
 
@@ -447,22 +437,21 @@ public class GunController : MonoBehaviour, IGun
         Vector3 startPos = transform.localPosition;
 
         isScopedIn = true;
-        anim.SetBool("isScopedIn", isScopedIn);
 
         if (isPlayerGun)
             HUDManager.instance.reticleController.gameObject.SetActive(false);
 
-        OnScoping.Invoke(scopeZoomFactor, scopeInTime);
+        OnScoping.Invoke(gun.scopeZoomFactor, gun.scopeInTime);
 
         for (; ; )
         {
-            percentDone = (Time.time - startTime) / scopeInTime;
+            percentDone = (Time.time - startTime) / gun.scopeInTime;
 
-            transform.localPosition = Vector3.Lerp(startPos, scopedInPos, scopeInCurve.Evaluate(percentDone));
+            transform.localPosition = Vector3.Lerp(startPos, gun.scopedInPos, gun.scopeInCurve.Evaluate(percentDone));
 
             if (percentDone >= 1)
             {
-                transform.localPosition = scopedInPos;
+                transform.localPosition = gun.scopedInPos;
                 break;
             }
 
@@ -478,22 +467,21 @@ public class GunController : MonoBehaviour, IGun
         Vector3 startPos = transform.localPosition;
 
         isScopedIn = false;
-        anim.SetBool("isScopedIn", isScopedIn);
 
         if (isPlayerGun)
             HUDManager.instance.reticleController.gameObject.SetActive(true);
 
-        OnScoping.Invoke(1, scopeOutTime);
+        OnScoping.Invoke(1, gun.scopeOutTime);
 
         for (; ; )
         {
-            percentDone = (Time.time - startTime) / scopeOutTime;
+            percentDone = (Time.time - startTime) / gun.scopeOutTime;
 
-            transform.localPosition = Vector3.Lerp(startPos, scopedOutPos, scopeOutCurve.Evaluate(percentDone));
+            transform.localPosition = Vector3.Lerp(startPos, gun.scopedOutPos, gun.scopeOutCurve.Evaluate(percentDone));
 
             if (percentDone >= 1)
             {
-                transform.localPosition = scopedOutPos;
+                transform.localPosition = gun.scopedOutPos;
                 break;
             }
 
@@ -519,7 +507,7 @@ public class GunController : MonoBehaviour, IGun
     {
         transform.parent = null;
 
-        GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
+        GameObject spawnedItem = Instantiate(gun.itemPickupPrefab, transform.position, transform.rotation);
         WeaponPickup itemPickup = spawnedItem.GetComponent<WeaponPickup>();
         itemPickup.SetSaveValue1(magAmmo);
         itemPickup.SetSaveValue2(reserveAmmo);
@@ -532,11 +520,11 @@ public class GunController : MonoBehaviour, IGun
     {
         transform.parent = null;
 
-        GameObject spawnedItem = Instantiate(itemPickupPrefab, transform.position, transform.rotation);
+        GameObject spawnedItem = Instantiate(gun.itemPickupPrefab, transform.position, transform.rotation);
         WeaponPickup itemPickup = spawnedItem.GetComponent<WeaponPickup>();
         itemPickup.SetSaveValue1(magAmmo);
         itemPickup.SetSaveValue2(reserveAmmo);
-        itemPickup.Throw(velocity, angularVelocity, noHitTag);
+        itemPickup.Throw(velocity, angularVelocity, gun.bulletStats.noHitTag);
 
         Destroy(gameObject);
     }
@@ -545,7 +533,7 @@ public class GunController : MonoBehaviour, IGun
     #region Getters and Setters
     public float GetEquipTime()
     {
-        return equipTime;
+        return gun.equipTime;
     }
 
     public int GetMagAmmo()
@@ -575,12 +563,12 @@ public class GunController : MonoBehaviour, IGun
 
     public int GetMagAmmoCapacity()
     {
-        return magAmmoCapacity;
+        return gun.magAmmoCapacity;
     }
 
     public int GetReserveAmmoCapacity()
     {
-        return reserveAmmoCapacity;
+        return gun.reserveAmmoCapacity;
     }
     #endregion
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class UIManager : MonoBehaviour
     public GameObject menuPause;
     public GameObject menuWin;
     public GameObject menuLose;
+    public InputAction playerPauseInput;
+    public InputAction UIPauseInput;
 
     public bool isPaused;
     float originalTimeScale;
@@ -22,19 +25,25 @@ public class UIManager : MonoBehaviour
 
     }
 
-    void Update()
+    void Start()
     {
-        if (Input.GetButtonDown("Cancel") && menuActive == null)
-        {
-            StatePaused();
-            menuActive = menuPause;
-            menuActive.SetActive(isPaused);
-        }
+        playerPauseInput = InputManager.instance.playerInput.PlayerControls.Pause;
+        UIPauseInput = InputManager.instance.playerInput.UI.Pause;
+
+        playerPauseInput.started += PauseMenu;
+        UIPauseInput.started += UnpauseMenu;
+    }
+
+    private void OnDisable()
+    {
+        playerPauseInput.started -= PauseMenu;
+        UIPauseInput.started -= UnpauseMenu;
     }
 
     public void StatePaused()
     {
         isPaused = !isPaused;
+        InputManager.instance.SwapToPauseInput();
         HideHUD();
         Time.timeScale = 0;
         Cursor.visible = true;
@@ -43,6 +52,7 @@ public class UIManager : MonoBehaviour
 
     public void StateUnpaused()
     {
+        InputManager.instance.SwapToPlayInput();
         isPaused = !isPaused;
         ShowHUD();
         Time.timeScale = originalTimeScale;
@@ -78,5 +88,19 @@ public class UIManager : MonoBehaviour
         HUDManager.instance.reticleController.gameObject.SetActive(true);
         HUDManager.instance.damageScreen.SetActive(true);
         HUDManager.instance.minimap.SetActive(true);
+    }
+
+    private void PauseMenu(InputAction.CallbackContext context)
+    {
+        StatePaused();
+        menuActive = menuPause;
+        menuActive.SetActive(isPaused);
+    }
+
+    private void UnpauseMenu(InputAction.CallbackContext context)
+    {
+        StateUnpaused();
+        menuActive = menuPause;
+        menuActive.SetActive(isPaused);
     }
 }

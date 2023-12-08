@@ -10,13 +10,13 @@ using UnityEngine.InputSystem;
  LOG
 
 TO DO
+
 - Remember for final product: Optimize gameobject animations
-- Animate move
-- Fix climbing so you go up and then forward
-- Add kinematic Rigidbody
-- Make vault detector work like ground detector with list
 
 DONE
+
+- Implemented a head bobbing effect on the camera using trigonomic functions to achieve back
+and forth motions over time in the up and sideways directions.
 
  */
 
@@ -63,15 +63,17 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [Header("_____Vaulting_____")]
     [SerializeField] private PlayerVaultDetector vaultDetector;
-    [SerializeField] private float vaultTime;
-    [SerializeField] float vaultForward;
+    [SerializeField] private float vaultUpTime;
+    [SerializeField] private float vaultForwardTime;
     [SerializeField] float vaultUp;
+    [SerializeField] float vaultForward;
 
     [Header("_____Climbing_____")]
     [SerializeField] private PlayerClimbDetector climbDetector;
-    [SerializeField] private float climbTime;
-    [SerializeField] private float climbForward;
+    [SerializeField] private float climbUpTime;
+    [SerializeField] private float climbForwardTime;
     [SerializeField] private float climbUp;
+    [SerializeField] private float climbForward;
 
     [Header("_____Animation_____")]
     [SerializeField] private Animator animator;
@@ -176,11 +178,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (_ctx.started && vaultDetector.GetCanPlayerVault())
         {
-            StartCoroutine(ClimbOver(vaultTime, vaultForward, vaultUp));
+            StartCoroutine(ClimbOver(vaultUpTime, vaultForwardTime, vaultUp, vaultForward));
         }
         else if (_ctx.started && !groundDetector.GetIsPlayerGrounded() && climbDetector.GetCanPlayerClimb())
         {
-            StartCoroutine(ClimbOver(climbTime, climbForward, climbUp));
+            StartCoroutine(ClimbOver(climbUpTime, climbForwardTime, climbUp, climbForward));
         }
         else if (_ctx.started && groundDetector.GetIsPlayerGrounded())
         {
@@ -188,20 +190,30 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator ClimbOver(float _time, float _forward, float _up)
+    private IEnumerator ClimbOver(float _upTime, float _forwardTime, float _targetUp, float _targetForward)
     {
-        float time = 0;
+        float currTime = 0;
+        Vector3 startPos = transform.localPosition;
+        Vector3 targetPosUp = startPos + transform.up * _targetUp;
 
-        Vector3 startPos = transform.position;
-        Vector3 targetPos = startPos
-            + (transform.forward * _forward)
-            + (transform.up * _up);
-
-        while (time < _time)
+        while (currTime < _upTime)
         {
-            transform.position = Vector3.Lerp(startPos, targetPos, time / _time);
+            Vector3 moveUp = Vector3.Lerp(startPos, targetPosUp, currTime / _forwardTime);
+            transform.localPosition = moveUp;
+            currTime += Time.deltaTime;
+            yield return null;
+        }
 
-            time += Time.deltaTime;
+        currTime = 0;
+        startPos = transform.localPosition;
+        Vector3 targetPositionForward = startPos + transform.forward * _targetForward;
+
+
+        while (currTime < _forwardTime)
+        {
+            Vector3 moveForward = Vector3.Lerp(startPos, targetPositionForward, currTime / _forwardTime);
+            transform.localPosition = moveForward;
+            currTime += Time.deltaTime;
             yield return null;
         }
     }

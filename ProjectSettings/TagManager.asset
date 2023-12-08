@@ -8,6 +8,7 @@ TagManager:
   - Climbable
   - PlayerSpawnPos
   - Enemy
+  - Waypoint
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Player
   - MiniMap
   - Level
-  - 
+  - Scope
   - 
   - 
   - 

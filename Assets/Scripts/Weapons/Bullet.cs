@@ -4,25 +4,22 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] string noHitTag;
-
-    [SerializeField] int damage;
-    [SerializeField] float speed;
-    [SerializeField] float destroyTime;
+    BulletStats bulletStats;
 
     [SerializeField] Rigidbody rb;
 
     bool isPlayerRound;
 
 
-
-    private void Start()
+    public void Initialize(BulletStats stats)
     {
-        rb.velocity = transform.forward * speed;
+        bulletStats = stats;
 
-        Destroy(gameObject, destroyTime);
+        rb.velocity = transform.forward * bulletStats.speed;
 
-        isPlayerRound = noHitTag == "Player";
+        Destroy(gameObject, bulletStats.destroyTime);
+
+        isPlayerRound = bulletStats.noHitTag == "Player";
     }
 
 
@@ -37,7 +34,7 @@ public class Bullet : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);
 
-        if (Physics.Raycast(ray, out hit, speed * Time.fixedDeltaTime))
+        if (Physics.Raycast(ray, out hit, bulletStats.speed * Time.fixedDeltaTime))
         {
             Hit(hit.collider, hit);
         }
@@ -46,7 +43,7 @@ public class Bullet : MonoBehaviour
 
     void Hit(Collider other, RaycastHit hit)
     {
-        if (other.isTrigger || other.CompareTag(noHitTag))
+        if (other.isTrigger || other.CompareTag(bulletStats.noHitTag))
             return;
 
         transform.position = hit.point;
@@ -58,7 +55,7 @@ public class Bullet : MonoBehaviour
             if (isPlayerRound && other.CompareTag("Enemy"))
             { /* hit marker call */ }
 
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(bulletStats.damage);
         }
         else
         {

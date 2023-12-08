@@ -6,24 +6,23 @@ using UnityEngine.AI;
 
 
 // NOTE TO OURSELVES:
-    // Contain most of these information through OOP (if possible)
-        // - Encapsulation
-        // - Inheritance
-    // Create a functionality where the Enemy can vault over vaultable objects.
+// Contain most of these information through OOP (if possible)
+// - Encapsulation
+// - Inheritance
+// Create a functionality where the Enemy can vault over vaultable objects.
 
-
-//[RequireComponent(typeof(NavMeshAgent))]
 public class BaseAI : MonoBehaviour, IDamageable
 {
     // Behaviors and stats
     [Header("------ Components ------")]
-    [SerializeField] NavMeshAgent agent;
+    [SerializeField] public NavMeshAgent agent; // READ --> Keep it public so the roam scripts can access this variable
     [SerializeField] Renderer model;
     [SerializeField] Transform headPosition;
     [SerializeField] EnemyCombat enemyCombat;
+    [SerializeField] float stoppingDist;
 
     [Header("------ Enemy Stats ------")]
-    [Range(1, 100)][SerializeField] float HP;         
+    [Range(1, 100)][SerializeField] float HP;
     [Range(1, 180)][SerializeField] int viewCone;
     [Range(1, 100)][SerializeField] int targetFaceSpeed;
 
@@ -31,27 +30,55 @@ public class BaseAI : MonoBehaviour, IDamageable
     [Range(1, 100)][SerializeField] float shootRate;
 
     // defs
-    bool istakingdamage;
     bool isShooting;
     bool playerInRange;
     float angleToPlayer;
     Vector3 playerDir;
 
+    //patrol
+    Vector3 enemyPos;
+    Vector3 destinationPoint;
+
     void Start()
     {
         HUDManager.instance.UpdateProgress(1);
+        enemyPos = transform.position;
+        stoppingDist = agent.stoppingDistance;
         //agent.speed = moveSpeed;
     }
 
     void Update()
     {
-        if ((playerInRange && canSeePlayer()) || !Investigate())
+        if (playerInRange && !canSeePlayer())
         {
-            // Patrol();
+            patrol();
+        }
+        else if (!playerInRange)
+        {
+            patrol();
         }
     }
 
-    bool canSeePlayer()
+    public virtual void patrol()
+    {
+        if (transform.position != enemyPos)
+        {
+            agent.stoppingDistance = 0;
+            StartCoroutine(returntoLastPos(1));
+        }
+    }
+
+    IEnumerator returntoLastPos(int delay)
+    {
+        if (agent.remainingDistance <= 0.01f)
+        {
+            destinationPoint = enemyPos;
+            yield return new WaitForSeconds(delay);
+            agent.SetDestination(destinationPoint);
+        }
+    }
+
+    public virtual bool canSeePlayer()
     {
         playerDir = GameManager.instance.playerBodyPositions.playerCenter.position - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
@@ -64,6 +91,8 @@ public class BaseAI : MonoBehaviour, IDamageable
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
+                isShooting = false;
+                StopAllCoroutines();
                 agent.SetDestination(GameManager.instance.player.transform.position);
                 enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
 
@@ -71,34 +100,23 @@ public class BaseAI : MonoBehaviour, IDamageable
                 {
                     StartCoroutine(shoot());
                 }
-
+                
                 if (agent.remainingDistance < agent.stoppingDistance)
                 {
                     faceTarget();
                 }
-
+                
+                agent.stoppingDistance = stoppingDist;
                 return true;
             }
         }
-
-        return false;
-    }
-
-    bool Investigate() 
-    {
-        if (istakingdamage)
-        {
-            agent.SetDestination(GameManager.instance.player.transform.position);
-            istakingdamage = false;
-            return true;
-        }
-
+        agent.stoppingDistance = 0;
         return false;
     }
 
     void faceTarget()
     {
-        Quaternion rot = Quaternion.LookRotation(playerDir);
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * targetFaceSpeed);
     }
 
@@ -130,17 +148,21 @@ public class BaseAI : MonoBehaviour, IDamageable
         isShooting = false;
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         HP -= damage;
+
+        isShooting = false;
+        StopAllCoroutines();
         StartCoroutine(flashRed());
-        istakingdamage = true;
+
+        agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
             Destroy(gameObject);
             HUDManager.instance.UpdateProgress(-1);
-            
+
         }
     }
 

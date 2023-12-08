@@ -1988,6 +1988,7 @@ MonoBehaviour:
   model: {fileID: 363187117254347297}
   headPosition: {fileID: 363187117208135005}
   enemyCombat: {fileID: 363187117804408503}
+  stoppingDist: 3
   HP: 18
   viewCone: 180
   targetFaceSpeed: 3
@@ -2005,7 +2006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponContainer: {fileID: 363187117296910183}
-  startingWeaponPrefab: {fileID: 4455828609911546838, guid: c9ef7637c92884c479bae6e53d36f8aa,
+  startingWeapon: {fileID: 1472266131599341789, guid: 0e3fe84aba4d68846b2e63c187f0958b,
     type: 3}
   throwSpeed: 10
   throwAngularSpeed: 15
@@ -2020,7 +2021,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 10
+  m_Speed: 5
   m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 700
@@ -2627,7 +2628,7 @@ PrefabInstance:
     - target: {fileID: 864675810274028186, guid: ebdd87498f9ddab4983985b72c2f3060,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.25
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 864675810274028186, guid: ebdd87498f9ddab4983985b72c2f3060,
         type: 3}

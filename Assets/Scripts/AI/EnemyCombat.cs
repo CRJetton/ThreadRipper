@@ -6,7 +6,7 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
 {
     [Header("Combat")]
     [SerializeField] Transform weaponContainer;
-    [SerializeField] GameObject startingWeaponPrefab;
+    [SerializeField] GameObject startingWeapon;
     private IWeapon weaponCurrent;
     private IGun gunCurrent;
 
@@ -19,7 +19,7 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
 
     void Start()
     {
-        EquipWeapon(startingWeaponPrefab);
+        EquipWeapon(startingWeapon.GetComponent<WeaponPickup>());
     }
 
 
@@ -59,16 +59,15 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
             gunCurrent.Reload();
     }
 
-
-    public void EquipWeapon(GameObject prefab)
+    public void EquipWeapon(WeaponPickup pickup)
     {
         if (equippingWeapon != null)
             StopCoroutine(equippingWeapon);
 
-        equippingWeapon = StartCoroutine(EquippingWeapon(prefab));
+        equippingWeapon = StartCoroutine(EquippingWeapon(pickup));
     }
 
-    IEnumerator EquippingWeapon(GameObject prefab)
+    IEnumerator EquippingWeapon(WeaponPickup pickup)
     {
         // Destroy any existing weapon
         foreach (Transform child in weaponContainer)
@@ -81,12 +80,14 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
 
 
         // Create and equip the new weapon
-        Instantiate(prefab, weaponContainer);
+        Instantiate(pickup.GetEnemyWeapon().weaponPrefab, weaponContainer);
 
         weaponCurrent = weaponContainer.GetComponentInChildren<IWeapon>();
 
         if (weaponCurrent == null)
             yield break;
+
+        weaponCurrent.SetStats(pickup.GetEnemyWeapon());
 
         if (weaponCurrent is IGun)
         {
