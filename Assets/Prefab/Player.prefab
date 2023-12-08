@@ -400,8 +400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5232add53a2744faf2c696cbb70f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerGrounded: 0
-  groundContacts: []
 --- !u!65 &2078285448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -456,7 +454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136873778770359646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0.2}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2061,13 +2059,15 @@ MonoBehaviour:
   jumpHeight: 7.5
   gravity: -20
   vaultDetector: {fileID: 791733567}
-  vaultTime: 0.3
-  vaultForward: 1.5
+  vaultUpTime: 0.2
+  vaultForwardTime: 0.3
   vaultUp: 1
+  vaultForward: 2
   climbDetector: {fileID: 1222490010}
-  climbTime: 0.5
+  climbUpTime: 0.5
+  climbForwardTime: 0.5
+  climbUp: 2.5
   climbForward: 1
-  climbUp: 2
   animator: {fileID: 1411667799}
   animationTransitionSpeed: 8
   maxHP: 200
@@ -2128,6 +2128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ad69bed101ae94d80c110d1daf89b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
   playerCombat: {fileID: 7999538882039293929}
   interactableDetector: {fileID: 1535046375}
 --- !u!114 &7138843497001214250
