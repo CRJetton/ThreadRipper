@@ -11,12 +11,11 @@ using UnityEngine.InputSystem;
 
 TO DO
 
+- Player can't pick up health after taking damage
 - Remember for final product: Optimize gameobject animations
 
 DONE
 
-- Implemented a head bobbing effect on the camera using trigonomic functions to achieve back
-and forth motions over time in the up and sideways directions.
 
  */
 
@@ -128,9 +127,13 @@ public class PlayerController : MonoBehaviour, IDamageable
             * SettingsManager.instance.lookSensitivity * Time.deltaTime);
 
         // Move animation
-        animator.SetFloat("X", Mathf.Lerp(animator.GetFloat("X"), moveInput.ReadValue<Vector2>().x,
+        if (moveInput.ReadValue<Vector2>().magnitude != 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        animator.SetFloat("moveX", Mathf.Lerp(animator.GetFloat("moveX"), moveInput.ReadValue<Vector2>().x,
             Time.deltaTime * animationTransitionSpeed));
-        animator.SetFloat("Y", Mathf.Lerp(animator.GetFloat("Y"), moveInput.ReadValue<Vector2>().y,
+        animator.SetFloat("moveY", Mathf.Lerp(animator.GetFloat("moveY"), moveInput.ReadValue<Vector2>().y,
             Time.deltaTime * animationTransitionSpeed)); ;
 
         //Gravity
@@ -176,17 +179,21 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnJumpInput(InputAction.CallbackContext _ctx)
     {
+
         if (_ctx.started && vaultDetector.GetCanPlayerVault())
         {
             StartCoroutine(ClimbOver(vaultUpTime, vaultForwardTime, vaultUp, vaultForward));
+            animator.SetTrigger("isJumping");
         }
         else if (_ctx.started && !groundDetector.GetIsPlayerGrounded() && climbDetector.GetCanPlayerClimb())
         {
             StartCoroutine(ClimbOver(climbUpTime, climbForwardTime, climbUp, climbForward));
+            animator.SetTrigger("isJumping");
         }
         else if (_ctx.started && groundDetector.GetIsPlayerGrounded())
         {
             move.y = jumpHeight;
+            animator.SetTrigger("isJumping");
         }
     }
 

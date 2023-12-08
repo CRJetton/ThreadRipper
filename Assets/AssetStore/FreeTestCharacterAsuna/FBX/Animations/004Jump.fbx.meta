@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 9358c999a74c183469874ced4ed52b1c
 ModelImporter:
-  serializedVersion: 20200
+  serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -623603649343465320
@@ -68,6 +68,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: <Root Transform>
     rigImportErrors: 
     rigImportWarnings: 
@@ -89,7 +90,7 @@ ModelImporter:
       name: JumpStart
       takeName: Scene
       internalID: 0
-      firstFrame: 20
+      firstFrame: 38
       lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
@@ -1651,7 +1652,7 @@ ModelImporter:
       name: JumpLand
       takeName: Scene
       internalID: 0
-      firstFrame: 120
+      firstFrame: 138
       lastFrame: 150
       wrapMode: 0
       orientationOffsetY: 0
@@ -1659,7 +1660,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -2440,6 +2441,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -2451,6 +2453,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -4133,6 +4136,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
