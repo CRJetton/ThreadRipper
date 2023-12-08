@@ -84,6 +84,7 @@ MonoBehaviour:
   model: {fileID: 363718558799847857}
   headPosition: {fileID: 363718558803062919}
   enemyCombat: {fileID: 2374437348007658942}
+  stoppingDist: 0
   HP: 6
   viewCone: 180
   targetFaceSpeed: 3
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponContainer: {fileID: 1772748245}
-  startingWeaponPrefab: {fileID: 387930949664740200, guid: 562d4520f870b434aaa810c054490554,
+  startingWeapon: {fileID: 4109000768470005370, guid: a034e23f9a566d942b343684a7d8feb3,
     type: 3}
   throwSpeed: 10
   throwAngularSpeed: 30

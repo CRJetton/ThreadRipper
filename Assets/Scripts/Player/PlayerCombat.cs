@@ -29,7 +29,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
     [SerializeField, Range(-1f, 1f)] float throwAngle;
 
     [SerializeField] Transform weaponContainer;
-    [SerializeField] GameObject startingWeaponPrefab;
+    [SerializeField] GameObject startingWeapon;
     private IWeapon weaponCurrent;
     private IGun gunCurrent;
 
@@ -45,8 +45,8 @@ public class PlayerCombat : MonoBehaviour, ICombat
     {
         InitializeControls();
 
-        if (startingWeaponPrefab != null)
-            EquipWeapon(startingWeaponPrefab);
+        if (startingWeapon != null)
+            EquipWeapon(startingWeapon.GetComponent<WeaponPickup>());
     }
 
     void InitializeControls()
@@ -222,14 +222,6 @@ public class PlayerCombat : MonoBehaviour, ICombat
     #endregion
 
     #region Equipping, Dropping, Throwing
-    public void EquipWeapon(GameObject prefab)
-    {
-        if (equippingWeapon != null)
-            StopCoroutine(equippingWeapon);
-
-        equippingWeapon = StartCoroutine(EquippingWeapon(prefab));
-    }
-
     public void EquipWeapon(WeaponPickup pickup)
     {
         if (equippingWeapon != null)
@@ -247,12 +239,14 @@ public class PlayerCombat : MonoBehaviour, ICombat
 
 
         // Create and equip the new weapon
-        Instantiate(pickup.GetPlayerItemPrefab(), weaponContainer);
+        Instantiate(pickup.GetPlayerWeapon().weaponPrefab, weaponContainer);
 
         weaponCurrent = weaponContainer.GetComponentInChildren<IWeapon>();
 
         if (weaponCurrent == null)
             yield break;
+
+        weaponCurrent.SetStats(pickup.GetPlayerWeapon());
 
         if (weaponCurrent is IGun)
         {
@@ -262,39 +256,6 @@ public class PlayerCombat : MonoBehaviour, ICombat
             gunCurrent.SubscribeOnShotJump(AddShotJump);
             gunCurrent.SubscribeOnScoping(ChangeScopeZoom);
             gunCurrent.InitializeAmmo(pickup.GetSaveValue1(), pickup.GetSaveValue2());
-        }
-
-        // Wait for equip to finish
-        yield return new WaitForSeconds(weaponCurrent.GetEquipTime());
-
-        weaponCurrent.Equip();
-        isWeaponEquipped = true;
-        canEquipWeaopn = true;
-    }
-
-    IEnumerator EquippingWeapon(GameObject prefab)
-    {
-        canEquipWeaopn = false;
-
-        // Drop any existing weapon
-        DropWeapon();
-
-
-        // Create and equip the new weapon
-        Instantiate(prefab, weaponContainer);
-
-        weaponCurrent = weaponContainer.GetComponentInChildren<IWeapon>();
-
-        if (weaponCurrent == null)
-            yield break;
-
-        if (weaponCurrent is IGun)
-        {
-            gunCurrent = (IGun)weaponCurrent;
-
-            gunCurrent.SubscribeOnAmmoChange(UpdateAmmoHUD);
-            gunCurrent.SubscribeOnShotJump(AddShotJump);
-            gunCurrent.SubscribeOnScoping(ChangeScopeZoom);
         }
 
         // Wait for equip to finish

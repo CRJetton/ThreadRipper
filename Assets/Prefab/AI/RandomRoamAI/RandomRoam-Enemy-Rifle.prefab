@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponContainer: {fileID: 8855287785251239938}
-  startingWeaponPrefab: {fileID: 6156902733182377973, guid: 5ed6f56fd1146ad4ea99aef0a775bcc6,
+  startingWeapon: {fileID: 1178596823894660017, guid: 279e75d5eb28302489d2a09047a3ca1f,
     type: 3}
   throwSpeed: 10
   throwAngularSpeed: 30
