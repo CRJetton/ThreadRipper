@@ -480,9 +480,14 @@ MonoBehaviour:
   cameras:
   - {fileID: 5808813853710117724}
   - {fileID: 8516519041675028489}
+  playerGroundDetector: {fileID: 2078285449}
   lockVertMin: -85
   lockVertMax: 85
   invertY: 0
+  defaultBobSpeed: 10
+  sprintBobSpeed: 20
+  headBobDistanceHoriz: 0.025
+  headBobDistanceVert: 0.05
 --- !u!1 &3009458363516470315
 GameObject:
   m_ObjectHideFlags: 0

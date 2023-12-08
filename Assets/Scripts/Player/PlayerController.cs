@@ -14,12 +14,9 @@ TO DO
 - Remember for final product: Optimize gameobject animations
 
 DONE
-- Improved climbing and vaulting so that the player moves up and then forward instead of a diagonal
-motion.
-- Gave player animations for moving in every direction.
-- Made vault and climb detector function more like ground detector by keeping a list of traversable
-objects they are in contact with, adding the on enter, removing them on exit and checking if list
-is empty to falsify bool.
+
+- Implemented a head bobbing effect on the camera using trigonomic functions to achieve back
+and forth motions over time in the up and sideways directions.
 
  */
 
