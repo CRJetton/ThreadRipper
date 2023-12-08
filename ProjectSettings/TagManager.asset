@@ -8,6 +8,7 @@ TagManager:
   - Climbable
   - PlayerSpawnPos
   - Enemy
+  - Waypoint
   layers:
   - Default
   - TransparentFX
