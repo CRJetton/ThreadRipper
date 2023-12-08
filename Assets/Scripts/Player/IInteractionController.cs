@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IInteractionController
 {
-    public void PickUpWeapon(WeaponPickup item);
+    void PickUpHealth(HealthPickUp healthPickUp);
 
-    //public void PickUpHealth(HealthPickup _pack);
+    public void PickUpWeapon(WeaponPickup item);
 }

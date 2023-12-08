@@ -52,10 +52,11 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
         }
     }
 
-    //public void PickUpHealth(HealthPickup _pack)
-    //{
-    //    playerController.AddHP(_pack.HP);
-    //}
-
+    public void PickUpHealth(HealthPickUp healingPack)
+    {
+        playerController.AddHP(healingPack.GetHealAmount());
+        Destroy(healingPack.gameObject);
+    }
     #endregion
 }
+  
