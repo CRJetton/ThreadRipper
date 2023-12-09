@@ -10,6 +10,7 @@ public class RandomRoamAI : BaseAI
 
     public bool destinationChoosen;
     Vector3 startingPos;
+    Coroutine randomRoamcot;
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class RandomRoamAI : BaseAI
     public override void patrol()
     {
         agent.stoppingDistance = 0;
-        StartCoroutine(RandomPoint(roamPause));
+        randomRoamcot = StartCoroutine(RandomPoint(roamPause));
     }
 
     public override bool canSeePlayer()
@@ -29,6 +30,8 @@ public class RandomRoamAI : BaseAI
         if (base.canSeePlayer())
         {
             destinationChoosen=false;
+            if (randomRoamcot != null)
+                StopCoroutine(randomRoamcot);
             return true;
         }
 
@@ -57,6 +60,8 @@ public class RandomRoamAI : BaseAI
     public override void TakeDamage(float damage)
     {
         destinationChoosen = false;
+        if (randomRoamcot != null)
+            StopCoroutine(randomRoamcot);
         base.TakeDamage(damage);
     }
 }

@@ -10,6 +10,7 @@ public class WaypointRoamAI : BaseAI
 
     public bool walkpointSet; // public for debug reasons
 
+    Coroutine waypointCot;
     int currentWaypointIndex;
     Transform currentWaypoint;
 
@@ -31,7 +32,7 @@ public class WaypointRoamAI : BaseAI
         if (!walkpointSet)
         {
             agent.stoppingDistance = 0;
-            StartCoroutine(GetNearestWaypoint(roamPause));
+            waypointCot = StartCoroutine(GetNearestWaypoint(roamPause));
         }
     }
 
@@ -40,6 +41,8 @@ public class WaypointRoamAI : BaseAI
         if (base.canSeePlayer())
         {
             walkpointSet = false;
+            if (waypointCot != null)
+                StopCoroutine(waypointCot);
             return true;
         }
 
@@ -85,6 +88,8 @@ public class WaypointRoamAI : BaseAI
     public override void TakeDamage(float damage)
     {
         walkpointSet = false;
+        if (waypointCot != null)
+            StopCoroutine(waypointCot);
         base.TakeDamage(damage);
     }
 }
