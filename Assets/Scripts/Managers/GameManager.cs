@@ -4,7 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
-{    
+{   
+    public enum GameStates
+    {
+        play = 0,
+        pauseMenu = 1,
+        winMenu = 2,
+        loseMenu = 3
+    };
+
     public static GameManager instance;
     public GameObject playerSpawnPos;
     public GameObject player;

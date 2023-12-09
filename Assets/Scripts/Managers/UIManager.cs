@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     public bool isPaused;
     float originalTimeScale;
+    private GameManager.GameStates currState;
 
 
     void Awake()
@@ -52,6 +53,7 @@ public class UIManager : MonoBehaviour
 
     public void StateUnpaused()
     {
+        currState = GameManager.GameStates.play;
         InputManager.instance.SwapToPlayInput();
         isPaused = !isPaused;
         ShowHUD();
@@ -64,10 +66,22 @@ public class UIManager : MonoBehaviour
 
     public void YouLose()
     {
+        currState = GameManager.GameStates.loseMenu;
         StatePaused();
         HideHUD();
+        InputManager.instance.playerInput.UI.Pause.Disable();
         menuActive = menuLose;
         menuActive.SetActive(true);
+    }
+
+    public IEnumerator YouWin()
+    {
+        yield return new WaitForSeconds(3);
+        currState = GameManager.GameStates.winMenu;
+        StatePaused();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+
     }
 
     public void HideHUD()
@@ -76,7 +90,7 @@ public class UIManager : MonoBehaviour
         HUDManager.instance.ammoCount.SetActive(false);
         HUDManager.instance.enemiesBackground.SetActive(false);
         HUDManager.instance.reticleController.gameObject.SetActive(false);
-        HUDManager.instance.damageScreen.SetActive(false);
+        HUDManager.instance.statusObject.SetActive(false);
         HUDManager.instance.minimap.SetActive(false);
     }
 
@@ -86,7 +100,7 @@ public class UIManager : MonoBehaviour
         HUDManager.instance.ammoCount.SetActive(true);
         HUDManager.instance.enemiesBackground.SetActive(true);
         HUDManager.instance.reticleController.gameObject.SetActive(true);
-        HUDManager.instance.damageScreen.SetActive(true);
+        HUDManager.instance.statusObject.SetActive(true);
         HUDManager.instance.minimap.SetActive(true);
     }
 
@@ -99,8 +113,17 @@ public class UIManager : MonoBehaviour
 
     private void UnpauseMenu(InputAction.CallbackContext context)
     {
-        StateUnpaused();
-        menuActive = menuPause;
-        menuActive.SetActive(isPaused);
+        if(currState == GameManager.GameStates.loseMenu || 
+           HUDManager.instance.currState == GameManager.GameStates.winMenu)
+        {
+            return;
+        }
+        else
+        {
+            StateUnpaused();
+            menuActive = menuPause;
+            menuActive.SetActive(isPaused);
+        }
+        
     }
 }

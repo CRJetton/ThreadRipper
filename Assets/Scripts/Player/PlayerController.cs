@@ -82,6 +82,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private CameraController playerCamera;
     private GameObject spawnPos;
 
+    [Header("-----Status Colors-----")]
+    [SerializeField] Color damageColor;
+    [SerializeField] Color healthColor;
+
     private void Awake()
     {
         // Set members
@@ -322,7 +326,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void TakeDamage(float _damage)
     {
-        HUDManager.instance.FlashDamage();
+        StartCoroutine(HUDManager.instance.FlashColor(0,1,damageColor));
         HP -= _damage;
         HUDManager.instance.playerHPBar.fillAmount = HP / maxHP;
         if (HP <= 0) UIManager.instance.YouLose();
@@ -330,7 +334,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void AddHP(float _health)
     {
-        //HUDManager.instance.FlashHealth();
+        StartCoroutine(HUDManager.instance.FlashColor(0,2,healthColor));
         HP += _health;
         if (HP > maxHP)
         {

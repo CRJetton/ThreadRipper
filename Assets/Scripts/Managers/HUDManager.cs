@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Assertions.Must;
 
 public class HUDManager : MonoBehaviour
 {
@@ -16,30 +17,24 @@ public class HUDManager : MonoBehaviour
     public GameObject enemiesBackground;
     public GameObject minimap;
 
-    public GameObject damageScreen;
-    [SerializeField][Range(0f, 1.0f)] float damageAlpha;
-
-
+    public GameObject statusObject;
+    [SerializeField] Image statusScreen;
+    [SerializeField] CanvasGroup statusScreenAlpha;
+    
+ 
     public ReticleController reticleController;
 
-    Color damageColor;
-
+    public GameManager.GameStates currState;
     int enemiesRemaining;
 
     void Awake()
     {
         instance = this;
-        damageColor = damageScreen.GetComponent<Image>().color;
 
     }
 
     void Update()
     {
-        if (damageColor.a > 0)
-        {
-            damageColor.a -= 0.01f;
-            damageScreen.GetComponent<Image>().color = damageColor;
-        }
 
     }
 
@@ -56,18 +51,24 @@ public class HUDManager : MonoBehaviour
 
         if (enemiesRemaining <= 0)
         {
-            UIManager.instance.StatePaused();
-            UIManager.instance.menuActive = UIManager.instance.menuWin;
-            UIManager.instance.menuActive.SetActive(true);
+            StartCoroutine(UIManager.instance.YouWin());
         }
 
     }
 
-    public void FlashDamage()
+    public IEnumerator FlashColor(float targetAlpha, float totalTime, Color color)
     {
-        damageColor.a = damageAlpha;
+        statusScreen.color = color;
+        statusScreenAlpha.alpha = 1;
+        float currTime = 0f;
+        float startAlpha = statusScreenAlpha.alpha;
 
-        damageScreen.GetComponent<Image>().color = damageColor;
+        while(currTime < totalTime)
+        {
+            statusScreenAlpha.alpha = Mathf.Lerp(startAlpha, targetAlpha, currTime / totalTime);
+            currTime += Time.deltaTime;
+            yield return null;
+        }
     }
-
+   
 }
