@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    [Header("-----Menus-----")]
     public GameObject menuActive;
     public GameObject menuPause;
     public GameObject menuWin;
     public GameObject menuLose;
+    public GameObject popupMenu;
+    [SerializeField] TMP_Text popupText;
+
+    [Header("-----Inputs-----")]
     public InputAction playerPauseInput;
     public InputAction UIPauseInput;
 
+    [Header("-----General-----")]
     public bool isPaused;
     float originalTimeScale;
     private GameManager.GameStates currState;
@@ -125,6 +133,14 @@ public class UIManager : MonoBehaviour
             menuActive = menuPause;
             menuActive.SetActive(isPaused);
         }
+        
+    }
+
+    void CreatePopup(Transform position, string itemName)
+    {
+        popupMenu.transform.position = position.position;
+        popupText.text = itemName;
+        popupMenu.SetActive(true);
         
     }
 }
