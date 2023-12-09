@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca47acc1afb0b7542867d95cd2b4582a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactablesTouching: []
 --- !u!136 &1535046374
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -400,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5232add53a2744faf2c696cbb70f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1411667799}
 --- !u!65 &2078285448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -454,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136873778770359646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0.2}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6662,7 +6664,6 @@ MonoBehaviour:
   defaultMoveSpeed: 5
   sprintSpeed: 10
   crouchMoveSpeed: 2
-  cameraCrouchAmount: 0.3
   colliderCrouchAmount: 2.2
   crouchHeight: 1.4
   standHeight: 1.7
@@ -6687,6 +6688,7 @@ MonoBehaviour:
   animator: {fileID: 1411667799}
   animationTransitionSpeed: 8
   maxHP: 200
+  HP: 0
   playerCamera: {fileID: 940690186790166899}
 --- !u!143 &6655305115144485799
 CharacterController:
@@ -6743,7 +6745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ad69bed101ae94d80c110d1daf89b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 6655305115144485796}
   playerCombat: {fileID: 7999538882039293929}
   interactableDetector: {fileID: 1535046375}
 --- !u!114 &7138843497001214250

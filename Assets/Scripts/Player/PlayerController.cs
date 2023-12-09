@@ -11,8 +11,7 @@ using UnityEngine.InputSystem;
 
 TO DO
 
-- Player can't pick up health after taking damage
-- Remember for final product: Optimize gameobject animations
+- Change colliders when player is crouching
 
 DONE
 
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     private bool isSprinting;
 
     [Header("_____Crouching_____")]
-    [SerializeField] private float cameraCrouchAmount;
     [SerializeField] private float colliderCrouchAmount;
     [SerializeField] private float crouchHeight;
     [SerializeField] private float standHeight;
@@ -237,16 +235,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
         else if (_ctx.started && !isSprinting)
         {
+            animator.SetBool("isCrouching", true);
             Crouch();
         }
         else if (_ctx.started && isSprinting && isSlideReady)
         {
+            animator.SetBool("isCrouching", true);
             Crouch();
             StartCoroutine(SprintSlide(sprintSlideTime, sprintSlideSpeed));
             StartCoroutine(SlideCooldown());
         }
         else if (_ctx.canceled && !isSliding && !isStanding)
         {
+            animator.SetBool("isCrouching", false);
             Stand();
         }
     }
@@ -331,6 +332,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         //HUDManager.instance.FlashHealth();
         HP += _health;
+        if (HP > maxHP)
+        {
+            HP = maxHP;
+        }
         HUDManager.instance.playerHPBar.fillAmount = HP / maxHP;
     }
 }

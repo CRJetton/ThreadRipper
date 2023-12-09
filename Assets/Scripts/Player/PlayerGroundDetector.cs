@@ -15,10 +15,6 @@ public class PlayerGroundDetector : MonoBehaviour
         {
             return;
         }
-        //if (!isPlayerGrounded)
-        //{
-        //    animator.SetTrigger("isImpacting");
-        //}
         groundContacts.Add(_other);
         isPlayerGrounded = true;
         animator.SetBool("isInAir", false);
