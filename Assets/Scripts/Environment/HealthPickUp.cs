@@ -37,13 +37,13 @@ public class HealthPickUp : MonoBehaviour, IInteractable
     //    switch (healingType)
     //    {
     //        case HealingType.Largepack:
-    //            playerController.AddHP(200);
+    //            playerController.AddHP(150);
     //            break;
     //        case HealingType.Mediumpack:
-    //            playerController.AddHP(75);
+    //            playerController.AddHP(60);
     //            break;
     //        case HealingType.Smallpack:
-    //            playerController.AddHP(45);
+    //            playerController.AddHP(25);
     //            break;
     //    }
     //}
