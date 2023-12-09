@@ -33,11 +33,6 @@ public class HUDManager : MonoBehaviour
 
     }
 
-    void Update()
-    {
-
-    }
-
     public void UpdateAmmoCount(int magAmmo, int reserveAmmo)
     {
         magAmmoText.text = magAmmo.ToString();

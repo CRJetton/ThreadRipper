@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     {
         instance = this;
         originalTimeScale = Time.timeScale;
+        currState = GameManager.GameStates.play;
 
     }
 
@@ -114,7 +115,7 @@ public class UIManager : MonoBehaviour
     private void UnpauseMenu(InputAction.CallbackContext context)
     {
         if(currState == GameManager.GameStates.loseMenu || 
-           HUDManager.instance.currState == GameManager.GameStates.winMenu)
+           currState == GameManager.GameStates.winMenu)
         {
             return;
         }

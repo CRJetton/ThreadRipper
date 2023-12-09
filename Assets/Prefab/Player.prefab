@@ -6528,7 +6528,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 703
+    m_Bits: 2751
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6690,6 +6690,8 @@ MonoBehaviour:
   maxHP: 200
   HP: 0
   playerCamera: {fileID: 940690186790166899}
+  damageColor: {r: 1, g: 0, b: 0, a: 0.56078434}
+  healthColor: {r: 0, g: 0.6320754, b: 0.038402505, a: 0.62352943}
 --- !u!143 &6655305115144485799
 CharacterController:
   m_ObjectHideFlags: 0
