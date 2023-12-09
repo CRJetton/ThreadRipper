@@ -136,11 +136,12 @@ public class UIManager : MonoBehaviour
         
     }
 
-    void CreatePopup(Transform position, string itemName)
+    GameObject CreatePopup(Transform position, string itemName)
     {
         popupMenu.transform.position = position.position;
         popupText.text = itemName;
         popupMenu.SetActive(true);
+        return popupMenu;
         
     }
 }
