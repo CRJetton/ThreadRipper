@@ -12,6 +12,7 @@ public class GunController : MonoBehaviour, IGun
     [SerializeField] GameObject model;
     [SerializeField] Animator anim;
     [SerializeField] GameObject scope;
+    [SerializeField] AudioSource audioSource;
 
     [Header("Animation")]
     [SerializeField] AnimationClip[] shootAnims;
@@ -52,7 +53,7 @@ public class GunController : MonoBehaviour, IGun
     {
         InitializeAmmo(gun.magAmmoCapacity, gun.reserveAmmoCapacity);
 
-        isPlayerGun = gun.bulletStats.noHitTag == "Player";
+        isPlayerGun = gun.noHitTag == "Player";
 
         if (isPlayerGun)
         {
@@ -139,6 +140,8 @@ public class GunController : MonoBehaviour, IGun
 
         anim.Play(shootAnims[Random.Range(0, shootAnims.Length)].name);
 
+        audioSource.PlayOneShot(gun.shootSounds[Random.Range(0, gun.shootSounds.Length - 1)], gun.shootVolume);
+
         StopJumpRecovery();
         StartJumpRecovery();
 
@@ -182,7 +185,7 @@ public class GunController : MonoBehaviour, IGun
     void CreateBullet()
     {
         GameObject bullet = Instantiate(gun.bulletPrefab, barrelPos.position, CalcShotRotation());
-        bullet.GetComponent<Bullet>().Initialize(gun.bulletStats);
+        bullet.GetComponent<Bullet>().Initialize(gun.noHitTag, gun.damage, gun.bulletSpeed, gun.bulletDestroyTime);
     }
     #endregion
 
@@ -213,6 +216,7 @@ public class GunController : MonoBehaviour, IGun
     {
         isReloading = true;
         anim.SetBool("isReloading", isReloading);
+        audioSource.PlayOneShot(gun.reloadSound, gun.shootVolume);
 
         yield return new WaitForSeconds(gun.reloadTime);
 
@@ -231,7 +235,7 @@ public class GunController : MonoBehaviour, IGun
         }
         else
         {
-            ChangeAmmo(gun.magAmmoCapacity, reserveAmmo);
+            ChangeAmmo(gun.magAmmoCapacity, 0);
         }
 
         isReloading = false;
@@ -524,7 +528,7 @@ public class GunController : MonoBehaviour, IGun
         WeaponPickup itemPickup = spawnedItem.GetComponent<WeaponPickup>();
         itemPickup.SetSaveValue1(magAmmo);
         itemPickup.SetSaveValue2(reserveAmmo);
-        itemPickup.Throw(velocity, angularVelocity, gun.bulletStats.noHitTag);
+        itemPickup.Throw(velocity, angularVelocity, gun.noHitTag);
 
         Destroy(gameObject);
     }
