@@ -5,6 +5,7 @@ public class WaypointRoamAI : BaseAI
 {
     [Header("----- Waypoint Roam Requirements -----")]
     [SerializeField] Transform waypoint;
+    [Range(0, 10)][SerializeField] int waypointSearch;
     [SerializeField] int roamPause;
 
     public bool walkpointSet; // public for debug reasons
@@ -17,7 +18,7 @@ public class WaypointRoamAI : BaseAI
     {
         waypoint = FindNearestWaypoint();
         if (waypoint == null)
-            Debug.LogError("Hey!" + transform.name + "Couldn't find a Waypoint near him! Put him closer to one!");
+            Debug.LogError("Hey! " + transform.name + "Couldn't find a Waypoint near him! Put him closer to one!");
 
         walkpointSet = false;
         currentWaypointIndex = 0;
@@ -49,7 +50,7 @@ public class WaypointRoamAI : BaseAI
     {
         for (int i = 0; i < EnemyManager.instance.waypoints.Length; ++i)
         {
-            if (Vector3.Distance(transform.position, EnemyManager.instance.waypoints[i].transform.position) <= 5)
+            if (Vector3.Distance(transform.position, EnemyManager.instance.waypoints[i].transform.position) <= waypointGizmo.instance.waypointSearchRad)
             {
                 Debug.Log("Waypoint assigned to " + transform.name);
                 return EnemyManager.instance.waypoints[i].transform;

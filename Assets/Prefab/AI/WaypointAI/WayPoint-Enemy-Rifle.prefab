@@ -59,6 +59,7 @@ MonoBehaviour:
   targetFaceSpeed: 100
   shootRate: 1
   waypoint: {fileID: 0}
+  waypointSearch: 6
   roamPause: 1
   walkpointSet: 0
 --- !u!114 &8750242762222399792

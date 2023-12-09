@@ -36,11 +36,14 @@ public class BaseAI : MonoBehaviour, IDamageable
     Vector3 playerDir;
 
     //patrol
+    bool isMoving;
     Vector3 enemyPos;
     Vector3 destinationPoint;
+    Coroutine cot;
 
     void Start()
     {
+        isMoving = false;
         HUDManager.instance.UpdateProgress(1);
         enemyPos = transform.position;
         stoppingDist = agent.stoppingDistance;
@@ -61,10 +64,10 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     public virtual void patrol()
     {
-        if (transform.position != enemyPos)
+        if (isMoving)
         {
             agent.stoppingDistance = 0;
-            StartCoroutine(returntoLastPos(1));
+            cot = StartCoroutine(returntoLastPos(1));
         }
     }
 
@@ -75,6 +78,7 @@ public class BaseAI : MonoBehaviour, IDamageable
             destinationPoint = enemyPos;
             yield return new WaitForSeconds(delay);
             agent.SetDestination(destinationPoint);
+            isMoving = false;
         }
     }
 
@@ -92,7 +96,8 @@ public class BaseAI : MonoBehaviour, IDamageable
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
                 isShooting = false;
-                StopAllCoroutines();
+                if (cot != null)
+                    StopCoroutine(cot);
                 agent.SetDestination(GameManager.instance.player.transform.position);
                 enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
 
@@ -106,6 +111,7 @@ public class BaseAI : MonoBehaviour, IDamageable
                     faceTarget();
                 }
                 
+                isMoving = true;
                 agent.stoppingDistance = stoppingDist;
                 return true;
             }
@@ -153,10 +159,12 @@ public class BaseAI : MonoBehaviour, IDamageable
         HP -= damage;
 
         isShooting = false;
-        StopAllCoroutines();
+        if (cot != null)
+            StopCoroutine(cot);
         StartCoroutine(flashRed());
 
         agent.SetDestination(GameManager.instance.player.transform.position);
+        isMoving = true;
 
         if (HP <= 0)
         {

@@ -76,4 +76,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9eaea2be491764bb17fa4ab519424d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointRad: 1
+  waypointChildRad: 1
+  waypointSearchRad: 5

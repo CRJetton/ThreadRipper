@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class waypointGizmo : MonoBehaviour
 {
-    [Range(1, 3)][SerializeField] int waypointRad;
+    [Range(1, 3)][SerializeField] int waypointChildRad;
+    [Range(1, 10)][SerializeField] public int waypointSearchRad;
+
+    public static waypointGizmo instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
 
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, waypointSearchRad);
+
         foreach (Transform t in transform)
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(t.position, waypointRad);
+            Gizmos.DrawWireSphere(t.position, waypointChildRad);
         }
 
         for (int i = 0; i < transform.childCount; i++) 

@@ -84,8 +84,8 @@ MonoBehaviour:
   model: {fileID: 363718558799847857}
   headPosition: {fileID: 363718558803062919}
   enemyCombat: {fileID: 2374437348007658942}
-  stoppingDist: 0
-  HP: 6
+  stoppingDist: 5
+  HP: 10
   viewCone: 180
   targetFaceSpeed: 3
   shootRate: 1
@@ -117,7 +117,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 2
+  m_Speed: 3
   m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -140,7 +140,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
+  m_Radius: 25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1887439388771734670
 CapsuleCollider:
