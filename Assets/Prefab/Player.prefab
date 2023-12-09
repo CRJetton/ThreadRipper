@@ -413,7 +413,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.1, z: 0.4}
+  m_Size: {x: 0.4, y: 0.2, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2078285450
 Rigidbody:
@@ -488,6 +488,7 @@ MonoBehaviour:
   invertY: 0
   defaultBobSpeed: 10
   sprintBobSpeed: 20
+  crouchBobSpeed: 5
   headBobDistanceHoriz: 0.025
   headBobDistanceVert: 0.05
 --- !u!1 &3420768083283284631
@@ -6664,9 +6665,11 @@ MonoBehaviour:
   defaultMoveSpeed: 5
   sprintSpeed: 10
   crouchMoveSpeed: 2
-  colliderCrouchAmount: 2.2
-  crouchHeight: 1.4
-  standHeight: 1.7
+  colliderCrouchHeight: 0.4
+  colliderStandHeight: 0.8
+  colliderCrouchSizeMod: 2
+  cameraCrouchHeight: 1
+  cameraStandHeight: 1.5
   crouchTime: 0.16
   crouchCooldown: 0.2
   sprintSlideTime: 0.75
@@ -6687,6 +6690,7 @@ MonoBehaviour:
   climbForward: 1
   animator: {fileID: 1411667799}
   animationTransitionSpeed: 8
+  sprintAnimSpeed: 1.3
   maxHP: 200
   HP: 0
   playerCamera: {fileID: 940690186790166899}
@@ -6709,7 +6713,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &7999538882039293929
 MonoBehaviour:
   m_ObjectHideFlags: 0
