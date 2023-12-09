@@ -6,7 +6,6 @@ public class InteractableDetector : MonoBehaviour
 {
     [SerializeField] List<GameObject> interactablesTouching = new List<GameObject>();
 
-
     public IInteractable GetClosestInteractable(Vector3 origin)
     {
         float closestDist = Mathf.Infinity;
@@ -36,19 +35,25 @@ public class InteractableDetector : MonoBehaviour
             return null;
     }
 
-
     public void RemoveInteractable(IInteractable interactable)
     {
-        for (int i = 0; i < interactablesTouching.Count; i++)
+        for (int i = interactablesTouching.Count - 1; i >= 0; i--)
         {
-            if (interactablesTouching[i].GetComponent<IInteractable>() == interactable)
+            if (interactablesTouching[i] == null)
+            {
+                interactablesTouching.RemoveAt(i);
+                continue;
+            }
+
+            IInteractable currentInteractable = interactablesTouching[i].GetComponent<IInteractable>();
+
+            if (currentInteractable == interactable)
             {
                 interactablesTouching.RemoveAt(i);
                 break;
             }
         }
     }
-
 
     void OnTriggerEnter(Collider other)
     {
@@ -68,11 +73,6 @@ public class InteractableDetector : MonoBehaviour
         if (other.isTrigger)
             return;
 
-        IInteractable interactable = other.GetComponent<IInteractable>();
-
-        if (interactable != null)
-        {
-            interactablesTouching.Remove(other.gameObject);
-        }
+        interactablesTouching.Remove(other.gameObject);
     }
 }
