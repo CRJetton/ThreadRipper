@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject menuLose;
     public GameObject popupMenu;
     [SerializeField] TMP_Text popupText;
-
+    
     [Header("-----Inputs-----")]
     public InputAction playerPauseInput;
     public InputAction UIPauseInput;
@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     public bool isPaused;
     float originalTimeScale;
     private GameManager.GameStates currState;
+    [SerializeField] Texture2D cursorIcon;
 
 
     #region Initialize
@@ -43,6 +44,8 @@ public class UIManager : MonoBehaviour
 
         playerPauseInput.started += PauseMenu;
         UIPauseInput.started += UnpauseMenu;
+
+        Cursor.SetCursor(cursorIcon, Vector2.zero, CursorMode.ForceSoftware);
     }
 
     private void OnDisable()

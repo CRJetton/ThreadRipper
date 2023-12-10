@@ -30,6 +30,7 @@ public class HUDManager : MonoBehaviour
     public GameObject statusObject;
     [SerializeField] Image statusScreen;
     [SerializeField] CanvasGroup statusScreenAlpha;
+    public GameObject hitMarker;
 
     [Header("-----Reticle-----")]
     public ReticleController reticleController;
@@ -41,7 +42,6 @@ public class HUDManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-
     }
 
     #region "Show" Functions
@@ -55,14 +55,19 @@ public class HUDManager : MonoBehaviour
         minimap.SetActive(true);
     }
 
-    void ShowReticle()
+    public void ShowReticle()
     {
         reticleController.gameObject.SetActive(true);
     }
 
-    void ShowAmmoCount()
+    public void ShowAmmoCount()
     {
         ammoCount.SetActive(true);
+    }
+
+    public void ShowHitMarker()
+    {
+        hitMarker.SetActive(true);
     }
 
     #endregion
@@ -78,15 +83,11 @@ public class HUDManager : MonoBehaviour
         minimap.SetActive(false);
     }
 
-    void HideReticle()
-    {
-        reticleController.gameObject.SetActive(false);
-    }
-
     void HideAmmoCount()
     {
         ammoCount.SetActive(false);
     }
+
     #endregion
 
     #region Update Functions
@@ -125,6 +126,16 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    #endregion
+    /* -----Function for showing hitmarkers-----
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            GameObject marker = Instantiate(HUDManager.instance.hitMarker, HUDManager.instance.hitMarker.transform);
+            Destroy(marker, 0.2f);
+        }
+    }
+    */
 
+    #endregion
 }

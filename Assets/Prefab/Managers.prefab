@@ -1198,6 +1198,12 @@ PrefabInstance:
       objectReference: {fileID: 4377157855608376049}
     - target: {fileID: 7008106974861803191, guid: a7e8086338b61c34187b98c5c8e822b7,
         type: 3}
+      propertyPath: hitMarker
+      value: 
+      objectReference: {fileID: 3411251355268904351, guid: 0674fd80d350bd449945dbd66325a5a6,
+        type: 3}
+    - target: {fileID: 7008106974861803191, guid: a7e8086338b61c34187b98c5c8e822b7,
+        type: 3}
       propertyPath: damageAlpha
       value: 0.501
       objectReference: {fileID: 0}
@@ -1621,6 +1627,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7168712863137445647, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 7168712863153267048, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: m_Name
@@ -1741,6 +1752,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7168712863662105749, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168712863889483083, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 7168712863992801196, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: popupMenu
@@ -1753,6 +1774,11 @@ PrefabInstance:
       objectReference: {fileID: 1073845818}
     - target: {fileID: 7168712863992801196, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
+      propertyPath: cursorIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: 8d9a5a5a721ccac4bb61e1008af87b9d, type: 3}
+    - target: {fileID: 7168712863992801196, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
       propertyPath: UIPauseInput.m_Name
       value: UI Pause Input
       objectReference: {fileID: 0}
@@ -1761,10 +1787,25 @@ PrefabInstance:
       propertyPath: playerPauseInput.m_Name
       value: Player Pause Input
       objectReference: {fileID: 0}
+    - target: {fileID: 7168712864045279533, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 7168712864314696004, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -140
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168712864314696005, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168712864761150533, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_text
+      value: Main Menu
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7168712863919505789, guid: 7085f9d1c4e543848b1394fe852c3c3b, type: 3}
