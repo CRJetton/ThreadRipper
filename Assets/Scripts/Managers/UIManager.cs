@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     private GameManager.GameStates currState;
 
 
+    #region Initialize
     void Awake()
     {
         instance = this;
@@ -49,12 +50,47 @@ public class UIManager : MonoBehaviour
         playerPauseInput.started -= PauseMenu;
         UIPauseInput.started -= UnpauseMenu;
     }
+    #endregion
 
+    #region Menus
+    private void PauseMenu(InputAction.CallbackContext context)
+    {
+        StatePaused();
+        menuActive = menuPause;
+        menuActive.SetActive(isPaused);
+    }
+
+    private void UnpauseMenu(InputAction.CallbackContext context)
+    {
+        if (currState == GameManager.GameStates.loseMenu ||
+           currState == GameManager.GameStates.winMenu)
+        {
+            return;
+        }
+        else
+        {
+            StateUnpaused();
+            menuActive = menuPause;
+            menuActive.SetActive(isPaused);
+        }
+    }
+
+    GameObject CreatePopup(Transform position, string itemName)
+    {
+        popupMenu.transform.position = position.position;
+        popupText.text = itemName;
+        popupMenu.SetActive(true);
+        return popupMenu;
+
+    }
+    #endregion
+
+    #region Game States
     public void StatePaused()
     {
         isPaused = !isPaused;
         InputManager.instance.SwapToPauseInput();
-        HideHUD();
+        HUDManager.instance.HideHUD();
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -65,7 +101,7 @@ public class UIManager : MonoBehaviour
         currState = GameManager.GameStates.play;
         InputManager.instance.SwapToPlayInput();
         isPaused = !isPaused;
-        ShowHUD();
+        HUDManager.instance.ShowHUD();
         Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -77,7 +113,7 @@ public class UIManager : MonoBehaviour
     {
         currState = GameManager.GameStates.loseMenu;
         StatePaused();
-        HideHUD();
+        HUDManager.instance.HideHUD();
         InputManager.instance.playerInput.UI.Pause.Disable();
         menuActive = menuLose;
         menuActive.SetActive(true);
@@ -93,55 +129,6 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void HideHUD()
-    {
-        HUDManager.instance.playerHPBarFrame.SetActive(false);
-        HUDManager.instance.ammoCount.SetActive(false);
-        HUDManager.instance.enemiesBackground.SetActive(false);
-        HUDManager.instance.reticleController.gameObject.SetActive(false);
-        HUDManager.instance.statusObject.SetActive(false);
-        HUDManager.instance.minimap.SetActive(false);
-    }
+    #endregion
 
-    public void ShowHUD()
-    {
-        HUDManager.instance.playerHPBarFrame.SetActive(true);
-        HUDManager.instance.ammoCount.SetActive(true);
-        HUDManager.instance.enemiesBackground.SetActive(true);
-        HUDManager.instance.reticleController.gameObject.SetActive(true);
-        HUDManager.instance.statusObject.SetActive(true);
-        HUDManager.instance.minimap.SetActive(true);
-    }
-
-    private void PauseMenu(InputAction.CallbackContext context)
-    {
-        StatePaused();
-        menuActive = menuPause;
-        menuActive.SetActive(isPaused);
-    }
-
-    private void UnpauseMenu(InputAction.CallbackContext context)
-    {
-        if(currState == GameManager.GameStates.loseMenu || 
-           currState == GameManager.GameStates.winMenu)
-        {
-            return;
-        }
-        else
-        {
-            StateUnpaused();
-            menuActive = menuPause;
-            menuActive.SetActive(isPaused);
-        }
-        
-    }
-
-    GameObject CreatePopup(Transform position, string itemName)
-    {
-        popupMenu.transform.position = position.position;
-        popupText.text = itemName;
-        popupMenu.SetActive(true);
-        return popupMenu;
-        
-    }
 }
