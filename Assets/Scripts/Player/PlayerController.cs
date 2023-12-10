@@ -37,9 +37,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     private bool isSprinting;
 
     [Header("_____Crouching_____")]
-    [SerializeField] private float colliderCrouchAmount;
-    [SerializeField] private float crouchHeight;
-    [SerializeField] private float standHeight;
+    [SerializeField] private float colliderCrouchHeight;
+    [SerializeField] private float colliderStandHeight;
+    [SerializeField] private float colliderCrouchSizeMod;
+    [SerializeField] private float cameraCrouchHeight;
+    [SerializeField] private float cameraStandHeight;
     [SerializeField] private float crouchTime;
     [SerializeField] private float crouchCooldown;
     private bool isCrouching;
@@ -75,6 +77,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     [Header("_____Animation_____")]
     [SerializeField] private Animator animator;
     [SerializeField] private float animationTransitionSpeed;
+    [SerializeField] private float sprintAnimSpeed;
+    private float origAnimSpeed;
 
     [Header("_____General_____")]
     [SerializeField] float maxHP;
@@ -93,6 +97,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         HP = maxHP;
         isCrouchReady = true;
         isSlideReady = true;
+        origAnimSpeed = animator.speed;
     }
 
     private void Start()
@@ -133,10 +138,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             animator.SetBool("isMoving", true);
         }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
         animator.SetFloat("moveX", Mathf.Lerp(animator.GetFloat("moveX"), moveInput.ReadValue<Vector2>().x,
             Time.deltaTime * animationTransitionSpeed));
         animator.SetFloat("moveY", Mathf.Lerp(animator.GetFloat("moveY"), moveInput.ReadValue<Vector2>().y,
-            Time.deltaTime * animationTransitionSpeed)); ;
+            Time.deltaTime * animationTransitionSpeed));
 
         //Gravity
         if (move.y > gravity)
@@ -169,13 +178,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
         else if (_ctx.started && moveInput.ReadValue<Vector2>().y >= 0 && groundDetector.GetIsPlayerGrounded())
         {
-            currMoveSpeed = sprintSpeed;
             isSprinting = true;
+            animator.speed = sprintAnimSpeed;
+            currMoveSpeed = sprintSpeed;
         }
         else
         {
-            currMoveSpeed = defaultMoveSpeed;
             isSprinting = false;
+            animator.speed = origAnimSpeed;
+            currMoveSpeed = defaultMoveSpeed;
         }
     }
 
@@ -258,9 +269,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Crouch()
     {
-        StartCoroutine(playerCamera.Crouch(crouchHeight, crouchTime));
+        StartCoroutine(playerCamera.Crouch(cameraCrouchHeight, crouchTime));
         StartCoroutine(CrouchCooldown());
-        characterController.height /= colliderCrouchAmount;
+        characterController.center = new Vector3(0, colliderCrouchHeight, 0);
+        characterController.height /= colliderCrouchSizeMod;
         currMoveSpeed = crouchMoveSpeed;
         isCrouching = true;
         isStanding = false;
@@ -268,9 +280,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Stand()
     {
-        StartCoroutine(playerCamera.Crouch(standHeight, crouchTime));
+        StartCoroutine(playerCamera.Crouch(cameraStandHeight, crouchTime));
         StartCoroutine(CrouchCooldown());
-        characterController.height *= colliderCrouchAmount;
+        characterController.center = new Vector3(0, colliderStandHeight, 0);
+        characterController.height *= colliderCrouchSizeMod;
         currMoveSpeed = defaultMoveSpeed;
         isCrouching = false;
         isStanding = true;
@@ -285,6 +298,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private IEnumerator SprintSlide(float _sprintSlideTime, float _sprintSlideSpeed)
     {
+        animator.SetTrigger("isSliding");
         isSliding = true;
         float time = 0;
         
@@ -295,6 +309,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             yield return null;
         }
 
+        animator.SetBool("isCrouching", false);
         Stand();
         isSliding = false;
 

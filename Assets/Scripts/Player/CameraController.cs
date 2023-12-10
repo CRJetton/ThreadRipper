@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
     InputAction lookInput;
     InputAction moveInput;
     InputAction sprintInput;
+    InputAction crouchInput;
 
     [Header("Componenets")]
     [SerializeField] PlayerController player;
@@ -31,9 +32,11 @@ public class CameraController : MonoBehaviour
     private float currBobSpeed;
     [SerializeField] private float defaultBobSpeed;
     [SerializeField] private float sprintBobSpeed;
+    [SerializeField] private float crouchBobSpeed;
     [Range(0, 0.1f)][SerializeField] private float headBobDistanceHoriz;
     [Range(0,0.1f)][SerializeField] private float headBobDistanceVert;
     private Vector3 origPos;
+    private Vector3 bobTowards;
 
     private void Awake()
     {
@@ -45,6 +48,7 @@ public class CameraController : MonoBehaviour
         lookInput = InputManager.instance.playerInput.PlayerControls.Look;
         moveInput = InputManager.instance.playerInput.PlayerControls.Move;
         sprintInput = InputManager.instance.playerInput.PlayerControls.Sprint;
+        crouchInput = InputManager.instance.playerInput.PlayerControls.Crouch;
 
         defaultFOV = cameras[0].fieldOfView;
     }
@@ -57,20 +61,29 @@ public class CameraController : MonoBehaviour
 
     private void HandleHeadBob()
     {
-        // Adjust speeds of bob based on movement state.
-        if (sprintInput.IsPressed() && currBobSpeed != sprintBobSpeed)
+        if (!playerGroundDetector.GetIsPlayerGrounded() || !sprintInput.IsPressed() || !crouchInput.IsPressed())
         {
-            currBobSpeed = sprintBobSpeed;
+            if (currBobSpeed!= defaultBobSpeed)
+            {
+                currBobSpeed = defaultBobSpeed;
+            }
         }
-        else if (!sprintInput.IsPressed() && currBobSpeed != defaultBobSpeed)
+        else if (playerGroundDetector.GetIsPlayerGrounded())
         {
-            currBobSpeed = defaultBobSpeed;
+            if (sprintInput.IsPressed() && !crouchInput.IsPressed() && currBobSpeed != sprintBobSpeed)
+            {
+                currBobSpeed = sprintBobSpeed;
+            }
+            else if (crouchInput.IsPressed() && !sprintInput.IsPressed() && currBobSpeed != crouchBobSpeed)
+            {
+                currBobSpeed = crouchBobSpeed;
+            }
         }
 
         if (moveInput.ReadValue<Vector2>().magnitude != 0)
         {
-            // Use trig functions to create back and forth movements up and down over time.
-            Vector3 bobTowards = origPos;
+            // Use trig functions to create up, down, and side to side movements over time.
+            bobTowards = origPos;
             bobTowards.x += Mathf.Cos(Time.time * currBobSpeed) * headBobDistanceHoriz;
             bobTowards.y += Mathf.Sin(Time.time * currBobSpeed) * headBobDistanceVert;
             bobTowards *= moveInput.ReadValue<Vector2>().magnitude;
@@ -96,19 +109,17 @@ public class CameraController : MonoBehaviour
     {
         float currTime = 0f;
         float startHeight = transform.localPosition.y;
+        Vector3 moveTo;
 
         while (currTime < _totalTime)
         {
-            Vector3 moveTo = transform.localPosition;
+            moveTo = transform.localPosition;
             moveTo.y = Mathf.Lerp(startHeight, _targetHeight, currTime / _totalTime);
             transform.localPosition = moveTo;
+            origPos.y = moveTo.y; // Reassign for headBob
             currTime += Time.deltaTime;
             yield return null;
         }
-
-        Vector3 targetPos = transform.localPosition;
-        targetPos.y = _targetHeight;
-        transform.localPosition = targetPos;
     }
 
     public void Zoom(float zoomFactor, float zoomTime)
