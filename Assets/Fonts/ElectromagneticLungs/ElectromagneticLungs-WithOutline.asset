@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: ElectromagneticLungs-WithOutline
   m_EditorClassIdentifier: 
-  hashCode: -998627674
+  hashCode: -593524012
   material: {fileID: 7963897360495387769}
-  materialHashCode: -189669434
+  materialHashCode: -254687884
   m_Version: 1.1.0
   m_SourceFontFileGUID: 19242537a6ea0f746b9ece651d7fb5d5
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 19242537a6ea0f746b9ece651d7fb5d5,
@@ -2689,7 +2689,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.3
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333

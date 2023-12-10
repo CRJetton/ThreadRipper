@@ -14,10 +14,11 @@ public class GameManager : MonoBehaviour
     };
 
     public static GameManager instance;
+
+    [Header("-----Player-----")]
     public GameObject playerSpawnPos;
     public GameObject player;
     public GameObject playerPositions;
-
     public PlayerController playerController;
     public PlayerBodyPositions playerBodyPositions;
 

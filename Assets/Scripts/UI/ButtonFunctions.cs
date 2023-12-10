@@ -18,14 +18,16 @@ public class ButtonFunctions : MonoBehaviour
         UIManager.instance.StateUnpaused();
     }
 
-    public void Quit()
+    public void ReturnToMainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene(1);
     }
+    
 
     public void Respawn()
     {
         GameManager.instance.playerController.OnRespawn();
         UIManager.instance.StateUnpaused();
     }
+
 }

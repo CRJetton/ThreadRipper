@@ -495,16 +495,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PistolPickup
       objectReference: {fileID: 0}
-    - target: {fileID: 2128033713206505755, guid: 7344c787ab4daa945a190a98cc9bc628,
-        type: 3}
-      propertyPath: saveValue1
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2128033713206505755, guid: 7344c787ab4daa945a190a98cc9bc628,
-        type: 3}
-      propertyPath: saveValue2
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 8828705185766651711, guid: 7344c787ab4daa945a190a98cc9bc628,
         type: 3}
       propertyPath: m_RootOrder
@@ -1389,16 +1379,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun - SMG
       objectReference: {fileID: 0}
-    - target: {fileID: 2128033713206505755, guid: caa349c1d3fd9c645be9835190c714e1,
-        type: 3}
-      propertyPath: saveValue1
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2128033713206505755, guid: caa349c1d3fd9c645be9835190c714e1,
-        type: 3}
-      propertyPath: saveValue2
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 8828705185766651711, guid: caa349c1d3fd9c645be9835190c714e1,
         type: 3}
       propertyPath: m_RootOrder
@@ -1852,16 +1832,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 48040504685769886, guid: 279e75d5eb28302489d2a09047a3ca1f,
-        type: 3}
-      propertyPath: saveValue1
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 48040504685769886, guid: 279e75d5eb28302489d2a09047a3ca1f,
-        type: 3}
-      propertyPath: saveValue2
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 1178596823894660017, guid: 279e75d5eb28302489d2a09047a3ca1f,
         type: 3}
       propertyPath: m_Name
@@ -2469,16 +2439,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 333003845532917746, guid: 0e3fe84aba4d68846b2e63c187f0958b,
-        type: 3}
-      propertyPath: saveValue1
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 333003845532917746, guid: 0e3fe84aba4d68846b2e63c187f0958b,
-        type: 3}
-      propertyPath: saveValue2
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 1472266131599341789, guid: 0e3fe84aba4d68846b2e63c187f0958b,
         type: 3}
       propertyPath: m_Name
@@ -2548,16 +2508,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3024027963033325909, guid: a034e23f9a566d942b343684a7d8feb3,
-        type: 3}
-      propertyPath: saveValue1
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3024027963033325909, guid: a034e23f9a566d942b343684a7d8feb3,
-        type: 3}
-      propertyPath: saveValue2
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 4109000768470005370, guid: a034e23f9a566d942b343684a7d8feb3,
         type: 3}
       propertyPath: m_Name

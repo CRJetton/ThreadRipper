@@ -11,7 +11,6 @@ public class MiniMap : MonoBehaviour
         playerPos = GameManager.instance.player.transform;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         newPosition = playerPos.position;

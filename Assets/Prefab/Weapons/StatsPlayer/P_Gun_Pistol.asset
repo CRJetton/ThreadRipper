@@ -16,11 +16,14 @@ MonoBehaviour:
     type: 3}
   itemPickupPrefab: {fileID: 971036337970845236, guid: 7344c787ab4daa945a190a98cc9bc628,
     type: 3}
-  bulletPrefab: {fileID: 1160724838038381753, guid: 094a08d148938fd4a865371853343254,
-    type: 3}
-  bulletStats: {fileID: 11400000, guid: 09f2f20928edee6479c71341d662123d, type: 2}
+  noHitTag: Player
   equipTime: 0.25
   reloadTime: 0.7
+  bulletPrefab: {fileID: 1160724838038381753, guid: 094a08d148938fd4a865371853343254,
+    type: 3}
+  damage: 1.35
+  bulletSpeed: 90
+  bulletDestroyTime: 3
   timeBetweenShots: 0.15
   queueShotTime: 0.05
   bulletsPerShot: 1
@@ -405,3 +408,18 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  shootSounds:
+  - {fileID: 8300000, guid: a68d9561aec72ac4aba6faab2fb04af9, type: 3}
+  - {fileID: 8300000, guid: 3a91691b1937ed746983c2432e298796, type: 3}
+  - {fileID: 8300000, guid: d43a5135e55f5ef4a997ea2a6434b208, type: 3}
+  - {fileID: 8300000, guid: c80eb090cd5bd444fb1e62f8691cbc3a, type: 3}
+  - {fileID: 8300000, guid: efc93498c349fa04690baadb05cf48d1, type: 3}
+  - {fileID: 8300000, guid: b5c61e03548648f45b0772fa05f47377, type: 3}
+  - {fileID: 8300000, guid: 22510d795398bf14082613c1527f46a6, type: 3}
+  shootVolume: 0.5
+  minShootPitch: 0.95
+  maxShootPitch: 1.05
+  reloadSound: {fileID: 8300000, guid: 79160bad2efd1f54f9ae7b06d243abda, type: 3}
+  reloadVolume: 0.5
+  minReloadPitch: 0.95
+  maxReloadPitch: 1.05

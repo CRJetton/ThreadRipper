@@ -168,8 +168,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2019097756}
-  m_Father: {fileID: 3240688565699280321}
-  m_RootOrder: 5
+  m_Father: {fileID: 7426203705580467040}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -403,7 +403,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7426203705580467040}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1708971964
 AudioSource:
@@ -804,7 +804,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7426203705580467040}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2329606940559626182
 MonoBehaviour:
@@ -964,7 +964,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7426203705580467040}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3707723820059791697
 MonoBehaviour:
@@ -1012,7 +1012,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7426203705580467040}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6985012470289596829
 MonoBehaviour:
@@ -1056,6 +1056,7 @@ Transform:
   m_Children:
   - {fileID: 3240688565149219451}
   - {fileID: 3240688565699280321}
+  - {fileID: 843693737}
   - {fileID: 1439201481325504563}
   - {fileID: 7602977254140985860}
   - {fileID: 6618928924385020233}
@@ -1095,7 +1096,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7426203705580467040}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1651819173584503389
 MonoBehaviour:
@@ -1144,7 +1145,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7426203705580467040}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2181892568076059984
 MonoBehaviour:
@@ -1196,6 +1197,12 @@ PrefabInstance:
       propertyPath: minimap
       value: 
       objectReference: {fileID: 4377157855608376049}
+    - target: {fileID: 7008106974861803191, guid: a7e8086338b61c34187b98c5c8e822b7,
+        type: 3}
+      propertyPath: hitMarker
+      value: 
+      objectReference: {fileID: 3411251355268904351, guid: 0674fd80d350bd449945dbd66325a5a6,
+        type: 3}
     - target: {fileID: 7008106974861803191, guid: a7e8086338b61c34187b98c5c8e822b7,
         type: 3}
       propertyPath: damageAlpha
@@ -1621,6 +1628,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7168712863137445647, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 7168712863153267048, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: m_Name
@@ -1741,6 +1753,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7168712863662105749, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168712863889483083, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 7168712863992801196, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: popupMenu
@@ -1753,6 +1775,11 @@ PrefabInstance:
       objectReference: {fileID: 1073845818}
     - target: {fileID: 7168712863992801196, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
+      propertyPath: cursorIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: 8d9a5a5a721ccac4bb61e1008af87b9d, type: 3}
+    - target: {fileID: 7168712863992801196, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
       propertyPath: UIPauseInput.m_Name
       value: UI Pause Input
       objectReference: {fileID: 0}
@@ -1761,10 +1788,25 @@ PrefabInstance:
       propertyPath: playerPauseInput.m_Name
       value: Player Pause Input
       objectReference: {fileID: 0}
+    - target: {fileID: 7168712864045279533, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 7168712864314696004, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -140
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168712864314696005, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168712864761150533, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: m_text
+      value: Main Menu
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7168712863919505789, guid: 7085f9d1c4e543848b1394fe852c3c3b, type: 3}

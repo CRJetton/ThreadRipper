@@ -5,12 +5,17 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GunStats : WeaponStats
 {
-    [Header("General")]
-    public GameObject bulletPrefab;
-    public BulletStats bulletStats;
 
+    [Header("General")]
+    public string noHitTag;
     [Range(0f, 5f)] public float equipTime;
     [Range(0f, 10f)] public float reloadTime;
+
+    [Header("Shooting")]
+    public GameObject bulletPrefab;
+    public float damage;
+    public float bulletSpeed;
+    public float bulletDestroyTime;
 
     [Range(0f, 5f)] public float timeBetweenShots;
     [Range(0f, 0.5f)] public float queueShotTime;
@@ -53,4 +58,14 @@ public class GunStats : WeaponStats
     [Range(0f, 2.5f)] public float jumpRecoverTime;
     [Range(0f, 1f)] public float dontRecoverTime;
     public AnimationCurve shotJumpRecovery;
+
+    [Header("Audio")]
+    public AudioClip[] shootSounds;
+    [Range(0, 1)] public float shootVolume;
+    [Range(0, 2)] public float minShootPitch;
+    [Range(0, 2)] public float maxShootPitch;
+    public AudioClip reloadSound;
+    [Range(0, 1)] public float reloadVolume;
+    [Range(0, 2)] public float minReloadPitch;
+    [Range(0, 2)] public float maxReloadPitch;
 }

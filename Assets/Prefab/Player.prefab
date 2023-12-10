@@ -6753,6 +6753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 6655305115144485796}
   playerCombat: {fileID: 7999538882039293929}
+  bodyPositions: {fileID: 7138843497001214250}
   interactableDetector: {fileID: 1535046375}
 --- !u!114 &7138843497001214250
 MonoBehaviour:

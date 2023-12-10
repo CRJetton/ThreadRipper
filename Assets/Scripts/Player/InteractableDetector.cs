@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractableDetector : MonoBehaviour
 {
     [SerializeField] List<GameObject> interactablesTouching = new List<GameObject>();
 
-    public IInteractable GetClosestInteractable(Vector3 origin)
+    UnityEvent OnTouch = new UnityEvent();
+    UnityEvent OnStopTouch = new UnityEvent();
+
+    public GameObject GetClosestInteractable(Vector3 origin)
     {
         float closestDist = Mathf.Infinity;
         float currentDist;
@@ -29,10 +34,7 @@ public class InteractableDetector : MonoBehaviour
             }
         }
 
-        if (closestInteractable != null)
-            return closestInteractable.GetComponent<IInteractable>();
-        else
-            return null;
+        return closestInteractable;
     }
 
     public void RemoveInteractable(IInteractable interactable)
@@ -55,6 +57,9 @@ public class InteractableDetector : MonoBehaviour
         }
     }
 
+    public void SubscribeOnTouch(UnityAction action) { OnTouch.AddListener(action); }
+    public void SubscribeOnStopTouch(UnityAction action) { OnStopTouch.AddListener(action); }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
@@ -65,6 +70,7 @@ public class InteractableDetector : MonoBehaviour
         if (interactable != null)
         {
             interactablesTouching.Add(other.gameObject);
+            OnTouch.Invoke();
         }
     }
 
@@ -73,6 +79,13 @@ public class InteractableDetector : MonoBehaviour
         if (other.isTrigger)
             return;
 
-        interactablesTouching.Remove(other.gameObject);
+        IInteractable interactable = other.GetComponent<IInteractable>();
+
+        if (interactable != null)
+        {
+            interactablesTouching.Remove(other.gameObject);
+            OnStopTouch.Invoke();
+        }
+
     }
 }
