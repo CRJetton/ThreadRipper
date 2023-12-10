@@ -20,4 +20,7 @@ public interface IGun : IWeapon
     public int GetReserveAmmo();
     public int GetMagAmmoCapacity();
     public int GetReserveAmmoCapacity();
+
+    public void SetMagAmmo(int ammo);
+    public void SetReserveAmmo(int ammo);
 }

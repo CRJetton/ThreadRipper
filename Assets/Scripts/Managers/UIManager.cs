@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    GameObject CreatePopup(Transform position, string itemName)
+    public GameObject CreatePopup(Transform position, string itemName)
     {
         popupMenu.transform.position = position.position;
         popupText.text = itemName;

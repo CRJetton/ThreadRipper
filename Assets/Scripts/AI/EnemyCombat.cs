@@ -111,7 +111,7 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
             velocity = velocity.normalized;
             velocity *= throwSpeed;
 
-            Vector3 angularVelocity = weaponCurrent.getObject().transform.right * throwAngularSpeed;
+            Vector3 angularVelocity = weaponCurrent.GetObject().transform.right * throwAngularSpeed;
 
             weaponCurrent.Throw(velocity, angularVelocity);
 

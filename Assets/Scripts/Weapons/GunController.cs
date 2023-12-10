@@ -140,7 +140,7 @@ public class GunController : MonoBehaviour, IGun
 
         anim.Play(shootAnims[Random.Range(0, shootAnims.Length)].name);
 
-        audioSource.PlayOneShot(gun.shootSounds[Random.Range(0, gun.shootSounds.Length - 1)], gun.shootVolume);
+        PlaySound(gun.shootSounds[Random.Range(0, gun.shootSounds.Length - 1)], gun.shootVolume, gun.minShootPitch, gun.maxShootPitch);
 
         StopJumpRecovery();
         StartJumpRecovery();
@@ -216,7 +216,8 @@ public class GunController : MonoBehaviour, IGun
     {
         isReloading = true;
         anim.SetBool("isReloading", isReloading);
-        audioSource.PlayOneShot(gun.reloadSound, gun.shootVolume);
+
+        PlaySound(gun.reloadSound, gun.reloadVolume, gun.minReloadPitch, gun.maxReloadPitch);
 
         yield return new WaitForSeconds(gun.reloadTime);
 
@@ -534,6 +535,14 @@ public class GunController : MonoBehaviour, IGun
     }
     #endregion
 
+    #region Audio
+    public void PlaySound(AudioClip clip, float volume, float minPitch, float maxPitch)
+    {
+        audioSource.pitch = Random.Range(minPitch, maxPitch);
+        audioSource.PlayOneShot(clip, volume);
+    }
+    #endregion
+
     #region Getters and Setters
     public float GetEquipTime()
     {
@@ -550,7 +559,7 @@ public class GunController : MonoBehaviour, IGun
         return reserveAmmo;
     }
 
-    public GameObject getObject()
+    public GameObject GetObject()
     {
         return gameObject;
     }

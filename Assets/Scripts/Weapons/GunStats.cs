@@ -62,6 +62,10 @@ public class GunStats : WeaponStats
     [Header("Audio")]
     public AudioClip[] shootSounds;
     [Range(0, 1)] public float shootVolume;
+    [Range(0, 2)] public float minShootPitch;
+    [Range(0, 2)] public float maxShootPitch;
     public AudioClip reloadSound;
     [Range(0, 1)] public float reloadVolume;
+    [Range(0, 2)] public float minReloadPitch;
+    [Range(0, 2)] public float maxReloadPitch;
 }

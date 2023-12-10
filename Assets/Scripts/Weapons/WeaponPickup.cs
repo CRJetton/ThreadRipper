@@ -11,6 +11,7 @@ public class WeaponPickup : MonoBehaviour, IInteractable
     [SerializeField] Rigidbody rb;
 
     [SerializeField] float thrownDamage;
+    [SerializeField] float dropAngularSpeed;
 
     [SerializeField] int currentAmmo;
     [SerializeField] int reserveAmmo;
@@ -31,7 +32,7 @@ public class WeaponPickup : MonoBehaviour, IInteractable
 
     public void Drop()
     {
-
+        rb.angularVelocity = transform.forward * Random.Range(-dropAngularSpeed, dropAngularSpeed);
     }
 
     #region Throwing

@@ -10,8 +10,10 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
     [Header("Components")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] PlayerCombat playerCombat;
+    [SerializeField] PlayerBodyPositions bodyPositions;
     [SerializeField] InteractableDetector interactableDetector;
 
+    IInteractable currentInteractable;
 
     #region Initialization
     private void Start()
@@ -19,6 +21,9 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
         interactInput = InputManager.instance.playerInput.PlayerControls.Interact;
 
         interactInput.started += Interact;
+
+        interactableDetector.SubscribeOnTouch(OnInteractablesChange);
+        interactableDetector.SubscribeOnStopTouch(OnInteractablesChange);
     }
 
     private void OnDisable()
@@ -31,11 +36,24 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
     #region Interact
     void Interact(InputAction.CallbackContext context)
     {
-        IInteractable interactable = interactableDetector.GetClosestInteractable(transform.position);
-
-        if (interactable != null) 
+        if (currentInteractable != null)
         {
-            interactable.Interact(this);
+            currentInteractable.Interact(this);
+        }
+    }
+
+    void OnInteractablesChange()
+    {
+        GameObject interactable = interactableDetector.GetClosestInteractable(bodyPositions.playerHead.position);
+
+        if (interactable != null)
+        {
+            currentInteractable = interactable.GetComponent<IInteractable>();
+            UIManager.instance.CreatePopup(interactable.transform, interactable.name);
+        }
+        else
+        {
+            currentInteractable = null;
         }
     }
     #endregion
@@ -59,4 +77,3 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
     }
     #endregion
 }
-  

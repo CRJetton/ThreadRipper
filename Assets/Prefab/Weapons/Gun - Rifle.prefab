@@ -53,6 +53,7 @@ MonoBehaviour:
   physicsCol: {fileID: 8225147383325288574}
   rb: {fileID: 4350570066221983835}
   thrownDamage: 1
+  dropAngularSpeed: 5
   currentAmmo: 30
   reserveAmmo: 60
 --- !u!65 &8225147383325288574
