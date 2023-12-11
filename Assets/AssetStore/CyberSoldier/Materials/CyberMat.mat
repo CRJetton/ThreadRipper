@@ -1,6 +1,10 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< Updated upstream
 --- !u!114 &-1517173835393505662
+=======
+--- !u!114 &-5175173546201614739
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,16 +111,26 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+<<<<<<< Updated upstream
     - _GlossMapScale: 0
     - _Glossiness: 0.284
     - _GlossyReflections: 0
+=======
+    - _GlossMapScale: 1
+    - _Glossiness: 0.284
+    - _GlossyReflections: 1
+>>>>>>> Stashed changes
     - _Metallic: 0.614
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+<<<<<<< Updated upstream
     - _Smoothness: 0
+=======
+    - _Smoothness: 1
+>>>>>>> Stashed changes
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
