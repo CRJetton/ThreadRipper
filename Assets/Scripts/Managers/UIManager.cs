@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject menuLose;
     public GameObject popupMenu;
     [SerializeField] TMP_Text popupText;
-    
+
     [Header("-----Inputs-----")]
     public InputAction playerPauseInput;
     public InputAction UIPauseInput;
@@ -75,8 +76,14 @@ public class UIManager : MonoBehaviour
             StateUnpaused();
             menuActive = menuPause;
             menuActive.SetActive(isPaused);
+            OnUnpause.Invoke();
         }
     }
+
+    UnityEvent OnUnpause = new UnityEvent();
+
+    public void SubscribeOnUnpause(UnityAction action) { OnUnpause.AddListener(action); }
+    public void UnsubscribeOnUnpause(UnityAction action) { OnUnpause.RemoveListener(action); }
 
     public GameObject CreatePopup(Transform position, string itemName)
     {

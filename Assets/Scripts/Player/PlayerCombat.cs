@@ -48,6 +48,8 @@ public class PlayerCombat : MonoBehaviour, ICombat
 
         if (startingWeapon != null)
             EquipWeapon(startingWeapon.GetComponent<WeaponPickup>());
+
+        UIManager.instance.SubscribeOnUnpause(OnUnpause);
     }
 
     void InitializeControls()
@@ -73,7 +75,9 @@ public class PlayerCombat : MonoBehaviour, ICombat
         focusInput.started -= FocusStarted;
         focusInput.canceled -= FocusCanceled;
         reloadInput.started -= ReloadStarted;
-        throwInput.started -= ThrowStarted;  
+        throwInput.started -= ThrowStarted;
+
+        UIManager.instance.UnsubscribeOnUnpause(OnUnpause);
     }
     #endregion
 
@@ -318,6 +322,12 @@ public class PlayerCombat : MonoBehaviour, ICombat
     {
         HUDManager.instance.HideAmmoCount();
         HUDManager.instance.HideReticle();
+    }
+
+    void OnUnpause()
+    {
+        if (!isWeaponEquipped)
+            HideHUD();
     }
     #endregion
 
