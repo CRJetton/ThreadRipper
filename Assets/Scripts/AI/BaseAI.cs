@@ -16,6 +16,8 @@ public class BaseAI : MonoBehaviour, IDamageable
     // Behaviors and stats
     [Header("------ Components ------")]
     [SerializeField] public NavMeshAgent agent; // READ --> Keep it public so the roam scripts can access this variable
+    [SerializeField] Collider detectCol;
+    [SerializeField] Collider hitCol;
     [SerializeField] Renderer model;
     [SerializeField] Transform headPosition;
     [SerializeField] EnemyCombat enemyCombat;
@@ -52,13 +54,16 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if (playerInRange && !canSeePlayer())
+        if (agent.isActiveAndEnabled)
         {
-            patrol();
-        }
-        else if (!playerInRange)
-        {
-            patrol();
+            if (playerInRange && !canSeePlayer())
+            {
+                patrol();
+            }
+            else if (!playerInRange)
+            {
+                patrol();
+            }
         }
     }
 
@@ -67,11 +72,11 @@ public class BaseAI : MonoBehaviour, IDamageable
         if (isMoving)
         {
             agent.stoppingDistance = 0;
-            cot = StartCoroutine(returntoLastPos(1));
+            cot = StartCoroutine(returntoOriginPos(1));
         }
     }
 
-    IEnumerator returntoLastPos(int delay)
+    IEnumerator returntoOriginPos(int delay)
     {
         if (agent.remainingDistance <= 0.01f)
         {
@@ -105,12 +110,12 @@ public class BaseAI : MonoBehaviour, IDamageable
                 {
                     StartCoroutine(shoot());
                 }
-                
+
                 if (agent.remainingDistance < agent.stoppingDistance)
                 {
                     faceTarget();
                 }
-                
+
                 isMoving = true;
                 agent.stoppingDistance = stoppingDist;
                 return true;
@@ -158,19 +163,22 @@ public class BaseAI : MonoBehaviour, IDamageable
     {
         HP -= damage;
 
-        isShooting = false;
-        if (cot != null)
-            StopCoroutine(cot);
-        StartCoroutine(flashRed());
-
-        agent.SetDestination(GameManager.instance.player.transform.position);
-        isMoving = true;
-
         if (HP <= 0)
         {
+            hitCol.enabled = false;
+            agent.enabled = false;
+            detectCol.enabled = false;
             Destroy(gameObject);
             HUDManager.instance.UpdateProgress(-1);
-
+        }
+        else
+        {
+            isShooting = false;
+            if (cot != null)
+                StopCoroutine(cot);
+            StartCoroutine(flashRed());
+            agent.SetDestination(GameManager.instance.player.transform.position);
+            isMoving = true;
         }
     }
 
