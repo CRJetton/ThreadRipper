@@ -17,7 +17,7 @@ public class GunController : MonoBehaviour, IGun
     [Header("Animation")]
     [SerializeField] AnimationClip[] shootAnims;
 
-    GunStats gun;
+    [SerializeField] GunStats gun;
 
     float recoilAmount;
     Vector2 amountShotJumped;
