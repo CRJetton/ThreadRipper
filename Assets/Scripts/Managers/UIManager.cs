@@ -86,6 +86,11 @@ public class UIManager : MonoBehaviour
         return popupMenu;
 
     }
+
+    public void HidePopup()
+    {
+        popupMenu.SetActive(false);
+    }
     #endregion
 
     #region Game States
