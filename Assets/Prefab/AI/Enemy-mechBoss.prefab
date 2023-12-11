@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 5329706576126261560}
   m_Layer: 0
   m_Name: Enemy-mechBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1468,7 +1468,7 @@ MonoBehaviour:
   HP: 100
   viewCone: 180
   targetFaceSpeed: 3
-  weakSpotMultiplier: 3
+  weakSpotMultiplier: 1.33
   weakSpotThreshold: 1
   roamDistance: 20
   roamPauseTime: 3
