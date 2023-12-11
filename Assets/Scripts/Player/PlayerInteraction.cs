@@ -36,10 +36,12 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
     #region Interact
     void Interact(InputAction.CallbackContext context)
     {
-        if (currentInteractable != null)
-        {
-            currentInteractable.Interact(this);
-        }
+        if (currentInteractable == null)
+            return;
+
+        currentInteractable.Interact(this);
+
+        UIManager.instance.HidePopup();
     }
 
     void OnInteractablesChange()
@@ -53,6 +55,7 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
         }
         else
         {
+            UIManager.instance.HidePopup();
             currentInteractable = null;
         }
     }

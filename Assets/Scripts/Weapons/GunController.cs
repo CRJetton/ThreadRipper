@@ -444,7 +444,7 @@ public class GunController : MonoBehaviour, IGun
         isScopedIn = true;
 
         if (isPlayerGun)
-            HUDManager.instance.reticleController.gameObject.SetActive(false);
+            HUDManager.instance.HideReticle();
 
         OnScoping.Invoke(gun.scopeZoomFactor, gun.scopeInTime);
 
@@ -474,7 +474,7 @@ public class GunController : MonoBehaviour, IGun
         isScopedIn = false;
 
         if (isPlayerGun)
-            HUDManager.instance.reticleController.gameObject.SetActive(true);
+            HUDManager.instance.ShowReticle();
 
         OnScoping.Invoke(1, gun.scopeOutTime);
 

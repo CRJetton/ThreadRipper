@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
         if (damageable != null)
         {
             if (isPlayerRound && other.CompareTag("Enemy"))
-            { /* hit marker call */ }
+                HUDManager.instance.ShowHitMarker();
 
             damageable.TakeDamage(damage);
         }

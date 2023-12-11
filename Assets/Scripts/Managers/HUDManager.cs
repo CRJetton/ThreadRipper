@@ -83,11 +83,15 @@ public class HUDManager : MonoBehaviour
         minimap.SetActive(false);
     }
 
-    void HideAmmoCount()
+    public void HideAmmoCount()
     {
         ammoCount.SetActive(false);
     }
 
+    public void HideReticle()
+    {
+        reticleController.gameObject.SetActive(false);
+    }
     #endregion
 
     #region Update Functions

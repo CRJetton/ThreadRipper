@@ -44,6 +44,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
     private void Start()
     {
         InitializeControls();
+        HideHUD();
 
         if (startingWeapon != null)
             EquipWeapon(startingWeapon.GetComponent<WeaponPickup>());
@@ -258,10 +259,13 @@ public class PlayerCombat : MonoBehaviour, ICombat
             gunCurrent.InitializeAmmo(pickup.GetSaveValue1(), pickup.GetSaveValue2());
         }
 
+        ShowHUD();
+
         // Wait for equip to finish
         yield return new WaitForSeconds(weaponCurrent.GetEquipTime());
 
         weaponCurrent.Equip();
+
         isWeaponEquipped = true;
         canEquipWeaopn = true;
     }
@@ -274,6 +278,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
         isWeaponEquipped = false;
 
         weaponCurrent.Drop();
+        HideHUD();
 
         weaponCurrent = null;
         gunCurrent = null;
@@ -294,9 +299,25 @@ public class PlayerCombat : MonoBehaviour, ICombat
         Vector3 angularVelocity = weaponCurrent.GetObject().transform.right * throwAngularSpeed;
 
         weaponCurrent.Throw(velocity, angularVelocity);
+        HideHUD();
 
         weaponCurrent = null;
         gunCurrent = null;
+    }
+    #endregion
+
+    #region HUD
+    void ShowHUD()
+    {
+        HUDManager.instance.ShowAmmoCount();
+        HUDManager.instance.ShowReticle();
+    }
+
+
+    void HideHUD()
+    {
+        HUDManager.instance.HideAmmoCount();
+        HUDManager.instance.HideReticle();
     }
     #endregion
 
