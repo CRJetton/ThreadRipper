@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4876590537908019207}
+  detectCol: {fileID: 7641534258589484602}
+  hitCol: {fileID: 4876590537908019200}
   model: {fileID: 7897799865592936513}
   headPosition: {fileID: 7897799865581463791}
   enemyCombat: {fileID: 8750242762222399792}
