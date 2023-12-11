@@ -59,9 +59,9 @@ public class RandomRoamAI : BaseAI
 
     public override void TakeDamage(float damage)
     {
-        base.TakeDamage(damage);
         destinationChoosen = false;
         if (randomRoamcot != null)
             StopCoroutine(randomRoamcot);
+        base.TakeDamage(damage);
     }
 }

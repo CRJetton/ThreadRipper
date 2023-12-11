@@ -100,7 +100,6 @@ public class BaseAI : MonoBehaviour, IDamageable
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                isShooting = false;
                 if (cot != null)
                     StopCoroutine(cot);
                 agent.SetDestination(GameManager.instance.player.transform.position);
