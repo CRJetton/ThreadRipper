@@ -122,6 +122,11 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
 
     public void ThrowToPlayer()
     {
+        if (gunCurrent != null)
+        {
+            gunCurrent.SetMagAmmo(Mathf.Clamp(gunCurrent.GetMagAmmo(), gunCurrent.GetMagAmmoCapacity() / 2, gunCurrent.GetMagAmmoCapacity()));
+        }
+
         Throw(GameManager.instance.playerBodyPositions.playerCenter.position);
     }
 }
