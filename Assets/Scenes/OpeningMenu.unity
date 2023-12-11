@@ -443,6 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336d84b4ce7223247a368dc9fe75ddf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorIcon: {fileID: 2800000, guid: 8d9a5a5a721ccac4bb61e1008af87b9d, type: 3}
 --- !u!1 &1179009349
 GameObject:
   m_ObjectHideFlags: 0

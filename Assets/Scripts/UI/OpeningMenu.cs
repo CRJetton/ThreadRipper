@@ -5,7 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class OpeningMenu : MonoBehaviour
 {
- void Update()
+    [SerializeField] Texture2D cursorIcon;
+
+    void Start()
+    {
+        Cursor.SetCursor(cursorIcon, Vector2.zero, CursorMode.ForceSoftware);
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    void Update()
     {
         if (Input.anyKeyDown)
         {
