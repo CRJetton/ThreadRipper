@@ -12,6 +12,7 @@ public interface IGun : IWeapon
     public void SubscribeOnAmmoChange(UnityAction action);
     public void SubscribeOnShotJump(UnityAction<Vector3> action);
     public void SubscribeOnScoping(UnityAction<float, float> action);
+    public void ChangeAmmo(int magChange, int reserveChange);
 
 
     public void InitializeAmmo(int magAmmo, int reserveAmmo);
