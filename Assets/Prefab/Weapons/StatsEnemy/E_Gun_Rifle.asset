@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f293787ef1a02c9478540648e73f8f36, type: 3}
   m_Name: E_Gun_Rifle
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 9108546024485524263, guid: 983b3571d5c3f4f4fb899599daaf35eb,
+  weaponPrefab: {fileID: 9108546024485524263, guid: 165aaa5d807c3be4780c7e034a1d0230,
     type: 3}
   itemPickupPrefab: {fileID: 1178596823894660017, guid: 279e75d5eb28302489d2a09047a3ca1f,
     type: 3}

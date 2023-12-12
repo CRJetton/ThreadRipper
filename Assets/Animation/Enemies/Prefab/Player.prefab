@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca47acc1afb0b7542867d95cd2b4582a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactablesTouching: []
 --- !u!136 &1535046374
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -400,8 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5232add53a2744faf2c696cbb70f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerGrounded: 0
-  groundContacts: []
+  animator: {fileID: 1411667799}
 --- !u!65 &2078285448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -482,9 +482,15 @@ MonoBehaviour:
   cameras:
   - {fileID: 5808813853710117724}
   - {fileID: 8516519041675028489}
+  playerGroundDetector: {fileID: 2078285449}
   lockVertMin: -85
   lockVertMax: 85
   invertY: 0
+  defaultBobSpeed: 0
+  sprintBobSpeed: 0
+  crouchBobSpeed: 0
+  headBobDistanceHoriz: 0
+  headBobDistanceVert: 0
 --- !u!1 &3009458363516470315
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,10 +2054,11 @@ MonoBehaviour:
   defaultMoveSpeed: 5
   sprintSpeed: 10
   crouchMoveSpeed: 2
-  cameraCrouchAmount: 0.3
-  colliderCrouchAmount: 2.2
-  crouchHeight: 1.4
-  standHeight: 1.7
+  colliderCrouchHeight: 0
+  colliderStandHeight: 0
+  colliderCrouchSizeMod: 0
+  cameraCrouchHeight: 0
+  cameraStandHeight: 0
   crouchTime: 0.16
   crouchCooldown: 0.2
   sprintSlideTime: 0.75
@@ -2061,17 +2068,23 @@ MonoBehaviour:
   jumpHeight: 7.5
   gravity: -20
   vaultDetector: {fileID: 791733567}
-  vaultTime: 0.3
-  vaultForward: 1.5
+  vaultUpTime: 0
+  vaultForwardTime: 0
   vaultUp: 1
+  vaultForward: 1.5
   climbDetector: {fileID: 1222490010}
-  climbTime: 0.5
-  climbForward: 1
+  climbUpTime: 0
+  climbForwardTime: 0
   climbUp: 2
+  climbForward: 1
   animator: {fileID: 1411667799}
   animationTransitionSpeed: 8
+  sprintAnimSpeed: 0
   maxHP: 200
+  HP: 0
   playerCamera: {fileID: 940690186790166899}
+  damageColor: {r: 0, g: 0, b: 0, a: 0}
+  healthColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!143 &6655305115144485799
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2114,8 +2127,7 @@ MonoBehaviour:
   throwAngularSpeed: 30
   throwAngle: 0.3
   weaponContainer: {fileID: 6345011976925759367}
-  startingWeaponPrefab: {fileID: 9108546024485524263, guid: 983b3571d5c3f4f4fb899599daaf35eb,
-    type: 3}
+  startingWeapon: {fileID: 0}
 --- !u!114 &1665011542323153845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2128,7 +2140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ad69bed101ae94d80c110d1daf89b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
   playerCombat: {fileID: 7999538882039293929}
+  bodyPositions: {fileID: 0}
   interactableDetector: {fileID: 1535046375}
 --- !u!114 &7138843497001214250
 MonoBehaviour:
