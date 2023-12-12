@@ -73,10 +73,16 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
         }
     }
 
-    public void PickUpHealth(HealthPickUp healingPack)
+    public void PickUpHealth(HealthPickUp _healingPack)
     {
-        playerController.AddHP(healingPack.GetHealAmount());
-        Destroy(healingPack.gameObject);
+        playerController.AddHP(_healingPack.GetHealAmount());
+        Destroy(_healingPack.gameObject);
     }
+
+    //public void PickUpAmmo(AmmoPickup _ammoPickup)
+    //{
+    //    playerCombat.AddReserveAmmo(_ammoPickup.GetAmmoAmount());
+    //}
+
     #endregion
 }
