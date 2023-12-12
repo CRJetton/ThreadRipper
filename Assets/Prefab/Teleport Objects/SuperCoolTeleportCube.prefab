@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1235025568473671886}
   - component: {fileID: 1235025568473671885}
   - component: {fileID: 1235025568473671884}
-  - component: {fileID: 1235025568473671859}
+  - component: {fileID: 3722428290174620526}
   m_Layer: 0
   m_Name: SuperCoolTeleportCube
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235025568473671858}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.19, y: -1.87, z: -25.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1235025568473671859
+--- !u!114 &3722428290174620526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +107,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1235025568473671858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e6be87dfe593484fa0898653858262d, type: 3}
+  m_Script: {fileID: 11500000, guid: 416344ee0dbb69b408fd74c77c3d65e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Destination: {fileID: 0}
+  telePrefab: {fileID: 0}
+  teleObject: {fileID: 0}
   player: {fileID: 0}
+  teleCooldownTime: 2
