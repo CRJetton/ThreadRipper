@@ -1990,7 +1990,7 @@ MonoBehaviour:
   model: {fileID: 363187117254347297}
   headPosition: {fileID: 363187117487114537}
   enemyCombat: {fileID: 363187117804408503}
-  stoppingDist: 3
+  stoppingDist: 5
   enemyAnim: {fileID: -3218017268443822504}
   animSpeedTransition: 3
   HP: 10

@@ -56,7 +56,7 @@ MonoBehaviour:
   model: {fileID: 7897799865592936513}
   headPosition: {fileID: 7897799865581463791}
   enemyCombat: {fileID: 8750242762222399792}
-  stoppingDist: 0
+  stoppingDist: 5
   enemyAnim: {fileID: 7332176214694510679}
   animSpeedTransition: 3
   HP: 12

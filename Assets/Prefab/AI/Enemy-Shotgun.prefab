@@ -1991,14 +1991,14 @@ MonoBehaviour:
   model: {fileID: 363187117254347297}
   headPosition: {fileID: 363187117208135005}
   enemyCombat: {fileID: 363187117804408503}
-  stoppingDist: 3
+  stoppingDist: 5
   enemyAnim: {fileID: 866331865671818293}
   animSpeedTransition: 3
   HP: 18
   viewCone: 180
   targetFaceSpeed: 3
   walkSpeed: 5
-  sprintMultipler: 2
+  sprintMultipler: 1.5
   shootRate: 1
 --- !u!95 &866331865671818293
 Animator:
