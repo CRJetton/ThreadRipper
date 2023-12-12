@@ -1985,8 +1985,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 363187117804408502}
-  detectCol: {fileID: 363187117804408501}
   hitCol: {fileID: 363187117804408500}
+  detectCol: {fileID: 363187117804408501}
   model: {fileID: 363187117254347297}
   headPosition: {fileID: 363187117487114537}
   enemyCombat: {fileID: 363187117804408503}
@@ -1996,6 +1996,8 @@ MonoBehaviour:
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
+  walkSpeed: 5
+  sprintMultipler: 2
   shootRate: 1.5
   waypoint: {fileID: 0}
   waypointSearch: 6
