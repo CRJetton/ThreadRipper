@@ -1985,17 +1985,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 363187117804408502}
-  detectCol: {fileID: 363187117804408501}
   hitCol: {fileID: 363187117804408500}
+  detectCol: {fileID: 363187117804408501}
   model: {fileID: 363187117254347297}
   headPosition: {fileID: 363187117487114537}
   enemyCombat: {fileID: 363187117804408503}
-  stoppingDist: 3
+  stoppingDist: 5
   enemyAnim: {fileID: 849266194956999624}
   animSpeedTransition: 3
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
+  walkSpeed: 5
+  sprintMultipler: 1.5
   shootRate: 1.5
   waypoint: {fileID: 0}
   waypointSearch: 6

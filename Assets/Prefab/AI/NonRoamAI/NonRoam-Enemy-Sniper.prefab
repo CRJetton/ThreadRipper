@@ -47,12 +47,12 @@ GameObject:
   - component: {fileID: 3715618906588345012}
   - component: {fileID: 1887439388771734670}
   m_Layer: 0
-  m_Name: Enemy-Sniper
+  m_Name: NonRoam-Enemy-Sniper
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1887439388771734669
 Transform:
   m_ObjectHideFlags: 0

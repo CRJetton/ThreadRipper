@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772748244}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.109, y: 0.047, z: -0.032}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -0.214, y: 0.047, z: 0.116}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 363718558803063021}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
 --- !u!1 &1887439388771734664
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,17 +82,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1887439388771734665}
-  detectCol: {fileID: 3715618906588345012}
   hitCol: {fileID: 1887439388771734670}
+  detectCol: {fileID: 3715618906588345012}
   model: {fileID: 363718558799847857}
   headPosition: {fileID: 363718558803062919}
   enemyCombat: {fileID: 2374437348007658942}
-  stoppingDist: 5
+  stoppingDist: 10
   enemyAnim: {fileID: -2884215575347069398}
   animSpeedTransition: 3
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
+  walkSpeed: 3
+  sprintMultipler: 1.5
   shootRate: 1.5
   waypoint: {fileID: 0}
   waypointSearch: 6

@@ -16,6 +16,7 @@ public class GunStats : WeaponStats
     public float damage;
     public float bulletSpeed;
     public float bulletDestroyTime;
+    public float hitForce;
 
     [Range(0f, 5f)] public float timeBetweenShots;
     [Range(0f, 0.5f)] public float queueShotTime;
