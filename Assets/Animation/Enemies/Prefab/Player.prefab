@@ -2065,7 +2065,7 @@ MonoBehaviour:
   sprintSlideSpeed: 15
   slideCooldown: 1.5
   groundDetector: {fileID: 2078285449}
-  jumpHeight: 7.5
+  jumpHeight: 8.5
   gravity: -20
   vaultDetector: {fileID: 791733567}
   vaultUpTime: 0
@@ -2096,11 +2096,11 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.6
+  m_Height: 1.5
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.03
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &7999538882039293929
@@ -2127,7 +2127,8 @@ MonoBehaviour:
   throwAngularSpeed: 30
   throwAngle: 0.3
   weaponContainer: {fileID: 6345011976925759367}
-  startingWeapon: {fileID: 0}
+  startingWeapon: {fileID: 1178596823894660017, guid: 279e75d5eb28302489d2a09047a3ca1f,
+    type: 3}
 --- !u!114 &1665011542323153845
 MonoBehaviour:
   m_ObjectHideFlags: 0
