@@ -22,6 +22,8 @@ public class BaseAI : MonoBehaviour, IDamageable
     [SerializeField] Transform headPosition;
     [SerializeField] EnemyCombat enemyCombat;
     [SerializeField] float stoppingDist;
+    [SerializeField] Animator enemyAnim;
+    [SerializeField] float animSpeedTransition;
 
     [Header("------ Enemy Stats ------")]
     [Range(1, 100)][SerializeField] float HP;
@@ -35,6 +37,7 @@ public class BaseAI : MonoBehaviour, IDamageable
     bool isShooting;
     bool playerInRange;
     float angleToPlayer;
+    float animVelocity;
     Vector3 playerDir;
 
     //patrol
@@ -56,6 +59,10 @@ public class BaseAI : MonoBehaviour, IDamageable
     {
         if (agent.isActiveAndEnabled)
         {
+            animVelocity = agent.velocity.normalized.magnitude;
+            enemyAnim.SetFloat("Speed", Mathf.Lerp(enemyAnim.GetFloat("Speed"), animVelocity, Time.deltaTime * animSpeedTransition));
+
+
             if (playerInRange && !canSeePlayer())
             {
                 patrol();

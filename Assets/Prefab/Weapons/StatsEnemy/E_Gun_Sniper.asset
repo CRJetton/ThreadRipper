@@ -28,7 +28,7 @@ MonoBehaviour:
   queueShotTime: 0.1
   bulletsPerShot: 1
   fullAuto: 0
-  magAmmoCapacity: 4
+  magAmmoCapacity: 6
   reserveAmmoCapacity: 24
   scopeZoomFactor: 0.4
   scopeInTime: 0.4
