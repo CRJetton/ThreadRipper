@@ -7,6 +7,11 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
     [Header("Combat")]
     [SerializeField] Transform weaponContainer;
     [SerializeField] GameObject startingWeapon;
+
+    [SerializeField] float aimAtSmoothing;
+    Vector3 aimPos;
+    Vector3 lastAimPos;
+
     private IWeapon weaponCurrent;
     private IGun gunCurrent;
 
@@ -26,7 +31,12 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
     public void AimAt(Vector3 worldPosition)
     {
         if (weaponCurrent != null)
-            weaponCurrent.AimAt(worldPosition);
+        {
+            aimPos = Vector3.Lerp(lastAimPos, worldPosition, aimAtSmoothing * Time.deltaTime);
+            weaponCurrent.AimAt(aimPos);
+
+            lastAimPos = aimPos;
+        }
     }
 
     public void AttackCanceled()
@@ -137,7 +147,6 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
         {
             if (gunCurrent != null)
             {
-                gunCurrent.SetReserveAmmo(0);
                 gunCurrent.SetMagAmmo(Mathf.Clamp(gunCurrent.GetMagAmmo(), gunCurrent.GetMagAmmoCapacity() / 2, gunCurrent.GetMagAmmoCapacity()));
             }
 

@@ -87,6 +87,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 5c8140d79edb5874c9f854333e792c0e, type: 2}
   - {fileID: 7400000, guid: ae8ecf91a3964264496dd9e9ef82fbd2, type: 2}
   - {fileID: 7400000, guid: 3a371bdb7db98cb45b3f1768c8c46fd9, type: 2}
+  gun: {fileID: 0}
 --- !u!95 &1057038591153549809
 Animator:
   serializedVersion: 5

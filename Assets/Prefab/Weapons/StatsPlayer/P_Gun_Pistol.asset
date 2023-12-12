@@ -24,6 +24,7 @@ MonoBehaviour:
   damage: 1.35
   bulletSpeed: 90
   bulletDestroyTime: 3
+  hitForce: 3
   timeBetweenShots: 0.15
   queueShotTime: 0.05
   bulletsPerShot: 1
