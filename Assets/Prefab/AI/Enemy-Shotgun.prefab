@@ -1944,6 +1944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363187117804408497}
   - component: {fileID: 363187117804408496}
+  - component: {fileID: 866331865671818293}
   - component: {fileID: 363187117804408503}
   - component: {fileID: 363187117804408502}
   - component: {fileID: 363187117804408501}
@@ -1991,10 +1992,33 @@ MonoBehaviour:
   headPosition: {fileID: 363187117208135005}
   enemyCombat: {fileID: 363187117804408503}
   stoppingDist: 3
+  enemyAnim: {fileID: 866331865671818293}
+  animSpeedTransition: 3
   HP: 18
   viewCone: 180
   targetFaceSpeed: 3
   shootRate: 1
+--- !u!95 &866331865671818293
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363187117804408395}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: ca2bc7f46e2079a4d9a4543c4201f8f1, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0ec38f2531565f3428697d737031c6bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &363187117804408503
 MonoBehaviour:
   m_ObjectHideFlags: 0

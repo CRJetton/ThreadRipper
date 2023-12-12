@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4876590537908019203}
   - component: {fileID: -2168510474519912518}
+  - component: {fileID: 6639060444591908446}
   - component: {fileID: 8750242762222399792}
   - component: {fileID: 4876590537908019207}
   - component: {fileID: 7641534258589484602}
@@ -56,6 +57,8 @@ MonoBehaviour:
   headPosition: {fileID: 7897799865581463791}
   enemyCombat: {fileID: 8750242762222399792}
   stoppingDist: 5
+  enemyAnim: {fileID: 6639060444591908446}
+  animSpeedTransition: 3
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
@@ -64,6 +67,27 @@ MonoBehaviour:
   waypointSearch: 6
   roamPause: 1
   walkpointSet: 0
+--- !u!95 &6639060444591908446
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876590537908019206}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d5025efbcc7ae004db8312cd46d86e5d, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6c7aaf469581b7b4cb072aa79fe37ef6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8750242762222399792
 MonoBehaviour:
   m_ObjectHideFlags: 0

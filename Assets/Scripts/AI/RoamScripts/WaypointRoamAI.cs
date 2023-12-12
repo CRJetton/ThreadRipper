@@ -19,7 +19,7 @@ public class WaypointRoamAI : BaseAI
     {
         waypoint = FindNearestWaypoint();
         if (waypoint == null)
-            Debug.LogError("Hey! " + transform.name + "Couldn't find a Waypoint near him! Put him closer to one!");
+            Debug.LogError("Hey! " + transform.name + "Couldn't find a Waypoint near him! Put him closer to one!");        
 
         walkpointSet = false;
         currentWaypointIndex = 0;
