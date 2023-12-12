@@ -69,4 +69,10 @@ public class GunStats : WeaponStats
     [Range(0, 1)] public float reloadVolume;
     [Range(0, 2)] public float minReloadPitch;
     [Range(0, 2)] public float maxReloadPitch;
+
+
+    [Header("Particle Effects")]
+    public GameObject hitWallEffect;
+    public GameObject hitEntityEffect;
+    public GameObject muzzleFlash;
 }

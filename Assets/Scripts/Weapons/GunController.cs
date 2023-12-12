@@ -146,6 +146,8 @@ public class GunController : MonoBehaviour, IGun
 
         PlaySound(gun.shootSounds[Random.Range(0, gun.shootSounds.Length - 1)], gun.shootVolume, gun.minShootPitch, gun.maxShootPitch);
 
+        Instantiate(gun.muzzleFlash, barrelPos.position, barrelPos.rotation);
+
         StopJumpRecovery();
         StartJumpRecovery();
 
@@ -189,7 +191,8 @@ public class GunController : MonoBehaviour, IGun
     void CreateBullet()
     {
         GameObject bullet = Instantiate(gun.bulletPrefab, barrelPos.position, CalcShotRotation());
-        bullet.GetComponent<Bullet>().Initialize(gun.noHitTag, gun.damage, gun.hitForce, gun.bulletSpeed, gun.bulletDestroyTime);
+        bullet.GetComponent<Bullet>().Initialize(gun.noHitTag, gun.damage, gun.hitForce, gun.bulletSpeed, gun.bulletDestroyTime,
+            gun.hitWallEffect, gun.hitEntityEffect);
     }
     #endregion
 

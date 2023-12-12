@@ -2032,9 +2032,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace38c6a9137a41488ff3e0610efb932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseAI: {fileID: 363187117804408496}
   weaponContainer: {fileID: 363187117296910183}
   startingWeapon: {fileID: 1472266131599341789, guid: 0e3fe84aba4d68846b2e63c187f0958b,
     type: 3}
+  aimAtSmoothing: 8
   throwSpeed: 10
   throwAngularSpeed: 30
   throwAngle: 0.6
