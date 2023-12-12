@@ -1066,7 +1066,12 @@ PrefabInstance:
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.54
+      value: 0.5263488
+      objectReference: {fileID: 0}
+    - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.26378354
       objectReference: {fileID: 0}
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
@@ -1076,17 +1081,17 @@ PrefabInstance:
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7000043
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7204556
+      value: 2.615
       objectReference: {fileID: 0}
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.4499921
+      value: -1.476
       objectReference: {fileID: 0}
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
@@ -1411,6 +1416,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.42014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
+        type: 3}
       propertyPath: m_LocalScale.z
       value: 12.011999
       objectReference: {fileID: 0}
@@ -1422,7 +1432,7 @@ PrefabInstance:
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.0147848
+      value: -2.23
       objectReference: {fileID: 0}
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
@@ -2778,7 +2788,12 @@ PrefabInstance:
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.3345
+      objectReference: {fileID: 0}
+    - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3858
       objectReference: {fileID: 0}
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
@@ -2793,12 +2808,12 @@ PrefabInstance:
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.2761564
+      value: 6.055
       objectReference: {fileID: 0}
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.822397
+      value: -12.82
       objectReference: {fileID: 0}
     - target: {fileID: 2329034623556053218, guid: 9a34c514d2eca3c48b9c4f93a23fda65,
         type: 3}
@@ -5724,6 +5739,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OfficeChair
       objectReference: {fileID: 0}
+    - target: {fileID: 3505780943679363035, guid: 815b0c78c07b5264180484a69690e072,
+        type: 3}
+      propertyPath: bumpForce
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 815b0c78c07b5264180484a69690e072, type: 3}
 --- !u!4 &1748614132 stripped
@@ -7140,8 +7160,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2329034622198978054}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.6, y: 2.7, z: -1.5}
-  m_LocalScale: {x: 0.6, y: 0.1, z: 13}
+  m_LocalPosition: {x: -0.6, y: 2.626, z: -1.468}
+  m_LocalScale: {x: 0.539568, y: 0.21196, z: 13}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1125926342}
@@ -8282,6 +8302,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: VaultableOfficeDesk
       objectReference: {fileID: 0}
+    - target: {fileID: 6370776608533878253, guid: cd6bb56efd4d39a48a1a60609ef0d9a8,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370776608533878254, guid: cd6bb56efd4d39a48a1a60609ef0d9a8,
+        type: 3}
+      propertyPath: bumpForce
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd6bb56efd4d39a48a1a60609ef0d9a8, type: 3}
 --- !u!1001 &8291476242346800942
@@ -8350,6 +8380,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291476242073352709, guid: 778859c32771f4d45823b3e9e45a7456,
+        type: 3}
+      propertyPath: HP
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 778859c32771f4d45823b3e9e45a7456, type: 3}
