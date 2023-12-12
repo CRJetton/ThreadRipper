@@ -125,6 +125,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Teleport"",
+                    ""type"": ""Button"",
+                    ""id"": ""edaf3e86-cd6f-4c1e-bfd5-ba58f8ee1f63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -290,6 +299,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b807d0b8-6647-415d-acd8-f60d39838c0f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Teleport"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -847,6 +867,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_PlayerControls_Interact = m_PlayerControls.FindAction("Interact", throwIfNotFound: true);
         m_PlayerControls_Throw = m_PlayerControls.FindAction("Throw", throwIfNotFound: true);
         m_PlayerControls_Pause = m_PlayerControls.FindAction("Pause", throwIfNotFound: true);
+        m_PlayerControls_Teleport = m_PlayerControls.FindAction("Teleport", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
@@ -932,6 +953,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Interact;
     private readonly InputAction m_PlayerControls_Throw;
     private readonly InputAction m_PlayerControls_Pause;
+    private readonly InputAction m_PlayerControls_Teleport;
     public struct PlayerControlsActions
     {
         private @PlayerInput m_Wrapper;
@@ -947,6 +969,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_PlayerControls_Interact;
         public InputAction @Throw => m_Wrapper.m_PlayerControls_Throw;
         public InputAction @Pause => m_Wrapper.m_PlayerControls_Pause;
+        public InputAction @Teleport => m_Wrapper.m_PlayerControls_Teleport;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -989,6 +1012,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Teleport.started += instance.OnTeleport;
+            @Teleport.performed += instance.OnTeleport;
+            @Teleport.canceled += instance.OnTeleport;
         }
 
         private void UnregisterCallbacks(IPlayerControlsActions instance)
@@ -1026,6 +1052,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Teleport.started -= instance.OnTeleport;
+            @Teleport.performed -= instance.OnTeleport;
+            @Teleport.canceled -= instance.OnTeleport;
         }
 
         public void RemoveCallbacks(IPlayerControlsActions instance)
@@ -1182,6 +1211,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnTeleport(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
