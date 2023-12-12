@@ -39,6 +39,7 @@ public class GunController : MonoBehaviour, IGun
     Coroutine jumpRecovering;
 
     bool ammoInitialized;
+    bool animateGun;
 
 
     #region Initialization
@@ -57,6 +58,8 @@ public class GunController : MonoBehaviour, IGun
 
         if (isPlayerGun)
         {
+            animateGun = true;
+
             HUDManager.instance.reticleController.ExpandReticle(gun.xSpreadPerShot.Evaluate(0));
 
             //sets the gun's layer to 'hands'
@@ -138,7 +141,8 @@ public class GunController : MonoBehaviour, IGun
         AddRecoil(gun.spreadPerShot);
         ChangeAmmo(-1, 0);
 
-        anim.Play(shootAnims[Random.Range(0, shootAnims.Length)].name);
+        if (animateGun)
+            anim.Play(shootAnims[Random.Range(0, shootAnims.Length)].name);
 
         PlaySound(gun.shootSounds[Random.Range(0, gun.shootSounds.Length - 1)], gun.shootVolume, gun.minShootPitch, gun.maxShootPitch);
 
@@ -209,13 +213,16 @@ public class GunController : MonoBehaviour, IGun
             StopCoroutine(reloading);
 
         isReloading = false;
-        anim.SetBool("isReloading", isReloading);
+
+        if (animateGun)
+            anim.SetBool("isReloading", isReloading);
     }
 
     IEnumerator Reloading()
     {
         isReloading = true;
-        anim.SetBool("isReloading", isReloading);
+        if (animateGun)
+            anim.SetBool("isReloading", isReloading);
 
         PlaySound(gun.reloadSound, gun.reloadVolume, gun.minReloadPitch, gun.maxReloadPitch);
 
@@ -240,7 +247,9 @@ public class GunController : MonoBehaviour, IGun
         }
 
         isReloading = false;
-        anim.SetBool("isReloading", isReloading);
+
+        if (animateGun)
+            anim.SetBool("isReloading", isReloading);
     }
 
     void ChangeAmmo(int magChange, int reserveChange)
