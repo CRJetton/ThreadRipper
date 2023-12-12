@@ -289,7 +289,7 @@ public class BossAI: MonoBehaviour, IDamageable
             bossCombat.ChangePhase(HP);
         }
 
-        // Handles the boss death, needs to be changed when an animation ass added for death
+        // Handles the boss death, needs to be changed when an animation is added for death
         if (HP <= 0)
         {
             Destroy(gameObject);

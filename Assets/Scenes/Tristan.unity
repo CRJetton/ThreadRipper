@@ -3573,6 +3573,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5329706576126164976, guid: bf7ff4edc4a15f34d9f5ff456da9facf,
+        type: 3}
+      propertyPath: m_Radius
+      value: 20.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329706576126164977, guid: bf7ff4edc4a15f34d9f5ff456da9facf,
+        type: 3}
+      propertyPath: m_Height
+      value: 5.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329706576126164977, guid: bf7ff4edc4a15f34d9f5ff456da9facf,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329706576126261560, guid: bf7ff4edc4a15f34d9f5ff456da9facf,
+        type: 3}
+      propertyPath: m_Height
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329706576126261560, guid: bf7ff4edc4a15f34d9f5ff456da9facf,
+        type: 3}
+      propertyPath: m_Radius
+      value: 2.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329706576126261560, guid: bf7ff4edc4a15f34d9f5ff456da9facf,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329706576126261560, guid: bf7ff4edc4a15f34d9f5ff456da9facf,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.32
+      objectReference: {fileID: 0}
     - target: {fileID: 5329706576126261563, guid: bf7ff4edc4a15f34d9f5ff456da9facf,
         type: 3}
       propertyPath: m_Name
