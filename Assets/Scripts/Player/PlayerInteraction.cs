@@ -79,10 +79,11 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
         Destroy(_healingPack.gameObject);
     }
 
-    //public void PickUpAmmo(AmmoPickup _ammoPickup)
-    //{
-    //    playerCombat.AddReserveAmmo(_ammoPickup.GetAmmoAmount());
-    //}
+    public void PickUpAmmo(AmmoPickUp _ammoPickup)
+    {
+        playerCombat.AddReserveAmmo(_ammoPickup.GetAmmoAmount());
+        Destroy(_ammoPickup.gameObject);
+    }
 
     #endregion
 }

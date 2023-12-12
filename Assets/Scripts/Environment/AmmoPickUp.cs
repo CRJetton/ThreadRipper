@@ -8,7 +8,7 @@ public class AmmoPickUp : MonoBehaviour, IInteractable
 
     public void Interact(IInteractionController _interactController)
     {
-        //_interactController.PickUpAmmo(this);
+        _interactController.PickUpAmmo(this);
     }
 
     public int GetAmmoAmount()
