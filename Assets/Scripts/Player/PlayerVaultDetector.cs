@@ -10,7 +10,7 @@ public class PlayerVaultDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (_other.isTrigger) return;
+        if (_other.isTrigger || _other.GetComponent<CharacterController>()) return;
         if (_other.CompareTag("Vaultable"))
         {
             vaultContacts.Add( _other );

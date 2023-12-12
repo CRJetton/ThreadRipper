@@ -11,7 +11,7 @@ public class PlayerGroundDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (_other.isTrigger)
+        if (_other.isTrigger || _other.GetComponent<CharacterController>())
         {
             return;
         }

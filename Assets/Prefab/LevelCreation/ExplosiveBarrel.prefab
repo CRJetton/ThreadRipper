@@ -14639,4 +14639,5 @@ MonoBehaviour:
   particles: {fileID: 5436043743977746559}
   HP: 10
   damage: 20
-  damageRadius: 15
+  bumpForce: 10
+  damageRadius: 10

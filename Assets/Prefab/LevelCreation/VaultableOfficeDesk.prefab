@@ -225,7 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3446666980357292485}
-  bumpForce: 4
+  playerBumpForce: 4
+  damageBumpForce: 8
 --- !u!1 &1275852412666229256
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1275852412666229366}
-  bumpForce: 4
+  playerBumpForce: 4
+  damageBumpForce: 8
 --- !u!1 &1301542182758102425
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +612,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2928390723540491772}
-  bumpForce: 4
+  playerBumpForce: 4
+  damageBumpForce: 8
 --- !u!1 &2971718217574172413
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +756,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2536562369690919088}
-  bumpForce: 4
+  playerBumpForce: 4
+  damageBumpForce: 8
 --- !u!1 &3118855461140138747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,7 +1028,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1550862368386386797}
-  bumpForce: 4
+  playerBumpForce: 4
+  damageBumpForce: 8
 --- !u!1 &6194964674973990975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 299605077192560191}
-  bumpForce: 4
+  playerBumpForce: 4
+  damageBumpForce: 8
 --- !u!1 &6516475119420815672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,7 +1316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3388009287002842570}
-  bumpForce: 4
+  playerBumpForce: 4
+  damageBumpForce: 8
 --- !u!1 &6528982576351878231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,7 +1503,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &6370776608533878251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1536,7 +1543,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6370776608533878253}
-  bumpForce: 4
+  playerBumpForce: 4
+  damageBumpForce: 8
 --- !u!1 &7315569915687528802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,6 +1642,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
+      propertyPath: bumpForce
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
+      propertyPath: damageRadius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
       propertyPath: meshes.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1655,7 +1678,7 @@ PrefabInstance:
     - target: {fileID: 8858225298955015297, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: 1.585
       objectReference: {fileID: 0}
     - target: {fileID: 8858225298955015297, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
@@ -1665,7 +1688,7 @@ PrefabInstance:
     - target: {fileID: 8858225298955015297, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.014
       objectReference: {fileID: 0}
     - target: {fileID: 8858225298955015297, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}

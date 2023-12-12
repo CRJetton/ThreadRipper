@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bumpable : MonoBehaviour, IDamageable
+public class Bumpable : MonoBehaviour, IPhysics
 {
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float bumpForce;
-    private Vector3 impactDirection;
+    [SerializeField] private float playerBumpForce;
+    [SerializeField] private float damageBumpForce;
 
     private void OnTriggerEnter(Collider _other)
     {
@@ -16,16 +16,14 @@ public class Bumpable : MonoBehaviour, IDamageable
             return;
         }
 
-        impactDirection = _other.gameObject.transform.forward;
-
         if (_other.CompareTag("Player"))
         {
-            rb.AddForce(impactDirection * bumpForce, ForceMode.Impulse);
+            rb.AddForce(_other.gameObject.transform.forward * playerBumpForce, ForceMode.Impulse);
         }
     }
 
-    public void TakeDamage(float _damage)
+    public void TakePhysics(Vector3 _hitForce)
     {
-        rb.AddForce(impactDirection * bumpForce, ForceMode.Impulse);
+        rb.AddForce(_hitForce, ForceMode.Impulse);
     }
 }

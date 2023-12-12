@@ -142,4 +142,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3505780943679363033}
-  bumpForce: 2
+  playerBumpForce: 8
+  damageBumpForce: 8

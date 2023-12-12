@@ -10,7 +10,7 @@ public class PlayerClimbDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (_other.isTrigger) return;
+        if (_other.isTrigger || _other.GetComponent<CharacterController>()) return;
         if (_other.CompareTag("Climbable"))
         {
             climbContacts.Add( _other );

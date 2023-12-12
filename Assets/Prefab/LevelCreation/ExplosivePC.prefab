@@ -24327,6 +24327,7 @@ MonoBehaviour:
   meshes: []
   col: {fileID: 4805524841188816827}
   particles: {fileID: 666112269112640996}
-  HP: 10
-  damage: 5
-  damageRadius: 5
+  HP: 5
+  damage: 20
+  bumpForce: 3
+  damageRadius: 3

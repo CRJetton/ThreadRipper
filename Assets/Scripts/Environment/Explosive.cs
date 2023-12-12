@@ -10,7 +10,9 @@ public class Explosive : MonoBehaviour, IDamageable
     [SerializeField] private ParticleSystem particles;
     [SerializeField] private float HP;
     [SerializeField] private float damage;
+    [SerializeField] private float bumpForce;
     [SerializeField] private float damageRadius;
+
 
     public void TakeDamage(float _damage)
     {
@@ -31,10 +33,16 @@ public class Explosive : MonoBehaviour, IDamageable
             foreach(RaycastHit hit in hits)
             {
                 IDamageable hitDamageable = hit.collider.GetComponent<IDamageable>();
+                IPhysics hitPhysical = hit.collider.GetComponent<IPhysics>();
 
                 if (hitDamageable != null)
                 {
                     hitDamageable.TakeDamage(damage);
+                }
+
+                if (hitPhysical != null)
+                {
+                    hitPhysical.TakePhysics((hit.transform.position - transform.position).normalized * bumpForce);
                 }
             }
         }
