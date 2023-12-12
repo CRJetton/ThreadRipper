@@ -255,7 +255,7 @@ public class GunController : MonoBehaviour, IGun
             anim.SetBool("isReloading", isReloading);
     }
 
-    void ChangeAmmo(int magChange, int reserveChange)
+    public void ChangeAmmo(int magChange, int reserveChange)
     {
         magAmmo += magChange;
         reserveAmmo += reserveChange;

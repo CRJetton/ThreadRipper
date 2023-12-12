@@ -224,6 +224,14 @@ public class PlayerCombat : MonoBehaviour, ICombat
     {
         HUDManager.instance.UpdateAmmoCount(gunCurrent.GetMagAmmo(), gunCurrent.GetReserveAmmo());
     }
+
+    public void AddReserveAmmo(float percent)
+    {
+        if (gunCurrent != null)
+        {
+            gunCurrent.ChangeAmmo(0, (int)(gunCurrent.GetReserveAmmo() * percent));
+        }
+    }
     #endregion
 
     #region Equipping, Dropping, Throwing
