@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthPickUp : MonoBehaviour, IInteractable
 {
+    [SerializeField] string itemName;
     [SerializeField] private int healAmount;
 
     //public enum HealingType
@@ -19,6 +20,11 @@ public class HealthPickUp : MonoBehaviour, IInteractable
     {
         interactionController.PickUpHealth(this);
     }
+
+    public string GetName()
+    {
+        return itemName;
+    }    
 
     public int GetHealAmount()
     {

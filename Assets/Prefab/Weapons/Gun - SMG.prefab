@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ad654803cc73e4f8a395c328273206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: SMG
   playerWeapon: {fileID: 11400000, guid: 918a11ba2140b5a41ab59cb59de252d9, type: 2}
   enemyWeapon: {fileID: 11400000, guid: 5e6b303f826ac2d47a89992c7d38d36d, type: 2}
   physicsCol: {fileID: 8000486416424168955}

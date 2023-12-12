@@ -229,7 +229,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
     {
         if (gunCurrent != null)
         {
-            gunCurrent.ChangeAmmo(0, (int)(gunCurrent.GetReserveAmmo() * percent));
+            gunCurrent.ChangeAmmo(0, (int)(gunCurrent.GetReserveAmmoCapacity() * percent));
         }
     }
     #endregion

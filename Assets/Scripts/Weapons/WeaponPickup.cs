@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour, IInteractable
 {
+    [SerializeField] string itemName;
+
     [SerializeField] WeaponStats playerWeapon;
     [SerializeField] WeaponStats enemyWeapon;
     [SerializeField] Collider physicsCol;
@@ -23,6 +25,11 @@ public class WeaponPickup : MonoBehaviour, IInteractable
     public void Interact(IInteractionController interactionController)
     {
         interactionController.PickUpWeapon(this);
+    }
+
+    public string GetName()
+    {
+        return itemName;
     }
 
     public void PickedUp()
