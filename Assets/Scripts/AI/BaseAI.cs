@@ -6,28 +6,10 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 
 
-// NOTE TO OURSELVES:
-// Contain most of these information through OOP (if possible)
-// - Encapsulation
-// - Inheritance
-// Create a functionality where the Enemy can vault over vaultable objects.
 
 public class BaseAI : MonoBehaviour, IDamageable
 {
     // Behaviors and stats
-    [Header("------ Components ------")]
-    [SerializeField] public NavMeshAgent agent; // READ --> Keep it public so the roam scripts can access this variable
-    [SerializeField] Collider hitCol;
-    [SerializeField] Collider detectCol;
-    [SerializeField] Renderer model;
-    [SerializeField] Transform headPosition;
-    [SerializeField] EnemyCombat enemyCombat;
-    [SerializeField] float stoppingDist;
-
-    [Header("------ Animation ------")]
-    [SerializeField] Animator enemyAnim;
-    [SerializeField] float animSpeedTransition;
-
     [Header("------ Enemy Stats ------")]
     [Range(1, 100)][SerializeField] float HP;
     [Range(1, 180)][SerializeField] int viewCone;
@@ -35,16 +17,38 @@ public class BaseAI : MonoBehaviour, IDamageable
     [SerializeField] float walkSpeed;
     [SerializeField] float sprintMultipler;
 
-    [Header("------ Gunplay ------")]
+    [Header("------ Combat ------")]
     [Range(1, 100)][SerializeField] float shootRate;
+    [SerializeField] EnemyCombat enemyCombat;
 
-    // Combat values
+    [Header("------ NavMesh Components ------")]
+    [SerializeField] public NavMeshAgent agent; // READ --> Keep it public so the roam scripts can access this variable
+    [SerializeField] float stoppingDist;
+    [SerializeField] bool isASniper;
+    [SerializeField] int findNearestEnemies;
+
+    [Header("------ Colliders ------")]
+    [SerializeField] Collider hitCol;
+    [SerializeField] Collider detectCol;
+
+    [Header("------ Model ------")]
+    [SerializeField] Renderer model;
+    [SerializeField] Transform headPosition;
+
+
+    [Header("------ Animation ------")]
+    [SerializeField] Animator enemyAnim;
+    [SerializeField] float animSpeedTransition;
+
+
+
+    // private Combat variables
     bool isSprinting;
     bool isShooting;
     float angleToPlayer;
     Vector3 playerDir;
 
-    //patrol
+    //private Patrol variables
     bool playerInRange;
     bool isMoving;
     Vector3 enemyPos;
@@ -53,6 +57,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     void Start()
     {
+        EnemyManager.instance.enemies.Add(gameObject);
         isMoving = false;
         HUDManager.instance.UpdateProgress(1);
         enemyPos = transform.position;
@@ -88,36 +93,9 @@ public class BaseAI : MonoBehaviour, IDamageable
         }
     }
 
-    IEnumerator returntoOriginPos(int delay)
-    {
-        if (agent.remainingDistance <= 0.01f)
-        {
-            destinationPoint = enemyPos;
-            yield return new WaitForSeconds(delay);
-            agent.SetDestination(destinationPoint);
-            isMoving = false;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
-    }
-
     public virtual bool canSeePlayer()
     {
-        playerDir = GameManager.instance.playerBodyPositions.playerCenter.position - headPosition.position;
+        playerDir = -headPosition.position + GameManager.instance.playerBodyPositions.playerCenter.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         Debug.DrawRay(headPosition.position, playerDir);
@@ -130,7 +108,8 @@ public class BaseAI : MonoBehaviour, IDamageable
             {
                 if (cot != null)
                     StopCoroutine(cot);
-                agent.SetDestination(GameManager.instance.player.transform.position);
+                if (!isASniper)
+                    agent.SetDestination(GameManager.instance.player.transform.position);
                 enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
 
                 if (!isShooting)
@@ -159,9 +138,21 @@ public class BaseAI : MonoBehaviour, IDamageable
         return false;
     }
 
+    IEnumerator returntoOriginPos(int delay)
+    {
+        if (agent.remainingDistance <= 0.01f)
+        {
+            destinationPoint = enemyPos;
+            yield return new WaitForSeconds(delay);
+            agent.SetDestination(destinationPoint);
+            isMoving = false;
+        }
+    }
+
+
     void faceTarget()
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * targetFaceSpeed);
     }
 
@@ -189,6 +180,7 @@ public class BaseAI : MonoBehaviour, IDamageable
             Destroy(gameObject);
             HUDManager.instance.UpdateProgress(-1);
             OnDie.Invoke();
+            EnemyManager.instance.enemies.Remove(gameObject);
         }
         else
         {
@@ -196,15 +188,42 @@ public class BaseAI : MonoBehaviour, IDamageable
             if (cot != null)
                 StopCoroutine(cot);
             StartCoroutine(flashRed());
-            agent.SetDestination(GameManager.instance.player.transform.position);
-            isMoving = true;
+            if (!isASniper)
+            {
+                agent.SetDestination(GameManager.instance.player.transform.position);
+                isMoving = true;
+            }
+            else if (isASniper)
+            {
+                CallForBackup();
+            }
         }
     }
 
-    private UnityEvent OnDie = new UnityEvent();
+    void CallForBackup()
+    {
+        for (int i = 0; i < EnemyManager.instance.enemies.Count; i++)
+        {
+            if (EnemyManager.instance.enemies[i] != null)
+            {
+                if (Vector3.Distance(transform.position, EnemyManager.instance.enemies[i].transform.position) < findNearestEnemies)
+                {
+                    BaseAI tempEnemy = EnemyManager.instance.enemies[i].GetComponent<BaseAI>();
 
-    public void SubscribeOnDie(UnityAction action) { OnDie.AddListener(action); }
-    public void UnsubscribeOnDie(UnityAction action) { OnDie.RemoveListener(action); }
+                    if (tempEnemy != null)
+                    {
+                        if (!tempEnemy.isASniper && tempEnemy != this)
+                        {
+                            tempEnemy.agent.SetDestination(GameManager.instance.player.transform.position);
+                            tempEnemy.isMoving = true;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
 
     IEnumerator flashRed()
     {
@@ -212,4 +231,31 @@ public class BaseAI : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.1f);
         model.material.color = Color.white;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, findNearestEnemies);
+    }
+
+    private UnityEvent OnDie = new UnityEvent();
+
+    public void SubscribeOnDie(UnityAction action) { OnDie.AddListener(action); }
+    public void UnsubscribeOnDie(UnityAction action) { OnDie.RemoveListener(action); }
 }

@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1887439388771734669
 Transform:
   m_ObjectHideFlags: 0
@@ -89,9 +89,11 @@ MonoBehaviour:
   headPosition: {fileID: 363718558803062919}
   enemyCombat: {fileID: 2374437348007658942}
   stoppingDist: 10
+  isASniper: 1
+  findNearestEnemies: 25
   enemyAnim: {fileID: 2806117298777610628}
   animSpeedTransition: 3
-  HP: 6
+  HP: 10
   viewCone: 180
   targetFaceSpeed: 3
   walkSpeed: 3
