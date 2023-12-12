@@ -1627,6 +1627,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2095087918520301800}
     m_Modifications:
+    - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
+      propertyPath: HP
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
+      propertyPath: meshes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
+      propertyPath: meshes.Array.data[0]
+      value: 
+      objectReference: {fileID: 5744949735414040079}
     - target: {fileID: 5527576047882692242, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
       propertyPath: m_Name
@@ -1689,6 +1704,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a2782bbf3a47c443837ce74bce9a3ac, type: 3}
+--- !u!23 &5744949735414040079 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6091456242156524110, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1959939352671245377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7051975716016013504 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8858225298955015297, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
