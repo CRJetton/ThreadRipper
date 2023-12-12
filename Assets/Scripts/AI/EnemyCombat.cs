@@ -133,6 +133,16 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
 
     public void Die()
     {
+        if (weaponCurrent != null)
+        {
+            if (gunCurrent != null)
+            {
+                gunCurrent.SetReserveAmmo(0);
+                gunCurrent.SetMagAmmo(Mathf.Clamp(gunCurrent.GetMagAmmo(), gunCurrent.GetMagAmmoCapacity() / 2, gunCurrent.GetMagAmmoCapacity()));
+            }
 
+
+            weaponCurrent.Drop();
+        }
     }
 }
