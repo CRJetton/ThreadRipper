@@ -89,9 +89,11 @@ MonoBehaviour:
   headPosition: {fileID: 363718558803062919}
   enemyCombat: {fileID: 2374437348007658942}
   stoppingDist: 10
+  isASniper: 1
+  findNearestEnemies: 25
   enemyAnim: {fileID: 2806117298777610628}
   animSpeedTransition: 3
-  HP: 6
+  HP: 10
   viewCone: 180
   targetFaceSpeed: 3
   walkSpeed: 3

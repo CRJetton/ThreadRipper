@@ -99,7 +99,6 @@ public class BossCombat : MonoBehaviour
             }
         }
     }
-
     #endregion
 
     #region combat
@@ -124,7 +123,7 @@ public class BossCombat : MonoBehaviour
     {
         
         FireWeaponList(equippedShotguns);
-        // animator.SetTrigger("Shoot Cannons");
+        animator.SetTrigger("Shoot Cannons");
         // animator.ResetTrigger("Shoot Cannons");
 
         if (currentPhase >= 2)

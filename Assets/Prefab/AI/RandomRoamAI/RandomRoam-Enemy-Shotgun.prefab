@@ -1991,6 +1991,8 @@ MonoBehaviour:
   headPosition: {fileID: 363187117487114537}
   enemyCombat: {fileID: 363187117804408503}
   stoppingDist: 5
+  isASniper: 0
+  findNearestEnemies: 0
   enemyAnim: {fileID: -3218017268443822504}
   animSpeedTransition: 3
   HP: 10
@@ -1998,7 +2000,7 @@ MonoBehaviour:
   targetFaceSpeed: 100
   walkSpeed: 5
   sprintMultipler: 1.5
-  shootRate: 1
+  shootRate: 1.5
   roamDist: 10
   roamPause: 1
 --- !u!95 &-3218017268443822504
