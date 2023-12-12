@@ -62,8 +62,8 @@ MonoBehaviour:
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
-  walkSpeed: 0
-  sprintMultipler: 0
+  walkSpeed: 5
+  sprintMultipler: 1.5
   shootRate: 1
   waypoint: {fileID: 0}
   waypointSearch: 6

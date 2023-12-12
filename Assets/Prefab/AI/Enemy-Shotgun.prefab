@@ -1358,14 +1358,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363187117296910182}
-  m_LocalRotation: {x: -0.834262, y: -0.00050288806, z: 0.54680496, w: 0.07078895}
-  m_LocalPosition: {x: 0.005196642, y: 0.2136459, z: 0.13369974}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.127, y: 0.249, z: 0.073}
   m_LocalScale: {x: 2.5000002, y: 2.4999993, z: 2.4999993}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 363187117782513518}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!1 &363187117362394843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,17 +1986,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 363187117804408502}
-  detectCol: {fileID: 363187117804408501}
   hitCol: {fileID: 363187117804408500}
+  detectCol: {fileID: 363187117804408501}
   model: {fileID: 363187117254347297}
   headPosition: {fileID: 363187117208135005}
   enemyCombat: {fileID: 363187117804408503}
-  stoppingDist: 3
+  stoppingDist: 5
   enemyAnim: {fileID: 866331865671818293}
   animSpeedTransition: 3
   HP: 18
   viewCone: 180
   targetFaceSpeed: 3
+  walkSpeed: 5
+  sprintMultipler: 1.5
   shootRate: 1
 --- !u!95 &866331865671818293
 Animator:

@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4876590537908019207}
-  detectCol: {fileID: 7641534258589484602}
   hitCol: {fileID: 4876590537908019200}
+  detectCol: {fileID: 7641534258589484602}
   model: {fileID: 7897799865592936513}
   headPosition: {fileID: 7897799865581463791}
   enemyCombat: {fileID: 8750242762222399792}
@@ -62,10 +62,11 @@ MonoBehaviour:
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
+  walkSpeed: 5
+  sprintMultipler: 2
   shootRate: 1
   roamDist: 15
   roamPause: 2
-  destinationChoosen: 0
 --- !u!95 &3347048714868401780
 Animator:
   serializedVersion: 5

@@ -63,8 +63,8 @@ MonoBehaviour:
   HP: 12
   viewCone: 180
   targetFaceSpeed: 3
-  walkSpeed: 0
-  sprintMultipler: 0
+  walkSpeed: 5
+  sprintMultipler: 2
   shootRate: 1
 --- !u!95 &6562048291766463344
 Animator:
