@@ -113,7 +113,8 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
         // Wait for equip to finish
         yield return new WaitForSeconds(weaponCurrent.GetEquipTime());
 
-        weaponCurrent.Equip();
+        if (weaponCurrent != null)
+            weaponCurrent.Equip();
     }
 
     public void Throw(Vector3 targetPos)

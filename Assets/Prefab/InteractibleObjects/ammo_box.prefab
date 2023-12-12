@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff49125fb908c924e9a59818673f4ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: Ammo Box
   ammoAmount: 20
 --- !u!65 &4081391828795115458
 BoxCollider:

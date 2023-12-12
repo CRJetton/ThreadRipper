@@ -276,9 +276,12 @@ public class PlayerCombat : MonoBehaviour, ICombat
         // Wait for equip to finish
         yield return new WaitForSeconds(weaponCurrent.GetEquipTime());
 
-        weaponCurrent.Equip();
+        if (weaponCurrent != null)
+        {
+            weaponCurrent.Equip();
+            isWeaponEquipped = true;
+        }
 
-        isWeaponEquipped = true;
         canEquipWeaopn = true;
     }
 

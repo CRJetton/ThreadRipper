@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b740ce8423fd8644ac25166e208f570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: Large Med
   healAmount: 200
 --- !u!33 &3629587764166660079
 MeshFilter:
