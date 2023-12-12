@@ -88,8 +88,8 @@ MonoBehaviour:
   headPosition: {fileID: 363718558803062919}
   enemyCombat: {fileID: 2374437348007658942}
   stoppingDist: 5
-  enemyAnim: {fileID: 0}
-  animSpeedTransition: 0
+  enemyAnim: {fileID: -2884215575347069398}
+  animSpeedTransition: 3
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
