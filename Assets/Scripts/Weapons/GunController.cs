@@ -146,6 +146,8 @@ public class GunController : MonoBehaviour, IGun
 
         PlaySound(gun.shootSounds[Random.Range(0, gun.shootSounds.Length - 1)], gun.shootVolume, gun.minShootPitch, gun.maxShootPitch);
 
+        Instantiate(gun.muzzleFlash, barrelPos.position, barrelPos.rotation);
+
         StopJumpRecovery();
         StartJumpRecovery();
 

@@ -425,4 +425,5 @@ MonoBehaviour:
     type: 3}
   hitEntityEffect: {fileID: 7338626369925352935, guid: 28a2903b092e4d94d850c51c697a9990,
     type: 3}
-  muzzleFlash: {fileID: 0}
+  muzzleFlash: {fileID: 7913682932837955066, guid: 216c370c850079b429aceaf9718797f3,
+    type: 3}
