@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 
 // NOTE TO OURSELVES:
@@ -187,7 +188,7 @@ public class BaseAI : MonoBehaviour, IDamageable
             agent.enabled = false;
             Destroy(gameObject);
             HUDManager.instance.UpdateProgress(-1);
-            enemyCombat.Die();
+            OnDie.Invoke();
         }
         else
         {
@@ -199,6 +200,11 @@ public class BaseAI : MonoBehaviour, IDamageable
             isMoving = true;
         }
     }
+
+    private UnityEvent OnDie = new UnityEvent();
+
+    public void SubscribeOnDie(UnityAction action) { OnDie.AddListener(action); }
+    public void UnsubscribeOnDie(UnityAction action) { OnDie.RemoveListener(action); }
 
     IEnumerator flashRed()
     {

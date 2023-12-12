@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour, IEnemyCombat
 {
+    [Header("Components")]
+    [SerializeField] BaseAI baseAI;
+
     [Header("Combat")]
     [SerializeField] Transform weaponContainer;
     [SerializeField] GameObject startingWeapon;
@@ -25,6 +28,7 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
     void Start()
     {
         EquipWeapon(startingWeapon.GetComponent<WeaponPickup>());
+        baseAI.SubscribeOnDie(Die);
     }
 
 

@@ -102,9 +102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace38c6a9137a41488ff3e0610efb932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseAI: {fileID: -2168510474519912518}
   weaponContainer: {fileID: 8855287785251239938}
   startingWeapon: {fileID: 1178596823894660017, guid: 9bd908c7cc708b347872d2d69f328748,
     type: 3}
+  aimAtSmoothing: 8
   throwSpeed: 10
   throwAngularSpeed: 30
   throwAngle: 0.6
