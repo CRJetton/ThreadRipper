@@ -8,16 +8,18 @@ public class Bullet : MonoBehaviour
     float damage;
     float speed;
     float destroyTime;
+    float hitForce;
 
     [SerializeField] Rigidbody rb;
 
     bool isPlayerRound;
 
 
-    public void Initialize(string _noHitTag, float _damage, float _speed, float _destroyTime)
+    public void Initialize(string _noHitTag, float _damage, float _hitForce, float _speed, float _destroyTime)
     {
         noHitTag = _noHitTag;
         damage = _damage;
+        hitForce = _hitForce;
         speed = _speed;
         destroyTime = _destroyTime;
 
@@ -55,6 +57,12 @@ public class Bullet : MonoBehaviour
         transform.position = hit.point;
 
         IDamageable damageable = other.GetComponent<IDamageable>();
+        IPhysics physics = other.GetComponent<IPhysics>();
+
+        if (physics != null)
+        {
+            physics.TakePhysics(transform.forward * hitForce);
+        }
 
         if (damageable != null)
         {

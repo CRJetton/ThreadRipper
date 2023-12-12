@@ -189,7 +189,7 @@ public class GunController : MonoBehaviour, IGun
     void CreateBullet()
     {
         GameObject bullet = Instantiate(gun.bulletPrefab, barrelPos.position, CalcShotRotation());
-        bullet.GetComponent<Bullet>().Initialize(gun.noHitTag, gun.damage, gun.bulletSpeed, gun.bulletDestroyTime);
+        bullet.GetComponent<Bullet>().Initialize(gun.noHitTag, gun.damage, gun.hitForce, gun.bulletSpeed, gun.bulletDestroyTime);
     }
     #endregion
 
