@@ -659,7 +659,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8272686023293986141}
-  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.7071079}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -8.6, y: 0.6, z: 11.150001}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
@@ -703,6 +703,7 @@ MonoBehaviour:
   - {fileID: 8012557782349165051}
   - {fileID: 7417680922838671379}
   - {fileID: 8159786035460815807}
+  - {fileID: 5952660010215176636}
   col: {fileID: 8272686023293986129}
   particles: {fileID: 19800008, guid: fcee421d39e019c43b76b9b23329372d, type: 3}
   HP: 50
@@ -880,6 +881,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cfef1bbf531eda418ca8629646d7ab5, type: 3}
+--- !u!23 &5952660010215176636 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2329034623556053216, guid: 5cfef1bbf531eda418ca8629646d7ab5,
+    type: 3}
+  m_PrefabInstance: {fileID: 8272686024676118876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5952660010215176638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2329034623556053218, guid: 5cfef1bbf531eda418ca8629646d7ab5,

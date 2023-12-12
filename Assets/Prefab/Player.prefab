@@ -6738,7 +6738,8 @@ MonoBehaviour:
   throwAngularSpeed: 30
   throwAngle: 0.3
   weaponContainer: {fileID: 6345011976925759367}
-  startingWeapon: {fileID: 0}
+  startingWeapon: {fileID: 971036337970845236, guid: 7344c787ab4daa945a190a98cc9bc628,
+    type: 3}
 --- !u!114 &1665011542323153845
 MonoBehaviour:
   m_ObjectHideFlags: 0
