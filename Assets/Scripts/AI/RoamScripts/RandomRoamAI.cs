@@ -8,7 +8,7 @@ public class RandomRoamAI : BaseAI
     [SerializeField] int roamDist;
     [SerializeField] int roamPause;
 
-    public bool destinationChoosen;
+    bool destinationChoosen;
     Vector3 startingPos;
     Coroutine randomRoamcot;
 

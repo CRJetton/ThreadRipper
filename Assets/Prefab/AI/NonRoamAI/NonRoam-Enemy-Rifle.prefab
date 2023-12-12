@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4876590537908019203}
   - component: {fileID: 4876590537908019212}
+  - component: {fileID: 7332176214694510679}
   - component: {fileID: 8750242762222399792}
   - component: {fileID: 4876590537908019207}
   - component: {fileID: 7641534258589484602}
@@ -50,16 +51,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4876590537908019207}
-  detectCol: {fileID: 7641534258589484602}
   hitCol: {fileID: 4876590537908019200}
+  detectCol: {fileID: 7641534258589484602}
   model: {fileID: 7897799865592936513}
   headPosition: {fileID: 7897799865581463791}
   enemyCombat: {fileID: 8750242762222399792}
   stoppingDist: 0
+  enemyAnim: {fileID: 7332176214694510679}
+  animSpeedTransition: 3
   HP: 12
   viewCone: 180
   targetFaceSpeed: 3
+  walkSpeed: 0
+  sprintMultipler: 0
   shootRate: 1
+--- !u!95 &7332176214694510679
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876590537908019206}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d5025efbcc7ae004db8312cd46d86e5d, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6c7aaf469581b7b4cb072aa79fe37ef6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8750242762222399792
 MonoBehaviour:
   m_ObjectHideFlags: 0

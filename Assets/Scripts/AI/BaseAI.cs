@@ -16,12 +16,14 @@ public class BaseAI : MonoBehaviour, IDamageable
     // Behaviors and stats
     [Header("------ Components ------")]
     [SerializeField] public NavMeshAgent agent; // READ --> Keep it public so the roam scripts can access this variable
-    [SerializeField] Collider detectCol;
     [SerializeField] Collider hitCol;
+    [SerializeField] Collider detectCol;
     [SerializeField] Renderer model;
     [SerializeField] Transform headPosition;
     [SerializeField] EnemyCombat enemyCombat;
     [SerializeField] float stoppingDist;
+
+    [Header("------ Animation ------")]
     [SerializeField] Animator enemyAnim;
     [SerializeField] float animSpeedTransition;
 
@@ -29,18 +31,20 @@ public class BaseAI : MonoBehaviour, IDamageable
     [Range(1, 100)][SerializeField] float HP;
     [Range(1, 180)][SerializeField] int viewCone;
     [Range(1, 100)][SerializeField] int targetFaceSpeed;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float sprintMultipler;
 
     [Header("------ Gunplay ------")]
     [Range(1, 100)][SerializeField] float shootRate;
 
-    // defs
+    // Combat values
+    bool isSprinting;
     bool isShooting;
-    bool playerInRange;
     float angleToPlayer;
-    float animVelocity;
     Vector3 playerDir;
 
     //patrol
+    bool playerInRange;
     bool isMoving;
     Vector3 enemyPos;
     Vector3 destinationPoint;
@@ -52,14 +56,14 @@ public class BaseAI : MonoBehaviour, IDamageable
         HUDManager.instance.UpdateProgress(1);
         enemyPos = transform.position;
         stoppingDist = agent.stoppingDistance;
-        //agent.speed = moveSpeed;
+        agent.speed = walkSpeed;
     }
 
     void Update()
     {
         if (agent.isActiveAndEnabled)
         {
-            animVelocity = agent.velocity.normalized.magnitude;
+            float animVelocity = agent.velocity.normalized.magnitude;
             enemyAnim.SetFloat("Speed", Mathf.Lerp(enemyAnim.GetFloat("Speed"), animVelocity, Time.deltaTime * animSpeedTransition));
 
 
@@ -94,6 +98,22 @@ public class BaseAI : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
     public virtual bool canSeePlayer()
     {
         playerDir = GameManager.instance.playerBodyPositions.playerCenter.position - headPosition.position;
@@ -123,10 +143,17 @@ public class BaseAI : MonoBehaviour, IDamageable
                 }
 
                 isMoving = true;
+                if (!isSprinting)
+                {
+                    agent.speed *= sprintMultipler;
+                    isSprinting = true;
+                }
                 agent.stoppingDistance = stoppingDist;
                 return true;
             }
         }
+        isSprinting = false;
+        agent.speed = walkSpeed;
         agent.stoppingDistance = 0;
         return false;
     }
@@ -135,22 +162,6 @@ public class BaseAI : MonoBehaviour, IDamageable
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * targetFaceSpeed);
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
     }
 
     IEnumerator shoot()
@@ -172,10 +183,11 @@ public class BaseAI : MonoBehaviour, IDamageable
         if (HP <= 0)
         {
             hitCol.enabled = false;
-            agent.enabled = false;
             detectCol.enabled = false;
+            agent.enabled = false;
             Destroy(gameObject);
             HUDManager.instance.UpdateProgress(-1);
+            enemyCombat.Die();
         }
         else
         {

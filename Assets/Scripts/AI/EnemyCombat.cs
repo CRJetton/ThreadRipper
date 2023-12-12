@@ -129,4 +129,10 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
 
         Throw(GameManager.instance.playerBodyPositions.playerCenter.position);
     }
+
+
+    public void Die()
+    {
+
+    }
 }
