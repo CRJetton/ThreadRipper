@@ -10,18 +10,25 @@ public class Bullet : MonoBehaviour
     float destroyTime;
     float hitForce;
 
+    GameObject hitWallEffect;
+    GameObject hitEntityEffect;
+
     [SerializeField] Rigidbody rb;
 
     bool isPlayerRound;
 
 
-    public void Initialize(string _noHitTag, float _damage, float _hitForce, float _speed, float _destroyTime)
+    public void Initialize(string _noHitTag, float _damage, float _hitForce, float _speed, float _destroyTime,
+        GameObject _hitWallEffect, GameObject _hitEntityEffect)
     {
         noHitTag = _noHitTag;
         damage = _damage;
         hitForce = _hitForce;
         speed = _speed;
         destroyTime = _destroyTime;
+
+        hitWallEffect = _hitWallEffect;
+        hitEntityEffect = _hitEntityEffect;
 
         rb.velocity = transform.forward * speed;
 
@@ -70,10 +77,14 @@ public class Bullet : MonoBehaviour
                 HUDManager.instance.ShowHitMarker();
 
             damageable.TakeDamage(damage);
+
+            Instantiate(hitEntityEffect, transform.position, transform.rotation);
         }
         else
         {
             DecalManager.instance.CreateBulletHole(hit.point, hit.normal);
+
+            Instantiate(hitWallEffect, transform.position, transform.rotation);
         }
 
         Destroy(gameObject);

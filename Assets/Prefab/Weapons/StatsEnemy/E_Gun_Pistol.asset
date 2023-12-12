@@ -424,3 +424,8 @@ MonoBehaviour:
   reloadVolume: 0.4
   minReloadPitch: 0.95
   maxReloadPitch: 1.05
+  hitWallEffect: {fileID: 7339317526886804230, guid: f947207e9bcff6d4c8ba982cb76da9f6,
+    type: 3}
+  hitEntityEffect: {fileID: 7338626369925352935, guid: 28a2903b092e4d94d850c51c697a9990,
+    type: 3}
+  muzzleFlash: {fileID: 0}
