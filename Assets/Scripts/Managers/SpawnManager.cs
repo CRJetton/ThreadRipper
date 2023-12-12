@@ -6,7 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager instance { get; private set; }
 
-    List<KillDoor> killDoorList;
+    List<KillDoor> killDoorList = new List<KillDoor>();
 
 
     private void Awake()
@@ -26,6 +26,9 @@ public class SpawnManager : MonoBehaviour
 
     public void KillDoorEnemySpawned(GameObject enemy)
     {
-
+        foreach(KillDoor killDoor in killDoorList)
+        {
+            killDoor.AddEnemyToKill(enemy);
+        }
     }
 }

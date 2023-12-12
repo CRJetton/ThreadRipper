@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField] bool spawnForKillDoor;
     [SerializeField] GameObject objectToSpawn;
     [SerializeField] int numToSpawn;
     [SerializeField] int timeBetweenSpawns;
     [SerializeField] Transform[] spawnPos;
     [SerializeField] List<GameObject> spawnList = new List<GameObject>();
-
-    [SerializeField] bool spawnForKillDoor;
 
     int spawnCount;
     bool isSpawning;
@@ -45,6 +44,9 @@ public class Spawner : MonoBehaviour
 
         spawnList.Add(objectClone);
         spawnCount++;
+
+        if (spawnForKillDoor)
+            SpawnManager.instance.KillDoorEnemySpawned(objectClone);
 
         yield return new WaitForSeconds(timeBetweenSpawns);
 

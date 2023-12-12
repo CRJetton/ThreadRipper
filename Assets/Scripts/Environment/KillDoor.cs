@@ -9,7 +9,7 @@ public class KillDoor : MonoBehaviour
     [SerializeField] float closeTime;
     [SerializeField] GameObject doorModel;
 
-    [SerializeField] List<GameObject> enemiesToKill;
+    [SerializeField] List<GameObject> enemiesToKill = new List<GameObject>();
 
     int numToKill;
     Coroutine moveDoor;

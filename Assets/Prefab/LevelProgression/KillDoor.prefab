@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 5346950887670674637}
   m_Layer: 0
   m_Name: KillDoor
-  m_TagString: Untagged
+  m_TagString: KillDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,5 +146,4 @@ MonoBehaviour:
   openTime: 1
   closeTime: 1
   doorModel: {fileID: 5129902537680863200}
-  enemiesToKill:
-  - {fileID: 0}
+  enemiesToKill: []
