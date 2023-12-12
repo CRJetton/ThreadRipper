@@ -17,11 +17,6 @@ public class Spawner : MonoBehaviour
     bool startSpawning;
 
 
-    private void Start()
-    {
-    }
-
-
     private void Update()
     {
         if (startSpawning && spawnCount < numToSpawn && !isSpawning)
@@ -31,11 +26,10 @@ public class Spawner : MonoBehaviour
     }
 
 
-    public void EnemyDied()
+    void EnemyDied()
     {
         numToSpawn--;
         spawnCount--;
-        GameManager.instance.UpdateGameGoal(-1);
     }
 
 
@@ -47,7 +41,7 @@ public class Spawner : MonoBehaviour
         int posIndex = Random.Range(0, spawnPos.Length - 1);
         GameObject objectClone = Instantiate(objectToSpawn, spawnPos[posIndex].position, spawnPos[posIndex].rotation);
 
-        objectClone.GetComponent<EnemyAI>().mySpawner = this;
+        objectClone.GetComponent<BaseAI>().SubscribeOnDie(EnemyDied);
 
         spawnList.Add(objectClone);
         spawnCount++;
@@ -79,14 +73,6 @@ public class Spawner : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             startSpawning = false;
-
-            for (int i = 0; i < spawnList.Count; i++)
-            {
-                Destroy(spawnList[i]);
-            }
-
-            spawnList.Clear();
-            spawnCount = 0;
         }
     }
 }
