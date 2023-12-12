@@ -14633,7 +14633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c9e34f2e33f0d4f892b9838c3e9a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshes: []
+  meshes:
+  - {fileID: 5414399669998575621}
   col: {fileID: 5405938198893806585}
   particles: {fileID: 5436043743977746559}
   HP: 10
