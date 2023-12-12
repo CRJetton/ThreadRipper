@@ -15,10 +15,11 @@ public class Bullet : MonoBehaviour
     bool isPlayerRound;
 
 
-    public void Initialize(string _noHitTag, float _damage, float hitForce, float _speed, float _destroyTime)
+    public void Initialize(string _noHitTag, float _damage, float _hitForce, float _speed, float _destroyTime)
     {
         noHitTag = _noHitTag;
         damage = _damage;
+        hitForce = _hitForce;
         speed = _speed;
         destroyTime = _destroyTime;
 
