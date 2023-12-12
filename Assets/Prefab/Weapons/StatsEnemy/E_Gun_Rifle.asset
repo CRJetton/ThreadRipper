@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 9108546024485524263, guid: 165aaa5d807c3be4780c7e034a1d0230,
     type: 3}
-  itemPickupPrefab: {fileID: 1178596823894660017, guid: 279e75d5eb28302489d2a09047a3ca1f,
+  itemPickupPrefab: {fileID: 1178596823894660017, guid: 9bd908c7cc708b347872d2d69f328748,
     type: 3}
   noHitTag: Enemy
   equipTime: 0.25
