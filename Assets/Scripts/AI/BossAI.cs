@@ -34,11 +34,12 @@ public class BossAI: MonoBehaviour, IDamageable
     [Range(1, 3)]   [SerializeField] private float phaseTwoMoveSpeed;
     [Range(1, 3)]   [SerializeField] private float phaseThreeMoveSpeed;
 
+    // Turn speed of the mech (changed phase one in order to fine tune it for sequential range increases)
     [SerializeField] private float phaseOneTurnSpeed;
     [Range(1, 3)]   [SerializeField] private float phaseTwoTurnSpeed;
     [Range(1, 3)]   [SerializeField] private float phaseThreeTurnSpeed;
 
-    // Attack settings for the boss (can probably be removed)
+    // Attack settings for the boss (can probably be removed, but left in for fine tunning by the level designers)
     [Header("----- Boss Attacks -----")]
     [Range(1, 100)] [SerializeField] private float shootRate;
 
