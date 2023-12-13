@@ -293,9 +293,18 @@ public class BossAI: MonoBehaviour, IDamageable
         // Handles the boss death and runs his death animation
         if (HP <= 0)
         {
-            Destroy(gameObject);
             HUDManager.instance.UpdateProgress(-1);
             animator.SetBool("Dead", true);
+            agent.enabled = false;
+            damageCollider.enabled = false;
+        }
+        else
+        {
+            StopAllCoroutines();
+            isShooting = false;
+            destinationChosen = false;
+            // StartCoroutine(flashRed());
+            agent.SetDestination(GameManager.instance.player.transform.position);
         }
     }
 
