@@ -4,24 +4,30 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Controls the combat actions of the boss, including weapon management and attack phases
 public class BossCombat : MonoBehaviour
 {
+    // Arrays of game objects to hold weapon prefabs
     [Header("------ Boss Gun Array ------")]
     [SerializeField] private GameObject[] shotgunCannons;
     [SerializeField] private GameObject[] sniperRifles;
     [SerializeField] private GameObject[] automaticRifles;
 
+    // Hardpoints for mounting of the weapons on the boss model
     [Header("------ Boss Hardpoints ------")]
     [SerializeField] private Transform[] shotgunHardpoints;
     [SerializeField] private Transform[] sniperHardpoints;
     [SerializeField] private Transform[] rifleHardpoints;
 
+    // Animator for controlling boss animations
     [SerializeField] private Animator animator;
 
+    // Lists to keep track of equipped weapon prefabs
     private List<IWeapon> equippedShotguns = new List<IWeapon>();
     private List<IWeapon> equippedSnipers = new List<IWeapon>();
     private List<IWeapon> equippedRifles = new List<IWeapon>();
 
+    // Variables for tracking boss health and combat phases
     private float HP;
     private float maxHP;
     private int currentPhase = 1;
@@ -29,7 +35,7 @@ public class BossCombat : MonoBehaviour
     private float phase3Threshold = 0.33f;
 
     #region initialization
-    // At start we are equiping the array of weapons to the boss
+    // Equips weapons at BossCombat start
     private void Start()
     {
         StartCoroutine(EquipAllWeapons());
@@ -43,7 +49,7 @@ public class BossCombat : MonoBehaviour
     #endregion
 
     #region phase state
-    // here the boss changes states depending on his health values
+    // Boss changes states depending on his health values
     public void ChangePhase(float hp)
     {
         HP = hp;
@@ -56,7 +62,7 @@ public class BossCombat : MonoBehaviour
         }
     }
 
-    // here we are determining the phase based on the max hp snapshoted at initialization and calculated against our phase threshold
+    // Determines the phase based on the max hp snapshoted at initialization and calculated against our phase threshold
     private int CalculateCurrentPhase()
     {
         if (HP <= phase3Threshold * maxHP)
@@ -72,29 +78,37 @@ public class BossCombat : MonoBehaviour
     #endregion
 
     #region weapon behavior
-    // here we are equping each of the weapon arrays to our model
+    // Equips each of the weapon arrays to our model
     private IEnumerator EquipAllWeapons()
     {
+        // I chose to do a Coroutine to equip each weapon sequentially because of code that was used in 'GunController' that had equip delay
         yield return StartCoroutine(EquipWeaponArray(shotgunCannons, equippedShotguns, shotgunHardpoints));
         yield return StartCoroutine(EquipWeaponArray(sniperRifles, equippedSnipers, sniperHardpoints));
         yield return StartCoroutine(EquipWeaponArray(automaticRifles, equippedRifles, rifleHardpoints));
     }
 
-    // this iterates through the weapon array to equip each weapon
+    // Iterates through the weapon array to equip each weapon
     private IEnumerator EquipWeaponArray(GameObject[] weaponPrefabs, List<IWeapon> weaponList, Transform[] hardpoints)
     {
+        // Loops through each weapon prefab in the provided array
         for (int index = 0; index < weaponPrefabs.Length; index++)
         {
+            // Gets the IWeapon component from the current weapon prefab
             IWeapon weaponScript = weaponPrefabs[index].GetComponent<IWeapon>();
 
+            // Checks if a valid IWeapon component was found
             if (weaponScript != null)
             {
+                // Checks if the weapon is of type IGun, then initializes it to equip it
                 if (weaponScript is IGun gun)
                 {
+                    // Initialize the gun's ammo with a random amount up to its capacity (it doesnt need to be random, I just found it easier to do it this way)
                     gun.InitializeAmmo(gun.GetMagAmmoCapacity(), Random.Range(0, gun.GetMagAmmoCapacity()));
+                    // Wait for the specified equip time before proceeding
                     yield return new WaitForSeconds(gun.GetEquipTime());
                     gun.Equip();
                 }
+                // Adds the weapon script to the list of equipped weapons
                 weaponList.Add(weaponScript);
             }
         }
@@ -102,7 +116,7 @@ public class BossCombat : MonoBehaviour
     #endregion
 
     #region combat
-    // Here we are aiming at the players world position
+    // Aims the weapon list at the players world position
     public void AimAtPlayer(Vector3 worldPosition)
     {
         AimWeaponListAt(equippedShotguns, worldPosition);
@@ -110,6 +124,7 @@ public class BossCombat : MonoBehaviour
         AimWeaponListAt(equippedSnipers, worldPosition);
     }
 
+    // Aims the list of weapons at the world position of the player character
     private void AimWeaponListAt(List<IWeapon> weapons, Vector3 worldPosition)
     {
         foreach (var weapon in weapons)
@@ -118,25 +133,28 @@ public class BossCombat : MonoBehaviour
         }
     }
 
-    // this begins the firing routine
+    // this begins the firing routine of the equiped weapon prefabs based on the current phase as determined prior
     public void FireWeapons()
     {
-        
+        // Shotguns being the base weapon are always set to fire
         FireWeaponList(equippedShotguns);
+        // The animation for the guns are called whenever they are fired
         animator.SetTrigger("Shoot Cannons");
-        // animator.ResetTrigger("Shoot Cannons");
 
+        // Fires the equiped rifles during phase 2
         if (currentPhase >= 2)
         {
             FireWeaponList(equippedRifles);
         }
 
+        // Fires the equiped sniper rifles in phase 3
         if (currentPhase == 3)
         {
             FireWeaponList(equippedSnipers);
         }
     }
 
+    // The command to fire each weapon prefab
     private void FireWeaponList(List<IWeapon> weapons)
     {
         foreach (var weapon in weapons)
