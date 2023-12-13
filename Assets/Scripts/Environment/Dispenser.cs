@@ -5,7 +5,8 @@ using UnityEngine;
 public class Dispenser : MonoBehaviour, IInteractable
 {
     [SerializeField] private List<GameObject> dispensables = new List<GameObject>();
-    [SerializeField] Transform ejectPos;
+    [SerializeField] private Transform ejectPos;
+    [SerializeField] private string interactibleName;
 
     public void Interact(IInteractionController _interactionController)
     {
@@ -17,5 +18,10 @@ public class Dispenser : MonoBehaviour, IInteractable
         int dispensableIndex = Random.Range(0, dispensables.Count - 1);
         GameObject dispensable = dispensables[dispensableIndex];
         Instantiate(dispensable, ejectPos);
+    }
+
+    public string GetName()
+    {
+        return interactibleName;
     }
 }
