@@ -128,7 +128,7 @@ public class BossAI: MonoBehaviour, IDamageable
     bool canSeePlayer()
     {
         // Calculate the direction and angle to the player
-        playerDir = GameManager.instance.playerBodyPositions.playerCenter.position - headPosition.position;
+        playerDir = GameManager.instance.playerBodyPositions.GetPlayerCenter() - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         // Visualize the line of sight for debugging (can be removed if no longer necesary)
@@ -146,7 +146,7 @@ public class BossAI: MonoBehaviour, IDamageable
                 agent.SetDestination(GameManager.instance.player.transform.position);
                 if (bossCombat != null)
                 {
-                    bossCombat.AimAtPlayer(GameManager.instance.playerBodyPositions.playerCenter.position);
+                    bossCombat.AimAtPlayer(GameManager.instance.playerBodyPositions.GetPlayerCenter());
                 }
 
                 // Initiate shooting sequence if the player is within range and not already shooting

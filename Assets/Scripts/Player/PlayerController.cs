@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 
 TO DO
 
-
+- Fix problem where enemy loses sight of crouched player
 
 DONE
 
@@ -275,6 +275,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         StartCoroutine(CrouchCooldown());
         characterController.center = new Vector3(0, colliderCrouchHeight, 0);
         characterController.height /= colliderCrouchSizeMod;
+        GameManager.instance.playerBodyPositions.Crouch();
         currMoveSpeed = crouchMoveSpeed;
         isCrouching = true;
         isStanding = false;
@@ -286,6 +287,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         StartCoroutine(CrouchCooldown());
         characterController.center = new Vector3(0, colliderStandHeight, 0);
         characterController.height *= colliderCrouchSizeMod;
+        GameManager.instance.playerBodyPositions.Crouch();
         currMoveSpeed = defaultMoveSpeed;
         isCrouching = false;
         isStanding = true;

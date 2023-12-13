@@ -142,7 +142,7 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
             gunCurrent.SetMagAmmo(Mathf.Clamp(gunCurrent.GetMagAmmo(), gunCurrent.GetMagAmmoCapacity() / 2, gunCurrent.GetMagAmmoCapacity()));
         }
 
-        Throw(GameManager.instance.playerBodyPositions.playerCenter.position);
+        Throw(GameManager.instance.playerBodyPositions.GetPlayerCenter());
     }
 
 

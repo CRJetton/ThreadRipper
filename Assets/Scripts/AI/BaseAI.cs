@@ -97,7 +97,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     public virtual bool canSeePlayer()
     {
-        playerDir = -headPosition.position + GameManager.instance.playerBodyPositions.playerCenter.position;
+        playerDir = -headPosition.position + GameManager.instance.playerBodyPositions.GetPlayerCenter();
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         Debug.DrawRay(headPosition.position, playerDir);
@@ -106,7 +106,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
         if (Physics.Raycast(headPosition.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
+            if (hit.transform.CompareTag("Player") && angleToPlayer <= viewCone)
             {
                 if (playerdetected)
                 {
@@ -117,7 +117,7 @@ public class BaseAI : MonoBehaviour, IDamageable
                         if (agent.isOnNavMesh)
                             agent.SetDestination(GameManager.instance.player.transform.position);
                     }
-                    enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
+                    enemyCombat.AimAt(GameManager.instance.playerBodyPositions.GetPlayerCenter());
 
                     if (!isShooting)
                     {
