@@ -6665,7 +6665,7 @@ MonoBehaviour:
   defaultMoveSpeed: 5
   sprintSpeed: 10
   crouchMoveSpeed: 2
-  colliderCrouchHeight: 0.4
+  colliderCrouchHeight: 0.6
   colliderStandHeight: 0.8
   colliderCrouchSizeMod: 2
   cameraCrouchHeight: 1
@@ -6768,8 +6768,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef820679589eca4292f3e93b464b829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHead: {fileID: 1903986812}
+  characterController: {fileID: 6655305115144485799}
   playerCenter: {fileID: 1024505124}
+  standingCenterOffset: 0
+  crouchingCenterOffset: 0
+  playerHead: {fileID: 1903986812}
 --- !u!1 &6809358830359683549
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,8 +15,8 @@ GameObject:
   m_Name: drawer003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2103812882686832860
 Transform:
@@ -102,8 +102,8 @@ GameObject:
   m_Name: a4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3446666980357292487
 Transform:
@@ -245,8 +245,8 @@ GameObject:
   m_Name: keyboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7489846338214169540
 Transform:
@@ -385,8 +385,8 @@ GameObject:
   m_Name: Table set 1.001
   m_TagString: Vaultable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4570570446583477657
 Transform:
@@ -487,8 +487,8 @@ GameObject:
   m_Name: Radio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &198760176959716755
 Transform:
@@ -630,8 +630,8 @@ GameObject:
   m_Name: cup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2536562369690919090
 Transform:
@@ -814,8 +814,8 @@ GameObject:
   m_Name: drawer001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4290222494413464060
 Transform:
@@ -901,8 +901,8 @@ GameObject:
   m_Name: pencil holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4860182238496788106
 Transform:
@@ -1044,8 +1044,8 @@ GameObject:
   m_Name: a005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7741598779450218955
 Transform:
@@ -1187,8 +1187,8 @@ GameObject:
   m_Name: clip board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &825956718340522359
 Transform:
@@ -1326,8 +1326,8 @@ GameObject:
   m_Name: drawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6703550932421838895
 Transform:
@@ -1413,8 +1413,8 @@ GameObject:
   m_Name: 'screen '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &9145987070862249050
 Transform:
@@ -1552,8 +1552,8 @@ GameObject:
   m_Name: drawer002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3747155089369261346
 Transform:
@@ -1661,6 +1661,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExplosivePC
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527576047882692242, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527576047882692242, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8858225298955015297, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
