@@ -20,6 +20,7 @@ public class BaseAI : MonoBehaviour, IDamageable
     [Header("------ Combat ------")]
     [Range(1, 100)][SerializeField] float shootRate;
     [SerializeField] EnemyCombat enemyCombat;
+    [SerializeField] int detectionDelay;
 
     [Header("------ NavMesh Components ------")]
     [SerializeField] public NavMeshAgent agent; // READ --> Keep it public so the roam scripts can access this variable
@@ -43,8 +44,10 @@ public class BaseAI : MonoBehaviour, IDamageable
 
 
     // private Combat variables
+    bool playerdetected;
     bool isSprinting;
     bool isShooting;
+    bool isDead;
     float angleToPlayer;
     Vector3 playerDir;
 
@@ -53,12 +56,12 @@ public class BaseAI : MonoBehaviour, IDamageable
     bool isMoving;
     Vector3 enemyPos;
     Vector3 destinationPoint;
-    Coroutine cot;
+    Coroutine returnOriginalPositionCot;
+    Coroutine shootCot;
 
     void Start()
     {
         EnemyManager.instance.enemies.Add(gameObject);
-        isMoving = false;
         HUDManager.instance.UpdateProgress(1);
         enemyPos = transform.position;
         agent.stoppingDistance = stoppingDist;
@@ -67,7 +70,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if (agent.isActiveAndEnabled)
+        if (!isDead)
         {
             float animVelocity = agent.velocity.normalized.magnitude;
             enemyAnim.SetFloat("Speed", Mathf.Lerp(enemyAnim.GetFloat("Speed"), animVelocity, Time.deltaTime * animSpeedTransition));
@@ -89,7 +92,7 @@ public class BaseAI : MonoBehaviour, IDamageable
         if (isMoving)
         {
             agent.stoppingDistance = 0;
-            cot = StartCoroutine(returntoOriginPos(1));
+            returnOriginalPositionCot = StartCoroutine(returntoOriginPos(1));
         }
     }
 
@@ -106,39 +109,59 @@ public class BaseAI : MonoBehaviour, IDamageable
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                if (cot != null)
-                    StopCoroutine(cot);
-                if (!isASniper)
+                if (playerdetected)
                 {
+                    if (returnOriginalPositionCot != null)
+                        StopCoroutine(returnOriginalPositionCot);
+                    if (!isASniper)
+                    {
+                        if (agent.isOnNavMesh)
+                            agent.SetDestination(GameManager.instance.player.transform.position);
+                    }
+                    enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
+
+                    if (!isShooting)
+                    {
+                        shootCot = StartCoroutine(shoot());
+                    }
+
+                    if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
+                    {
+                        faceTarget();
+                    }
                     if (agent.isOnNavMesh)
-                        agent.SetDestination(GameManager.instance.player.transform.position);
+                    {
+                        isMoving = true;
+                        if (!isSprinting)
+                        {
+                            agent.speed *= sprintMultipler;
+                            isSprinting = true;
+                        }
+                        agent.stoppingDistance = stoppingDist;
+                    }
+                    return true;
                 }
-                enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
-
-                if (!isShooting)
+                else if (!playerdetected)
                 {
-                    StartCoroutine(shoot());
+                    StartCoroutine(DetectionDelay());
                 }
-
-                if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
-                {
-                    faceTarget();
-                }
-
-                isMoving = true;
-                if (!isSprinting)
-                {
-                    agent.speed *= sprintMultipler;
-                    isSprinting = true;
-                }
-                agent.stoppingDistance = stoppingDist;
-                return true;
             }
         }
+        playerdetected = false;
         isSprinting = false;
-        agent.speed = walkSpeed;
-        agent.stoppingDistance = 0;
+        if (agent.isOnNavMesh)
+        {
+            agent.speed = walkSpeed;
+            agent.stoppingDistance = 0;
+        }
         return false;
+    }
+
+    IEnumerator DetectionDelay()
+    {
+        playerdetected = false;
+        yield return new WaitForSeconds(detectionDelay);
+        playerdetected = true;
     }
 
     IEnumerator returntoOriginPos(int delay)
@@ -180,19 +203,30 @@ public class BaseAI : MonoBehaviour, IDamageable
 
         if (HP <= 0)
         {
+            isDead = true;
+            if (shootCot != null)
+            {
+                StopCoroutine(shootCot);
+                shootCot = null;
+            }
+            model.material.color = Color.red;
             hitCol.enabled = false;
             detectCol.enabled = false;
-            agent.enabled = false;
-            Destroy(gameObject);
+            if (agent.isOnNavMesh)
+                agent.enabled = false;
+            enemyAnim.SetBool("isDead", true);
+            enemyAnim.SetLayerWeight(1, 0);
+            StartCoroutine(WaitBeforeDestroying());
             HUDManager.instance.UpdateProgress(-1);
             OnDie.Invoke();
             EnemyManager.instance.enemies.Remove(gameObject);
         }
         else
         {
+            playerdetected = true;
             isShooting = false;
-            if (cot != null)
-                StopCoroutine(cot);
+            if (returnOriginalPositionCot != null)
+                StopCoroutine(returnOriginalPositionCot);
             StartCoroutine(flashRed());
             if (!isASniper)
             {
@@ -207,6 +241,12 @@ public class BaseAI : MonoBehaviour, IDamageable
                 CallForBackup();
             }
         }
+    }
+
+    IEnumerator WaitBeforeDestroying()
+    {
+        yield return new WaitForSeconds(8);
+        Destroy(gameObject);
     }
 
     void CallForBackup()
@@ -246,6 +286,9 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+            return;
+
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
@@ -254,6 +297,9 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.isTrigger)
+            return;
+
         if (other.CompareTag("Player"))
         {
             playerInRange = false;

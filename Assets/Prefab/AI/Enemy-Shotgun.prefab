@@ -1992,6 +1992,7 @@ MonoBehaviour:
   sprintMultipler: 1.5
   shootRate: 1
   enemyCombat: {fileID: 363187117804408503}
+  detectionDelay: 3
   agent: {fileID: 363187117804408502}
   stoppingDist: 5
   isASniper: 0

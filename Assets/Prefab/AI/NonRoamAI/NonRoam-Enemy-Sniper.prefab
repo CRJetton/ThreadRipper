@@ -89,6 +89,7 @@ MonoBehaviour:
   sprintMultipler: 1.5
   shootRate: 1
   enemyCombat: {fileID: 2374437348007658942}
+  detectionDelay: 3
   agent: {fileID: 1887439388771734665}
   stoppingDist: 10
   isASniper: 1
@@ -147,7 +148,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887439388771734664}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
   m_Speed: 0
