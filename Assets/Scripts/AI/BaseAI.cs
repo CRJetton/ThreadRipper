@@ -57,7 +57,6 @@ public class BaseAI : MonoBehaviour, IDamageable
     Vector3 enemyPos;
     Vector3 destinationPoint;
     Coroutine returnOriginalPositionCot;
-    Coroutine shootCot;
 
     void Start()
     {
@@ -122,7 +121,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
                     if (!isShooting)
                     {
-                        shootCot = StartCoroutine(shoot());
+                        StartCoroutine(shoot());
                     }
 
                     if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
@@ -187,14 +186,17 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     IEnumerator shoot()
     {
-        isShooting = true;
+        if (!isDead)
+        {
+            isShooting = true;
 
-        enemyCombat.AttackStarted();
+            enemyCombat.AttackStarted();
 
-        yield return new WaitForSeconds(shootRate);
-        enemyCombat.AttackCanceled();
+            yield return new WaitForSeconds(shootRate);
+            enemyCombat.AttackCanceled();
 
-        isShooting = false;
+            isShooting = false;
+        }
     }
 
     public virtual void TakeDamage(float damage)
@@ -204,16 +206,12 @@ public class BaseAI : MonoBehaviour, IDamageable
         if (HP <= 0)
         {
             isDead = true;
-            if (shootCot != null)
-            {
-                StopCoroutine(shootCot);
-                shootCot = null;
-            }
-            model.material.color = Color.red;
             hitCol.enabled = false;
             detectCol.enabled = false;
             if (agent.isOnNavMesh)
                 agent.enabled = false;
+            StopAllCoroutines();
+            model.material.color = Color.red;
             enemyAnim.SetBool("isDead", true);
             enemyAnim.SetLayerWeight(1, 0);
             StartCoroutine(WaitBeforeDestroying());

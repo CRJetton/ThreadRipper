@@ -14,6 +14,7 @@ public class RandomRoamAI : BaseAI
 
     private void Start()
     {
+        EnemyManager.instance.enemies.Add(gameObject);
         destinationChoosen = false;
         startingPos = transform.position;
         HUDManager.instance.UpdateProgress(1);

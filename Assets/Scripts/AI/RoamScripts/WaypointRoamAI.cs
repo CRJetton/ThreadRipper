@@ -5,7 +5,6 @@ public class WaypointRoamAI : BaseAI
 {
     [Header("----- Waypoint Roam Requirements -----")]
     [SerializeField] Transform waypoint;
-    [Range(0, 10)][SerializeField] int waypointSearch;
     [SerializeField] int roamPause;
 
     public bool walkpointSet; // public for debug reasons
@@ -17,6 +16,7 @@ public class WaypointRoamAI : BaseAI
     // Start is called before the first frame update
     void Start()
     {
+        EnemyManager.instance.enemies.Add(gameObject);
         waypoint = FindNearestWaypoint();
         if (waypoint == null)
             Debug.LogError("Hey! " + transform.name + "Couldn't find a Waypoint near him! Put him closer to one!");
