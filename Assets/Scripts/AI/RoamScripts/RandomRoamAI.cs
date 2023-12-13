@@ -29,7 +29,7 @@ public class RandomRoamAI : BaseAI
     {
         if (base.canSeePlayer())
         {
-            destinationChoosen=false;
+            destinationChoosen = false;
             if (randomRoamcot != null)
                 StopCoroutine(randomRoamcot);
             return true;
@@ -40,20 +40,23 @@ public class RandomRoamAI : BaseAI
 
     IEnumerator RandomPoint(int delay)
     {
-        if (agent.remainingDistance <= 0.01f && !destinationChoosen)
+        if (agent.isOnNavMesh)
         {
-            destinationChoosen = true;
-            agent.stoppingDistance = 0;
-            yield return new WaitForSeconds(delay);
+            if (agent.remainingDistance <= 0.01f && !destinationChoosen)
+            {
+                destinationChoosen = true;
+                agent.stoppingDistance = 0;
+                yield return new WaitForSeconds(delay);
 
-            Vector3 randPos = Random.insideUnitSphere * roamDist;
-            randPos += startingPos;
+                Vector3 randPos = Random.insideUnitSphere * roamDist;
+                randPos += startingPos;
 
-            NavMeshHit hit;
-            NavMesh.SamplePosition(randPos, out hit, roamDist, 1);
-            agent.SetDestination(hit.position);
+                NavMeshHit hit;
+                NavMesh.SamplePosition(randPos, out hit, roamDist, 1);
+                agent.SetDestination(hit.position);
 
-            destinationChoosen = false;
+                destinationChoosen = false;
+            }
         }
     }
 
