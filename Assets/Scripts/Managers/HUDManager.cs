@@ -30,6 +30,7 @@ public class HUDManager : MonoBehaviour
     public GameObject statusObject;
     [SerializeField] Image statusScreen;
     [SerializeField] CanvasGroup statusScreenAlpha;
+    [SerializeField] Transform hitMarkerContainer;
     public GameObject hitMarker;
 
     [Header("-----Reticle-----")]
@@ -67,7 +68,7 @@ public class HUDManager : MonoBehaviour
 
     public void ShowHitMarker()
     {
-        GameObject marker = Instantiate(hitMarker, hitMarker.transform);
+        GameObject marker = Instantiate(hitMarker, hitMarkerContainer);
         Destroy(marker, 0.2f);
     }
 
