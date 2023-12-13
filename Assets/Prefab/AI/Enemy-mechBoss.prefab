@@ -1559,7 +1559,7 @@ MonoBehaviour:
   headPosition: {fileID: 5329706576206261316}
   animator: {fileID: 5329706576133540501}
   damageCollider: {fileID: 5329706576126261560}
-  HP: 5
+  HP: 1000
   viewCone: 180
   targetFaceSpeed: 3
   weakSpotMultiplier: 1.33
