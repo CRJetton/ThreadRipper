@@ -67,7 +67,8 @@ public class HUDManager : MonoBehaviour
 
     public void ShowHitMarker()
     {
-        hitMarker.SetActive(true);
+        GameObject marker = Instantiate(hitMarker, hitMarker.transform);
+        Destroy(marker, 0.2f);
     }
 
     #endregion
@@ -129,17 +130,6 @@ public class HUDManager : MonoBehaviour
             yield return null;
         }
     }
-
-    /* -----Function for showing hitmarkers-----
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            GameObject marker = Instantiate(HUDManager.instance.hitMarker, HUDManager.instance.hitMarker.transform);
-            Destroy(marker, 0.2f);
-        }
-    }
-    */
 
     #endregion
 }

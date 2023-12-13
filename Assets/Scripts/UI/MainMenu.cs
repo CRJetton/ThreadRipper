@@ -24,17 +24,4 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-
-    public void Settings()
-    {
-        mainMenu.SetActive(false);
-        settingsMenu.SetActive(true);
-    }
-    
-    public void Back()
-    {
-        settingsMenu.SetActive(false);
-        mainMenu.SetActive(true);
-        
-    }
 }
