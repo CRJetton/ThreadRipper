@@ -28,8 +28,8 @@ public class BaseAI : MonoBehaviour, IDamageable
     [SerializeField] int findNearestEnemies;
 
     [Header("------ Colliders ------")]
-    [SerializeField] Collider hitCol;
-    [SerializeField] Collider detectCol;
+    [SerializeField] CapsuleCollider hitCol;
+    [SerializeField] SphereCollider detectCol;
 
     [Header("------ Model ------")]
     [SerializeField] Renderer model;
@@ -109,7 +109,10 @@ public class BaseAI : MonoBehaviour, IDamageable
                 if (cot != null)
                     StopCoroutine(cot);
                 if (!isASniper)
-                    agent.SetDestination(GameManager.instance.player.transform.position);
+                {
+                    if (agent.isOnNavMesh)
+                        agent.SetDestination(GameManager.instance.player.transform.position);
+                }
                 enemyCombat.AimAt(GameManager.instance.playerBodyPositions.playerCenter.position);
 
                 if (!isShooting)
@@ -117,7 +120,7 @@ public class BaseAI : MonoBehaviour, IDamageable
                     StartCoroutine(shoot());
                 }
 
-                if (agent.remainingDistance < agent.stoppingDistance)
+                if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
                 {
                     faceTarget();
                 }
@@ -140,12 +143,15 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     IEnumerator returntoOriginPos(int delay)
     {
-        if (agent.remainingDistance <= 0.01f)
+        if (agent.isOnNavMesh)
         {
-            destinationPoint = enemyPos;
-            yield return new WaitForSeconds(delay);
-            agent.SetDestination(destinationPoint);
-            isMoving = false;
+            if (agent.remainingDistance <= 0.01f)
+            {
+                destinationPoint = enemyPos;
+                yield return new WaitForSeconds(delay);
+                agent.SetDestination(destinationPoint);
+                isMoving = false;
+            }
         }
     }
 
@@ -190,8 +196,11 @@ public class BaseAI : MonoBehaviour, IDamageable
             StartCoroutine(flashRed());
             if (!isASniper)
             {
-                agent.SetDestination(GameManager.instance.player.transform.position);
-                isMoving = true;
+                if (agent.isOnNavMesh)
+                {
+                    agent.SetDestination(GameManager.instance.player.transform.position);
+                    isMoving = true;
+                }
             }
             else if (isASniper)
             {
@@ -214,8 +223,11 @@ public class BaseAI : MonoBehaviour, IDamageable
                     {
                         if (!tempEnemy.isASniper && tempEnemy != this)
                         {
-                            tempEnemy.agent.SetDestination(GameManager.instance.player.transform.position);
-                            tempEnemy.isMoving = true;
+                            if (tempEnemy.agent.isOnNavMesh)
+                            {
+                                tempEnemy.agent.SetDestination(GameManager.instance.player.transform.position);
+                                tempEnemy.isMoving = true;
+                            }
                         }
                     }
                 }

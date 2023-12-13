@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
         play = 0,
         pauseMenu = 1,
         winMenu = 2,
-        loseMenu = 3
+        loseMenu = 3,
+        settingsMenu = 4
+
     };
 
     public static GameManager instance;

@@ -30,4 +30,19 @@ public class ButtonFunctions : MonoBehaviour
         UIManager.instance.StateUnpaused();
     }
 
+    public void Settings()
+    {
+        UIManager.instance.menuPause.SetActive(false);
+        UIManager.instance.menuSettings.SetActive(true);
+        UIManager.instance.currState = GameManager.GameStates.settingsMenu;
+    }
+
+    public void Back()
+    {
+        UIManager.instance.menuSettings.SetActive(false);
+        UIManager.instance.menuPause.SetActive(true);
+        UIManager.instance.currState = GameManager.GameStates.pauseMenu;
+
+    }
+
 }
