@@ -1985,23 +1985,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b291ee2947515448c25974d76f1ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 363187117804408502}
-  hitCol: {fileID: 363187117804408500}
-  detectCol: {fileID: 363187117804408501}
-  model: {fileID: 363187117254347297}
-  headPosition: {fileID: 363187117208135005}
-  enemyCombat: {fileID: 363187117804408503}
-  stoppingDist: 5
-  isASniper: 0
-  nearestEnemies: 0
-  enemyAnim: {fileID: 866331865671818293}
-  animSpeedTransition: 3
-  HP: 18
+  HP: 50
   viewCone: 180
   targetFaceSpeed: 3
   walkSpeed: 5
   sprintMultipler: 1.5
   shootRate: 1
+  enemyCombat: {fileID: 363187117804408503}
+  agent: {fileID: 363187117804408502}
+  stoppingDist: 5
+  isASniper: 0
+  findNearestEnemies: 0
+  hitCol: {fileID: 363187117804408500}
+  detectCol: {fileID: 363187117804408501}
+  model: {fileID: 363187117254347297}
+  headPosition: {fileID: 363187117208135005}
+  enemyAnim: {fileID: 866331865671818293}
+  animSpeedTransition: 3
 --- !u!95 &866331865671818293
 Animator:
   serializedVersion: 5

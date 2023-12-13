@@ -50,21 +50,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3363d953119df4c92a5964e1338d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 4876590537908019207}
-  hitCol: {fileID: 4876590537908019200}
-  detectCol: {fileID: 7641534258589484602}
-  model: {fileID: 7897799865592936513}
-  headPosition: {fileID: 7897799865581463791}
-  enemyCombat: {fileID: 8750242762222399792}
-  stoppingDist: 5
-  enemyAnim: {fileID: 3347048714868401780}
-  animSpeedTransition: 3
   HP: 10
   viewCone: 180
   targetFaceSpeed: 100
   walkSpeed: 5
   sprintMultipler: 2
   shootRate: 1
+  enemyCombat: {fileID: 8750242762222399792}
+  agent: {fileID: 4876590537908019207}
+  stoppingDist: 5
+  isASniper: 0
+  findNearestEnemies: 0
+  hitCol: {fileID: 4876590537908019200}
+  detectCol: {fileID: 7641534258589484602}
+  model: {fileID: 7897799865592936513}
+  headPosition: {fileID: 7897799865581463791}
+  enemyAnim: {fileID: 3347048714868401780}
+  animSpeedTransition: 3
   roamDist: 15
   roamPause: 2
 --- !u!95 &3347048714868401780
@@ -104,7 +106,7 @@ MonoBehaviour:
   weaponContainer: {fileID: 8855287785251239938}
   startingWeapon: {fileID: 1178596823894660017, guid: 9bd908c7cc708b347872d2d69f328748,
     type: 3}
-  aimAtSmoothing: 8
+  aimAtSmoothing: 30
   throwSpeed: 10
   throwAngularSpeed: 30
   throwAngle: 0.6

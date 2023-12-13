@@ -1984,23 +1984,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3363d953119df4c92a5964e1338d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 363187117804408502}
-  hitCol: {fileID: 363187117804408500}
-  detectCol: {fileID: 363187117804408501}
-  model: {fileID: 363187117254347297}
-  headPosition: {fileID: 363187117487114537}
-  enemyCombat: {fileID: 363187117804408503}
-  stoppingDist: 5
-  isASniper: 0
-  findNearestEnemies: 0
-  enemyAnim: {fileID: -3218017268443822504}
-  animSpeedTransition: 3
-  HP: 10
+  HP: 50
   viewCone: 180
   targetFaceSpeed: 100
   walkSpeed: 5
   sprintMultipler: 1.5
   shootRate: 1.5
+  enemyCombat: {fileID: 363187117804408503}
+  agent: {fileID: 363187117804408502}
+  stoppingDist: 5
+  isASniper: 0
+  findNearestEnemies: 0
+  hitCol: {fileID: 363187117804408500}
+  detectCol: {fileID: 363187117804408501}
+  model: {fileID: 363187117254347297}
+  headPosition: {fileID: 363187117487114537}
+  enemyAnim: {fileID: -3218017268443822504}
+  animSpeedTransition: 3
   roamDist: 10
   roamPause: 1
 --- !u!95 &-3218017268443822504
