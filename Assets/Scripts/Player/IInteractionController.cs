@@ -9,4 +9,6 @@ public interface IInteractionController
     public void PickUpWeapon(WeaponPickup item);
 
     public void PickUpAmmo(AmmoPickUp _ammoPickup);
+
+    public void UseDispenser(Dispenser _dispenser);
 }

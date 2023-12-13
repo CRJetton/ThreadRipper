@@ -6691,7 +6691,7 @@ MonoBehaviour:
   animator: {fileID: 1411667799}
   animationTransitionSpeed: 8
   sprintAnimSpeed: 1.3
-  maxHP: 200
+  maxHP: 100
   HP: 0
   playerCamera: {fileID: 940690186790166899}
   damageColor: {r: 1, g: 0, b: 0, a: 0.56078434}

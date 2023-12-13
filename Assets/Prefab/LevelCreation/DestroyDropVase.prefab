@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 2279064641208736917}
   col: {fileID: 8412132762311143750}
-  HP: 10
+  HP: 1
   particles: {fileID: 8906508572797631208}
   drop: {fileID: 205297700634897551}
   destroyToDropTime: 0.15
@@ -5033,6 +5033,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FirstAidKit_Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298298886967039213, guid: 78d1d034fea525140aa6a7f2112b47c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78d1d034fea525140aa6a7f2112b47c3, type: 3}

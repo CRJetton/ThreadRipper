@@ -11,14 +11,11 @@ using UnityEngine.InputSystem;
 
 TO DO
 
+
+
 DONE
 
-- Added a bumpable behavior to certain objects, so they move when the player collides with them.
-- Added a destroy for drop script, so you can destroy certain objects to get drops like health.
-- Added several explosive prefabs with particle effects that deal AOE damage.
-- Added several climbable and vaultable prefabs with models.
-- Added hallyway and windowed wall prefabs.
-- Lots of work on my scene.
+
 
  */
 

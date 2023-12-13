@@ -7,7 +7,6 @@ public class Bumpable : MonoBehaviour, IPhysics
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float playerBumpForce;
-    [SerializeField] private float damageBumpForce;
 
     private void OnTriggerEnter(Collider _other)
     {

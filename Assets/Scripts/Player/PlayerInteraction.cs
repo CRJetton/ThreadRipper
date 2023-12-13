@@ -85,5 +85,10 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
         Destroy(_ammoPickup.gameObject);
     }
 
+    public void UseDispenser(Dispenser _dispenser)
+    {
+        _dispenser.Dispense();
+    }
+
     #endregion
 }

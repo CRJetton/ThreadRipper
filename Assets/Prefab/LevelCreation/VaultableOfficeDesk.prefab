@@ -226,7 +226,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3446666980357292485}
   playerBumpForce: 4
-  damageBumpForce: 8
 --- !u!1 &1275852412666229256
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1275852412666229366}
   playerBumpForce: 4
-  damageBumpForce: 8
 --- !u!1 &1301542182758102425
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +611,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2928390723540491772}
   playerBumpForce: 4
-  damageBumpForce: 8
 --- !u!1 &2971718217574172413
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +754,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2536562369690919088}
   playerBumpForce: 4
-  damageBumpForce: 8
 --- !u!1 &3118855461140138747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1025,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1550862368386386797}
   playerBumpForce: 4
-  damageBumpForce: 8
 --- !u!1 &6194964674973990975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,7 +1168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 299605077192560191}
   playerBumpForce: 4
-  damageBumpForce: 8
 --- !u!1 &6516475119420815672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,7 +1311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3388009287002842570}
   playerBumpForce: 4
-  damageBumpForce: 8
 --- !u!1 &6528982576351878231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,7 +1537,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6370776608533878253}
   playerBumpForce: 4
-  damageBumpForce: 8
 --- !u!1 &7315569915687528802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,12 +1630,12 @@ PrefabInstance:
     - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
       propertyPath: HP
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
       propertyPath: damage
-      value: 20
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4370439312146487943, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
