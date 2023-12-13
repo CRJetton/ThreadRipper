@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Medium Med
-  healAmount: 75
+  healAmount: 25
 --- !u!33 &6295965559958423357
 MeshFilter:
   m_ObjectHideFlags: 0

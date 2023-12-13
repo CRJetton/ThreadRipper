@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Large Med
-  healAmount: 200
+  healAmount: 50
 --- !u!33 &3629587764166660079
 MeshFilter:
   m_ObjectHideFlags: 0
