@@ -34,6 +34,7 @@ public class BossCombat : MonoBehaviour
     private float phase2Threshold = 0.66f;
     private float phase3Threshold = 0.33f;
 
+    // Initialization of boss's state of combat at the start of the game
     #region initialization
     // Equips weapons at BossCombat start
     private void Start()
@@ -48,6 +49,7 @@ public class BossCombat : MonoBehaviour
     }
     #endregion
 
+    // The bosses phase logic for changing between states
     #region phase state
     // Boss changes states depending on his health values
     public void ChangePhase(float hp)
@@ -77,6 +79,7 @@ public class BossCombat : MonoBehaviour
     }
     #endregion
 
+    // Weapon logic for equiping and handling weapon arrays
     #region weapon behavior
     // Equips each of the weapon arrays to our model
     private IEnumerator EquipAllWeapons()
@@ -115,6 +118,7 @@ public class BossCombat : MonoBehaviour
     }
     #endregion
 
+    // Handles the firing sequence and firing animation
     #region combat
     // Aims the weapon list at the players world position
     public void AimAtPlayer(Vector3 worldPosition)
