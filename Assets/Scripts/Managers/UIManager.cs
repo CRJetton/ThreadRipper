@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
@@ -28,6 +29,11 @@ public class UIManager : MonoBehaviour
     float originalTimeScale;
     public GameManager.GameStates currState;
     [SerializeField] Texture2D cursorIcon;
+    [SerializeField] int facePlayerSpeed;
+    public Vector3 playerDirection;
+    [SerializeField] GameObject cameraContainer;
+    
+
 
     [Header("-----Audio-----")]
     [SerializeField] AudioSource gameMusic;
@@ -53,6 +59,8 @@ public class UIManager : MonoBehaviour
 
         playerPauseInput.started += PauseMenu;
         UIPauseInput.started += UnpauseMenu;
+
+        playerDirection = GameManager.instance.playerBodyPositions.playerHead.position - popupMenu.transform.position;
 
         Cursor.SetCursor(cursorIcon, Vector2.zero, CursorMode.ForceSoftware);
     }
@@ -98,11 +106,17 @@ public class UIManager : MonoBehaviour
 
     public GameObject CreatePopup(Transform position, string itemName)
     {
-        popupMenu.transform.position = position.position;
+        popupMenu.transform.position = position.position + new Vector3(0, 0.5f, 0);
         popupText.text = itemName;
         popupMenu.SetActive(true);
         return popupMenu;
 
+    }
+
+    public void PopupFacePlayer()
+    {
+        Quaternion rotation = Quaternion.LookRotation(new Vector3(playerDirection.x, playerDirection.y, playerDirection.z));
+        popupMenu.transform.rotation = Quaternion.Lerp(popupMenu.transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
 
     public void HidePopup()
