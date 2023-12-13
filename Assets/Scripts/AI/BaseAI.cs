@@ -170,6 +170,7 @@ public class BaseAI : MonoBehaviour, IDamageable
         {
             currentDelayTime += Time.deltaTime;
             faceTarget();
+            enemyCombat.AimAt(GameManager.instance.playerBodyPositions.GetPlayerCenter());
 
             yield return null;
         }
