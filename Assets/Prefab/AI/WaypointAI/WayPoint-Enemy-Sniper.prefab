@@ -81,21 +81,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa9197c27aedbe47bcccfebb17f36f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 1887439388771734665}
-  hitCol: {fileID: 1887439388771734670}
-  detectCol: {fileID: 3715618906588345012}
-  model: {fileID: 363718558799847857}
-  headPosition: {fileID: 363718558803062919}
-  enemyCombat: {fileID: 2374437348007658942}
-  stoppingDist: 10
-  enemyAnim: {fileID: -2884215575347069398}
-  animSpeedTransition: 3
-  HP: 10
+  HP: 20
   viewCone: 180
   targetFaceSpeed: 100
   walkSpeed: 3
   sprintMultipler: 1.5
   shootRate: 1.5
+  enemyCombat: {fileID: 2374437348007658942}
+  agent: {fileID: 1887439388771734665}
+  stoppingDist: 10
+  isASniper: 1
+  findNearestEnemies: 25
+  hitCol: {fileID: 1887439388771734670}
+  detectCol: {fileID: 3715618906588345012}
+  model: {fileID: 363718558799847857}
+  headPosition: {fileID: 363718558803062919}
+  enemyAnim: {fileID: -2884215575347069398}
+  animSpeedTransition: 3
   waypoint: {fileID: 0}
   waypointSearch: 6
   roamPause: 1

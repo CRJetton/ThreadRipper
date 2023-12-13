@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ad654803cc73e4f8a395c328273206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: Shotgun
   playerWeapon: {fileID: 11400000, guid: 565cc72ea7720b74eb22e7ea5662e0f6, type: 2}
   enemyWeapon: {fileID: 11400000, guid: 251c5e01de5d1374fbe69bd70e128c9e, type: 2}
   physicsCol: {fileID: 8507346259875611410}

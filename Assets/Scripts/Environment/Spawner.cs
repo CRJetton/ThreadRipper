@@ -7,13 +7,20 @@ public class Spawner : MonoBehaviour
     [SerializeField] bool spawnForKillDoor;
     [SerializeField] GameObject objectToSpawn;
     [SerializeField] int numToSpawn;
-    [SerializeField] int timeBetweenSpawns;
+    [SerializeField] float timeBetweenSpawns;
     [SerializeField] Transform[] spawnPos;
     [SerializeField] List<GameObject> spawnList = new List<GameObject>();
 
     int spawnCount;
     bool isSpawning;
     bool startSpawning;
+    List<Transform> usableSpawnPos = new List<Transform>();
+
+
+    private void Start()
+    {
+        usableSpawnPos.AddRange(spawnPos);
+    }
 
 
     private void Update()
@@ -37,8 +44,8 @@ public class Spawner : MonoBehaviour
     {
         isSpawning = true;
 
-        int posIndex = Random.Range(0, spawnPos.Length - 1);
-        GameObject objectClone = Instantiate(objectToSpawn, spawnPos[posIndex].position, spawnPos[posIndex].rotation);
+        int posIndex = Random.Range(0, usableSpawnPos.Count - 1);
+        GameObject objectClone = Instantiate(objectToSpawn, usableSpawnPos[posIndex].position, usableSpawnPos[posIndex].rotation);
 
         objectClone.GetComponent<BaseAI>().SubscribeOnDie(EnemyDied);
 
@@ -47,6 +54,11 @@ public class Spawner : MonoBehaviour
 
         if (spawnForKillDoor)
             SpawnManager.instance.KillDoorEnemySpawned(objectClone);
+
+        usableSpawnPos.RemoveAt(posIndex);
+
+        if (usableSpawnPos.Count == 0)
+            usableSpawnPos.AddRange(spawnPos);
 
         yield return new WaitForSeconds(timeBetweenSpawns);
 

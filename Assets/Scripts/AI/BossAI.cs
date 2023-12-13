@@ -34,7 +34,7 @@ public class BossAI: MonoBehaviour, IDamageable
     [Range(1, 3)]   [SerializeField] private float phaseTwoMoveSpeed;
     [Range(1, 3)]   [SerializeField] private float phaseThreeMoveSpeed;
 
-    [Range(1, 3)]   [SerializeField] private float phaseOneTurnSpeed;
+    [SerializeField] private float phaseOneTurnSpeed;
     [Range(1, 3)]   [SerializeField] private float phaseTwoTurnSpeed;
     [Range(1, 3)]   [SerializeField] private float phaseThreeTurnSpeed;
 

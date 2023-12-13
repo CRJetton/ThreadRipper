@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b740ce8423fd8644ac25166e208f570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 45
+  itemName: Small Med
+  healAmount: 15
 --- !u!33 &2025918282719403307
 MeshFilter:
   m_ObjectHideFlags: 0

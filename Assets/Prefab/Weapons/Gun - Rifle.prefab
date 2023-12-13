@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ad654803cc73e4f8a395c328273206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: Rifle
   playerWeapon: {fileID: 11400000, guid: d3b11a823a963104daea63b8572635cf, type: 2}
   enemyWeapon: {fileID: 11400000, guid: a0ce65c83d6e55244a50e302eadebb9e, type: 2}
   physicsCol: {fileID: 8225147383325288574}

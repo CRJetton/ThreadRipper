@@ -229,7 +229,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
     {
         if (gunCurrent != null)
         {
-            gunCurrent.ChangeAmmo(0, (int)(gunCurrent.GetReserveAmmo() * percent));
+            gunCurrent.ChangeAmmo(0, (int)(gunCurrent.GetReserveAmmoCapacity() * percent));
         }
     }
     #endregion
@@ -276,9 +276,12 @@ public class PlayerCombat : MonoBehaviour, ICombat
         // Wait for equip to finish
         yield return new WaitForSeconds(weaponCurrent.GetEquipTime());
 
-        weaponCurrent.Equip();
+        if (weaponCurrent != null)
+        {
+            weaponCurrent.Equip();
+            isWeaponEquipped = true;
+        }
 
-        isWeaponEquipped = true;
         canEquipWeaopn = true;
     }
 

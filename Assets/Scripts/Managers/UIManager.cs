@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject menuPause;
     public GameObject menuWin;
     public GameObject menuLose;
+    public GameObject menuSettings;
     public GameObject popupMenu;
     [SerializeField] TMP_Text popupText;
 
@@ -25,8 +26,15 @@ public class UIManager : MonoBehaviour
     [Header("-----General-----")]
     public bool isPaused;
     float originalTimeScale;
-    private GameManager.GameStates currState;
+    public GameManager.GameStates currState;
     [SerializeField] Texture2D cursorIcon;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioSource gameMusic;
+    [SerializeField] AudioSource menuSounds;
+    [SerializeField] AudioClip menuOpen;
+    [SerializeField] AudioClip menuClose;
+    [SerializeField] int volume;
 
 
     #region Initialize
@@ -60,6 +68,7 @@ public class UIManager : MonoBehaviour
     private void PauseMenu(InputAction.CallbackContext context)
     {
         StatePaused();
+        menuSounds.PlayOneShot(menuOpen);
         menuActive = menuPause;
         menuActive.SetActive(isPaused);
     }
@@ -67,13 +76,15 @@ public class UIManager : MonoBehaviour
     private void UnpauseMenu(InputAction.CallbackContext context)
     {
         if (currState == GameManager.GameStates.loseMenu ||
-           currState == GameManager.GameStates.winMenu)
+           currState == GameManager.GameStates.winMenu ||
+           currState == GameManager.GameStates.settingsMenu)
         {
             return;
         }
         else
         {
             StateUnpaused();
+            menuSounds.PlayOneShot(menuClose);
             menuActive = menuPause;
             menuActive.SetActive(isPaused);
             OnUnpause.Invoke();
@@ -109,6 +120,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+
     }
 
     public void StateUnpaused()
@@ -145,5 +157,4 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
-
 }

@@ -51,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
         if (interactable != null)
         {
             currentInteractable = interactable.GetComponent<IInteractable>();
-            UIManager.instance.CreatePopup(interactable.transform, interactable.name);
+            UIManager.instance.CreatePopup(interactable.transform, currentInteractable.GetName());
         }
         else
         {

@@ -19,7 +19,7 @@ public class WaypointRoamAI : BaseAI
     {
         waypoint = FindNearestWaypoint();
         if (waypoint == null)
-            Debug.LogError("Hey! " + transform.name + "Couldn't find a Waypoint near him! Put him closer to one!");        
+            Debug.LogError("Hey! " + transform.name + "Couldn't find a Waypoint near him! Put him closer to one!");
 
         walkpointSet = false;
         currentWaypointIndex = 0;
@@ -65,23 +65,26 @@ public class WaypointRoamAI : BaseAI
 
     public IEnumerator GetNearestWaypoint(int delay)
     {
-        if (agent.remainingDistance < 0.01f)
+        if (agent.isOnNavMesh)
         {
-            walkpointSet = true;
-            agent.stoppingDistance = 0;
-            yield return new WaitForSeconds(delay);
-            if (currentWaypointIndex <= waypoint.childCount - 1)
+            if (agent.remainingDistance < 0.01f)
             {
-                currentWaypoint = waypoint.GetChild(currentWaypointIndex);
-                currentWaypointIndex++;
+                walkpointSet = true;
+                agent.stoppingDistance = 0;
+                yield return new WaitForSeconds(delay);
+                if (currentWaypointIndex <= waypoint.childCount - 1)
+                {
+                    currentWaypoint = waypoint.GetChild(currentWaypointIndex);
+                    currentWaypointIndex++;
+                }
+                else
+                {
+                    currentWaypoint = waypoint.GetChild(0);
+                    currentWaypointIndex = 0;
+                }
+                agent.SetDestination(currentWaypoint.position);
+                walkpointSet = false;
             }
-            else
-            {
-                currentWaypoint = waypoint.GetChild(0);
-                currentWaypointIndex = 0;
-            }
-            agent.SetDestination(currentWaypoint.position);
-            walkpointSet = false;
         }
     }
 
