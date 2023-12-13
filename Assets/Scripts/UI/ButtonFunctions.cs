@@ -15,6 +15,7 @@ public class ButtonFunctions : MonoBehaviour
     public void Continue()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        UIManager.instance.StateUnpaused();
     }
 
     public void Restart()

@@ -1984,7 +1984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3363d953119df4c92a5964e1338d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 50
+  HP: 40
   viewCone: 180
   targetFaceSpeed: 100
   walkSpeed: 5
