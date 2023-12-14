@@ -77,7 +77,7 @@ public class BossAI: MonoBehaviour, IDamageable
     #region initialization
     void Start()
     {
-        // initial values and states                                       // Updates the HUD to show the initial state of the boss
+        // initial values and states                                                    // Updates the HUD to show the initial state of the boss
         startingPos = transform.position;                                               // Stores the boss's starting position for later use
         stoppingDistanceOrigional = agent.stoppingDistance;                             // Saves the original stopping distance of the navigation agent
         bossCombat = GetComponent<BossCombat>();                                        // Retrieves the BossCombat component attached to the boss
