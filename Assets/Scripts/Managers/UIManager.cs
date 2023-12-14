@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -28,6 +30,11 @@ public class UIManager : MonoBehaviour
     float originalTimeScale;
     public GameManager.GameStates currState;
     [SerializeField] Texture2D cursorIcon;
+    [SerializeField] int facePlayerSpeed;
+    public Vector3 playerDirection;
+    [SerializeField] GameObject cameraContainer;
+    
+
 
     [Header("-----Audio-----")]
     [SerializeField] AudioSource gameMusic;
@@ -42,8 +49,15 @@ public class UIManager : MonoBehaviour
     {
         instance = this;
         originalTimeScale = Time.timeScale;
-        currState = GameManager.GameStates.play;
-
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            currState = GameManager.GameStates.mainMenu;
+        }
+        else
+        {
+            currState = GameManager.GameStates.play;
+        }
+        
     }
 
     void Start()
@@ -53,6 +67,12 @@ public class UIManager : MonoBehaviour
 
         playerPauseInput.started += PauseMenu;
         UIPauseInput.started += UnpauseMenu;
+
+        if(currState != GameManager.GameStates.mainMenu)
+        {
+            playerDirection = GameManager.instance.playerBodyPositions.playerHead.position - popupMenu.transform.position;
+        }
+        
 
         Cursor.SetCursor(cursorIcon, Vector2.zero, CursorMode.ForceSoftware);
     }
@@ -67,6 +87,7 @@ public class UIManager : MonoBehaviour
     #region Menus
     private void PauseMenu(InputAction.CallbackContext context)
     {
+        currState = GameManager.GameStates.pauseMenu;
         StatePaused();
         menuSounds.PlayOneShot(menuOpen);
         menuActive = menuPause;
@@ -75,9 +96,7 @@ public class UIManager : MonoBehaviour
 
     private void UnpauseMenu(InputAction.CallbackContext context)
     {
-        if (currState == GameManager.GameStates.loseMenu ||
-           currState == GameManager.GameStates.winMenu ||
-           currState == GameManager.GameStates.settingsMenu)
+        if (currState != GameManager.GameStates.pauseMenu)
         {
             return;
         }
@@ -98,11 +117,17 @@ public class UIManager : MonoBehaviour
 
     public GameObject CreatePopup(Transform position, string itemName)
     {
-        popupMenu.transform.position = position.position;
+        popupMenu.transform.position = position.position + new Vector3(0, 0.5f, 0);
         popupText.text = itemName;
         popupMenu.SetActive(true);
         return popupMenu;
 
+    }
+
+    public void PopupFacePlayer()
+    {
+        Quaternion rotation = Quaternion.LookRotation(new Vector3(playerDirection.x, playerDirection.y, playerDirection.z));
+        popupMenu.transform.rotation = Quaternion.Lerp(popupMenu.transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
 
     public void HidePopup()
@@ -114,6 +139,7 @@ public class UIManager : MonoBehaviour
     #region Game States
     public void StatePaused()
     {
+        
         isPaused = !isPaused;
         InputManager.instance.SwapToPauseInput();
         HUDManager.instance.HideHUD();

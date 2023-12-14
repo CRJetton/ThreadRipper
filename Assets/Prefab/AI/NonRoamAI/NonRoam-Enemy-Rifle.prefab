@@ -15,13 +15,14 @@ GameObject:
   - component: {fileID: 4876590537908019207}
   - component: {fileID: 7641534258589484602}
   - component: {fileID: 4876590537908019200}
+  - component: {fileID: 8044866290555099070}
   m_Layer: 0
   m_Name: NonRoam-Enemy-Rifle
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4876590537908019203
 Transform:
   m_ObjectHideFlags: 0
@@ -56,9 +57,9 @@ MonoBehaviour:
   targetFaceSpeed: 3
   walkSpeed: 5
   sprintMultipler: 1.5
-  shootRate: 1
+  shootRate: 0.2
   enemyCombat: {fileID: 8750242762222399792}
-  detectionDelay: 3
+  detectionDelay: 0.7
   agent: {fileID: 4876590537908019207}
   stoppingDist: 5
   isASniper: 0
@@ -69,6 +70,7 @@ MonoBehaviour:
   headPosition: {fileID: 7897799865581463791}
   enemyAnim: {fileID: 7332176214694510679}
   animSpeedTransition: 3
+  playerdetected: 0
 --- !u!95 &7332176214694510679
 Animator:
   serializedVersion: 5
@@ -159,6 +161,18 @@ CapsuleCollider:
   m_Height: 0.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!114 &8044866290555099070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876590537908019206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aab6ed65e3d294498be3e7de2ca114b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7897799865581433857
 GameObject:
   m_ObjectHideFlags: 0
