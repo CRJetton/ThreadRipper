@@ -356,6 +356,7 @@ public class BossAI: MonoBehaviour, IDamageable
         // Handles the boss death and runs his death animation
         if (HP <= 0)
         {
+            StopAllCoroutines();
             HUDManager.instance.UpdateProgress(-1);
             animator.SetBool("Dead", true);
             agent.enabled = false;

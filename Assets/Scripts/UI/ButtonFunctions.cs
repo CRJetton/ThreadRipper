@@ -12,12 +12,6 @@ public class ButtonFunctions : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    public void Continue()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        UIManager.instance.StateUnpaused();
-    }
-
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
