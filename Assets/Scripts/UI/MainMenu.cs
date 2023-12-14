@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject mainMenu;
-    [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject mainSettingsMenu;
     [SerializeField] Texture2D cursorIcon;
 
     void Start()
@@ -15,13 +15,27 @@ public class MainMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene(2);
     }
 
-    public void Quit()
+    public void MainMenuSettings()
     {
-        Application.Quit();
+        mainMenu.SetActive(false);
+        mainSettingsMenu.SetActive(true);
+
+    }
+
+    public void Back()
+    {
+        mainSettingsMenu.SetActive(false);
+        mainMenu.SetActive(true);
+        
     }
 }

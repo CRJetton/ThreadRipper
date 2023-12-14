@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
         pauseMenu = 1,
         winMenu = 2,
         loseMenu = 3,
-        settingsMenu = 4
+        settingsMenu = 4,
+        mainMenu = 5
+
 
     };
 
@@ -27,11 +29,13 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
         player = GameObject.FindWithTag("Player");
         playerSpawnPos = GameObject.FindWithTag("PlayerSpawnPos");
         playerController = player.GetComponent<PlayerController>();
         playerBodyPositions = player.GetComponent<PlayerBodyPositions>();
-        
+
+
     }
 
 }

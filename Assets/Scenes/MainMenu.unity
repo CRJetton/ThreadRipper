@@ -240,8 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 134530359}
-  settingsMenu: {fileID: 2074777308}
-  cursorIcon: {fileID: 2800000, guid: 8d9a5a5a721ccac4bb61e1008af87b9d, type: 3}
+  mainSettingsMenu: {fileID: 2074777308}
 --- !u!1 &134530359
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -363, y: 481}
+  m_AnchoredPosition: {x: -345, y: 472}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927583783
@@ -964,7 +963,7 @@ PrefabInstance:
     - target: {fileID: 9074266532064357826, guid: 06f3d3ea467bb744db481a7fa8afb01a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Settings
+      value: MainMenuSettings
       objectReference: {fileID: 0}
     - target: {fileID: 9074266532064357826, guid: 06f3d3ea467bb744db481a7fa8afb01a,
         type: 3}
@@ -1698,6 +1697,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookSensitivity: 0
+  sensitivityBar: {fileID: 0}
+  volume: 0
+  volumeBar: {fileID: 0}
+  levelMusic: {fileID: 0}
 --- !u!4 &1833487450
 Transform:
   m_ObjectHideFlags: 0
