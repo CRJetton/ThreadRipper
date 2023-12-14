@@ -21,9 +21,10 @@ public class BaseAI : MonoBehaviour, IDamageable
     [Range(0, 100)][SerializeField] float shootRate;
     [SerializeField] EnemyCombat enemyCombat;
     [SerializeField] float detectionDelay;
+    public bool playerdetected;
 
     [Header("------ NavMesh Components ------")]
-    [SerializeField] public NavMeshAgent agent; // READ --> Keep it public so the roam scripts can access this variable
+    public NavMeshAgent agent; // READ --> Keep it public so the roam scripts can access this variable
     [SerializeField] float stoppingDist;
     [SerializeField] bool isASniper;
     [SerializeField] int findNearestEnemies;
@@ -43,7 +44,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
 
 
-    public bool playerdetected;
+
     // private Combat variables
     bool isSprinting;
     bool isShooting;
@@ -106,9 +107,9 @@ public class BaseAI : MonoBehaviour, IDamageable
 
         if (Physics.Raycast(headPosition.position, playerDir, out hit))
         {
-            if (playerdetected)
+            if (hit.transform.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                if (hit.transform.CompareTag("Player") && angleToPlayer <= viewCone)
+                if (playerdetected)
                 {
                     if (returnOriginalPositionCot != null)
                         StopCoroutine(returnOriginalPositionCot);
@@ -139,15 +140,15 @@ public class BaseAI : MonoBehaviour, IDamageable
                     {
                         if (agent.isOnNavMesh)
                         {
-                            if (agent.remainingDistance < agent.stoppingDistance)
-                            {
-                                faceTarget();
-                            }
 
                             if (Vector3.Distance(GameManager.instance.player.transform.position, transform.position) < agent.stoppingDistance - 2)
                             {
                                 agent.updateRotation = false;
-                                agent.SetDestination(((-transform.forward * (agent.stoppingDistance + 2)) + transform.position));
+                                agent.SetDestination((-transform.forward * (agent.stoppingDistance + 2)) + transform.position);;
+                            }
+                            if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
+                            {
+                                faceTarget();
                             }
                         }
                         else if (!agent.isOnNavMesh)
@@ -158,13 +159,20 @@ public class BaseAI : MonoBehaviour, IDamageable
                             }
                         }
                     }
+                    else
+                    {
+                        if (agent.remainingDistance < agent.stoppingDistance)
+                        {
+                            faceTarget();
+                        }
+                    }
                     return true;
                 }
-            }
-            else if (!playerdetected)
-            {
-                faceTarget();
-                StartCoroutine(DetectionDelay());
+                else if (!playerdetected)
+                {
+                    faceTarget();
+                    StartCoroutine(DetectionDelay());
+                }
             }
         }
         playerdetected = false;
