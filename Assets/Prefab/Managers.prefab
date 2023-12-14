@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 73188f3b77d261d45baa87c64b88cc74, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -655,7 +655,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843693733}
-  m_LocalRotation: {x: -0, y: -0.7071057, z: -0, w: 0.70710784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -663,7 +663,7 @@ RectTransform:
   - {fileID: 2019097756}
   m_Father: {fileID: 7426203705580467040}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 9.5, y: 1.5}
@@ -992,8 +992,8 @@ MonoBehaviour:
   m_HandleRect: {fileID: 454315013}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_MaxValue: 1
+  m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1036,7 +1036,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073845816}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.056}
+  m_LocalPosition: {x: 0, y: 0, z: -0.053}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1045,7 +1045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.756, y: 0}
+  m_AnchoredPosition: {x: -0.711, y: -0.008}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1073845819
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 54.315125, w: 0}
+  m_margin: {x: 0, y: -0.6061621, z: 54.315125, w: -0.47502708}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1909,13 +1909,14 @@ GameObject:
   - component: {fileID: 2019097756}
   - component: {fileID: 2019097758}
   - component: {fileID: 2019097757}
+  - component: {fileID: 730727300}
   m_Layer: 5
   m_Name: ItemPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2019097756
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1935,7 +1936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.5}
   m_SizeDelta: {x: 1.5, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2019097758
@@ -1976,6 +1977,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &730727300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019097755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2dc822b3353d9b4abb70f37c78f4359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2097912513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,7 +2262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7426203705580467040
 Transform:
   m_ObjectHideFlags: 0
@@ -2374,7 +2387,11 @@ MonoBehaviour:
   sensitivityBar: {fileID: 979899420}
   volume: 0
   volumeBar: {fileID: 1068214903}
+<<<<<<< Updated upstream
   levelMusic: {fileID: 0}
+=======
+  levelMusic: {fileID: 69321891}
+>>>>>>> Stashed changes
 --- !u!1001 &339492541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3219,6 +3236,11 @@ PrefabInstance:
       propertyPath: menuSettings
       value: 
       objectReference: {fileID: 1812041436}
+    - target: {fileID: 7168712863992801196, guid: 7085f9d1c4e543848b1394fe852c3c3b,
+        type: 3}
+      propertyPath: facePlayerSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7168712863992801196, guid: 7085f9d1c4e543848b1394fe852c3c3b,
         type: 3}
       propertyPath: UIPauseInput.m_Name
