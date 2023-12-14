@@ -17,7 +17,6 @@ public class RandomRoamAI : BaseAI
         EnemyManager.instance.enemies.Add(gameObject);
         destinationChoosen = false;
         startingPos = transform.position;
-        HUDManager.instance.UpdateProgress(1);
     }
 
     public override void patrol()

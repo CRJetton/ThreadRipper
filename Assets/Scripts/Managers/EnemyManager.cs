@@ -12,4 +12,11 @@ public class EnemyManager : MonoBehaviour
         instance = this;
         waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
     }
+
+    private void Start()
+    {
+        GameObject[] startEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        HUDManager.instance.UpdateProgress(startEnemies.Length);
+    }
 }
