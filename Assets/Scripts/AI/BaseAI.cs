@@ -97,7 +97,7 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     public virtual bool canSeePlayer()
     {
-        playerDir = -headPosition.position + GameManager.instance.playerBodyPositions.GetPlayerCenter();
+        playerDir = GameManager.instance.playerBodyPositions.GetPlayerCenter() - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         Debug.DrawRay(headPosition.position, playerDir);
@@ -135,17 +135,27 @@ public class BaseAI : MonoBehaviour, IDamageable
                         agent.stoppingDistance = stoppingDist;
                     }
 
-                    if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
+                    if (isASniper)
                     {
-                        faceTarget();
-                    }
-
-                    if (agent.isOnNavMesh)
-                    {
-                        if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) < agent.stoppingDistance - 2)
+                        if (agent.isOnNavMesh)
                         {
-                            agent.SetDestination( transform.position - playerDir);
-                            faceTarget();
+                            if (agent.remainingDistance < agent.stoppingDistance)
+                            {
+                                faceTarget();
+                            }
+
+                            if (Vector3.Distance(GameManager.instance.player.transform.position, transform.position) < agent.stoppingDistance - 2)
+                            {
+                                agent.updateRotation = false;
+                                agent.SetDestination(((-transform.forward * (agent.stoppingDistance + 2)) + transform.position));
+                            }
+                        }
+                        else if (!agent.isOnNavMesh)
+                        {
+                            if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
+                            {
+                                faceTarget();
+                            }
                         }
                     }
                     return true;
