@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 134530359}
   mainSettingsMenu: {fileID: 2074777308}
+  cursorIcon: {fileID: 2800000, guid: 8d9a5a5a721ccac4bb61e1008af87b9d, type: 3}
 --- !u!1 &134530359
 GameObject:
   m_ObjectHideFlags: 0
