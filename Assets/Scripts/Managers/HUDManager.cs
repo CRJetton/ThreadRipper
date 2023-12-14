@@ -110,7 +110,7 @@ public class HUDManager : MonoBehaviour
 
         if (enemiesRemaining <= 0)
         {
-            StartCoroutine(UIManager.instance.YouWin());
+            //StartCoroutine(UIManager.instance.YouWin());
 
             // Exit Light
             if (EnvironmentManager.instance.GetEnvironmentInterfaces().Count > 0)

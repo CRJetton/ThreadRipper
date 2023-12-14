@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 957276929972682099}
   m_Layer: 0
   m_Name: Scene Exit Interactable
-  m_TagString: Untagged
+  m_TagString: IEnvironment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
