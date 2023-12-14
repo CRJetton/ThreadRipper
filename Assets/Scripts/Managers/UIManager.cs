@@ -164,6 +164,10 @@ public class UIManager : MonoBehaviour
 
     public void YouLose()
     {
+        if(BossManager.instance != null)
+        {
+            BossManager.instance.bossHealth.SetActive(false);
+        }
         currState = GameManager.GameStates.loseMenu;
         StatePaused();
         HUDManager.instance.HideHUD();
@@ -174,6 +178,10 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator YouWin()
     {
+        if (BossManager.instance != null)
+        {
+            BossManager.instance.bossHealth.SetActive(false);
+        }
         yield return new WaitForSeconds(3);
         currState = GameManager.GameStates.winMenu;
         StatePaused();

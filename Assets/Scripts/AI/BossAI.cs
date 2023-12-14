@@ -100,6 +100,7 @@ public class BossAI: MonoBehaviour, IDamageable
                     // activates the animations from waiting to standing up
                     isWaiting = false;
                     animator.SetTrigger("StandUp");
+                    BossManager.instance.ShowBossHealth();
                 }
                 // If the boss isnt waiting he stands up and roams
                 else if (!roamingCoroutineRunning)

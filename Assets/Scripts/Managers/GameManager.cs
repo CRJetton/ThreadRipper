@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
         winMenu = 2,
         loseMenu = 3,
         settingsMenu = 4,
-        mainMenu = 5
+        mainMenu = 5,
+        
+
 
 
     };
