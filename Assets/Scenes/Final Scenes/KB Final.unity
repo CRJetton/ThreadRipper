@@ -1180,6 +1180,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: NonRoam-Enemy-Rifle
       objectReference: {fileID: 0}
+    - target: {fileID: 4876590537908019212, guid: 6fc760476b777604b8e823c36e93ea9d,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876590537908019212, guid: 6fc760476b777604b8e823c36e93ea9d,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fc760476b777604b8e823c36e93ea9d, type: 3}
 --- !u!1 &72643790
@@ -3358,6 +3368,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 4183950814159892873, guid: 8d03b299dde332645adc342918eed285,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183950814159892873, guid: 8d03b299dde332645adc342918eed285,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4876590537908019203, guid: 8d03b299dde332645adc342918eed285,
         type: 3}
       propertyPath: m_RootOrder
@@ -3900,6 +3920,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 4183950814159892873, guid: 8d03b299dde332645adc342918eed285,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183950814159892873, guid: 8d03b299dde332645adc342918eed285,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4876590537908019203, guid: 8d03b299dde332645adc342918eed285,
         type: 3}
       propertyPath: m_RootOrder
@@ -5089,6 +5119,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: NonRoam-Enemy-Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408496, guid: a73d9f2e25536c0449847d17f3cc3dcf,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408496, guid: a73d9f2e25536c0449847d17f3cc3dcf,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: a73d9f2e25536c0449847d17f3cc3dcf,
         type: 3}
       propertyPath: m_RootOrder
@@ -5436,6 +5476,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_Name
@@ -5755,6 +5805,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NonRoam-Enemy-Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876590537908019212, guid: 6fc760476b777604b8e823c36e93ea9d,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876590537908019212, guid: 6fc760476b777604b8e823c36e93ea9d,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8750242762222399792, guid: 6fc760476b777604b8e823c36e93ea9d,
         type: 3}
@@ -8723,6 +8783,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_Name
@@ -11572,6 +11642,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NonRoam-Enemy-Shotgun (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408496, guid: a73d9f2e25536c0449847d17f3cc3dcf,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408496, guid: a73d9f2e25536c0449847d17f3cc3dcf,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: a73d9f2e25536c0449847d17f3cc3dcf,
         type: 3}
@@ -15491,6 +15571,16 @@ PrefabInstance:
       propertyPath: aimAtSmoothing
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1063913134401302221, guid: c28abe03787c407468ac82fe3cb675e6,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063913134401302221, guid: c28abe03787c407468ac82fe3cb675e6,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c28abe03787c407468ac82fe3cb675e6, type: 3}
 --- !u!4 &1110197355 stripped
@@ -15506,6 +15596,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_Name
@@ -16010,6 +16110,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_Name
@@ -19018,6 +19128,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 1887439388771734658, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734658, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
         type: 3}
       propertyPath: m_Name
@@ -20675,6 +20795,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_Name
@@ -22166,6 +22296,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_Name
@@ -23614,6 +23754,16 @@ PrefabInstance:
         type: 3}
       propertyPath: aimAtSmoothing
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063913134401302221, guid: c28abe03787c407468ac82fe3cb675e6,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063913134401302221, guid: c28abe03787c407468ac82fe3cb675e6,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c28abe03787c407468ac82fe3cb675e6, type: 3}
@@ -28338,6 +28488,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1879119146}
     m_Modifications:
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: shootRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734658, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: detectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_Name

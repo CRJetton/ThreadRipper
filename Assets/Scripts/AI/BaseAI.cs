@@ -18,9 +18,9 @@ public class BaseAI : MonoBehaviour, IDamageable
     [SerializeField] float sprintMultipler;
 
     [Header("------ Combat ------")]
-    [Range(1, 100)][SerializeField] float shootRate;
+    [Range(0, 100)][SerializeField] float shootRate;
     [SerializeField] EnemyCombat enemyCombat;
-    [SerializeField] int detectionDelay;
+    [SerializeField] float detectionDelay;
 
     [Header("------ NavMesh Components ------")]
     [SerializeField] public NavMeshAgent agent; // READ --> Keep it public so the roam scripts can access this variable
@@ -43,8 +43,8 @@ public class BaseAI : MonoBehaviour, IDamageable
 
 
 
+    public bool playerdetected;
     // private Combat variables
-    bool playerdetected;
     bool isSprinting;
     bool isShooting;
     bool isDead;
@@ -106,9 +106,9 @@ public class BaseAI : MonoBehaviour, IDamageable
 
         if (Physics.Raycast(headPosition.position, playerDir, out hit))
         {
-            if (hit.transform.CompareTag("Player") && angleToPlayer <= viewCone)
+            if (playerdetected)
             {
-                if (playerdetected)
+                if (hit.transform.CompareTag("Player") && angleToPlayer <= viewCone)
                 {
                     if (returnOriginalPositionCot != null)
                         StopCoroutine(returnOriginalPositionCot);
@@ -140,10 +140,11 @@ public class BaseAI : MonoBehaviour, IDamageable
                     }
                     return true;
                 }
-                else if (!playerdetected)
-                {
-                    StartCoroutine(DetectionDelay());
-                }
+            }
+            else if (!playerdetected)
+            {
+                faceTarget();
+                StartCoroutine(DetectionDelay());
             }
         }
         playerdetected = false;
@@ -158,8 +159,22 @@ public class BaseAI : MonoBehaviour, IDamageable
 
     IEnumerator DetectionDelay()
     {
-        playerdetected = false;
-        yield return new WaitForSeconds(detectionDelay);
+        if (agent.isOnNavMesh)
+        {
+            agent.velocity = Vector3.zero;
+        }
+
+        float currentDelayTime = 0;
+
+        while (currentDelayTime < detectionDelay)
+        {
+            currentDelayTime += Time.deltaTime;
+            faceTarget();
+            enemyCombat.AimAt(GameManager.instance.playerBodyPositions.GetPlayerCenter());
+
+            yield return null;
+        }
+
         playerdetected = true;
     }
 
@@ -193,6 +208,7 @@ public class BaseAI : MonoBehaviour, IDamageable
             enemyCombat.AttackStarted();
 
             yield return new WaitForSeconds(shootRate);
+
             enemyCombat.AttackCanceled();
 
             isShooting = false;

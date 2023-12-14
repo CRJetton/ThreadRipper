@@ -40,12 +40,19 @@ public class WaypointRoamAI : BaseAI
     {
         if (base.canSeePlayer())
         {
-            walkpointSet = false;
-            if (waypointCot != null)
-                StopCoroutine(waypointCot);
-            return true;
+            if (playerdetected)
+            {
+                return true;
+            }
+            else if (!playerdetected)
+            {
+                if (waypointCot != null)
+                    StopCoroutine(waypointCot);
+                walkpointSet = true;
+            }
         }
 
+        walkpointSet = false;
         return false;
     }
 

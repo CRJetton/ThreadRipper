@@ -30,10 +30,16 @@ public class RandomRoamAI : BaseAI
     {
         if (base.canSeePlayer())
         {
-            destinationChoosen = false;
-            if (randomRoamcot != null)
-                StopCoroutine(randomRoamcot);
-            return true;
+            if (playerdetected)
+            {
+                return true;
+            }
+            else if (!playerdetected)
+            {
+                destinationChoosen = false;
+                if (randomRoamcot != null)
+                    StopCoroutine(randomRoamcot);
+            }
         }
 
         return false;
@@ -43,20 +49,23 @@ public class RandomRoamAI : BaseAI
     {
         if (agent.isOnNavMesh)
         {
-            if (agent.remainingDistance <= 0.01f && !destinationChoosen)
+            if (!destinationChoosen)
             {
-                destinationChoosen = true;
-                agent.stoppingDistance = 0;
-                yield return new WaitForSeconds(delay);
+                if (agent.remainingDistance <= 0.01f)
+                {
+                    destinationChoosen = true;
+                    agent.stoppingDistance = 0;
+                    yield return new WaitForSeconds(delay);
 
-                Vector3 randPos = Random.insideUnitSphere * roamDist;
-                randPos += startingPos;
+                    Vector3 randPos = Random.insideUnitSphere * roamDist;
+                    randPos += startingPos;
 
-                NavMeshHit hit;
-                NavMesh.SamplePosition(randPos, out hit, roamDist, 1);
-                agent.SetDestination(hit.position);
+                    NavMeshHit hit;
+                    NavMesh.SamplePosition(randPos, out hit, roamDist, 1);
+                    agent.SetDestination(hit.position);
 
-                destinationChoosen = false;
+                    destinationChoosen = false;
+                }
             }
         }
     }
