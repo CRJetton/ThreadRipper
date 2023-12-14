@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 4185058767241869512}
   - component: {fileID: 4185058767241869510}
   - component: {fileID: 4185058767241869513}
+  - component: {fileID: 1004800961}
   m_Layer: 5
   m_Name: ItemPopup
   m_TagString: Untagged
@@ -214,6 +215,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1004800961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4185058767241869515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2dc822b3353d9b4abb70f37c78f4359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4185058767277432076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,7 +1146,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 73188f3b77d261d45baa87c64b88cc74, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2843,7 +2856,7 @@ MonoBehaviour:
   isPaused: 0
   currState: 0
   cursorIcon: {fileID: 2800000, guid: 8d9a5a5a721ccac4bb61e1008af87b9d, type: 3}
-  facePlayerSpeed: 0
+  facePlayerSpeed: 5
   playerDirection: {x: 0, y: 0, z: 0}
   cameraContainer: {fileID: 0}
   gameMusic: {fileID: 0}
@@ -4544,9 +4557,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookSensitivity: 30
   sensitivityBar: {fileID: 4185058768550294272}
-  volume: 0
+  volume: 1
   volumeBar: {fileID: 4185058768866924167}
-  levelMusic: {fileID: 0}
+  levelMusic: {fileID: 4185058767433288914}
 --- !u!1 &4185058768395037389
 GameObject:
   m_ObjectHideFlags: 0
@@ -6556,9 +6569,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4185058769015315313}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
-  m_WholeNumbers: 1
-  m_Value: 100
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
