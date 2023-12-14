@@ -18,7 +18,7 @@ public class SettingsManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        volume = 0.5f;
+        
     }
 
     public void AdjustVolume()
