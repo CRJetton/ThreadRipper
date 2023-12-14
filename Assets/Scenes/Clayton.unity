@@ -1276,7 +1276,7 @@ PrefabInstance:
     - target: {fileID: 1887439388771734658, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
         type: 3}
       propertyPath: detectionDelay
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
         type: 3}
@@ -6410,7 +6410,7 @@ PrefabInstance:
     - target: {fileID: 1887439388771734658, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
         type: 3}
       propertyPath: detectionDelay
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734664, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
         type: 3}
