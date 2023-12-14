@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 
 TO DO
 
-- Fix problem where enemy loses sight of crouched player
+
 
 DONE
 
@@ -81,6 +81,14 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float sprintAnimSpeed;
     private float origAnimSpeed;
 
+    [Header("_____Audio_____")]
+    [SerializeField] AudioSource playerAudio;
+    [SerializeField] List<AudioClip> footStepSounds = new List<AudioClip>();
+    [SerializeField] private float footStepSoundVolume;
+    [SerializeField] private float footStepSoundIntervalTime;
+    [SerializeField] private float sprintingFootStepSoundIntervalTime;
+    private bool isMoveAudioPlaying;
+
     [Header("_____General_____")]
     [SerializeField] float maxHP;
     [SerializeField] private float HP;
@@ -135,10 +143,17 @@ public class PlayerController : MonoBehaviour, IDamageable
         Look(lookInput.ReadValue<Vector2>().x 
             * SettingsManager.instance.lookSensitivity * Time.deltaTime);
 
-        // Move animation
+        // Move animation & sound
         if (moveInput.ReadValue<Vector2>().magnitude != 0)
         {
             animator.SetBool("isMoving", true);
+
+            if (groundDetector.GetIsPlayerGrounded()
+                && move.normalized.magnitude > 0.3f
+                && !isMoveAudioPlaying)
+            {
+                StartCoroutine(PlayMoveAudio());
+            }
         }
         else
         {
@@ -360,5 +375,24 @@ public class PlayerController : MonoBehaviour, IDamageable
             HP = maxHP;
         }
         HUDManager.instance.playerHPBar.fillAmount = HP / maxHP;
+    }
+
+    private IEnumerator PlayMoveAudio()
+    {
+        isMoveAudioPlaying = true;
+
+        int i = Random.Range(0, footStepSounds.Count - 1);
+        playerAudio.PlayOneShot(footStepSounds[i], footStepSoundVolume);
+
+        if (!isSprinting)
+        {
+            yield return new WaitForSeconds(footStepSoundIntervalTime);
+        }
+        else
+        {
+            yield return new WaitForSeconds(sprintingFootStepSoundIntervalTime);
+        }
+
+        isMoveAudioPlaying = false;
     }
 }
