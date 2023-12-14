@@ -11,6 +11,7 @@ TagManager:
   - Waypoint
   - TeleportPos
   - KillDoor
+  - IEnvironment
   layers:
   - Default
   - TransparentFX

@@ -50,6 +50,7 @@ public class BaseAI : MonoBehaviour, IDamageable
     bool isDead;
     float angleToPlayer;
     Vector3 playerDir;
+    Vector3 oppositeDir;
 
     //private Patrol variables
     bool playerInRange;
@@ -123,10 +124,6 @@ public class BaseAI : MonoBehaviour, IDamageable
                         StartCoroutine(shoot());
                     }
 
-                    if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
-                    {
-                        faceTarget();
-                    }
                     if (agent.isOnNavMesh)
                     {
                         isMoving = true;
@@ -136,6 +133,20 @@ public class BaseAI : MonoBehaviour, IDamageable
                             isSprinting = true;
                         }
                         agent.stoppingDistance = stoppingDist;
+                    }
+
+                    if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
+                    {
+                        faceTarget();
+                    }
+
+                    if (agent.isOnNavMesh)
+                    {
+                        if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) < agent.stoppingDistance - 2)
+                        {
+                            agent.SetDestination( transform.position - playerDir);
+                            faceTarget();
+                        }
                     }
                     return true;
                 }
