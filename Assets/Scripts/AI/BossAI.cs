@@ -100,6 +100,7 @@ public class BossAI: MonoBehaviour, IDamageable
                     // activates the animations from waiting to standing up
                     isWaiting = false;
                     animator.SetTrigger("StandUp");
+                    BossManager.instance.ShowBossHealth();
                 }
                 // If the boss isnt waiting he stands up and roams
                 else if (!roamingCoroutineRunning)
@@ -355,6 +356,7 @@ public class BossAI: MonoBehaviour, IDamageable
         // Handles the boss death and runs his death animation
         if (HP <= 0)
         {
+            StopAllCoroutines();
             HUDManager.instance.UpdateProgress(-1);
             animator.SetBool("Dead", true);
             agent.enabled = false;
