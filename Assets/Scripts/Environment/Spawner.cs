@@ -24,13 +24,6 @@ public class Spawner : MonoBehaviour
     }
 
 
-    void EnemyDied()
-    {
-        numToSpawn--;
-        spawnCount--;
-    }
-
-
 
     IEnumerator Spawn()
     {
@@ -40,8 +33,6 @@ public class Spawner : MonoBehaviour
         {
             int posIndex = Random.Range(0, usableSpawnPos.Count - 1);
             GameObject objectClone = Instantiate(objectToSpawn, usableSpawnPos[posIndex].position, usableSpawnPos[posIndex].rotation);
-
-            objectClone.GetComponent<BaseAI>().SubscribeOnDie(EnemyDied);
 
             spawnList.Add(objectClone);
             spawnCount++;

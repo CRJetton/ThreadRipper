@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class BurnEnemies : MonoBehaviour
 {
-    public StatusEffects burnEffect;
+    public StatusEffects BurnEffectPrefab;
 
-    public void StartBurn()
+    public void StartBurn(GameObject enemy)
     {
-
+        //apply burn effect
+        ApplyBurnStatus(enemy);
     }
 
-    public void ApplyBurnStatus()
+    public void ApplyBurnStatus(GameObject enemy)
     {
-        StatusEffectController statusController;
+        //access the enemy's StatusEffectController component
+        StatusEffectController statusController = enemy.GetComponent<StatusEffectController>();
+        if (statusController != null)
+        {
+            //create instance of burn effect
+            StatusEffects burnEffect = Instantiate(BurnEffectPrefab);
+
+            //apply the burn effect
+            statusController.ApplyStatusEffect(burnEffect);
+        }
     }
+
 }

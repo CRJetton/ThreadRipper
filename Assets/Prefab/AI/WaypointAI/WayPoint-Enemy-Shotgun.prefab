@@ -1956,7 +1956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &363187117804408497
 Transform:
   m_ObjectHideFlags: 0
@@ -1994,6 +1994,7 @@ MonoBehaviour:
   shootRate: 0.2
   enemyCombat: {fileID: 363187117804408503}
   detectionDelay: 0.7
+  playerdetected: 0
   agent: {fileID: 363187117804408502}
   stoppingDist: 5
   isASniper: 0
@@ -2004,7 +2005,6 @@ MonoBehaviour:
   headPosition: {fileID: 363187117487114537}
   enemyAnim: {fileID: 849266194956999624}
   animSpeedTransition: 3
-  playerdetected: 0
   waypoint: {fileID: 0}
   roamPause: 1
   walkpointSet: 0
@@ -2082,7 +2082,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 12.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &363187117804408500
 CapsuleCollider:
