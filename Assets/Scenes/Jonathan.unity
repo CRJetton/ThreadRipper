@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 0838d819b322aa247ba6852e3d69fab2, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &2053676
 GameObject:
   m_ObjectHideFlags: 0
@@ -4231,7 +4231,7 @@ PrefabInstance:
     - target: {fileID: 4185058768457268125, guid: 600ff25f76524d348abee1cabaeb222c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4185058768457268125, guid: 600ff25f76524d348abee1cabaeb222c,
         type: 3}
@@ -5922,7 +5922,7 @@ PrefabInstance:
     - target: {fileID: 7926715244328892789, guid: 92e65195d67127243864e5b2a560754b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7926715244328892789, guid: 92e65195d67127243864e5b2a560754b,
         type: 3}
@@ -6719,10 +6719,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: WayPoint-Enemy-Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408395, guid: 2d2c25504495da34da87b159024d0374,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: 2d2c25504495da34da87b159024d0374,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: 2d2c25504495da34da87b159024d0374,
         type: 3}
@@ -11954,7 +11959,7 @@ PrefabInstance:
     - target: {fileID: 1887439388771734669, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
         type: 3}
@@ -12222,7 +12227,7 @@ PrefabInstance:
     - target: {fileID: 4876590537908019203, guid: 8d03b299dde332645adc342918eed285,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4876590537908019203, guid: 8d03b299dde332645adc342918eed285,
         type: 3}
@@ -17702,10 +17707,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: NonRoam-Enemy-Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408395, guid: a73d9f2e25536c0449847d17f3cc3dcf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: a73d9f2e25536c0449847d17f3cc3dcf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: a73d9f2e25536c0449847d17f3cc3dcf,
         type: 3}
@@ -28275,7 +28285,7 @@ PrefabInstance:
     - target: {fileID: 4876590537908019203, guid: 69a37e2172f6b7a4aae33f28310a2311,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4876590537908019203, guid: 69a37e2172f6b7a4aae33f28310a2311,
         type: 3}
@@ -28361,10 +28371,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy-Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408395, guid: 02d58de903e33ff4db4f47a2b75515ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: 02d58de903e33ff4db4f47a2b75515ff,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: 02d58de903e33ff4db4f47a2b75515ff,
         type: 3}
@@ -33473,10 +33488,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomRoam-Enemy-Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408395, guid: c28abe03787c407468ac82fe3cb675e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: c28abe03787c407468ac82fe3cb675e6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: c28abe03787c407468ac82fe3cb675e6,
         type: 3}
@@ -40767,7 +40787,7 @@ PrefabInstance:
     - target: {fileID: 7926715244328892789, guid: 92e65195d67127243864e5b2a560754b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7926715244328892789, guid: 92e65195d67127243864e5b2a560754b,
         type: 3}
@@ -41628,7 +41648,7 @@ PrefabInstance:
     - target: {fileID: 1887439388771734669, guid: b56e82d9c9f2e384bae0120444b4c7a3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: b56e82d9c9f2e384bae0120444b4c7a3,
         type: 3}
@@ -43622,10 +43642,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy-Sniper
       objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
@@ -44001,7 +44026,7 @@ PrefabInstance:
     - target: {fileID: 4876590537908019203, guid: 54155b72052a8d9488139fcc41bd987c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4876590537908019203, guid: 54155b72052a8d9488139fcc41bd987c,
         type: 3}
@@ -44569,7 +44594,7 @@ PrefabInstance:
     - target: {fileID: 4876590537908019203, guid: 6fc760476b777604b8e823c36e93ea9d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4876590537908019203, guid: 6fc760476b777604b8e823c36e93ea9d,
         type: 3}
@@ -50144,7 +50169,7 @@ PrefabInstance:
     - target: {fileID: 7926715244328892789, guid: 92e65195d67127243864e5b2a560754b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7926715244328892789, guid: 92e65195d67127243864e5b2a560754b,
         type: 3}

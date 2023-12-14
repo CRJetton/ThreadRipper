@@ -15,8 +15,9 @@ public class Dispenser : MonoBehaviour, IInteractable
 
     public void Dispense()
     {
-        int dispensableIndex = Random.Range(0, dispensables.Count - 1);
+        int dispensableIndex = Random.Range(0, dispensables.Count);
         GameObject dispensable = dispensables[dispensableIndex];
+        Debug.Log(dispensables[dispensableIndex]);
         Instantiate(dispensable, ejectPos);
     }
 

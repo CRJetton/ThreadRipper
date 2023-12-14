@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 // Defines the AI behavior for the Boss character in our game.
 public class BossAI: MonoBehaviour, IDamageable
 {
@@ -18,10 +19,12 @@ public class BossAI: MonoBehaviour, IDamageable
     // Configurable stats for the boss character to effect the feel of the boss
     [Header("------ Boss Stats ------")]
     [Range(1, 10000)][SerializeField] private float HP;
+    [Range(1, 10000)][SerializeField] float maxHP;      // ^These two values should be the same at the start of the scene
     [Range(1, 360)]  [SerializeField] private int viewCone;
     [Range(1, 100)]  [SerializeField] private int targetFaceSpeed;
     [Range(1, 3)]    [SerializeField] private float weakSpotMultiplier;
     [Range(1, 3)]    [SerializeField] private float weakSpotThreshold;
+    
 
     // Roaming behavior settings for when the boss is not engaging the player
     [SerializeField] int roamDistance;
@@ -339,6 +342,7 @@ public class BossAI: MonoBehaviour, IDamageable
         }
 
         HP -= damage;
+        BossManager.instance.bossHP.fillAmount = HP / maxHP;
         // StartCoroutine(flashRed()); (currently commented out because it changes the colors in the scene aswell)
         istakingdamage = true;
 

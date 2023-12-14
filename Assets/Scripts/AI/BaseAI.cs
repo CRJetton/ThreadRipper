@@ -20,7 +20,7 @@ public class BaseAI : MonoBehaviour, IDamageable
     [Header("------ Combat ------")]
     [Range(0, 100)][SerializeField] float shootRate;
     [SerializeField] EnemyCombat enemyCombat;
-    [SerializeField] float detectionDelay;
+    [Range(0.1f, 5f)][SerializeField] float detectionDelay;
     public bool playerdetected;
 
     [Header("------ NavMesh Components ------")]
@@ -151,7 +151,7 @@ public class BaseAI : MonoBehaviour, IDamageable
                                 faceTarget();
                             }
                         }
-                        else if (!agent.isOnNavMesh)
+                        if (!agent.isOnNavMesh)
                         {
                             if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
                             {
@@ -161,9 +161,19 @@ public class BaseAI : MonoBehaviour, IDamageable
                     }
                     else
                     {
-                        if (agent.remainingDistance < agent.stoppingDistance)
+                        if (agent.isOnNavMesh)
                         {
-                            faceTarget();
+                            if (agent.remainingDistance < agent.stoppingDistance)
+                            {
+                                faceTarget();
+                            }
+                        }
+                        else if (!agent.isOnNavMesh)
+                        {
+                            if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= detectCol.radius * 4)
+                            {
+                                faceTarget();
+                            }
                         }
                     }
                     return true;
@@ -232,10 +242,10 @@ public class BaseAI : MonoBehaviour, IDamageable
         if (!isDead)
         {
             isShooting = true;
-
             enemyCombat.AttackStarted();
-
+            enemyAnim.SetTrigger("Shooting");
             yield return new WaitForSeconds(shootRate);
+            enemyAnim.SetTrigger("Shooting");
 
             enemyCombat.AttackCanceled();
 
@@ -265,6 +275,8 @@ public class BaseAI : MonoBehaviour, IDamageable
         }
         else
         {
+            enemyAnim.SetLayerWeight(1, Mathf.Lerp(0, 1, 10 * Time.deltaTime));
+            enemyAnim.SetTrigger("Damage");
             playerdetected = true;
             isShooting = false;
             if (returnOriginalPositionCot != null)
@@ -282,6 +294,7 @@ public class BaseAI : MonoBehaviour, IDamageable
             {
                 CallForBackup();
             }
+            enemyAnim.SetLayerWeight(1, Mathf.Lerp(1, 0, 10 * Time.deltaTime));
         }
     }
 
