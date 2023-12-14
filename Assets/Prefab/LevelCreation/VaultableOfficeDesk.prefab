@@ -1657,6 +1657,16 @@ PrefabInstance:
       propertyPath: meshes.Array.data[0]
       value: 
       objectReference: {fileID: 5744949735414040079}
+    - target: {fileID: 4805524841188816827, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805524841188816827, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.68
+      objectReference: {fileID: 0}
     - target: {fileID: 5527576047882692242, guid: 6a2782bbf3a47c443837ce74bce9a3ac,
         type: 3}
       propertyPath: m_Name
