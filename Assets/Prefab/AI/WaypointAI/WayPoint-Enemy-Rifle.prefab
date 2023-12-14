@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4876590537908019203
 Transform:
   m_ObjectHideFlags: 0
@@ -56,9 +56,9 @@ MonoBehaviour:
   targetFaceSpeed: 100
   walkSpeed: 5
   sprintMultipler: 1.5
-  shootRate: 1
+  shootRate: 0.2
   enemyCombat: {fileID: 8750242762222399792}
-  detectionDelay: 3
+  detectionDelay: 0.7
   agent: {fileID: 4876590537908019207}
   stoppingDist: 5
   isASniper: 0
@@ -69,8 +69,8 @@ MonoBehaviour:
   headPosition: {fileID: 7897799865581463791}
   enemyAnim: {fileID: 6639060444591908446}
   animSpeedTransition: 3
+  playerdetected: 0
   waypoint: {fileID: 0}
-  waypointSearch: 6
   roamPause: 1
   walkpointSet: 0
 --- !u!95 &6639060444591908446
