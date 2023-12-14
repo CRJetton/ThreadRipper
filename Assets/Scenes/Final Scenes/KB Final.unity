@@ -1180,6 +1180,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NonRoam-Enemy-Rifle
       objectReference: {fileID: 0}
+    - target: {fileID: 4876590537908019206, guid: 6fc760476b777604b8e823c36e93ea9d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4876590537908019212, guid: 6fc760476b777604b8e823c36e93ea9d,
         type: 3}
       propertyPath: shootRate
@@ -3455,6 +3460,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomRoam-Enemy-Rifle (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4876590537908019206, guid: 8d03b299dde332645adc342918eed285,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8750242762222399792, guid: 8d03b299dde332645adc342918eed285,
         type: 3}
       propertyPath: aimAtSmoothing
@@ -3991,6 +4001,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RandomRoam-Enemy-Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876590537908019206, guid: 8d03b299dde332645adc342918eed285,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8750242762222399792, guid: 8d03b299dde332645adc342918eed285,
         type: 3}
@@ -5136,6 +5151,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NonRoam-Enemy-Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408395, guid: a73d9f2e25536c0449847d17f3cc3dcf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 363187117804408496, guid: a73d9f2e25536c0449847d17f3cc3dcf,
         type: 3}
       propertyPath: shootRate
@@ -5507,6 +5527,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy-Sniper (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
@@ -5917,6 +5942,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NonRoam-Enemy-Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876590537908019206, guid: 6fc760476b777604b8e823c36e93ea9d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4876590537908019212, guid: 6fc760476b777604b8e823c36e93ea9d,
         type: 3}
@@ -8910,6 +8940,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy-Sniper (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_RootOrder
@@ -11759,6 +11794,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NonRoam-Enemy-Shotgun (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408395, guid: a73d9f2e25536c0449847d17f3cc3dcf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 363187117804408496, guid: a73d9f2e25536c0449847d17f3cc3dcf,
         type: 3}
@@ -15728,6 +15768,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomRoam-Enemy-Shotgun (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408395, guid: c28abe03787c407468ac82fe3cb675e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: c28abe03787c407468ac82fe3cb675e6,
         type: 3}
       propertyPath: m_RootOrder
@@ -15827,6 +15872,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy-Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
@@ -16341,6 +16391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy-Sniper (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
@@ -19360,6 +19415,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NonRoam-Enemy-Sniper
       objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734664, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 5ce05cab5c14cb04f87abe2f83b830f8,
         type: 3}
       propertyPath: m_RootOrder
@@ -21027,6 +21087,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy-Sniper (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_RootOrder
@@ -22528,6 +22593,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy-Sniper (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}
       propertyPath: m_RootOrder
@@ -23911,6 +23981,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RandomRoam-Enemy-Shotgun (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 363187117804408395, guid: c28abe03787c407468ac82fe3cb675e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 363187117804408497, guid: c28abe03787c407468ac82fe3cb675e6,
         type: 3}
@@ -28719,6 +28794,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy-Sniper (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887439388771734664, guid: 9b9c55dc04367814390cc14fb88b0f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1887439388771734669, guid: 9b9c55dc04367814390cc14fb88b0f03,
         type: 3}

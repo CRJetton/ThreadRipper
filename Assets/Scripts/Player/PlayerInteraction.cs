@@ -41,6 +41,8 @@ public class PlayerInteraction : MonoBehaviour, IInteractionController
 
         currentInteractable.Interact(this);
 
+        currentInteractable = null;
+
         UIManager.instance.HidePopup();
     }
 
