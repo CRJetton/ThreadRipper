@@ -1994,6 +1994,7 @@ MonoBehaviour:
   shootRate: 0.2
   enemyCombat: {fileID: 363187117804408503}
   detectionDelay: 0.7
+  playerdetected: 0
   agent: {fileID: 363187117804408502}
   stoppingDist: 5
   isASniper: 0
@@ -2004,7 +2005,6 @@ MonoBehaviour:
   headPosition: {fileID: 363187117208135005}
   enemyAnim: {fileID: 866331865671818293}
   animSpeedTransition: 3
-  playerdetected: 0
 --- !u!95 &866331865671818293
 Animator:
   serializedVersion: 5

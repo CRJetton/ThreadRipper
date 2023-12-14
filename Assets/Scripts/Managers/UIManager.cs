@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
     float originalTimeScale;
     public GameManager.GameStates currState;
     [SerializeField] Texture2D cursorIcon;
-    [SerializeField] int facePlayerSpeed;
+    [SerializeField] float facePlayerSpeed;
     public Vector3 playerDirection;
     [SerializeField] GameObject cameraContainer;
     
@@ -68,10 +68,10 @@ public class UIManager : MonoBehaviour
         playerPauseInput.started += PauseMenu;
         UIPauseInput.started += UnpauseMenu;
 
-        if(currState != GameManager.GameStates.mainMenu)
-        {
-            playerDirection = GameManager.instance.playerBodyPositions.playerHead.position - popupMenu.transform.position;
-        }
+        
+        
+        playerDirection = GameManager.instance.playerBodyPositions.playerHead.position - popupMenu.transform.position;
+        
         
 
         Cursor.SetCursor(cursorIcon, Vector2.zero, CursorMode.ForceSoftware);

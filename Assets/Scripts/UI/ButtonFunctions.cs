@@ -40,7 +40,8 @@ public class ButtonFunctions : MonoBehaviour
     {
         UIManager.instance.menuPause.SetActive(false);
         UIManager.instance.menuSettings.SetActive(true);
-        
+        UIManager.instance.currState = GameManager.GameStates.settingsMenu;
+
     }
 
     public void Back()
