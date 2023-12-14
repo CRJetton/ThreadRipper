@@ -48,11 +48,12 @@ public class BossAI: MonoBehaviour, IDamageable
     bool isShooting = false;
     bool playerInRange;
     bool destinationChosen;
+    bool isWaiting = true;
+    bool roamingCoroutineRunning = false;
 
     // Variables to track the position and orientation of the boss relative to the player
     float angleToPlayer;
     float stoppingDistanceOrigional;
-    float maxHP;
 
     // Direction and position tracking
     Vector3 playerDir;
@@ -74,6 +75,7 @@ public class BossAI: MonoBehaviour, IDamageable
         {
             bossCombat.InitializeMaxHP(HP);
         }
+        isWaiting = true;                                                               // Added in a waiting state for the boss so he doesnt start in his roam behavior
     }
     #endregion
 
@@ -88,45 +90,100 @@ public class BossAI: MonoBehaviour, IDamageable
             float animatorSpeed = agent.velocity.magnitude;
             animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), animatorSpeed, Time.deltaTime * animationSpeedTransition));
 
-            // Check if the boss should roam or engage with the player
-            if (playerInRange && !canSeePlayer() || !Investigate())
+            // updates the Bosses waiting behavior
+            if (isWaiting)
             {
-                StartCoroutine(roam());
+                if (IsPlayerInitiatingCombat())
+                {
+                    // activates the animations from waiting to standing up
+                    isWaiting = false;
+                    animator.SetTrigger("StandUp");
+                }
+                // If the boss isnt waiting he stands up and roams
+                else if (!roamingCoroutineRunning)
+                {
+                    StartCoroutine(roam());
+                }
             }
-            else if (!playerInRange)
+            else
             {
-                StartCoroutine(roam());
+                // Check if the boss should roam or engage with the player
+                if (canSeePlayer() || Investigate())
+                {
+                    StartCoroutine(roam());
+                }
+                else
+                {
+                    if (!roamingCoroutineRunning)
+                    {
+                        StartCoroutine(roam());
+                    }
+                }
             }
-        }
+        }  
     }
     #endregion
 
-    // Defines the roaming behavior of the boss
+    // Defines the roaming behavior of the boss as well as determining if the boss is waiting
     #region boss behavior
     IEnumerator roam()                                                                          
     {
-        // Boss chooses a new destination to roam to if the current destination is reached (change number to change behavior)
-        if (agent.remainingDistance < 0.05f && !destinationChosen)
+        roamingCoroutineRunning = true;
+
+        if (isWaiting)
         {
-            destinationChosen = true;
-            agent.stoppingDistance = 0;
-            yield return new WaitForSeconds(roamPauseTime);
-
-            // Selects a random position within its specified radius to roam to
-            Vector3 randomPos = Random.insideUnitSphere * roamDistance;
-            randomPos += startingPos;
-
-            NavMeshHit hit;
-            NavMesh.SamplePosition(randomPos, out hit, roamDistance, 1);
-            agent.SetDestination(hit.position);
-
-            destinationChosen = false;
+            if (IsPlayerInitiatingCombat())
+            {
+                isWaiting = false;
+                animator.SetTrigger("StandUp");
+            }
         }
+        if (!isWaiting)
+        {
+            // Boss chooses a new destination to roam to if the current destination is reached (change number to change behavior)
+            if (agent.remainingDistance < 0.05f && !destinationChosen)
+            {
+                destinationChosen = true;
+                agent.stoppingDistance = 0;
+                yield return new WaitForSeconds(roamPauseTime);
+
+                // Selects a random position within its specified radius to roam to
+                Vector3 randomPos = Random.insideUnitSphere * roamDistance;
+                randomPos += startingPos;
+
+                NavMeshHit hit;
+                NavMesh.SamplePosition(randomPos, out hit, roamDistance, 1);
+                agent.SetDestination(hit.position);
+
+                destinationChosen = false;
+            }
+        }
+        roamingCoroutineRunning = false;
+    }
+
+    // Checks to see if the player is in range or if the Boss is taking damage in order to take it out of the waiting state
+    bool IsPlayerInitiatingCombat()
+    {
+        // Check if the player is within the trigger range
+        if (playerInRange)
+        {
+            return true;
+        }
+
+        // Check if taking damage
+        if (istakingdamage)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     // Checks if the boss can see the player based on vision cone and line of sight
     bool canSeePlayer()
     {
+        if (isWaiting) return false;
+
         // Calculate the direction and angle to the player
         playerDir = GameManager.instance.playerBodyPositions.GetPlayerCenter() - headPosition.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
@@ -172,6 +229,8 @@ public class BossAI: MonoBehaviour, IDamageable
     // Investigate the last known position of the player if the boss is taking damage
     bool Investigate()
     {
+        if (isWaiting) return false;
+
         if (istakingdamage)
         {
             agent.SetDestination(GameManager.instance.player.transform.position);
