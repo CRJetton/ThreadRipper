@@ -24,7 +24,6 @@ public class WaypointRoamAI : BaseAI
         walkpointSet = false;
         currentWaypointIndex = 0;
         transform.position = waypoint.GetChild(0).position;
-        HUDManager.instance.UpdateProgress(1);
     }
 
     public override void patrol()

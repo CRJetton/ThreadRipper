@@ -62,7 +62,6 @@ public class BaseAI : MonoBehaviour, IDamageable
     void Start()
     {
         EnemyManager.instance.enemies.Add(gameObject);
-        HUDManager.instance.UpdateProgress(1);
         enemyPos = transform.position;
         agent.stoppingDistance = stoppingDist;
         agent.speed = walkSpeed;

@@ -13,22 +13,14 @@ public class Spawner : MonoBehaviour
 
     int spawnCount;
     bool isSpawning;
-    bool startSpawning;
     List<Transform> usableSpawnPos = new List<Transform>();
 
 
     private void Start()
     {
+        HUDManager.instance.UpdateProgress(numToSpawn);
+
         usableSpawnPos.AddRange(spawnPos);
-    }
-
-
-    private void Update()
-    {
-        if (startSpawning && spawnCount < numToSpawn && !isSpawning)
-        {
-            StartCoroutine(Spawn());
-        }
     }
 
 
@@ -44,25 +36,26 @@ public class Spawner : MonoBehaviour
     {
         isSpawning = true;
 
-        int posIndex = Random.Range(0, usableSpawnPos.Count - 1);
-        GameObject objectClone = Instantiate(objectToSpawn, usableSpawnPos[posIndex].position, usableSpawnPos[posIndex].rotation);
+        for(int i = 0; i < numToSpawn; i++)
+        {
+            int posIndex = Random.Range(0, usableSpawnPos.Count - 1);
+            GameObject objectClone = Instantiate(objectToSpawn, usableSpawnPos[posIndex].position, usableSpawnPos[posIndex].rotation);
 
-        objectClone.GetComponent<BaseAI>().SubscribeOnDie(EnemyDied);
+            objectClone.GetComponent<BaseAI>().SubscribeOnDie(EnemyDied);
 
-        spawnList.Add(objectClone);
-        spawnCount++;
+            spawnList.Add(objectClone);
+            spawnCount++;
 
-        if (spawnForKillDoor)
-            SpawnManager.instance.KillDoorEnemySpawned(objectClone);
+            if (spawnForKillDoor)
+                SpawnManager.instance.KillDoorEnemySpawned(objectClone);
 
-        usableSpawnPos.RemoveAt(posIndex);
+            usableSpawnPos.RemoveAt(posIndex);
 
-        if (usableSpawnPos.Count == 0)
-            usableSpawnPos.AddRange(spawnPos);
+            if (usableSpawnPos.Count == 0)
+                usableSpawnPos.AddRange(spawnPos);
 
-        yield return new WaitForSeconds(timeBetweenSpawns);
-
-        isSpawning = false;
+            yield return new WaitForSeconds(timeBetweenSpawns);
+        }
     }
 
 
@@ -72,21 +65,9 @@ public class Spawner : MonoBehaviour
         if (other.isTrigger)
             return;
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isSpawning)
         {
-            startSpawning = true;
-        }
-    }
-
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.isTrigger)
-            return;
-
-        if (other.CompareTag("Player"))
-        {
-            startSpawning = false;
+            StartCoroutine(Spawn());
         }
     }
 }

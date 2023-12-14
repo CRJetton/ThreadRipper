@@ -25,7 +25,7 @@ MonoBehaviour:
   bulletSpeed: 75
   bulletDestroyTime: 3
   hitForce: 2.5
-  timeBetweenShots: 0.105
+  timeBetweenShots: 0.15
   queueShotTime: 0.05
   bulletsPerShot: 1
   fullAuto: 1

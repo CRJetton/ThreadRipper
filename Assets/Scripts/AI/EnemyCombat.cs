@@ -14,6 +14,7 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
     [SerializeField] float aimAtSmoothing;
     Vector3 aimPos;
     Vector3 lastAimPos;
+    bool isLastAimInitialized;
 
     private IWeapon weaponCurrent;
     private IGun gunCurrent;
@@ -34,6 +35,12 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
 
     public void AimAt(Vector3 worldPosition)
     {
+        if (!isLastAimInitialized)
+        {
+            lastAimPos = weaponCurrent.GetObject().transform.position + weaponCurrent.GetObject().transform.forward;
+            isLastAimInitialized = true;
+        }
+
         if (weaponCurrent != null)
         {
             aimPos = Vector3.Lerp(lastAimPos, worldPosition, aimAtSmoothing * Time.deltaTime);
@@ -94,7 +101,7 @@ public class EnemyCombat : MonoBehaviour, IEnemyCombat
 
 
         // Create and equip the new weapon
-        Instantiate(pickup.GetEnemyWeapon().weaponPrefab, weaponContainer);
+        GameObject weaponClone = Instantiate(pickup.GetEnemyWeapon().weaponPrefab, weaponContainer);
 
         weaponCurrent = weaponContainer.GetComponentInChildren<IWeapon>();
 
