@@ -1272,6 +1272,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 69321891, guid: 141656d300558d94983f6bc9a2a37394, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 843693733, guid: 141656d300558d94983f6bc9a2a37394, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1296,6 +1300,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1068214903, guid: 141656d300558d94983f6bc9a2a37394, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068214903, guid: 141656d300558d94983f6bc9a2a37394, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068214903, guid: 141656d300558d94983f6bc9a2a37394, type: 3}
+      propertyPath: m_MinValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068214903, guid: 141656d300558d94983f6bc9a2a37394, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1073845817, guid: 141656d300558d94983f6bc9a2a37394, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.053
@@ -1318,7 +1338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2019097755, guid: 141656d300558d94983f6bc9a2a37394, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2019097756, guid: 141656d300558d94983f6bc9a2a37394, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1348,6 +1368,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181892568076059984, guid: 141656d300558d94983f6bc9a2a37394,
+        type: 3}
+      propertyPath: levelMusic
+      value: 
+      objectReference: {fileID: 1878057870}
     - target: {fileID: 3240688567008803585, guid: 141656d300558d94983f6bc9a2a37394,
         type: 3}
       propertyPath: camera
@@ -3357,6 +3382,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797596487}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &1878057870 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 69321891, guid: 141656d300558d94983f6bc9a2a37394,
+    type: 3}
+  m_PrefabInstance: {fileID: 652089124}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1899272601
 PrefabInstance:
   m_ObjectHideFlags: 0

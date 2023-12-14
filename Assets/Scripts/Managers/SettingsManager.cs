@@ -11,18 +11,21 @@ public class SettingsManager : MonoBehaviour
 
     public float volume;
     [SerializeField] Slider volumeBar;
+    [SerializeField] AudioSource levelMusic;
 
 
 
     private void Awake()
     {
         instance = this;
-        volume = 100;
+        volume = 0.5f;
     }
 
     public void AdjustVolume()
     {
-        volume = volumeBar.value;      
+        volume = volumeBar.value;
+        levelMusic.volume = volume;
+        
     }
 
     public void AdjustSensitivity()
