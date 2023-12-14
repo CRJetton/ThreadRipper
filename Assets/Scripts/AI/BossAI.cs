@@ -4,6 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+ * Author: Tristan Sherzer
+ * 
+ * Contact info: tsherzer@gmail.com
+ *               239-370-1229
+ *               12/14/23 P&F2
+ */
+
 
 // Defines the AI behavior for the Boss character in our game.
 public class BossAI: MonoBehaviour, IDamageable
